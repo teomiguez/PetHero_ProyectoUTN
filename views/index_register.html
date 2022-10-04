@@ -15,35 +15,35 @@
 
                 <div>
                     <label for="name" class="form-label"> Nombre </label>
-                    <input id="name" name="name" type="text" class="form-control">
+                    <input id="name" name="name" type="text" class="form-control" required>
                 </div>
 
                 <br>
 
                 <div>
                     <label for="last_name" class="form-label"> Apellido </label>
-                    <input id="last_name" name="last_name" type="text" class="form-control">
+                    <input id="last_name" name="last_name" type="text" class="form-control" required>
                 </div>
 
                 <br>
 
                 <div>
                     <label for="mail" class="form-label"> Email </label>
-                    <input id="mail" name="email" type="email" class="form-control" placeholder="example@email.com">
+                    <input id="mail" name="email" type="email" class="form-control" placeholder="example@email.com" required>
                 </div>
 
                 <br>
 
                 <div>
                     <label for="password" class="form-label"> Contraseña </label>
-                    <input id="password" name="password" type="password" class="form-control" placeholder="">
+                    <input id="password" name="password" type="password" class="form-control" placeholder="" required>
                 </div>
 
                 <br>
 
                 <div>
                     <label for="check_password" class="form-label"> Confirmar Contraseña </label>
-                    <input id="check_password" name="check_password" type="password" class="form-control" placeholder="">
+                    <input id="check_password" name="check_password" type="password" class="form-control" placeholder="" required>
                 </div>
 
                 <br>
@@ -54,12 +54,12 @@
                     <br>
 
                     <div class="form-check form-check-inline">
-                         <input class="form-check-input" type="radio" name="radio_option" id="radio_dueño" value="option1">
+                         <input class="form-check-input" type="radio" name="radio_option" id="radio_dueño" value="option1" required>
                         <label class="form-check-label" for="radio_dueño"> Dueño </label>
                     </div>
                     
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="radio_option" id="radio_guardian" value="option2">
+                        <input class="form-check-input" type="radio" name="radio_option" id="radio_guardian" value="option2" >
                         <label class="form-check-label" for="radio_guardian"> Guardian </label>
                     </div>
                 </div>
@@ -69,12 +69,12 @@
                 <div>
                     <div class="d-inline-block">
                         <label for="street" class="form-label"> Calle </label>
-                        <input id="street" name="street" type="text" class="form-control">
+                        <input id="street" name="street" type="text" class="form-control" required>
                     </div>
 
                     <div class="d-inline-block">
                         <label for="nro" class="form-label"> Altura </label>
-                        <input id="nro" name="nro" type="text" class="form-control">
+                        <input id="nro" name="nro" type="text" class="form-control" required>
                     </div>
                 </div>
                 
@@ -83,7 +83,7 @@
                 <div>
                     <label for="days_checks" class="form-check"> Dias disponibles </label>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="check_monday" value="option1">
+                        <input class="form-check-input" type="checkbox" id="check_monday" value="option1" required>
                         <label class="form-check-label" for="check_monday"> Lunes </label>
                     </div>
                     
@@ -124,7 +124,7 @@
 
                 <div>
                     <label for="tipo_perro" class="form-label"> Tamaño de perro a cuidar</label>
-                    <select id="tipo_perro" class="form-select form-select-sm" aria-label=".form-select-sm example">
+                    <select id="tipo_perro" class="form-select form-select-sm" aria-label=".form-select-sm example" required>
                         <option selected disabled> Tamaño del perro</option>
                         <option value="chico"> Chico </option>
                         <option value="mediano"> Mediano </option>
@@ -135,15 +135,20 @@
                 <br>
                 
                 <div class="mb-3 row">
-                    <label for="cost" class="col-sm-2 col-form-label"> Remuneracion </label>
+                    <label for="cost" class="col-sm-2 col-form-label"> Valor del cuidado </label>
                     <div class="col-sm-10">
                         <div class="input-group mb-3">
                             <span class="input-group-text">$</span>
-                            <input id="cost" type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                            <input id="cost" type="text" class="form-control" aria-label="Amount (to the nearest dollar)" required>
                         </div>
                     </div>
                 </div>
 
+                <br>
+
+                <div class="d-grid gap-2">
+                     <button class="btn btn-primary" type="submit">Registrarme</button>
+                </div>
         
             </form>
         </section>
