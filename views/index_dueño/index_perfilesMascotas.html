@@ -57,8 +57,31 @@
                 *Calendario*
             </div>
 
-            <div class="col-12 col-sm-8 col-lg-5 border">
-                *buscador* + *Lista perfiles creados* + boton *crear feril* (modal)
+            <div class="col-12 col-sm-8 col-lg-5 border mb-3">
+                <form action="">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Buscar mascota..."
+                            aria-label="Buscar mascota..." aria-describedby="button-addon2">
+                        <button class="btn btn-outline-secondary" type="button" id="button-addon2">
+                            <i class="bi bi-search"></i>
+                        </button>
+                    </div>
+                </form>
+
+                <div class="list-group mb-3">
+                    <a href="#" class="list-group-item list-group-item-action"> A first link item </a>
+                    <a href="#" class="list-group-item list-group-item-action"> A second link item </a>
+                    <a href="#" class="list-group-item list-group-item-action"> A third link item </a>
+                    <a href="#" class="list-group-item list-group-item-action"> A fourth link item </a>
+                    <a href="#" class="list-group-item list-group-item-action"> A fifth link item </a>
+                    <a href="#" class="list-group-item list-group-item-action"> A sixth link item </a>
+                </div>
+
+                <!-- Button whit modal -->
+                <button type="button" class="btn btn-primary w-100" data-bs-toggle="modal"
+                    data-bs-target="#createPet_modal">
+                    Crear perfil
+                </button>
             </div>
 
             <div class="col-12 col-sm-4 border">
@@ -77,6 +100,25 @@
             <a href="#"> *Red Social* </a>
         </div>
     </footer>
+
+    <!-- Modal -->
+    <div class="modal fade" id="createPet_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Funcionalidades JS propias de Boostrap (para uso de compoentes especificos) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
