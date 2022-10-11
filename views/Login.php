@@ -20,7 +20,7 @@
             </h1>
             <h2>
                 <em>
-                    "Cuidalos con quien vos creas es el mejor"
+                    "Cuidalos con quien vos creas el mejor"
                 </em>
             </h2>
         </section>
