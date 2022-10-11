@@ -5,6 +5,7 @@ namespace Models;
 class Guardian
 {
 
+    private $id_guardian;
     private $nombre;
     private $dni;
     private $telefono;
@@ -14,8 +15,20 @@ class Guardian
     private $reputacion;
     private $tamañoMascotaPref;
     private $precio;
-    private $fechasDisponibles;
+    private $fechasDisponibles = array();
 
+    // get y set id_guardian
+
+    public function getId_guardian()
+    {
+        return $this->id_guardian;
+    }
+
+    public function setId_guardian($id_guardian)
+    {
+        $this->id_guardian = $id_guardian;
+        return $this;
+    }
 
     // get y set el nombre
 

@@ -4,14 +4,27 @@ namespace Models;
 
 class Dueño
 {
+    private $id_dueño;
     private $nombre;
     private $dni;
     private $telefono;
-    private $direccion;
     private $email;
     private $contraseña;
-    private $mascotas;
+    private $mascotas = array();
 
+    // get y set id_dueño
+
+    public function getId_dueño()
+    {
+        return $this->id_dueño;
+    }
+
+    public function setId_dueño($id_dueño)
+    {
+        $this->id_dueño = $id_dueño;
+        return $this;
+    }
+    
     // get y set el nombre
 
     public function getNombre()
@@ -48,19 +61,6 @@ class Dueño
     public function setTelefono($telefono)
     {
         $this->telefono = $telefono;
-        return $this;
-    }
-
-    // get y set la direccion
-
-    public function getDireccion()
-    {
-        return $this->direccion;
-    }
-
-    public function setDireccion($direccion)
-    {
-        $this->direccion = $direccion;
         return $this;
     }
 
