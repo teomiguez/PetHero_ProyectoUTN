@@ -2,17 +2,32 @@
 
 namespace Models;
 
-class Dueño
+class Mascota
 {
 
     private $id_mascota;
     private $id_dueño;
+    private $id_guardian;
     private $img;
     private $nombre;
     private $animal;
     private $tamaño;
     private $video;
     private $observaciones;
+
+
+    // get y set mascota
+
+    public function getId_mascota()
+    {
+        return $this->id_mascota;
+    }
+
+    public function setId_mascota($id_mascota)
+    {
+        $this->id_mascota = $id_mascota;
+        return $this;
+    }
 
     // get y set id_dueño
 
@@ -47,7 +62,7 @@ class Dueño
         return $this->img;
     }
 
-    public function setVideo($img)
+    public function setImg($img)
     {
         $this->img = $img;
         return $this;

@@ -6,6 +6,7 @@ class Dueño
 {
     private $id_dueño;
     private $nombre;
+    private $apellido;
     private $dni;
     private $telefono;
     private $email;
@@ -37,6 +38,20 @@ class Dueño
         $this->nombre = $nombre;
         return $this;
     }
+
+     // get y set del apellido
+
+     public function getApellido()
+     {
+         return $this->apelldo;
+     }
+ 
+     public function setApellido($apellido)
+     {
+         $this->apellido = $apellido;
+         return $this;
+     }
+
 
     // get y set el dni
 

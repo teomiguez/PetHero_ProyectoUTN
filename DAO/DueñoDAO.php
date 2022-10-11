@@ -18,7 +18,7 @@
         {
             $this->RetrieveData();
 
-            $dueño->setId($this->GetNextId());
+            $dueño->setId_dueño($this->GetNextId());
 
             array_push($this->dueñoList, $dueño);
 
@@ -37,7 +37,7 @@
             $this->RetrieveData();
 
             $Dueños = array_filter($this->dueñoList, function($dueño) use($id){
-                return $dueño->getId() == $id;
+                return $dueño->getId_dueño() == $id;
             });
 
             $Dueños = array_values($Dueños); //Reorderding array
@@ -51,7 +51,7 @@
             $this->RetrieveData();
 
             $this->dueñoList = array_filter($this->dueñoList, function($dueño) use($id){
-                return $dueño->getId() != $id;
+                return $dueño->getId_dueño() != $id;
             });
 
             $this->SaveData();
@@ -72,6 +72,7 @@
                      $dueño = new Dueño();
                      $dueño->setId_dueño($content["id"]);
                      $dueño->setNombre($content["name"]);
+                     $dueño->setApellido($content["last_name"]);
                      $dueño->setDni($content["dni"]);
                      $dueño->setTelefono($content["tel"]);
                      $dueño->setEmail($content["email"]);
@@ -111,7 +112,7 @@
 
             foreach($this->dueñoList as $dueño)
             {
-                $id = ($dueño->getId() > $id) ? $dueño->getId_dueño() : $id;
+                $id = ($dueño->getId_dueño() > $id) ? $dueño->getId_dueño() : $id;
             }
 
             return $id + 1;
