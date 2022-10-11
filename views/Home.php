@@ -12,7 +12,7 @@
 
 <body>
     <main class="coteiner position-absolute top-50 start-50 translate-middle">
-        <section class="text-center">
+        <section class="text-center mb-5">
             <h1 class="display-1">
                 <strong>
                     PET HERO
@@ -24,8 +24,6 @@
                 </em>
             </h2>
         </section>
-
-        <br><br><br><br>
 
         <section class="bg-white text-dark py-2 px-3 border-5 rounded-4">
             <h2 class="text-center py-4"> Iniciar Sesion </h2>
@@ -53,7 +51,7 @@
 
                 <div class="d-flex justify-content-center">
                     <p class="px-2"> Aún no tenes cuenta? </p>
-                    <a href="index_register.html"> Registrarse </a>
+                    <a href=""> Registrarse </a>
                 </div>
 
 
