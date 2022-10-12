@@ -19,7 +19,7 @@
     
 </head>
 
-<body class="bg-color">
+<body>
     <!-- Barra de navegacion -->
     <nav class="navbar navbar-expand-lg nav-color border-bottom border-dark">
         <div class="container-fluid">
