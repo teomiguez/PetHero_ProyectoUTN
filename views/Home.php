@@ -51,7 +51,7 @@
 
                 <div class="d-flex justify-content-center">
                     <p class="px-2"> Aún no tenes cuenta? </p>
-                    <a href=""> Registrarse </a>
+                    <a href="<?php echo FRONT_ROOT ?>Dueño/ShowAddView"> Registrarse </a>
                 </div>
 
 

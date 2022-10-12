@@ -26,7 +26,7 @@
             require_once(VIEWS_PATH."DueñoHome.php");
         }
 
-        public function Add($name, $last_name, $dni, $tel, $dir, $email, $pass, $reputacion, $tipoMascota, $precio)
+        public function Add($name, $last_name, $dni, $tel, $dir, $email, $pass, $dias, $tipoMascota, $precio)
         {
             $guardian = new Guardian();
 
@@ -38,7 +38,7 @@
             $guardian->setDireccion($dir);
             $guardian->setEmail($email);
             $guardian->setContraseña($pass);
-            $guardian->setReputacion($reputacion);
+            $guardian->setFechasDisponibles($dias);
             $guardian->setTamañoMascotaPref($tipoMascota);
             $guardian->setPrecio($precio);
 

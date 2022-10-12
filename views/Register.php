@@ -108,43 +108,43 @@
                         <div>
                             <label for="days_checks" class="form-check"> Dias disponibles </label>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="check_monday" value="option1"
+                                <input class="form-check-input" type="checkbox" id="check_monday" name="check[]" value="option1"
                                     disabled>
                                 <label class="form-check-label" for="check_monday"> Lu </label>
                             </div>
 
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="check_tuesday" value="option2"
+                                <input class="form-check-input" type="checkbox" id="check_tuesday" name="check[]" value="option2"
                                     disabled>
                                 <label class="form-check-label" for="check_tuesday"> Ma </label>
                             </div>
 
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="check_wednesday" value="option3"
+                                <input class="form-check-input" type="checkbox" id="check_wednesday" name="check[]" value="option3"
                                     disabled>
                                 <label class="form-check-label" for="check_wednesday"> Mi </label>
                             </div>
 
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="check_thursday" value="option4"
+                                <input class="form-check-input" type="checkbox" id="check_thursday" name="check[]" value="option4"
                                     disabled>
                                 <label class="form-check-label" for="check_thursday"> Jue </label>
                             </div>
 
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="check_friday" value="option5"
+                                <input class="form-check-input" type="checkbox" id="check_friday" name="check[]" value="option5"
                                     disabled>
                                 <label class="form-check-label" for="check_friday"> Vie </label>
                             </div>
 
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="check_saturday" value="option6"
+                                <input class="form-check-input" type="checkbox" id="check_saturday" name="check[]" value="option6"
                                     disabled>
                                 <label class="form-check-label" for="check_saturday"> Sa </label>
                             </div>
 
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="check_sunday" value="option7"
+                                <input class="form-check-input" type="checkbox" id="check_sunday" name="check[]" value="option7"
                                     disabled>
                                 <label class="form-check-label" for="check_sunday"> Do </label>
                             </div>
@@ -154,7 +154,7 @@
                     <div class="col-12 col-md-6 my-2">
                         <div>
                             <select id="tipo_perro" class="form-select form-select-sm"
-                                aria-label=".form-select-sm example" disabled required>
+                                aria-label=".form-select-sm example" name="tipo" disabled required>
                                 <option selected> Tamaño del perro</option>
                                 <option value="chico"> Chico </option>
                                 <option value="mediano"> Mediano </option>
@@ -169,7 +169,7 @@
                             <div class="col-sm-10">
                                 <div class="input-group mb-3">
                                     <span class="input-group-text">$</span>
-                                    <input id="cost" type="text" class="form-control"
+                                    <input id="cost" type="text" class="form-control" name="cost"
                                         aria-label="Amount (to the nearest dollar)" disabled required>
                                 </div>
                             </div>
