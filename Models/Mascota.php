@@ -7,10 +7,8 @@ class Mascota
 
     private $id_mascota;
     private $id_dueño;
-    private $id_guardian;
     private $img;
     private $nombre;
-    private $animal;
     private $tamaño;
     private $video;
     private $observaciones;
@@ -42,19 +40,6 @@ class Mascota
         return $this;
     }
 
-    // get y set id_guardian
-
-    public function getId_guardian()
-    {
-        return $this->id_guardian;
-    }
-
-    public function setId_guardian($id_guardian)
-    {
-        $this->id_guardian = $id_guardian;
-        return $this;
-    }
-
     // get y set img
 
     public function getImg()
@@ -78,19 +63,6 @@ class Mascota
     public function setNombre($nombre)
     {
         $this->nombre = $nombre;
-        return $this;
-    }
-
-    // get y set tipo animal
-
-    public function getAnimal()
-    {
-        return $this->animal;
-    }
-
-    public function setAnimal($animal)
-    {
-        $this->animal = $animal;
         return $this;
     }
 
@@ -133,10 +105,6 @@ class Mascota
         return $this;
     }
 
-
-
-    
 }
-
 
 ?>
