@@ -6,11 +6,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Pagina Registro </title>
+
+    <!-- Link use Css_file -->
+    <link rel="stylesheet" href="css/styles.css">
+
+    <!-- Link use Boostrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+        
 </head>
 
-<body>
+<body class="bg-color">
     <main class="container text-center mx-5">
         <section class="bg-white text-dark py-2 px-3 border-5 rounded-4">
             <h2 class="text-center py-2"> Registrarse </h2>

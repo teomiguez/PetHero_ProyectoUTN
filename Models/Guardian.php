@@ -6,19 +6,19 @@ class Guardian
 {
 
     private $id_guardian;
-    private $nombre;
-    private $apellido;
+    private $name;
+    private $last_name;
     private $dni;
-    private $telefono;
-    private $direccion;
+    private $telephone;
+    private $address;
     private $email;
-    private $contraseña;
-    private $reputacion;
-    private $tamañoMascotaPref;
-    private $precio;
-    private $fechasDisponibles = array();
+    private $password;
+    private $rating;
+    private $sizeCare;
+    private $cost;
+    private $days = array();
 
-    // get y set id_guardian
+    // -> SETTERS Y GETTERS
 
     public function getId_guardian()
     {
@@ -28,36 +28,27 @@ class Guardian
     public function setId_guardian($id_guardian)
     {
         $this->id_guardian = $id_guardian;
-        return $this;
     }
 
-    // get y set el nombre
-
-    public function getNombre()
+    public function getName()
     {
-        return $this->nombre;
+        return $this->name;
     }
 
-    public function setNombre($nombre)
+    public function setName($name)
     {
-        $this->nombre = $nombre;
-        return $this;
+        $this->name = $name;
     }
 
-     // get y set del apellido
-
-     public function getApellido()
-     {
-         return $this->apelldo;
-     }
+    public function getLast_name()
+    {
+        return $this->last_name;
+    }
  
-     public function setApellido($apellido)
-     {
-         $this->apellido = $apellido;
-         return $this;
-     }
-
-    // get y set el dni
+    public function setLast_name($last_name)
+    {
+        $this->last_name = $last_name;
+    }
 
     public function getDni()
     {
@@ -70,33 +61,25 @@ class Guardian
         return $this;
     }
 
-    // get y set el telefono
-
-    public function getTelefono()
+    public function getTelephone()
     {
-        return $this->telefono;
+        return $this->telephone;
     }
 
-    public function setTelefono($telefono)
+    public function setTelephone($telephone)
     {
-        $this->telefono = $telefono;
-        return $this;
+        $this->telephone = $telephone;
     }
 
-    // get y set la direccion
-
-    public function getDireccion()
+    public function getAddress()
     {
-        return $this->direccion;
+        return $this->address;
     }
 
-    public function setDireccion($direccion)
+    public function setAddress($address)
     {
-        $this->direccion = $direccion;
-        return $this;
+        $this->address = $address;
     }
-
-    // get y set el email
 
     public function getEmail()
     {
@@ -106,79 +89,61 @@ class Guardian
     public function setEmail($email)
     {
         $this->email = $email;
-        return $this;
     }
 
-    // get y set la contraseña
-
-    public function getContraseña()
+    public function getPasssword()
     {
-        return $this->contraseña;
+        return $this->passsword;
     }
 
-    public function setContraseña($contraseña)
+    public function setPassword($passsword)
     {
-        $this->contraseña = $contraseña;
-        return $this;
+        $this->passsword = $passsword;
     }
 
-    // get y set la reputacion 
-
-    public function getReputacion()
+    public function getRating()
     {
-        return $this->reputacion;
+        return $this->rating;
     }
 
-    public function setReputacion($reputacion)
+    public function setRating($rating)
     {
-        $this->reputacion = $reputacion;
-        return $this;
+        $this->rating = $rating;
     }
 
-    // get y set el tamaño preferente de mascota
-
-    public function getTamañoMascotaPref()
+     public function getSizeCare()
     {
-        return $this->tamañoMascotaPref;
+        return $this->sizeCare;
     }
 
-    public function setTamañoMascotaPref($tamañoMascotaPref)
+    public function setSizeCare($sizeCare)
     {
-        $this->tamañoMascotaPref = $tamañoMascotaPref;
-        return $this;
+        $this->sizeCare = $sizeCare;
     }
 
-    // get y set el precio 
-
-    public function getPrecio()
+    public function getCost()
     {
-        return $this->precio;
+        return $this->cost;
     }
 
-    public function setPrecio($precio)
+    public function setCost($cost)
     {
-        $this->precio = $precio;
-        return $this;
+        $this->cost = $cost;
     }
 
-
-     // get y set de fechas disponibles 
-
-    public function getFechasDisponibles()
+    public function getDays()
     {
-        return $this->fechasDisponibles;
+        return $this->days;
     }
 
-    public function setFechasDisponibles($fechasDisponibles)
+    public function setDays($days)
     {
-        $this->fechasDisponibles = $fechasDisponibles;
-        return $this;
-    }   
+        $this->days = $days;
+    }
+    
+    // -> SETTERS Y GETTERS
+
     
 }
-
-
-
-
 
 ?>

@@ -1,7 +1,7 @@
 <?php
     namespace DAO;
 
-    interface IDAO
+    interface I_DAO
     {
         function Add($obj);
         function GetAll();

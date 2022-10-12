@@ -1,11 +1,15 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Dueño Home </title>
+
+
+    <!-- Link use Css_file -->
+    <link rel="stylesheet" href="css/styles.css">
 
     <!-- Link use Boostrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -18,10 +22,14 @@
 
 <body>
     <!-- Barra de navegacion -->
-    <nav class="navbar navbar-expand-lg navbar-light border-bottom border-dark" style="background-color: #e3f2fd;">
+    <nav class="navbar navbar-expand-lg nav-color border-bottom border-dark">
         <div class="container-fluid">
 
-            <h2 class="navbar-brand"> Pet Hero </h2>
+            <h2 class="navbar-brand fs-3 pt-2">
+                <strong>
+                    Pet Hero
+                </strong>
+            </h2>
 
             <div class="navbar-nav position-absolute top-50 start-50 translate-middle">
                 <a href="#" class="nav-link active text-decoration-none"> *Home* </a>
@@ -40,13 +48,11 @@
                     </li>
 
                     <li class="nav-item">
-                        <a href="../index_dueño/index_perfilesMascotas.html" class="nav-link text-decoration-none"> *Mis
-                            Mascotas* </a>
+                        <a href="" class="nav-link text-decoration-none"> *Mis Mascotas* </a>
                     </li>
 
                     <li class="nav-item">
-                        <a href="../index_dueño/index_dueñoPerfil.html" class="nav-link text-decoration-none"> *Mi
-                            Perfil*</a>
+                        <a href="" class="nav-link text-decoration-none"> *Mi Perfil*</a>
                     </li>
                 </ul>
             </div>

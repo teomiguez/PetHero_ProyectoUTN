@@ -23,24 +23,24 @@
         {
             $dueñoList = $this->dueñoDAO->getAll();
             
-            require_once(VIEWS_PATH."DueñoHome.php");
+            require_once(VIEWS_PATH."OwnerHome.php");
         }
 
-        public function Add($name, $last_name, $dni, $tel, $dir, $email, $pass, $dias, $tipoMascota, $precio)
+        public function Add($name, $last_name, $dni, $tel, $dir, $email, $pass, $days, $sizePet, $cost)
         {
             $guardian = new Guardian();
 
             $guardian->setId_guardian(GuardianDAO->GetNextId());
-            $guardian->setNombre($name);
-            $guardian->setApellido($last_name);
+            $guardian->setName($name);
+            $guardian->setLast_name($last_name);
             $guardian->setDni($dni);
-            $guardian->setTelefono($tel);
-            $guardian->setDireccion($dir);
+            $guardian->setTelephone($tel);
+            $guardian->setAddress($dir);
             $guardian->setEmail($email);
-            $guardian->setContraseña($pass);
-            $guardian->setFechasDisponibles($dias);
-            $guardian->setTamañoMascotaPref($tipoMascota);
-            $guardian->setPrecio($precio);
+            $guardian->setPassword($pass);
+            $guardian->setDays($days);
+            $guardian->setSaizeCare($sizePet);
+            $guardian->setCost($cost);
 
             $this->guardianDAO->Add($guardian);
 

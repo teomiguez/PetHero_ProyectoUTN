@@ -1,10 +1,10 @@
 <?php
     namespace DAO;
 
-    use DAO\IDAO as IDAO;
+    use DAO\I_DAO as I_DAO;
     use Models\Guardian as Guardian;
 
-    class GuardianDao implements IDAO
+    class GuardianDao implements I_DAO
     {
         private $guardianList = array();
         private $fileName;
@@ -36,7 +36,7 @@
         {
             $this->RetrieveData();
 
-            $Guardianes = array_filter($this->guardianList, function($guardian) use($id){
+            $Guardianes = array_filter($this->guardianList, function($guardian) use ($id) {
                 return $guardian->getId_guardian() == $id;
             });
 
@@ -70,18 +70,18 @@
                  foreach($contentArray as $content)
                  {
                      $guardian = new Guardian();
-                     $guardian->setId_guardian($content["id"]);
-                     $guardian->setNombre($content["name"]);
-                     $guardian->setApellido($content["last_name"]);
+                     $guardian->setId_guardian($content["id_guardian"]);
+                     $guardian->setName($content["name"]);
+                     $guardian->setLast_name($content["last_name"]);
                      $guardian->setDni($content["dni"]);
-                     $guardian->setTelefono($content["tel"]);
-                     $guardian->setDireccion($content["direc"]);
+                     $guardian->setTelephone($content["telephone"]);
+                     $guardian->setAddress($content["address"]);
                      $guardian->setEmail($content["email"]);
-                     $guardian->setContraseña($content["password"]);
-                     $guardian->setReputacion($content["reputacion"]);
-                     $guardian->setTamañoMascotaPref($content["tamañoMascotaPref"]);
-                     $guardian->setPrecio($content["precio"]);
-                     $guardian->setFechasDisponibles($content["fechasDisponibles"]);
+                     $guardian->setPassword($content["password"]);
+                     $guardian->setRating($content["rating"]);
+                     $guardian->setSizeCare($content["sizeCare"]);
+                     $guardian->setCost($content["cost"]);
+                     $guardian->setDays($content["days"]);
                      array_push($this->dueñoList, $dueño);
                  }
              }
@@ -94,18 +94,18 @@
             foreach($this->guardianList as $guardian)
             {
                 $valuesArray = array();
-                $valuesArray["id"] = $guardian->getId_guardian();
-                $valuesArray["name"] = $guardian->getNombre();
-                $valuesArray["last_name"] = $guardian->getApellido();
+                $valuesArray["id_guardian"] = $guardian->getId_guardian();
+                $valuesArray["name"] = $guardian->getName();
+                $valuesArray["last_name"] = $guardian->getLast_name();
                 $valuesArray["dni"] = $guardian->getDni();
-                $valuesArray["tel"] = $guardian->getTelefono();
-                $valuesArray["direc"] = $guardian->getDireccion();
+                $valuesArray["telephone"] = $guardian->getTelephone();
+                $valuesArray["address"] = $guardian->getAddress();
                 $valuesArray["email"] = $guardian->getEmail();
-                $valuesArray["password"] = $guardian->getContraseña();
-                $valuesArray["reputacion"] = $guardian->getReputacion();
-                $valuesArray["tamañoMascotaPref"] = $guardian->getTamañoMascotaPref();
-                $valuesArray["precio"] = $guardian->getPrecio();
-                $valuesArray["fechasDisponibles"] = $guardian->getFechasDisponibles();
+                $valuesArray["password"] = $guardian->getPassword();
+                $valuesArray["rating"] = $guardian->getReputacion();
+                $valuesArray["sizeCare"] = $guardian->getSizeCare();
+                $valuesArray["cost"] = $guardian->getCost();
+                $valuesArray["days"] = $guardian->getDays();
                 array_push($arrayToEncode, $valuesArray);
             }
 
