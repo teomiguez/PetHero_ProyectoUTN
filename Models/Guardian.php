@@ -109,7 +109,7 @@ class Guardian
         return $this;
     }
 
-    // get y set la contraseña del email
+    // get y set la contraseña
 
     public function getContraseña()
     {
