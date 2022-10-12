@@ -30,7 +30,7 @@
         {
             $guardian = new Guardian();
 
-            $guardian->setId_guardian();
+            $guardian->setId_guardian(GuardianDAO->GetNextId());
             $guardian->setNombre($name);
             $guardian->setApellido($last_name);
             $guardian->setDni($dni);

@@ -28,9 +28,9 @@
 
         public function Add($name, $last_name, $dni, $tel, $email, $pass)
         {
-            $dueño = new Guardian();
+            $dueño = new Dueño();
 
-            $dueño->setId_dueño();
+            $dueño->setId_dueño(DueñoDAO->GetNextId());
             $dueño->setNombre($name);
             $dueño->setApellido($last_name);
             $dueño->setDni($dni);

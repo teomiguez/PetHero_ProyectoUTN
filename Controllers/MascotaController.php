@@ -29,6 +29,7 @@
         {
             $mascota = new Mascota();
 
+            $mascota->setId_mascota(MascotaDAO->GetNextId());
             $mascota->setId_dueño($id_dueño);
             $mascota->setNombre($name);
             $mascota->setImg($img);
