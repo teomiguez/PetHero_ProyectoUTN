@@ -136,9 +136,9 @@ class Guardian
         return $this->days;
     }
 
-    public function setDays($days)
+    public function setDays($days[])
     {
-        $this->days = $days;
+        $this->days = $days[];
     }
     
     // -> SETTERS Y GETTERS

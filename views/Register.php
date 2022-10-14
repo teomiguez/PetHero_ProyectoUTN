@@ -160,11 +160,11 @@
                     <div class="col-12 col-md-6 my-2">
                         <div>
                             <select id="tipo_perro" class="form-select form-select-sm"
-                                aria-label=".form-select-sm example" name="tipo" disabled required>
+                                aria-label=".form-select-sm example" name="typeSize" disabled required>
                                 <option selected> Tamaño del perro</option>
-                                <option value="chico"> Chico </option>
-                                <option value="mediano"> Mediano </option>
-                                <option value="grande"> Grande </option>
+                                <option value="sm"> Chico </option>
+                                <option value="md"> Mediano </option>
+                                <option value="lg"> Grande </option>
                             </select>
                         </div>
                     </div>

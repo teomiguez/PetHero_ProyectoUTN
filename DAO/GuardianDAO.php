@@ -44,9 +44,34 @@
 
             return (count($Guardianes) > 0) ? $Guardianes[0] : null;
         }
-    }
 
-    function Remove($id)
+        function GetByEmail($email)
+        {
+            $this->RetrieveData();
+
+            $Guardianes = array_filter($this->guardianList, function($guardian) use ($email) {
+                return $guardian->getEmail() == $email;
+            });
+
+            $Guardianes = array_values($Guardianes); //Reorderding array
+
+            return (count($Guardianes) > 0) ? $Guardianes[0] : null;
+        }
+
+        function GetByDni($dni)
+        {
+            $this->RetrieveData();
+
+            $Guardianes = array_filter($this->guardianList, function($guardian) use ($dni) {
+                return $guardian->getDni() == $dni;
+            });
+
+            $Guardianes = array_values($Guardianes); //Reorderding array
+
+            return (count($Guardianes) > 0) ? $Guardianes[0] : null;
+        }
+    
+        function Remove($id)
         {
             $this->RetrieveData();
 
@@ -125,5 +150,5 @@
 
             return $id + 1;
         }
-
+    }
 ?>

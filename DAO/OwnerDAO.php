@@ -44,9 +44,34 @@
 
             return (count($Owners) > 0) ? $Owners[0] : null;
         }
-    }
 
-    function Remove($id)
+        function GetByEmail($email)
+        {
+            $this->RetrieveData();
+
+            $Owners = array_filter($this->ownerList, function($owner) use($email){
+                return $owner->getEmail() == $email;
+            });
+
+            $Owners = array_values($Owners); //Reorderding array
+
+            return (count($Owners) > 0) ? $Owners[0] : null;
+        }
+
+        function GetByDni($dni)
+        {
+            $this->RetrieveData();
+
+            $Owners = array_filter($this->ownerList, function($owner) use($dni){
+                return $owner->getDni() == $dni;
+            });
+
+            $Owners = array_values($Owners); //Reorderding array
+
+            return (count($Owners) > 0) ? $Owners[0] : null;
+        }
+    
+        function Remove($id)
         {
             $this->RetrieveData();
 
@@ -117,5 +142,5 @@
 
             return $id + 1;
         }
-
+    }
 ?>
