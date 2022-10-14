@@ -30,11 +30,34 @@
 
             if ($user1 != null)
             {
+                if ($user1->getPassword() == $password)
+                {
+                    // NEW SESSION
+                    session_start();
 
+                    $_SESSION['id'] = $user1->getId_owner();
+                    $_SESSION['type'] = "owner";
+
+                    // -> REDIRECTION TO HOME_OWNER
+                    header("location: " . FRONT_ROOT . "Owner/HomeOwner");
+                    // <- REDIRECTION TO HOME_OWNER
+                }
+                else
+                {
+                    // AGREGAR EXCEPTION/ALERT 'USUARIO O CONTRASEÑA INCORRECTOS'
+                }
             }
             else if ($user2 != null)
             {
+                // NEW SESSION
+                session_start();
 
+                $_SESSION['id'] = $user2->getId_guardian();
+                $_SESSION['type'] = "guardian";
+
+                // -> REDIRECTION TO HOME_GUARDIAN
+                header("location: " . FRONT_ROOT . "Guardian/HomeGuardian");
+                // <- REDIRECTION TO HOME_OWNER
             }
             else
             {

@@ -6,11 +6,14 @@
 
     class PetController 
     {
-        private $petDAO;
-        
         public function __contruct()
         {
-            $this->petDAO = new PetDAO();
+            require_once(ROOT . "/Utils/ValidateSession.php");
+
+            if ($_SESSION["type"] == "guardian") 
+            {
+                header("location: " . FRONT_ROOT . "Guardian/HomeGuardian");
+            }
         } 
 
         public function ShowAddView()
@@ -20,7 +23,10 @@
 
         public function ShowListView()
         {
-            $petList = $this->petDAO->getAll();
+            echo "<script>console.log('Debug Objects: " . var_dump($_SESSION) . "' );</script>";
+            
+            $pet_DAO = new PetDAO();
+            $petList = $this->petDAO->GetByOwner($_SESSION['id']);
             
             require_once(VIEWS_PATH."PetsPerfiles.php");
         }
@@ -29,7 +35,7 @@
         {
             $pet = new Pet();
 
-            $pet->setId_pet(MascotaDAO->GetNextId());
+            $pet->setId_pet(PetDAO->GetNextId());
             $pet->setId_owner($id_wner);
             $pet->setName($name);
             $pet->setImg($img);
