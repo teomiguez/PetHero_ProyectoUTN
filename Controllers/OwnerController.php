@@ -2,45 +2,26 @@
     namespace Controllers;
 
     use DAO\OwnerDAO as OwnerDAO;
-    use Models\Owner as Owner;
 
     class OwnerController 
     {
-
-        private $ownerDAO;
-
         public function __contruct()
         {
-            $this->ownerDAO = new OwnerDAO();
+            require_once(ROOT . "/Utils/ValidateSession.php");
+
+            if ($_SESSION["type"] == "guardian") 
+            {
+                header("location: " . FRONT_ROOT . "Guardian/HomeGuardian");
+            }
         } 
 
-        public function ShowAddView()
+        public function HomeOwner()
         {
-            require_once(VIEWS_PATH."Register.php");
-        }
+            $owner_DAO = new OwnerDAO();
 
-        public function ShowListView()
-        {
-            $ownerList = $this->ownerDAO->getAll();
-            
-            require_once(VIEWS_PATH."GuardianHome.php");
-        }
+            $user = $owner_DAO->GetById($_SESSION["id"]);
 
-        public function Add($name, $last_name, $dni, $tel, $email, $pass)
-        {
-            $owner = new Owner();
-
-            $owner->setId_owner(OwnerDAO->GetNextId());
-            $owner->setName($name);
-            $owner->setLast_name($last_name);
-            $owner->setDni($dni);
-            $owner->setTelephone($tel);
-            $owner->setEmail($email);
-            $owner->setPassword($pass);
-
-            $this->ownerDAO->Add($owner);
-
-            require_once(VIEWS_PATH."Home.php");
+            require_once(VIEWS_PATH . "OwnerHome.php");
         }
     }
 ?>

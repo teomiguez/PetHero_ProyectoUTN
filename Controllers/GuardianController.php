@@ -2,49 +2,28 @@
     namespace Controllers;
 
     use DAO\GuiardianDAO as GuardianDAO;
-    use Models\Guardian as Guardian;
 
     class DueñoController 
     {
-
-        private $guardianDAO;
-
         public function __contruct()
         {
-            $this->guardianDAO = new GuardianDAO();
+            require_once(ROOT . "/Utils/ValidateSession.php");
+
+            if ($_SESSION["type"] == "owner") 
+            {
+                header("location: " . FRONT_ROOT . "Owner/HomeOwner");
+            }
         } 
 
-        public function ShowAddView()
+        public function HomeGuardian()
         {
-            require_once(VIEWS_PATH."Register.php");
-        }
+            var_dump($_SESSION);
 
-        public function ShowListView()
-        {
-            $dueñoList = $this->dueñoDAO->getAll();
-            
-            require_once(VIEWS_PATH."OwnerHome.php");
-        }
+            $guardian_DAO = new GuardianDAO();
 
-        public function Add($name, $last_name, $dni, $tel, $dir, $email, $pass, $days, $sizePet, $cost)
-        {
-            $guardian = new Guardian();
+            $user = $guardian_DAO->GetById($_SESSION['id']);
 
-            $guardian->setId_guardian(GuardianDAO->GetNextId());
-            $guardian->setName($name);
-            $guardian->setLast_name($last_name);
-            $guardian->setDni($dni);
-            $guardian->setTelephone($tel);
-            $guardian->setAddress($dir);
-            $guardian->setEmail($email);
-            $guardian->setPassword($pass);
-            $guardian->setDays($days);
-            $guardian->setSaizeCare($sizePet);
-            $guardian->setCost($cost);
-
-            $this->guardianDAO->Add($guardian);
-
-            require_once(VIEWS_PATH."Home.php");
+            require_once(VIEWS_PATH . "GuardianHome.php");
         }
     }
 ?>
