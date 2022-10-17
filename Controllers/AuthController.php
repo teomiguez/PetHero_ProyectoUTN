@@ -12,12 +12,12 @@
         
         public function ShowViewRegist()
         {
-            require_once(VIEWS_PATH . "Register.php");
+            return require_once(VIEWS_PATH . "Register.php");
         }
 
         public function ShowViewLogin()
         {
-            require_once(VIEWS_PATH . "Home.php");
+            return require_once(VIEWS_PATH . "Home.php");
         }
 
         public function Login($email, $password)
@@ -64,7 +64,7 @@
                 // AGREGAR EXCEPTION/ALERT 'NO REGISTRADO'
 
                 // -> REDIRECTION TO 'Register.php'
-                require_once(VIEWS_PATH . "Register.php");
+                return require_once(VIEWS_PATH . "Register.php");
                 // <- REDIRECTION TO 'Register.php'
             }
         }
@@ -95,7 +95,7 @@
                 }
                 
                 // -> REDIRECTION TO 'Home.php'
-                require_once(VIEWS_PATH . "Home.php")
+                return require_once(VIEWS_PATH . "Home.php")
                 // <- REDIRECTION TO 'Home.php'
             }
             else
