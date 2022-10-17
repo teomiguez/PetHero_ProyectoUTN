@@ -1,25 +1,24 @@
 
-function enabledFields()
+function EnabledFields()
 {
     // RADIOs
-    var radio_dueño = document.getElementById('radio_dueño');
-    var radio_guardian = document.getElementById('radio_guardian');
+    const radio_dueño = document.querySelector('#radio_dueño');
+    const radio_guardian = document.querySelector('#radio_guardian');
 
     // INPUTs
-    var input_street = document.getElementById('street');
-    var input_nro = document.getElementById('nro');
-    var input_monday = document.getElementById('check_monday');
-    var input_tuesday = document.getElementById('check_tuesday');
-    var input_wednesday  = document.getElementById('check_wednesday');
-    var input_thursday = document.getElementById('check_thursday');
-    var input_friday = document.getElementById('check_friday');
-    var input_saturday = document.getElementById('check_saturday');
-    var input_sunday = document.getElementById('check_sunday');
-    var input_tipo = document.getElementById('tipo_perro');
-    var input_costo = document.getElementById('cost');
+    const input_street = document.querySelector('#street');
+    const input_nro = document.querySelector('#nro');
+    const input_monday = document.querySelector('#check_monday');
+    const input_tuesday = document.querySelector('#check_tuesday');
+    const input_wednesday = document.querySelector('#check_wednesday');
+    const input_thursday = document.querySelector('#check_thursday');
+    const input_friday = document.querySelector('#check_friday');
+    const input_saturday = document.querySelector('#check_saturday');
+    const input_sunday = document.querySelector('#check_sunday');
+    const input_tipo = document.querySelector('#tipo_perro');
+    const input_costo = document.querySelector('#cost');
 
-    if (radio_guardian.checked == true)
-    {
+    if (radio_guardian.checked == true) {
         input_street.disabled = false;
         input_nro.disabled = false;
         input_monday.disabled = false;
@@ -31,7 +30,8 @@ function enabledFields()
         input_sunday.disabled = false;
         input_tipo.disabled = false;
         input_costo.disabled = false;
-    } else if (radio_dueño.checked == true) {
+    }
+    else if (radio_dueño.checked == true) {
         input_street.disabled = true;
         input_nro.disabled = true;
         input_monday.disabled = true;
