@@ -1,0 +1,24 @@
+[
+    {
+        "id_pet": 1,
+        "id_owner": 1,
+        "img": "petLucho.jpg",
+        "name": "Lucho",
+        "breed": "Salchicha",
+        "size": "sm",
+        "pv": "pv.jpg",
+        "video": "",
+        "info": "Es muy denso..."
+    },
+    {
+        "id_pet": 2,
+        "id_owner": 1,
+        "img": "chat.jpg",
+        "name": "Lucho2",
+        "breed": "Salchicha",
+        "size": "md",
+        "pv": "chat2.jpg",
+        "video": "",
+        "info": "Es super denso..."
+    }
+]

@@ -1,10 +1,10 @@
 <?php
     namespace DAO;
 
-    use DAO\I_DAO as I_DAO;
+    use DAO\I_PetDAO as I_PetDAO;
     use Models\Pet as Pet;
 
-    class PetDao implements I_DAO
+    class PetDao implements I_PetDAO
     {
         private $petList = array();
         private $fileName;
@@ -84,10 +84,11 @@
                          $pet = new Pet();
                          $pet->setId_pet($content["id_pet"]);
                          $pet->setId_owner($content["id_owner"]);
-                         $pet->setId_guardian($content["id_guardian"]);
                          $pet->setImg($content["img"]);
                          $pet->setName($content["name"]);
+                         $pet->setBreed($content['breed']);
                          $pet->setSize($content["size"]);
+                         $pet->setPlanVacunacion($content["pv"]);
                          $pet->setVideo($content["video"]);
                          $pet->setInfo($content["info"]);
                          array_push($this->petList, $pet);
@@ -102,14 +103,15 @@
                 foreach($this->petList as $pet)
                 {
                     $valuesArray = array();
-                    $valuesArray["id"] = $pet->getId_pet();
-                    $valuesArray["id_dueño"] = $pet->getId_owner();
-                    $valuesArray["id_guardian"] = $pet->getId_guardian();
+                    $valuesArray["id_pet"] = $pet->getId_pet();
+                    $valuesArray["id_owner"] = $pet->getId_owner();
                     $valuesArray["img"] = $pet->getImg();
                     $valuesArray["name"] = $pet->getName();
-                    $valuesArray["tamaño"] = $pet->getSize();
+                    $valuesArray["breed"] = $pet->getBreed();
+                    $valuesArray["size"] = $pet->getSize();
+                    $valuesArray["pv"] = $pet->getPlanVacunacion();
                     $valuesArray["video"] = $pet->getVideo();
-                    $valuesArray["obs"] = $pet->getInfo();
+                    $valuesArray["info"] = $pet->getInfo();
                     array_push($arrayToEncode, $valuesArray);
                 }
     
@@ -124,7 +126,7 @@
     
                 foreach($this->petList as $pet)
                 {
-                    $id = ($pet->getId_mascota() > $id) ? $pet->getId_pet() : $id;
+                    $id = ($pet->getId_pet() > $id) ? $pet->getId_pet() : $id;
                 }
     
                 return $id + 1;

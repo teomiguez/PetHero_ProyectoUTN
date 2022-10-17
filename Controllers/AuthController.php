@@ -3,8 +3,10 @@
 
     use DAO\GuardianDAO as GuardianDAO;
     use DAO\OwnerDAO as OwnerDAO;
+    use DAO\PetDAO as PetDAO;
     use Models\Guardian as Guardian;
     use Models\Owner as Owner;
+    use Models\Pet as Pet;
 
     class AuthController
     {
@@ -103,6 +105,31 @@
                 // AGREGAR EXCEPTION/ALERT!!
             }
             
+        }
+
+        public function CreatePet ($imgFile, $name, $breed, $size, $pvFile, $video, $remarks)
+        {
+            $petDAO = new PetDAO;
+            $pet = new Pet;
+
+            // -> SETs PET
+            $pet->setId_owner($_SESSION['id']);
+            $pet->setImg($imgFile);
+            $pet->setName($name);
+            $pet->setBreed($breed);
+            $pet->setSize($size);
+            $pet->setPlanVacunacion($pvFile);
+            $pet->setVideo($video);
+            $pet->setInfo($remarks);
+            // <- SETs PET
+
+            // -> ADD PET TO JSON
+            $petDAO->Add($pet);
+            // <- ADD PET TO JSON
+
+            // -> REDIRECTION TO 'PetsProfiles.php'
+            require_once(VIEWS_PATH . "PetsProfiles.php");
+            // <- REDIRECTION TO 'PetsProfiles.php'
         }
         
         // <- PUBLIC FUNCTIONs

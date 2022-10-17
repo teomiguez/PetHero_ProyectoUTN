@@ -117,15 +117,59 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel"> Crear perfil de Mascota</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    ...
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <form action="<?php echo FRONT_ROOT . " Auth/CreatePet" ?>" method="POST" class="text-start">
+                        <div class="my-1">
+                            <label for="formFile" class="form-label">Seleccione una Foto</label>
+                            <input id="imgFile" name="imgFile" class="form-control" type="file" required>
+                        </div>
+
+                        <div class="my-1">
+                            <label for="name" class="form-label"> Nombre </label>
+                            <input id="name" name="name" type="text" class="form-control" required>
+                        </div>
+
+                        <div class="my-1">
+                            <label for="breed" class="form-label"> Raza </label>
+                            <input id="breed" name="breed" type="text" class="form-control" required>
+                        </div>
+
+                        <div class="my-1">    
+                            <label for="size" class="form-label"> Seleccione el tamaño </label>
+                            <select id="size" class="form-select form-select-sm"
+                                aria-label=".form-select-sm example" name="size" required>
+                                <option selected> ... </option>
+                                <option value="sm"> Chico </option>
+                                <option value="md"> Mediano </option>
+                                <option value="lg"> Grande </option>
+                            </select>
+                        </div>
+
+                        <div class="my-1">
+                            <label for="pvFile" class="form-label"> Plan de vacunacion </label>
+                            <input id="pvFile" name="pvFile" class="form-control" type="file" required>
+                        </div>
+
+                        <div class="my-1">
+                            <label for="video" class="form-label"> Video (opcional) </label>
+                            <input id="video" name="video" class="form-control" type="file">
+                        </div>
+
+                        <div class="my-1">
+                             <label for="obsTxt" class="form-label"> Observaciones </label>
+                            <textarea id="obsTxt" name="remarks" class="form-control" rows="3" required></textarea>
+                        </div>
+
+                        <hr class="my-3">
+
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> Cerrar </button>
+                            <button type="submit" class="btn btn-primary"> Agregar </button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

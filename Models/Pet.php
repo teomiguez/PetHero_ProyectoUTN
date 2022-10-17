@@ -9,7 +9,9 @@ class Pet
     private $id_owner;
     private $img;
     private $name;
+    private $breed;
     private $size;
+    private $planVacunacion;
     private $video;
     private $info;
 
@@ -56,6 +58,16 @@ class Pet
         $this->name = $name;
     }
 
+    public function getBreed()
+    {
+        return $this->breed;
+    }
+
+    public function setBreed($breed)
+    {
+        $this->breed = $breed;
+    }
+
     public function getSize()
     {
         return $this->size;
@@ -64,6 +76,16 @@ class Pet
     public function setSize($size)
     {
         $this->size = $size;
+    }
+
+    public function getPlanVacunacion()
+    {
+        return $this->planVacunacion;
+    }
+
+    public function setPlanVacunacion($planVacunacion)
+    {
+        $this->planVacunacion = $planVacunacion;
     }
 
     public function getVideo()
@@ -87,6 +109,7 @@ class Pet
     }
 
     // <- SETTERS Y GETTERS
+
 }
 
 ?>
