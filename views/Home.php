@@ -37,14 +37,14 @@
 
                 <div>
                     <label for="mail" class="form-label">Email</label>
-                    <input id="mail" name="email" type="email" class="form-control" placeholder="example@email.com">
+                    <input id="mail" name="email" type="email" class="form-control" placeholder="example@email.com" required>
                 </div>
 
                 <br>
 
                 <div>
                     <label for="password" class="form-label">Contraseña</label>
-                    <input id="password" name="password" type="password" class="form-control" placeholder="">
+                    <input id="password" name="password" type="password" class="form-control" placeholder="" required>
                 </div>
 
                 <br>
