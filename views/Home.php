@@ -33,7 +33,7 @@
 
         <section class="bg-white text-dark py-2 px-3 border-5 rounded-4">
             <h2 class="text-center py-4"> Iniciar Sesion </h2>
-            <form action="<?php echo FRONT_ROOT ?>Auth/Login" method="POST">
+            <form action="<?php echo FRONT_ROOT . "Auth/Login" ?>" method="POST">
 
                 <div>
                     <label for="mail" class="form-label">Email</label>
@@ -57,7 +57,7 @@
 
                 <div class="d-flex justify-content-center">
                     <p class="px-2"> Aún no tenes cuenta? </p>
-                    <a href="<?php echo FRONT_ROOT ?>Auth/ShowViewRegist"> Registrarse </a>
+                    <a href="<?php echo FRONT_ROOT . "Auth/ShowViewRegist" ?>"> Registrarse </a>
                 </div>
 
 
