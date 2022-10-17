@@ -61,7 +61,7 @@
             }
             else
             {
-                // AGREGAR EXCEPTION/ALERT 'NO REGISTRADO'
+                // AGREGAR EXCEPTION/ALERT 'USUARIO Y/O CONSTRASEÑA INCORRECTOS'
 
                 // -> REDIRECTION TO 'Register.php'
                 require_once(VIEWS_PATH . "Register.php");
@@ -81,17 +81,17 @@
             }
         }
         
-        public function Register($name, $last_name, $dni, $tel, $email, $password, $radio_option, $street, $nro, $check, $typeSize, $cost)
+        public function Register($name, $last_name, $dni, $tel, $email, $password, $radio_option, $street, $nro, $days, $typeSize, $cost)
         {
-            if (!checkExistenceEmail($email) && !checkExistenceDni($dni))
+            if (($this->checkExistenceEmail($email) == false) && ($this->checkExistenceDni($dni) == false))
             {
                 if ($radio_option == 'option1')
                 {
-                    RegisterOwner($name, $last_name, $dni, $tel, $email, $password);
+                    $this->RegisterOwner($name, $last_name, $dni, $tel, $email, $password);
                 } 
                 else 
                 {
-                    RegisterGuardian($name, $last_name, $dni, $tel, $email, $password, $radio_option, $street, $nro, $check[], $typeSize, $cost);
+                    $this->RegisterGuardian($name, $last_name, $dni, $tel, $email, $password, $radio_option, $street, $nro, $days, $typeSize, $cost);
                 }
                 
                 // -> REDIRECTION TO 'Home.php'
@@ -107,9 +107,9 @@
         
         // <- PUBLIC FUNCTIONs
         
-        // -> PRIVATE FUNCTIONs
+        // -> THIS FUNCTIONs
         
-        private function checkExistenceEmail()
+        function checkExistenceEmail($email)
         {
             $ownerDAO = new OwnerDAO;
             $guardianDAO = new GuardianDAO;
@@ -124,7 +124,7 @@
             }
         }
 
-        private function checkExistenceDni()
+        function checkExistenceDni($dni)
         {
             $ownerDAO = new OwnerDAO;
             $guardianDAO = new GuardianDAO;
@@ -139,13 +139,12 @@
             }
         }
 
-        private function RegisterOwner($name, $last_name, $dni, $tel, $email, $password)
+        function RegisterOwner($name, $last_name, $dni, $tel, $email, $password)
         {
             $ownerDAO = new OwnerDAO();
             $owner = new Owner();
 
             // -> SETs OWNER
-            $owner->setId_owner(ownerDAO->getNextId());
             $owner->setName($name);
             $owner->setLast_name($last_name);
             $owner->setDni($dni);
@@ -159,13 +158,12 @@
             // <- ADD OWNER TO JSON
         }
 
-        private function RegisterGuardian($name, $last_name, $dni, $tel, $email, $password, $street, $nro, $check, $typeSize, $cost)
+        function RegisterGuardian($name, $last_name, $dni, $tel, $email, $password, $street, $nro, $days, $typeSize, $cost)
         {
             $guardianDAO = new GuardianDAO();
             $guardian = new Guardian();
 
             // -> SETs GUARDIAN
-            $guardian->setId_guardian(guardianDAO->getNextId());
             $guardian->setName($name);
             $guardian->setLast_name($last_name);
             $guardian->setDni($dni);
@@ -176,7 +174,7 @@
             $guardian->setRating('');
             $guardian->setSizeCare($typeSize);
             $guardian->setCost($cost);
-            $guardian->setDays($check[]);
+            $guardian->setDays($days);
             // <- SETs GUARDIAN
 
             // -> ADD GUARDIAN TO JSON
@@ -184,7 +182,7 @@
             // <- ADD GUARDIAN TO JSON
         }
 
-        // <- PRIVATE FUNCTIONs
+        // <- THIS  FUNCTIONs
 
     }
 

@@ -100,12 +100,12 @@
                         <div>
                             <div class="d-inline-block">
                                 <label for="street" class="form-label"> Calle </label>
-                                <input id="street" name="street" type="text" class="form-control" >
+                                <input id="street" name="street" type="text" class="form-control" disabled>
                             </div>
 
                             <div class="d-inline-block">
                                 <label for="nro" class="form-label"> Altura </label>
-                                <input id="nro" name="nro" type="text" class="form-control" >
+                                <input id="nro" name="nro" type="text" class="form-control" disabled>
                             </div>
                         </div>
                     </div>
@@ -114,44 +114,44 @@
                         <div>
                             <label for="days_checks" class="form-check"> Dias disponibles </label>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="check_monday" name="check[]"
-                                    value="option1" >
+                                <input class="form-check-input" type="checkbox" id="check_monday" name="days[]"
+                                    value="option1" disabled>
                                 <label class="form-check-label" for="check_monday"> Lu </label>
                             </div>
 
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="check_tuesday" name="check[]"
-                                    value="option2" >
+                                <input class="form-check-input" type="checkbox" id="check_tuesday" name="days[]"
+                                    value="option2" disabled>
                                 <label class="form-check-label" for="check_tuesday"> Ma </label>
                             </div>
 
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="check_wednesday" name="check[]"
-                                    value="option3" >
+                                <input class="form-check-input" type="checkbox" id="check_wednesday" name="days[]"
+                                    value="option3" disabled>
                                 <label class="form-check-label" for="check_wednesday"> Mi </label>
                             </div>
 
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="check_thursday" name="check[]"
-                                    value="option4" >
+                                <input class="form-check-input" type="checkbox" id="check_thursday" name="days[]"
+                                    value="option4" disabled>
                                 <label class="form-check-label" for="check_thursday"> Jue </label>
                             </div>
 
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="check_friday" name="check[]"
-                                    value="option5" >
+                                <input class="form-check-input" type="checkbox" id="check_friday" name="days[]"
+                                    value="option5" disabled>
                                 <label class="form-check-label" for="check_friday"> Vie </label>
                             </div>
 
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="check_saturday" name="check[]"
-                                    value="option6" >
+                                <input class="form-check-input" type="checkbox" id="check_saturday" name="days[]"
+                                    value="option6" disabled>
                                 <label class="form-check-label" for="check_saturday"> Sa </label>
                             </div>
 
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="check_sunday" name="check[]"
-                                    value="option7" >
+                                <input class="form-check-input" type="checkbox" id="check_sunday" name="days[]"
+                                    value="option7" disabled>
                                 <label class="form-check-label" for="check_sunday"> Do </label>
                             </div>
                         </div>
@@ -160,7 +160,7 @@
                     <div class="col-12 col-md-6 my-2">
                         <div>
                             <select id="tipo_perro" class="form-select form-select-sm"
-                                aria-label=".form-select-sm example" name="typeSize" >
+                                aria-label=".form-select-sm example" name="typeSize" disabled>
                                 <option selected> Tamaño del perro</option>
                                 <option value="sm"> Chico </option>
                                 <option value="md"> Mediano </option>
@@ -176,7 +176,7 @@
                                 <div class="input-group mb-3">
                                     <span class="input-group-text">$</span>
                                     <input id="cost" type="text" class="form-control" name="cost"
-                                        aria-label="Amount (to the nearest dollar)" >
+                                        aria-label="Amount (to the nearest dollar)" disabled>
                                 </div>
                             </div>
                         </div>

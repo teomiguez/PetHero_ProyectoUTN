@@ -1,10 +1,10 @@
 <?php
     namespace DAO;
 
-    use DAO\I_DAO as I_DAO;
+    use DAO\I_GuardianDAO as I_GuardianDAO;
     use Models\Guardian as Guardian;
 
-    class GuardianDao implements I_DAO
+    class GuardianDao implements I_GuardianDAO
     {
         private $guardianList = array();
         private $fileName;
@@ -107,7 +107,7 @@
                      $guardian->setSizeCare($content["sizeCare"]);
                      $guardian->setCost($content["cost"]);
                      $guardian->setDays($content["days"]);
-                     array_push($this->dueñoList, $dueño);
+                     array_push($this->guardianList, $guardian);
                  }
              }
         }
@@ -126,8 +126,8 @@
                 $valuesArray["telephone"] = $guardian->getTelephone();
                 $valuesArray["address"] = $guardian->getAddress();
                 $valuesArray["email"] = $guardian->getEmail();
-                $valuesArray["password"] = $guardian->getPassword();
-                $valuesArray["rating"] = $guardian->getReputacion();
+                $valuesArray["password"] = $guardian->getPasssword();
+                $valuesArray["rating"] = $guardian->getRating();
                 $valuesArray["sizeCare"] = $guardian->getSizeCare();
                 $valuesArray["cost"] = $guardian->getCost();
                 $valuesArray["days"] = $guardian->getDays();

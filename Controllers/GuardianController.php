@@ -17,11 +17,9 @@
 
         public function HomeGuardian()
         {
-            var_dump($_SESSION);
-
             $guardian_DAO = new GuardianDAO();
 
-            $user = $guardian_DAO->GetById($_SESSION['id']);
+            $user = $guardian_DAO->GetById($_SESSION["id"]);
 
             require_once(VIEWS_PATH . "GuardianHome.php");
         }

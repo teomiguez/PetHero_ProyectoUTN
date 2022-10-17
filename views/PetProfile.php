@@ -31,7 +31,7 @@
             </h2>
 
             <div class="navbar-nav position-absolute top-50 start-50 translate-middle">
-                <a href="" class="nav-link active text-decoration-none"> *Home* </a>
+                <a href=<?php echo FRONT_ROOT . "Owner/HomeOwner" ?> class="nav-link active text-decoration-none"> *Home* </a>
             </div>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -47,11 +47,11 @@
                     </li>
 
                     <li class="nav-item">
-                        <a href="#" class="nav-link text-decoration-none"> *Mis Mascotas* </a>
+                        <a href=<?php echo FRONT_ROOT . "Owner/ShowPets" ?> class="nav-link text-decoration-none"> *Mis Mascotas* </a>
                     </li>
 
                     <li class="nav-item">
-                        <a href="#" class="nav-link text-decoration-none"> *Mi Perfil*</a>
+                        <a href=<?php echo FRONT_ROOT . "Owner/ShowProfile" ?> class="nav-link text-decoration-none"> *Mi Perfil*</a>
                     </li>
                 </ul>
             </div>

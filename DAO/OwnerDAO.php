@@ -1,10 +1,10 @@
 <?php
     namespace DAO;
 
-    use DAO\I_DAO as I_DAO;
+    use DAO\I_OwnerDAO as I_OwnerDAO;
     use Models\Owner as Owner;
 
-    class OwnerDao implements I_DAO
+    class OwnerDao implements I_OwnerDAO
     {
         private $ownerList = array();
         private $fileName;
@@ -95,7 +95,7 @@
                  foreach($contentArray as $content)
                  {
                      $owner = new Owner();
-                     $owner->setId_owner($content["id_owner"]);
+                     $owner->setId_owner($content["id"]);
                      $owner->setName($content["name"]);
                      $owner->setLast_name($content["last_name"]);
                      $owner->setDni($content["dni"]);
@@ -118,8 +118,9 @@
                 $valuesArray = array();
                 $valuesArray["id"] = $owner->getId_owner();
                 $valuesArray["name"] = $owner->getName();
+                $valuesArray["last_name"] = $owner->getLast_name();
                 $valuesArray["dni"] = $owner->getDni();
-                $valuesArray["telphone"] = $owner->getTelephone();
+                $valuesArray["telephone"] = $owner->getTelephone();
                 $valuesArray["email"] = $owner->getEmail();
                 $valuesArray["password"] = $owner->getPassword();
                 $valuesArray["pets"] = $owner->getPets();

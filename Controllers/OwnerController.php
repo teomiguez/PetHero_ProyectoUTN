@@ -16,12 +16,30 @@
         } 
 
         public function HomeOwner()
-        {
+        {            
             $owner_DAO = new OwnerDAO();
 
             $user = $owner_DAO->GetById($_SESSION["id"]);
 
             require_once(VIEWS_PATH . "OwnerHome.php");
+        }
+
+        public function ShowPets()
+        {            
+            $owner_DAO = new OwnerDAO();
+
+            $user = $owner_DAO->GetById($_SESSION["id"]);
+
+            require_once(VIEWS_PATH . "PetsProfiles.php");
+        }
+
+        public function ShowProfile()
+        {            
+            $owner_DAO = new OwnerDAO();
+
+            $user = $owner_DAO->GetById($_SESSION["id"]);
+
+            require_once(VIEWS_PATH . "OwnerProfile.php");
         }
     }
 ?>
