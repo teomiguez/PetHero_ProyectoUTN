@@ -10,12 +10,12 @@
     {
         // -> PUBLIC FUNCTIONs
         
-        public function ShowViewRegist()
+        public function ShowRegist()
         {
             require_once(VIEWS_PATH . "Register.php");
         }
 
-        public function ShowViewLogin()
+        public function ShowLogin()
         {
             require_once(VIEWS_PATH . "Home.php");
         }
@@ -77,11 +77,11 @@
             {
                 session_destroy();
 
-                header ("location: " . FRONT_ROOT . "Auth/ShowViewLogin");
+                header ("location: " . FRONT_ROOT . "Auth/ShowLogin");
             }
         }
         
-        public function Register($name, $last_name, $dni, $tel, $email, $password, $radio_option, $street, $nro, $check[], $typeSize, $cost)
+        public function Register($name, $last_name, $dni, $tel, $email, $password, $radio_option, $street, $nro, $check, $typeSize, $cost)
         {
             if (!checkExistenceEmail($email) && !checkExistenceDni($dni))
             {
@@ -95,7 +95,7 @@
                 }
                 
                 // -> REDIRECTION TO 'Home.php'
-                require_once(VIEWS_PATH . "Home.php")
+                require_once(VIEWS_PATH . "Home.php");
                 // <- REDIRECTION TO 'Home.php'
             }
             else
@@ -142,7 +142,7 @@
         private function RegisterOwner($name, $last_name, $dni, $tel, $email, $password)
         {
             $ownerDAO = new OwnerDAO();
-            $owner = new Owner():
+            $owner = new Owner();
 
             // -> SETs OWNER
             $owner->setId_owner(ownerDAO->getNextId());
@@ -159,7 +159,7 @@
             // <- ADD OWNER TO JSON
         }
 
-        private function RegisterGuardian($name, $last_name, $dni, $tel, $email, $password, $street, $nro, $check[], $typeSize, $cost)
+        private function RegisterGuardian($name, $last_name, $dni, $tel, $email, $password, $street, $nro, $check, $typeSize, $cost)
         {
             $guardianDAO = new GuardianDAO();
             $guardian = new Guardian();
