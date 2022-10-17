@@ -20,7 +20,7 @@
     <main class="container text-center mx-5">
         <section class="bg-white text-dark py-2 px-3 border-5 rounded-4">
             <h2 class="text-center py-2"> Registrarse </h2>
-            <form action="" method="" class="text-start">
+            <form action="<?php echo FRONT_ROOT ?>Auth/Register" method="POST" class="text-start">
                 <div class="row">
                     <div class="col-12 col-md-6 my-2">
                         <div>
