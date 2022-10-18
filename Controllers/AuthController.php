@@ -83,7 +83,9 @@
             }
         }
 
-        public function Register($name, $last_name, $dni, $tel, $email, $password, $radio_option, $street, $nro, $days, $typeSize, $cost)
+        // $street, $nro, $days, $typeSize, $cost
+
+        public function Register($name, $last_name, $dni, $tel, $email, $password, $radio_option)
         {
             if (($this->checkExistenceEmail($email) == false) && ($this->checkExistenceDni($dni) == false))
             {

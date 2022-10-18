@@ -11,7 +11,6 @@ class Owner
     private $telephone;
     private $email;
     private $password;
-    private $pets = array();
 
     // -> SETTERS Y GETTERS
 
@@ -84,16 +83,7 @@ class Owner
     {
         $this->password = $password;
     }
-    
-    public function getPets()
-    {
-        return $this->pets;
-    }
 
-    public function setPets($pets)
-    {
-        $this->pets = $pets;
-    }
 
     // <- SETTERS Y GETTERS
 }

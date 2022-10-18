@@ -36,7 +36,7 @@
             $pet = new Pet();
 
             $pet->setId_pet(PetDAO->GetNextId());
-            $pet->setId_owner($id_wner);
+            $pet->setId_owner($id_owner);
             $pet->setName($name);
             $pet->setImg($img);
             $pet->setSize($tamaño);

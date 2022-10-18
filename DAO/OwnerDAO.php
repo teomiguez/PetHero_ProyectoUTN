@@ -102,7 +102,6 @@
                      $owner->setTelephone($content["telephone"]);
                      $owner->setEmail($content["email"]);
                      $owner->setPassword($content["password"]);
-                     $owner->setPets($content["pets"]);
 
                      array_push($this->ownerList, $owner);
                  }
@@ -123,7 +122,7 @@
                 $valuesArray["telephone"] = $owner->getTelephone();
                 $valuesArray["email"] = $owner->getEmail();
                 $valuesArray["password"] = $owner->getPassword();
-                $valuesArray["pets"] = $owner->getPets();
+                
                 array_push($arrayToEncode, $valuesArray);
             }
 
