@@ -8,5 +8,15 @@
         "email": "juanpalos@hotmail.com",
         "password": "juan123",
         "pets": []
+    },
+    {
+        "id": 2,
+        "name": "Jorge",
+        "last_name": "Martinez",
+        "dni": "20330626",
+        "telephone": "2235698147",
+        "email": "jorgemar@hotmail.com",
+        "password": "jorge123",
+        "pets": []
     }
 ]

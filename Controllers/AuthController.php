@@ -82,7 +82,7 @@
                 header ("location: " . FRONT_ROOT . "Auth/ShowLogin");
             }
         }
-        
+
         public function Register($name, $last_name, $dni, $tel, $email, $password, $radio_option, $street, $nro, $days, $typeSize, $cost)
         {
             if (($this->checkExistenceEmail($email) == false) && ($this->checkExistenceDni($dni) == false))
