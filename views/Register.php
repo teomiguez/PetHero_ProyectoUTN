@@ -81,14 +81,12 @@
                             <br>
 
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="radio_option" id="radio_dueño"
-                                    value="option1" onclick="" required>
+                                <input class="form-check-input" type="radio" name="radio_option" id="radio_dueño" value="dueño" onclick= "disabledFields()" checked required />
                                 <label class="form-check-label" for="radio_dueño"> Dueño </label>
                             </div>
 
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="radio_option" id="radio_guardian"
-                                    value="option2" onclick="" required>
+                                <input class="form-check-input" type="radio" name="radio_option" id="radio_guardian" value="guardian" onclick= "enabledFields()" required />
                                 <label class="form-check-label" for="radio_guardian"> Guardian </label>
                             </div>
                         </div>
@@ -100,12 +98,12 @@
                         <div>
                             <div class="d-inline-block">
                                 <label for="street" class="form-label"> Calle </label>
-                                <input id="street" name="street" type="text" class="form-control" disabled>
+                                <input id="street" name="street" type="text" class="form-control" required disabled />
                             </div>
 
                             <div class="d-inline-block">
                                 <label for="nro" class="form-label"> Altura </label>
-                                <input id="nro" name="nro" type="text" class="form-control" disabled>
+                                <input id="nro" name="nro" type="text" class="form-control" required disabled />
                             </div>
                         </div>
                     </div>
@@ -159,8 +157,8 @@
 
                     <div class="col-12 col-md-6 my-2">
                         <div>
-                            <select id="tipo_perro" class="form-select form-select-sm"
-                                aria-label=".form-select-sm example" name="typeSize" disabled>
+                            <select id="typeSize" class="form-select form-select-sm"
+                                aria-label=".form-select-sm example" name="typeSize" required disabled>
                                 <option selected> Tamaño del perro</option>
                                 <option value="sm"> Chico </option>
                                 <option value="md"> Mediano </option>
@@ -176,7 +174,7 @@
                                 <div class="input-group mb-3">
                                     <span class="input-group-text">$</span>
                                     <input id="cost" type="text" class="form-control" name="cost"
-                                        aria-label="Amount (to the nearest dollar)" disabled>
+                                        aria-label="Amount (to the nearest dollar)" required disabled>
                                 </div>
                             </div>
                         </div>
@@ -192,6 +190,9 @@
         </section>
     </main>
 
+    <!-- Funcionalidades JS -->
+    <script src=" <?php echo JS_PATH . "FormController.js" ?>"></script>
+    
     <!-- Funcionalidades JS propias de Boostrap (para uso de compoentes especificos) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"

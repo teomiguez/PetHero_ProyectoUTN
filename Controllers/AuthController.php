@@ -85,17 +85,17 @@
 
         // $street, $nro, $days, $typeSize, $cost
 
-        public function Register($name, $last_name, $dni, $tel, $email, $password, $radio_option)
+        public function Register($name, $last_name, $dni, $tel, $email, $password, $radio_option, $street = '', $nro = '', $days = '', $typeSize = '', $cost = '')
         {
             if (($this->checkExistenceEmail($email) == false) && ($this->checkExistenceDni($dni) == false))
             {
-                if ($radio_option == 'option1')
+                if ($radio_option == 'dueño')
                 {
                     $this->RegisterOwner($name, $last_name, $dni, $tel, $email, $password);
                 } 
                 else 
                 {
-                    $this->RegisterGuardian($name, $last_name, $dni, $tel, $email, $password, $radio_option, $street, $nro, $days, $typeSize, $cost);
+                    $this->RegisterGuardian($name, $last_name, $dni, $tel, $email, $password, $street, $nro, $days, $typeSize, $cost);
                 }
                 
                 // -> REDIRECTION TO 'Home.php'
@@ -192,6 +192,8 @@
             $guardianDAO = new GuardianDAO();
             $guardian = new Guardian();
 
+            $address = $street . " " . $nro;
+
             // -> SETs GUARDIAN
             $guardian->setName($name);
             $guardian->setLast_name($last_name);
@@ -199,11 +201,11 @@
             $guardian->setTelephone($tel);
             $guardian->setEmail($email);
             $guardian->setPassword($password);
-            $guardian->setAddress($street . $nro);
+            $guardian->setAddress($address);
             $guardian->setRating('');
+            $guardian->setDays($days);
             $guardian->setSizeCare($typeSize);
             $guardian->setCost($cost);
-            $guardian->setDays($days);
             // <- SETs GUARDIAN
 
             // -> ADD GUARDIAN TO JSON
