@@ -36,7 +36,7 @@
             {
                 $this->RetrieveData();
     
-                $Pets = array_filter($this->petList, function($pet) use($id_owner){
+                $Pets = array_filter($this->petList, function($pet) use ($id_owner){
                     return $pet->getId_owner() == $id_owner;
                 });
     
@@ -49,7 +49,7 @@
             {
                 $this->RetrieveData();
     
-                $Pets = array_filter($this->petList, function($pet) use($id){
+                $Pets = array_filter($this->petList, function($pet) use ($id){
                     return $pet->getId_pet() == $id;
                 });
     

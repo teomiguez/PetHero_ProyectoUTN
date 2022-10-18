@@ -1,0 +1,29 @@
+[
+    {
+        "id": 1,
+        "name": "Lucas",
+        "last_name": "Molina",
+        "dni": "44265877",
+        "telephone": "2234478135",
+        "email": "lu@gmail.com",
+        "password": "lucas123"
+    },
+    {
+        "id": 2,
+        "name": "Lucas",
+        "last_name": "Prota",
+        "dni": "42698547",
+        "telephone": "2235698714",
+        "email": "lucasprota@hotmail.com",
+        "password": "lucas123"
+    },
+    {
+        "id": 3,
+        "name": "Joaquin",
+        "last_name": "Covalto",
+        "dni": "36547899",
+        "telephone": "2234513568",
+        "email": "jcovalto@hotmail.com",
+        "password": "joaco123"
+    }
+]

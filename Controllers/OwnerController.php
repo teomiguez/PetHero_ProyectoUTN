@@ -1,7 +1,12 @@
 <?php
     namespace Controllers;
-
+    
     use DAO\OwnerDAO as OwnerDAO;
+    use DAO\GuardianDAO as GuardianDAO;
+    use DAO\PetDAO as PetDAO;
+    use Models\Guardian as Guardian;
+    use Models\Owner as Owner;
+    use Models\Pet as Pet;
 
     class OwnerController 
     {
@@ -21,14 +26,16 @@
 
             $user = $owner_DAO->GetById($_SESSION["id"]);
 
-            require_once(VIEWS_PATH . "OwnerHome.php");
+            $this->ShowGuardians();
         }
 
         public function ShowPets()
         {            
             $owner_DAO = new OwnerDAO();
+            $pet_DAO = new PetDAO();
 
-            $user = $owner_DAO->GetById($_SESSION["id"]);
+            $user = $owner_DAO->GetById($_SESSION['id']);
+            $pets = $pet_DAO->GetByOwner($_SESSION['id']);
 
             require_once(VIEWS_PATH . "PetsProfiles.php");
         }
@@ -40,6 +47,15 @@
             $user = $owner_DAO->GetById($_SESSION["id"]);
 
             require_once(VIEWS_PATH . "OwnerProfile.php");
+        }
+
+        public function ShowGuardians()
+        {
+            $guardian_DAO = new GuardianDAO();
+
+            $guardians = $guardian_DAO->GetAll();
+
+            require_once(VIEWS_PATH . "OwnerHome.php");
         }
     }
 ?>

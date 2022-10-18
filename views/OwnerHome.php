@@ -70,6 +70,8 @@
             </div>
 
             <div class="col-12 col-sm-8 col-lg-5 pt-3">
+                <h2 class="text-center"> Lista de guardianes </h2>
+            
                 <form action="">
                     <div class="input-group mb-3">
                         <input type="text" class="form-control" placeholder="Buscar guardian..."
@@ -80,16 +82,30 @@
                     </div>
                 </form>
 
-                <div class="list-group">
-                    <a href="#" class="list-group-item list-group-item-action"> A first link item </a>
-                    <a href="#" class="list-group-item list-group-item-action"> A third link item </a>
-                    <a href="#" class="list-group-item list-group-item-action"> A fourth link item </a>
-                    <a href="#" class="list-group-item list-group-item-action"> A fifth link item </a>
-                    <a href="#" class="list-group-item list-group-item-action"> A sixth link item </a>
-                    <a href="#" class="list-group-item list-group-item-action"> A seventh link item </a>
-                    <a href="#" class="list-group-item list-group-item-action"> A eighth link item </a>
-                    <a href="#" class="list-group-item list-group-item-action"> A ninth link item </a>
-                </div>
+                <table class="table text-center">
+                    <thead>
+                        <tr>
+                            <th scope="col"> Nombre </th>
+                            <th scope="col"> Apellido </th>
+                            <th scope="col"> Telefono </th>
+                            <th scope="col"> # </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                            foreach ($guardians as $guardian) {
+                        ?>
+
+                        <tr>
+                            <td> <?php echo $guardian->getName() ?> </td>
+                            <td> <?php echo $guardian->getLast_name() ?> </td>
+                            <td> <?php echo $guardian->getTelephone() ?> </td>
+                            <td> <a href="#"> ver </a> </td>
+                        </tr>
+                    </tbody>
+                
+                    <?php } ?>
+                </table>
             </div>
 
             <div class="col-12 col-sm-4 pt-3">

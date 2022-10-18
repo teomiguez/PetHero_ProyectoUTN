@@ -1,0 +1,38 @@
+[
+    {
+        "id_guardian": 1,
+        "name": "Teo",
+        "last_name": "Miguez",
+        "dni": "44335611",
+        "telephone": "2235513587",
+        "address": "option2Juab B. Justo",
+        "email": "teo.miguez215@gmail.com",
+        "password": "teo123",
+        "rating": "",
+        "sizeCare": [
+            "ma",
+            "jue",
+            "sa"
+        ],
+        "cost": "sm",
+        "days": "3975"
+    },
+    {
+        "id_guardian": 2,
+        "name": "Pablo",
+        "last_name": "Miguez",
+        "dni": "20330626",
+        "telephone": "2236818493",
+        "address": "option2pe\u00f1a",
+        "email": "pablo-miguez@hotmail.com",
+        "password": "pablo123",
+        "rating": "",
+        "sizeCare": [
+            "lu",
+            "mie",
+            "sa"
+        ],
+        "cost": "lg",
+        "days": "123"
+    }
+]

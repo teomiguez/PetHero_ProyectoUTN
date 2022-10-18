@@ -64,11 +64,13 @@
 
         <div class="row">
 
-            <div class="col-12 col-sm-12 col-md-12 col-lg-3 border">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-3">
                 *Calendario*
             </div>
 
-            <div class="col-12 col-sm-8 col-lg-5 border mb-3">
+            <div class="col-12 col-sm-8 col-lg-5 mb-3">
+                <h2 class="text-center"> Lista de mascotas </h2>
+
                 <form action="">
                     <div class="input-group mb-3">
                         <input type="text" class="form-control" placeholder="Buscar mascota..."
@@ -79,13 +81,31 @@
                     </div>
                 </form>
 
-                <div class="list-group mb-3">
-                    <a href="#" class="list-group-item list-group-item-action"> A first link item </a>
-                    <a href="#" class="list-group-item list-group-item-action"> A second link item </a>
-                    <a href="#" class="list-group-item list-group-item-action"> A third link item </a>
-                    <a href="#" class="list-group-item list-group-item-action"> A fourth link item </a>
-                    <a href="#" class="list-group-item list-group-item-action"> A fifth link item </a>
-                    <a href="#" class="list-group-item list-group-item-action"> A sixth link item </a>
+                <div class="mb-3">
+                    <table class="table text-center">
+                        <thead>
+                            <tr>
+                                <th scope="col"> Nombre </th>
+                                <th scope="col"> Raza </th>
+                                <th scope="col"> Tamaño </th>
+                                <th scope="col"> # </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                             <?php
+                                foreach ($pets as $pet) {
+                            ?>
+                            <tr>
+                                <td> <?php echo $pet->getName() ?> </td>
+                                <td> <?php echo $pet->getBreed() ?> </td>
+                                <td> <?php echo $pet->getSize() ?> </td>
+                                <td> <a href="#"> ver </a> </td>
+                            </tr>
+                        </tbody>
+
+                        <?php } ?>
+                    </table>
+                    
                 </div>
 
                 <!-- Button whit modal -->
@@ -95,7 +115,7 @@
                 </button>
             </div>
 
-            <div class="col-12 col-sm-4 border">
+            <div class="col-12 col-sm-4">
                 rellenar...
             </div>
         </div>
