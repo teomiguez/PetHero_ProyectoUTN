@@ -16,36 +16,36 @@
             }
         } 
 
-        public function ShowAddView()
+        public function ShowList()
         {
-            require_once(VIEWS_PATH."PetsPerfiles.php");
+            $petDAO = new PetDAO();
+            $petList = array();
+
+            $petList = $petDAO->GetByOwner($_SESSION["id"]);
+
+            require_once(VIEWS_PATH . "PetsProfiles.php");
         }
 
-        public function ShowListView()
+        public function Add($id_owner, $name, $img, $size, $video, $info)
         {
-            echo "<script>console.log('Debug Objects: " . var_dump($_SESSION) . "' );</script>";
-            
-            $pet_DAO = new PetDAO();
-            $petList = $this->petDAO->GetByOwner($_SESSION['id']);
-            
-            require_once(VIEWS_PATH."PetsPerfiles.php");
-        }
-
-        public function Add($id_owner, $name, $img, $size, $video = "", $info)
-        {
+            $petDAO = new PetDAO();
             $pet = new Pet();
 
-            $pet->setId_pet(PetDAO->GetNextId());
+            $pet->setId_pet($petDAO->GetNextId());
             $pet->setId_owner($id_owner);
             $pet->setName($name);
             $pet->setImg($img);
             $pet->setSize($tamaño);
-            $pet->setVideo($video);
             $pet->setInfo($info);
 
-            $this->petDAO->Add($pet);
+            if ($video != null)
+                $pet->setVideo($video);
+            else {
+                $video = " ";
+                $pet->setVideo($video);
+            }
 
-            this->ShowListView();
+            $petDAO->Add($pet);
         }
     }
 

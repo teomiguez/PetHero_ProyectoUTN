@@ -35,14 +35,13 @@
             function GetByOwner($id_owner)
             {
                 $this->RetrieveData();
-    
-                $Pets = array_filter($this->petList, function($pet) use ($id_owner){
+                
+                $petList = array_filter($this->petList, function ($pet) use ($id_owner) 
+                {
                     return $pet->getId_owner() == $id_owner;
                 });
-    
-                $Pets = array_values($Pets); //Reorderding array
-    
-                return (count($Pets) > 0) ? $Pets[0] : null;
+
+                return $petList;
             }
     
             function GetById($id)

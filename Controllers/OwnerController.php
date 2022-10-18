@@ -3,10 +3,8 @@
     
     use DAO\OwnerDAO as OwnerDAO;
     use DAO\GuardianDAO as GuardianDAO;
-    use DAO\PetDAO as PetDAO;
     use Models\Guardian as Guardian;
     use Models\Owner as Owner;
-    use Models\Pet as Pet;
 
     class OwnerController 
     {

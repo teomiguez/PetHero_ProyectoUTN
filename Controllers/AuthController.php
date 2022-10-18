@@ -129,9 +129,9 @@
             $petDAO->Add($pet);
             // <- ADD PET TO JSON
 
-            // -> REDIRECTION TO 'PetsProfiles.php'
-            require_once(VIEWS_PATH . "PetsProfiles.php");
-            // <- REDIRECTION TO 'PetsProfiles.php'
+            // -> REDIRECTION TO PET/SHOWLIT
+            header("location: " . FRONT_ROOT . "Pet/ShowList");
+            // <- REDIRECTION TO PET/SHOWLIT
         }
         
         // <- PUBLIC FUNCTIONs

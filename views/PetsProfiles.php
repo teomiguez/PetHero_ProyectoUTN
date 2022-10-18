@@ -58,6 +58,8 @@
         </div>
     </nav>
 
+    <?php // echo var_dump($_SESSION); ?>
+
     <br>
 
     <main class="container">
@@ -92,8 +94,8 @@
                         </tr>
                         </thead>
                         <tbody>
-                             <?php
-                                foreach ($pets as $pet) {
+                            <?php
+                                foreach ($petList as $pet) {
                             ?>
                             <tr>
                                 <td> <?php echo $pet->getName() ?> </td>
@@ -115,7 +117,7 @@
                 </button>
             </div>
 
-            <div class="col-12 col-sm-4">
+            <div class="col-12 col-sm-4 text-center">
                 rellenar...
             </div>
         </div>
