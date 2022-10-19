@@ -16,7 +16,6 @@ class Guardian
     private $rating;
     private $sizeCare;
     private $cost;
-    private $days = array();
 
     // -> SETTERS Y GETTERS
 
@@ -129,16 +128,6 @@ class Guardian
     public function setCost($cost)
     {
         $this->cost = $cost;
-    }
-
-    public function getDays()
-    {
-        return $this->days;
-    }
-
-    public function setDays($days)
-    {
-        $this->days = $days;
     }
     
     // -> SETTERS Y GETTERS

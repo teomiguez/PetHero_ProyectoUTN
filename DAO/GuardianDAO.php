@@ -106,7 +106,6 @@
                      $guardian->setRating($content["rating"]);
                      $guardian->setSizeCare($content["sizeCare"]);
                      $guardian->setCost($content["cost"]);
-                     $guardian->setDays($content["days"]);
                      array_push($this->guardianList, $guardian);
                  }
              }
@@ -130,7 +129,6 @@
                 $valuesArray["rating"] = $guardian->getRating();
                 $valuesArray["sizeCare"] = $guardian->getSizeCare();
                 $valuesArray["cost"] = $guardian->getCost();
-                $valuesArray["days"] = $guardian->getDays();
                 array_push($arrayToEncode, $valuesArray);
             }
 

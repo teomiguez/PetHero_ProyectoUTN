@@ -110,66 +110,19 @@
 
                     <div class="col-12 col-md-6 my-2">
                         <div>
-                            <label for="days_checks" class="form-check"> Dias disponibles </label>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="check_monday" name="days[]"
-                                    value="lu" disabled>
-                                <label class="form-check-label" for="check_monday"> Lu </label>
-                            </div>
-
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="check_tuesday" name="days[]"
-                                    value="ma" disabled>
-                                <label class="form-check-label" for="check_tuesday"> Ma </label>
-                            </div>
-
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="check_wednesday" name="days[]"
-                                    value="mie" disabled>
-                                <label class="form-check-label" for="check_wednesday"> Mi </label>
-                            </div>
-
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="check_thursday" name="days[]"
-                                    value="jue" disabled>
-                                <label class="form-check-label" for="check_thursday"> Jue </label>
-                            </div>
-
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="check_friday" name="days[]"
-                                    value="vi" disabled>
-                                <label class="form-check-label" for="check_friday"> Vie </label>
-                            </div>
-
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="check_saturday" name="days[]"
-                                    value="sa" disabled>
-                                <label class="form-check-label" for="check_saturday"> Sa </label>
-                            </div>
-
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="check_sunday" name="days[]"
-                                    value="do" disabled>
-                                <label class="form-check-label" for="check_sunday"> Do </label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-12 col-md-6 my-2">
-                        <div>
                             <select id="typeSize" class="form-select form-select-sm"
                                 aria-label=".form-select-sm example" name="typeSize" required disabled>
                                 <option selected> Tamaño del perro</option>
-                                <option value="sm"> Chico </option>
-                                <option value="md"> Mediano </option>
-                                <option value="lg"> Grande </option>
+                                <option value="chico"> Chico </option>
+                                <option value="mediano"> Mediano </option>
+                                <option value="grande"> Grande </option>
                             </select>
                         </div>
                     </div>
 
                     <div class="col-12 col-md-6 my-2">
                         <div class="mb-3 row">
-                            <label for="cost" class="col-sm-2 col-form-label"> Remuneracion </label>
+                            <label for="cost" class="col-sm-2 col-form-label"> Remuneracion x Dia </label>
                             <div class="col-sm-10">
                                 <div class="input-group mb-3">
                                     <span class="input-group-text">$</span>
