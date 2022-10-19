@@ -81,12 +81,16 @@
                             <br>
 
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="radio_option" id="radio_dueño" value="dueño" onclick= "disabledFields()" checked required />
+                                <input class="form-check-input" type="radio" name="radio_option" id="radio_dueño" value="dueño" 
+                                    onclick= "disabledFields()" checked required 
+                                />
                                 <label class="form-check-label" for="radio_dueño"> Dueño </label>
                             </div>
 
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="radio_option" id="radio_guardian" value="guardian" onclick= "enabledFields()" required />
+                                <input class="form-check-input" type="radio" name="radio_option" id="radio_guardian" value="guardian"
+                                    onclick= "enabledFields()" required 
+                                />
                                 <label class="form-check-label" for="radio_guardian"> Guardian </label>
                             </div>
                         </div>
@@ -95,40 +99,29 @@
                     <hr class="my-3">
 
                     <div class="col-12 col-md-6 my-2">
-                        <div>
-                            <div class="d-inline-block">
-                                <label for="street" class="form-label"> Calle </label>
-                                <input id="street" name="street" type="text" class="form-control" required disabled />
-                            </div>
+                        <label for="street" class="form-label"> Calle </label>
+                        <input id="street" name="street" type="text" class="form-control" required disabled />
 
-                            <div class="d-inline-block">
-                                <label for="nro" class="form-label"> Altura </label>
-                                <input id="nro" name="nro" type="text" class="form-control" required disabled />
-                            </div>
-                        </div>
+                        <label for="nro" class="form-label"> Altura </label>
+                        <input id="nro" name="nro" type="text" class="form-control" required disabled />
                     </div>
 
                     <div class="col-12 col-md-6 my-2">
                         <div>
-                            <select id="typeSize" class="form-select form-select-sm"
-                                aria-label=".form-select-sm example" name="typeSize" required disabled>
-                                <option selected> Tamaño del perro</option>
-                                <option value="chico"> Chico </option>
-                                <option value="mediano"> Mediano </option>
-                                <option value="grande"> Grande </option>
+                            <label for="typeSize" class="form-label"> Tamaño de preferencia </label>    
+                            <select id="typeSize" class="form-select" aria-label="form-select" name="typeSize" required disabled>
+                                    <option selected> Elegir tamaño </option>
+                                    <option value="chico"> Chico </option>
+                                    <option value="mediano"> Mediano </option>
+                                    <option value="grande"> Grande </option>
                             </select>
                         </div>
-                    </div>
 
-                    <div class="col-12 col-md-6 my-2">
-                        <div class="mb-3 row">
-                            <label for="cost" class="col-sm-2 col-form-label"> Remuneracion x Dia </label>
-                            <div class="col-sm-10">
-                                <div class="input-group mb-3">
-                                    <span class="input-group-text">$</span>
-                                    <input id="cost" type="text" class="form-control" name="cost"
-                                        aria-label="Amount (to the nearest dollar)" required disabled>
-                                </div>
+                        <div>
+                        <label for="cost" class="form-label"> Remuneracion x Dia </label>     
+                        <div class="input-group mb-3">
+                                <span class="input-group-text">$</span>
+                                <input type="text" class="form-control" name= "cost" aria-label="Amount (to the nearest dollar)" required disabled>
                             </div>
                         </div>
                     </div>
@@ -144,7 +137,7 @@
     </main>
 
     <!-- Funcionalidades JS -->
-    <script src=" <?php echo JS_PATH . "FormController.js" ?>"></script>
+    <script src=" <?php echo JS_PATH . "FormController.js" ?> " ></script>
     
     <!-- Funcionalidades JS propias de Boostrap (para uso de compoentes especificos) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
