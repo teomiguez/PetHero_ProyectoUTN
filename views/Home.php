@@ -57,7 +57,7 @@
 
                 <div class="d-flex justify-content-center">
                     <p class="px-2"> Aún no tenes cuenta? </p>
-                    <a href=<?php echo FRONT_ROOT . "Auth/ShowRegist" ?>> Registrarse </a>
+                    <a href="<?php echo FRONT_ROOT . "Auth/ShowRegist" ?>"> Registrarse </a>
                 </div>
 
 

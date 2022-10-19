@@ -7,5 +7,14 @@
         "telephone": "2235698741",
         "email": "juanpalos@hotmail.com",
         "password": "juan123"
+    },
+    {
+        "id": 2,
+        "name": "Tomas",
+        "last_name": "Gonzalez",
+        "dni": "22222",
+        "telephone": "2232323232",
+        "email": "tomas@gmail.com",
+        "password": "tomas123"
     }
 ]
