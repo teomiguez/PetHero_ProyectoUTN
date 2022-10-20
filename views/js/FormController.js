@@ -13,7 +13,6 @@ const cost = document.getElementById("cost");
 
 function enabledFields()
 {    
-   alert("Guardian seleccionado!");
     street.disabled = false;
     nro.disabled = false;
     typeSize.disabled = false;
@@ -22,9 +21,8 @@ function enabledFields()
 
 function disabledFields()
 {
-    alert("Dueño seleccionado!");
-     street.disabled = true;
-     nro.disabled = true;
-     typeSize.disabled = true;
-     cost.disabled = true;
+    street.disabled = true;
+    nro.disabled = true;
+    typeSize.disabled = true;
+    cost.disabled = true;
 }

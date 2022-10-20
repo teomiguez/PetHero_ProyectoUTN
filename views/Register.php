@@ -121,7 +121,7 @@
                         <label for="cost" class="form-label"> Remuneracion x Dia </label>     
                         <div class="input-group mb-3">
                                 <span class="input-group-text">$</span>
-                                <input type="text" class="form-control" name= "cost" aria-label="Amount (to the nearest dollar)" required disabled>
+                                <input id="cost" type="text" class="form-control" name= "cost" aria-label="Amount (to the nearest dollar)" required disabled>
                             </div>
                         </div>
                     </div>
