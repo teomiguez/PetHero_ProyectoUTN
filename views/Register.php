@@ -108,7 +108,7 @@
 
                     <div class="col-12 col-md-6 my-2">
                         <div>
-                            <label for="typeSize" class="form-label"> Tamaño de preferencia </label>    
+                            <label for="typeSize" class="form-label"> Tamaño preferencia de la mascota </label>    
                             <select id="typeSize" class="form-select" aria-label="form-select" name="typeSize" required disabled>
                                     <option selected> Elegir tamaño </option>
                                     <option value="chico"> Chico </option>

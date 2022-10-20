@@ -14,17 +14,17 @@ const cost = document.getElementById("cost");
 function enabledFields()
 {    
    alert("Guardian seleccionado!");
-//    street.disabled = false;
-//    nro.disabled = false;
-//    typeSize.disabled = false;
-//    cost.disabled = false;
+    street.disabled = false;
+    nro.disabled = false;
+    typeSize.disabled = false;
+    cost.disabled = false;
 }
 
 function disabledFields()
 {
     alert("Dueño seleccionado!");
-//     street.disabled = true;
-//     nro.disabled = true;
-//     typeSize.disabled = true;
-//     cost.disabled = true;
+     street.disabled = true;
+     nro.disabled = true;
+     typeSize.disabled = true;
+     cost.disabled = true;
 }
