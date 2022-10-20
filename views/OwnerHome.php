@@ -48,11 +48,11 @@
                     </li>
 
                     <li class="nav-item">
-                        <a href=<?php echo FRONT_ROOT . "Pet/ShowList" ?> class="nav-link text-decoration-none"> *Mis Mascotas* </a>
+                        <a href="<?php echo FRONT_ROOT . "Pet/ShowList" ?>" class="nav-link text-decoration-none"> *Mis Mascotas* </a>
                     </li>
 
                     <li class="nav-item">
-                        <a href=<?php echo FRONT_ROOT . "Owner/ShowProfile" ?> class="nav-link text-decoration-none"> *Mi Perfil*</a>
+                        <a href="<?php echo FRONT_ROOT . "Owner/ShowProfile" ?>" class="nav-link text-decoration-none"> *Mi Perfil*</a>
                     </li>
                 </ul>
             </div>
