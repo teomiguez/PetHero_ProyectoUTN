@@ -26,6 +26,7 @@
             require_once(VIEWS_PATH . "PetsProfiles.php");
         }
 
+
         public function Add($id_owner, $name, $img, $size, $video, $info)
         {
             $petDAO = new PetDAO();

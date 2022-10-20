@@ -27,6 +27,12 @@
             $this->ShowGuardians();
         }
 
+
+
+        /* ---------------------------------------------
+        Esta funcion no tiene uso por ahora, porque usamos la funcion 
+        de ShowList que esta en PetController, que hace lo mismo*/
+
         public function ShowPets()
         {            
             $owner_DAO = new OwnerDAO();
@@ -37,6 +43,8 @@
 
             require_once(VIEWS_PATH . "PetsProfiles.php");
         }
+        // --------------------------------------------
+
 
         public function ShowProfile()
         {            
