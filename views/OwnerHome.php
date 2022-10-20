@@ -88,7 +88,7 @@
                             <th scope="col"> Nombre </th>
                             <th scope="col"> Apellido </th>
                             <th scope="col"> Telefono </th>
-                            <th scope="col"> # </th>
+                            <th scope="col"> Perfil </th>
                         </tr>
                     </thead>
                     <tbody>

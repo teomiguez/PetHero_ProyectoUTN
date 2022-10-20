@@ -46,7 +46,7 @@
                 }
                 else
                 {
-                    // AGREGAR EXCEPTION/ALERT 'USUARIO O CONTRASEÑA INCORRECTOS'
+                    // AGREGAR EXCEPTION/ALERT 'CONTRASEÑA INCORRECTA'
                 }
             }
             else if ($user2 != null)
@@ -58,7 +58,7 @@
                 $_SESSION['type'] = "guardian";
 
                 // -> REDIRECTION TO HOME_GUARDIAN
-                header("location: " . FRONT_ROOT . "Guardian/HomeGuardian.php");
+                header("location: " . FRONT_ROOT . "Guardian/HomeGuardian");
                 // <- REDIRECTION TO HOME_OWNER
             }
             else

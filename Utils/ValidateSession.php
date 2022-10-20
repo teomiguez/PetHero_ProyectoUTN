@@ -3,6 +3,6 @@
 
     if (!isset($_SESSION['id']))
     {
-        header("location: " . FRONT.ROOT . "Auth/ShowViewLogin");
+        header("location: " . FRONT.ROOT . "Auth/ShowLogin");
     }
-?>
+?> 
