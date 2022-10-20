@@ -5,7 +5,7 @@
     use Models\Owner as Owner;
 
     class OwnerDao implements I_OwnerDAO
-    {
+    { 
         private $ownerList = array();
         private $fileName;
 
@@ -107,7 +107,7 @@
                 }
             }
         }
-
+ 
         private function SaveData()
         {
             $arrayToEncode = array();

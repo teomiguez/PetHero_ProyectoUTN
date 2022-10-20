@@ -1,17 +1,17 @@
 <?php
     namespace Controllers;
 
-    use DAO\GuiardianDAO as GuardianDAO;
+    use DAO\GuardianDAO as GuardianDAO;
 
-    class DueñoController 
+    class GuardianController 
     {
         public function __contruct()
         {
             require_once(ROOT . "/Utils/ValidateSession.php");
 
-            if ($_SESSION["type"] == "owner") 
+            if ($_SESSION["type"] == "guardian") 
             {
-                header("location: " . FRONT_ROOT . "Owner/HomeOwner");
+                header("location: " . FRONT_ROOT . "Guardian/HomeGuardian");
             }
         } 
 
@@ -23,5 +23,7 @@
 
             require_once(VIEWS_PATH . "GuardianHome.php");
         }
+
+
     }
 ?>
