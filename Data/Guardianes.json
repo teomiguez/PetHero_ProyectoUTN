@@ -1,0 +1,28 @@
+[
+    {
+        "id_guardian": 1,
+        "name": "Pablo",
+        "last_name": "Miguez",
+        "dni": "20330626",
+        "telephone": "2236818493",
+        "address": "Juab B. Justo 3975",
+        "email": "pablo-miguez@hotmail.com",
+        "password": "pablo123",
+        "rating": "",
+        "sizeCare": "grande",
+        "cost": "500"
+    },
+    {
+        "id_guardian": 2,
+        "name": "Julian",
+        "last_name": "Fasciani",
+        "dni": "40659785",
+        "telephone": "2237895147",
+        "address": "Jara 3500",
+        "email": "julianfasciani@hotmail.es",
+        "password": "juli123",
+        "rating": "",
+        "sizeCare": "mediano",
+        "cost": "350"
+    }
+]

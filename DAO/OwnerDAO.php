@@ -88,24 +88,24 @@
 
              if(file_exists($this->fileName))
              {
-                 $jsonToDecode = file_get_contents($this->fileName);
+                $jsonToDecode = file_get_contents($this->fileName);
 
-                 $contentArray = ($jsonToDecode) ? json_decode($jsonToDecode, true) : array();
+                $contentArray = ($jsonToDecode) ? json_decode($jsonToDecode, true) : array();
                  
-                 foreach($contentArray as $content)
-                 {
-                     $owner = new Owner();
-                     $owner->setId_owner($content["id"]);
-                     $owner->setName($content["name"]);
-                     $owner->setLast_name($content["last_name"]);
-                     $owner->setDni($content["dni"]);
-                     $owner->setTelephone($content["telephone"]);
-                     $owner->setEmail($content["email"]);
-                     $owner->setPassword($content["password"]);
+                foreach($contentArray as $content)
+                {
+                   $owner = new Owner();
+                   $owner->setId_owner($content["id"]);
+                   $owner->setName($content["name"]);
+                   $owner->setLast_name($content["last_name"]);
+                   $owner->setDni($content["dni"]);
+                   $owner->setTelephone($content["telephone"]);
+                   $owner->setEmail($content["email"]);
+                   $owner->setPassword($content["password"]);
 
-                     array_push($this->ownerList, $owner);
-                 }
-             }
+                   array_push($this->ownerList, $owner);
+                }
+            }
         }
 
         private function SaveData()

@@ -58,7 +58,7 @@
                 $_SESSION['type'] = "guardian";
 
                 // -> REDIRECTION TO HOME_GUARDIAN
-                header("location: " . FRONT_ROOT . "Guardian/HomeGuardian");
+                header("location: " . FRONT_ROOT . "Guardian/HomeGuardian.php");
                 // <- REDIRECTION TO HOME_OWNER
             }
             else
