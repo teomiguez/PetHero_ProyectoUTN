@@ -5,9 +5,9 @@
         "img": "chat.jpg",
         "name": "Lucho",
         "breed": "Salchicha",
-        "size": "sm",
-        "pv": "chat3.jpg",
-        "video": "",
-        "info": "Es muy intenso..."
+        "size": "chico",
+        "pv": "chat1.jpg",
+        "video": "chat2.jpg",
+        "info": "Es muy intenso...."
     }
 ]

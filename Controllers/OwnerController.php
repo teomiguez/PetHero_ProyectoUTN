@@ -10,7 +10,7 @@
     {
         public function __contruct()
         {
-            require_once(ROOT . "/Utils/ValidateSession.php");
+            require_once(FRONT_ROOT . "Utils/ValidateSession.php");
 
             if ($_SESSION["type"] == "guardian") 
             {
@@ -19,7 +19,7 @@
         }  
 
         public function HomeOwner()
-        {            
+        {                      
             $owner_DAO = new OwnerDAO();
 
             $user = $owner_DAO->GetById($_SESSION["id"]);

@@ -169,9 +169,9 @@
                             <select id="size" class="form-select form-select-sm"
                                 aria-label=".form-select-sm example" name="size" required>
                                 <option selected> ... </option>
-                                <option value="sm"> Chico </option>
-                                <option value="md"> Mediano </option>
-                                <option value="lg"> Grande </option>
+                                <option value="chico"> Chico </option>
+                                <option value="mediano"> Mediano </option>
+                                <option value="grande"> Grande </option>
                             </select>
                         </div>
 
