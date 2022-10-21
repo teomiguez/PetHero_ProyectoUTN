@@ -90,7 +90,7 @@ class Guardian
         $this->email = $email;
     }
 
-    public function getPasssword()
+    public function getPassword()
     {
         return $this->passsword;
     }

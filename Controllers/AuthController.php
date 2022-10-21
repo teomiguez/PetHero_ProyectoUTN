@@ -56,7 +56,7 @@
             }
             else if ($user2 != null)
             {
-                if ($user2->getPasssword() == $password)
+                if ($user2->getPassword() == $password)
                 {
                     // NEW SESSION
                     session_start();
