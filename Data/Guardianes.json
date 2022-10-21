@@ -37,5 +37,18 @@
         "rating": "",
         "sizeCare": "mediano",
         "cost": "400"
+    },
+    {
+        "id_guardian": 4,
+        "name": "Pepe",
+        "last_name": "Argento",
+        "dni": "44867867",
+        "telephone": "223456789",
+        "address": "av colon 1233",
+        "email": "pepe@gmail.com",
+        "password": "pepe123",
+        "rating": "",
+        "sizeCare": "mediano",
+        "cost": "300"
     }
 ]

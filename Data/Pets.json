@@ -20,5 +20,16 @@
         "pv": "Captura de pantalla (3382).png",
         "video": "",
         "info": "le faltan un par de dientes"
+    },
+    {
+        "id_pet": 3,
+        "id_owner": 4,
+        "img": "perro 1.jpg",
+        "name": "pipu",
+        "breed": "labrador",
+        "size": "mediano",
+        "pv": "plan vacunacion.jpg",
+        "video": "",
+        "info": "es un crack"
     }
 ]

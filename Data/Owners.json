@@ -25,5 +25,14 @@
         "telephone": "223234234",
         "email": "tomas@gmail.com",
         "password": "tomas123"
+    },
+    {
+        "id": 4,
+        "name": "Moni",
+        "last_name": "Argento",
+        "dni": "33456789",
+        "telephone": "223456789",
+        "email": "moni@gmail.com",
+        "password": "moni123"
     }
 ]

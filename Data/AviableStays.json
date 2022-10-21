@@ -52,5 +52,11 @@
         "id_keeper": 3,
         "first_day": "2022-10-30",
         "last_day": "2022-11-05"
+    },
+    {
+        "id_stay": 10,
+        "id_keeper": 4,
+        "first_day": "2022-10-27",
+        "last_day": "2022-10-30"
     }
 ]
