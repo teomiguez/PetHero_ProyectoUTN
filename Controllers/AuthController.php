@@ -50,20 +50,30 @@
                 }
                 else
                 {
+                    header("location: " . FRONT_ROOT . "Auth/ShowLogin");
                     // AGREGAR EXCEPTION/ALERT 'CONTRASEÑA INCORRECTA'
                 }
             }
             else if ($user2 != null)
             {
-                // NEW SESSION
-                session_start();
+                if ($user2->getPasssword() == $password)
+                {
+                    // NEW SESSION
+                    session_start();
+    
+                    $_SESSION['id'] = $user2->getId_guardian();
+                    $_SESSION['type'] = "guardian";
 
-                $_SESSION['id'] = $user2->getId_guardian();
-                $_SESSION['type'] = "guardian";
+                    // -> REDIRECTION TO HOME_GUARDIAN
+                    header("location: " . FRONT_ROOT . "Guardian/HomeGuardian");
+                    // <- REDIRECTION TO HOME_GUARDIAN
+                }
+                else
+                {
+                    header("location: " . FRONT_ROOT . "Auth/ShowLogin");
+                    // AGREGAR EXCEPTION/ALERT 'CONTRASEÑA INCORRECTA'
+                }
 
-                // -> REDIRECTION TO HOME_GUARDIAN
-                header("location: " . FRONT_ROOT . "Guardian/HomeGuardian");
-                // <- REDIRECTION TO HOME_OWNER
             }
             else
             {

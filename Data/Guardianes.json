@@ -24,5 +24,18 @@
         "rating": "",
         "sizeCare": "mediano",
         "cost": "350"
+    },
+    {
+        "id_guardian": 3,
+        "name": "Valentin",
+        "last_name": "Gonzalez",
+        "dni": "44566788",
+        "telephone": "2234565789",
+        "address": "Laprida 1234",
+        "email": "valen@gmail.com",
+        "password": "valen123",
+        "rating": "",
+        "sizeCare": "mediano",
+        "cost": "400"
     }
 ]

@@ -40,5 +40,17 @@
         "id_keeper": 2,
         "first_day": "2022-10-28",
         "last_day": "2022-10-30"
+    },
+    {
+        "id_stay": 8,
+        "id_keeper": 3,
+        "first_day": "2022-10-26",
+        "last_day": "2022-10-30"
+    },
+    {
+        "id_stay": 9,
+        "id_keeper": 3,
+        "first_day": "2022-10-30",
+        "last_day": "2022-11-05"
     }
 ]
