@@ -100,8 +100,8 @@
                             <tr>
                                 <td> <?php echo $avStay->getFirst_day() ?> </td>
                                 <td> <?php echo $avStay->getLast_day() ?> </td>
-                                <td> <?php echo "total dias" ?> </td>
-                                <td> <a href="#"> ver </a> </td>
+                                <td> <?php echo "hacer la diferencia" ?> </td>
+                                <td> <a href=""> borrar </a> </td>
                             </tr>
                         </tbody>
 

@@ -26,6 +26,14 @@
             require_once(VIEWS_PATH . "GuardianHome.php");
         }
 
+        public function RemoveStay($id)
+        {
+            $avStayDAO = new AvStayDAO();
+            $avStayDAO->Remove($id);
+
+            require_once(VIEWS_PATH . "GuardianHome.php");
+        }
+
     }
 
 ?>

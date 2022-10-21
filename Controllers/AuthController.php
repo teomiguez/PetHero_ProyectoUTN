@@ -144,19 +144,26 @@
             $avStayDAO = new AvStayDAO;
             $avStay = new AvStay;
 
-            // -> SETs AvStay
-            $avStay->setId_keeper($_SESSION['id']);
-            $avStay->setFirst_day($first_day);
-            $avStay->setLast_day($last_day);
-            // <- SETs AvStay
-
-            // -> ADD AvStay TO JSON
-            $avStayDAO->Add($avStay);
-            // <- ADD AvStay TO JSON
-
-            // -> REDIRECTION TO AvStay/ShowList
-            header("location: " . FRONT_ROOT . "AvStay/ShowList");
-            // <- REDIRECTION TO AvStay/ShowList
+            if ($this->checkDiffDays($first_day, $last_day) == true)
+            {
+                // -> SETs AvStay
+                $avStay->setId_keeper($_SESSION['id']);
+                $avStay->setFirst_day($first_day);
+                $avStay->setLast_day($last_day);
+                // <- SETs AvStay
+    
+                // -> ADD AvStay TO JSON
+                $avStayDAO->Add($avStay);
+                // <- ADD AvStay TO JSON
+    
+                // -> REDIRECTION TO AvStay/ShowList
+                header("location: " . FRONT_ROOT . "AvStay/ShowList");
+                // <- REDIRECTION TO AvStay/ShowList
+            }
+            else
+            {
+                header("location: " . FRONT_ROOT . "AvStay/ShowList");
+            }
         }
         
         // <- PUBLIC FUNCTIONs
@@ -191,6 +198,14 @@
             {
                 return false; // NO EXISTE
             }
+        }
+
+        public function checkDiffDays($first_day, $last_day)
+        {
+            if ($last_day > $first_day)
+                return true; // la fecha es mayor (tiene sentido)
+            else
+                return false;
         }
 
         function RegisterOwner($name, $last_name, $dni, $tel, $email, $password)
