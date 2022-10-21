@@ -65,7 +65,7 @@
         <div class="row">
 
             <div class="col-12 col-sm-12 col-md-12 col-lg-3 ">
-                *Calendario*
+                *Listado de Reservas activas y a confirmar*
             </div>
 
             <div class="col-12 col-sm-8 col-lg-5 ">
