@@ -12,9 +12,9 @@
         {
             require_once(ROOT . "/Utils/ValidateSession.php");
 
-            if ($_SESSION["type"] == "owner") 
+            if ($_SESSION["type"] == "guardian") 
             {
-                header("location: " . FRONT_ROOT . "Owner/HomeOwner");
+                header("location: " . FRONT_ROOT . "Guardian/HomeGuardian");
             }
         }  
 
@@ -26,7 +26,6 @@
 
             $this->ShowGuardians();
         }
-
 
 
         /* ---------------------------------------------

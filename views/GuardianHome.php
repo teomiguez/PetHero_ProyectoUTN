@@ -60,128 +60,63 @@
 
         <div class="row">
 
-            <div class="col-12 col-sm-12 col-md-12 col-lg-3 border">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-3 ">
                 *Calendario*
             </div>
 
-            <div class="col-12 col-sm-8 col-lg-5 border">
+            <div class="col-12 col-sm-8 col-lg-5 ">
                 rellenar...
             </div>
+ 
+            <div class="col-12 col-sm-4 ">
+                <h2 class="text-center"> Estadias disponibles </h2>
 
-            <div class="col-12 col-sm-4 border">
-                <h2 class="text-center"> Cuidados previos </h2>
-                <div class="accordion" id="accordionCuidados">
-                    <div class="accordion-item">
-                        <h2 class="accordion-header" id="cuidado1">
-                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                                Accordion Item #1
-                            </button>
-                        </h2>
-                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="cuidado1"
-                            data-bs-parent="#accordionCuidados">
-                            <div class="accordion-body">
-                                <strong>This is the first item's accordion body.</strong> It is shown by default, until
-                                the collapse
-                                plugin adds the appropriate classes that we use to style each element. These classes
-                                control the overall
-                                appearance, as well as the showing and hiding via CSS transitions. You can modify any of
-                                this with
-                                custom CSS or overriding our default variables. It's also worth noting that just about
-                                any HTML can go
-                                within the <code>.accordion-body</code>, though the transition does limit overflow.
-                            </div>
-                        </div>
+                <form action="">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Buscar estadia..."
+                            aria-label="Buscar estadia..." aria-describedby="button-addon2">
+                        <button class="btn btn-outline-secondary" type="button" id="button-addon2">
+                            <i class="bi bi-search"></i>
+                        </button>
                     </div>
-                    <div class="accordion-item">
-                        <h2 class="accordion-header" id="cuidado2">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                Accordion Item #2
-                            </button>
-                        </h2>
-                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="cuidado2"
-                            data-bs-parent="#accordionCuidados">
-                            <div class="accordion-body">
-                                <strong>This is the second item's accordion body.</strong> It is hidden by default,
-                                until the collapse
-                                plugin adds the appropriate classes that we use to style each element. These classes
-                                control the overall
-                                appearance, as well as the showing and hiding via CSS transitions. You can modify any of
-                                this with
-                                custom CSS or overriding our default variables. It's also worth noting that just about
-                                any HTML can go
-                                within the <code>.accordion-body</code>, though the transition does limit overflow.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <h2 class="accordion-header" id="cuidado3">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                Accordion Item #3
-                            </button>
-                        </h2>
-                        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="cuidado3"
-                            data-bs-parent="#accordionCuidados">
-                            <div class="accordion-body">
-                                <strong>This is the third item's accordion body.</strong> It is hidden by default, until
-                                the collapse
-                                plugin adds the appropriate classes that we use to style each element. These classes
-                                control the overall
-                                appearance, as well as the showing and hiding via CSS transitions. You can modify any of
-                                this with
-                                custom CSS or overriding our default variables. It's also worth noting that just about
-                                any HTML can go
-                                within the <code>.accordion-body</code>, though the transition does limit overflow.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <h2 class="accordion-header" id="cuidado4">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseFourth" aria-expanded="false" aria-controls="collapseFourth">
-                                Accordion Item #4
-                            </button>
-                        </h2>
-                        <div id="collapseFourth" class="accordion-collapse collapse" aria-labelledby="cuidado4"
-                            data-bs-parent="#accordionCuidados">
-                            <div class="accordion-body">
-                                <strong>This is the third item's accordion body.</strong> It is hidden by default, until
-                                the collapse
-                                plugin adds the appropriate classes that we use to style each element. These classes
-                                control the overall
-                                appearance, as well as the showing and hiding via CSS transitions. You can modify any of
-                                this with
-                                custom CSS or overriding our default variables. It's also worth noting that just about
-                                any HTML can go
-                                within the <code>.accordion-body</code>, though the transition does limit overflow.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <h2 class="accordion-header" id="cuidado5">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseFifth" aria-expanded="false" aria-controls="collapseFifth">
-                                Accordion Item #5
-                            </button>
-                        </h2>
-                        <div id="collapseFifth" class="accordion-collapse collapse" aria-labelledby="cuidado5"
-                            data-bs-parent="#accordionCuidados">
-                            <div class="accordion-body">
-                                <strong>This is the third item's accordion body.</strong> It is hidden by default, until
-                                the collapse
-                                plugin adds the appropriate classes that we use to style each element. These classes
-                                control the overall
-                                appearance, as well as the showing and hiding via CSS transitions. You can modify any of
-                                this with
-                                custom CSS or overriding our default variables. It's also worth noting that just about
-                                any HTML can go
-                                within the <code>.accordion-body</code>, though the transition does limit overflow.
-                            </div>
-                        </div>
-                    </div>
+                </form>
+
+                <div class="mb-3">
+                    <table class="table text-center">
+                        <thead>
+                            <tr>
+                                <th scope="col"> Desde </th>
+                                <th scope="col"> Hasta </th>
+                                <th scope="col"> Dias en total </th>
+                                <th scope="col"> # </th>
+                        </tr>
+                        </thead>
+                        <tbody> 
+                            <?php  
+                                
+                                foreach ($avStayList as $avStay) {
+                            ?>
+
+                            <tr>
+                                <td> <?php echo $avStay->getFirst_day() ?> </td>
+                                <td> <?php echo $avStay->getLast_day() ?> </td>
+                                <td> <?php echo "total dias" ?> </td>
+                                <td> <a href="#"> ver </a> </td>
+                            </tr>
+                        </tbody>
+
+                        <?php }  ?> 
+                    </table>
+                    
                 </div>
+
+                <!-- Button whit modal -->
+                <button type="button" class="btn btn-primary w-100" data-bs-toggle="modal"
+                    data-bs-target="#addAvStay_modal">
+                    Agregar estadia
+                </button>
+            </div>
+                
             </div>
         </div>
 
@@ -196,6 +131,43 @@
             <a href="#"> *Red Social* </a>
         </div>
     </footer>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="addAvStay_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel"> Añadir disponibilidad de estadia</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="<?php echo FRONT_ROOT . " Auth/CreateAvStay" ?>" method="POST" class="text-start">
+                    
+
+                        <div class="my-1">
+                            <label for="first_day" class="form-label"> Desde </label>
+                            <input id="first_day" name="first_day" type="date" class="form-control" required>
+                        </div>
+
+                        <div class="my-1">
+                            <label for="last_day" class="form-label"> Hasta </label>
+                            <input id="last_day" name="last_day" type="date" class="form-control" required>
+                        </div>
+
+                         <hr class="my-3">
+
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> Cerrar </button>
+                            <button type="submit" class="btn btn-primary"> Añadir </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 
     <!-- Funcionalidades JS propias de Boostrap (para uso de compoentes especificos) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"

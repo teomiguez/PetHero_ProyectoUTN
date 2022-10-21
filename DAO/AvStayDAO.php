@@ -15,7 +15,7 @@
             $this->fileName = dirname(__DIR__)."/Data/AviableStays.json";
         }
 
-        function Add(AvStay $stay);
+        function Add(AvStay $stay)
         {
             $this->RetrieveData();
 
@@ -26,14 +26,26 @@
             $this->SaveData();
         }
         
-        function GetAll();
+        function GetAll()
         {
             $this->RetrieveData();
 
             return $this->stayList;
         }
         
-        function GetById($id);
+        function GetByKeeper($id_keeper)
+        {
+            $this->RetrieveData();
+            
+            $AvStays = array_filter($this->stayList, function ($stay) use ($id_keeper) 
+            {
+                return $stay->getId_keeper() == $id_keeper;
+            });
+
+            return $AvStays;
+        }
+
+        function GetById($id)
         {
             $this->RetrieveData();
 
@@ -48,7 +60,7 @@
 
         //function Update($id); -> (ver)
         
-        function Remove($id);
+        function Remove($id)
         {
             $this->RetrieveData();
 
@@ -61,7 +73,7 @@
 
         private function RetrieveData()
         {
-             $this->guardianList = array();
+             $this->stayList = array();
 
              if(file_exists($this->fileName))
              {
@@ -71,11 +83,11 @@
                  
                  foreach($contentArray as $content)
                  {
-                     $guardian = new Guardian();
-                     $guardian->setId_stay($content["id_stay"]);
-                     $guardian->setId_keeper($content["id_keeper"]);
-                     $guardian->setFirst_day($content["first_day"]);
-                     $guardian->setLast_day($content["last_day"]);
+                     $stay = new AvStay();
+                     $stay->setId_stay($content["id_stay"]);
+                     $stay->setId_keeper($content["id_keeper"]);
+                     $stay->setFirst_day($content["first_day"]);
+                     $stay->setLast_day($content["last_day"]);
 
                      array_push($this->stayList, $stay);
                  }

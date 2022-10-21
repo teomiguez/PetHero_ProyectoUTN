@@ -1,0 +1,26 @@
+[
+    {
+        "id_stay": 1,
+        "id_keeper": 1,
+        "first_day": "2022-10-20",
+        "last_day": "2022-10-25"
+    },
+    {
+        "id_stay": 2,
+        "id_keeper": 1,
+        "first_day": "2022-10-29",
+        "last_day": "2022-11-04"
+    },
+    {
+        "id_stay": 3,
+        "id_keeper": 1,
+        "first_day": "2022-11-10",
+        "last_day": "2022-10-17"
+    },
+    {
+        "id_stay": 4,
+        "id_keeper": 1,
+        "first_day": "2022-11-23",
+        "last_day": "2022-11-30"
+    }
+]

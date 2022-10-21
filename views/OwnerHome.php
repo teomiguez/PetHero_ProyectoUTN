@@ -32,7 +32,7 @@
             </h2>
 
             <div class="navbar-nav position-absolute top-50 start-50 translate-middle">
-                <a href=<?php echo FRONT_ROOT . "Owner/HomeOwner" ?> class="nav-link active text-decoration-none"> *Home* </a>
+                <a href="<?php echo FRONT_ROOT . "Owner/HomeOwner" ?>" class="nav-link active text-decoration-none"> *Home* </a>
             </div>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -93,6 +93,7 @@
                     </thead>
                     <tbody>
                         <?php
+
                             foreach ($guardians as $guardian) {
                         ?>
 
@@ -102,7 +103,7 @@
                             <td> <?php echo $guardian->getTelephone() ?> </td>
                             <td> <a href="#"> ver </a> </td>
                         </tr>
-                    </tbody>
+                    </tbody>   
                 
                     <?php } ?>
                 </table>

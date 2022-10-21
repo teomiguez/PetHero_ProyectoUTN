@@ -4,10 +4,10 @@
 
     class AvStay // AviableStay 
     {
-        $id_stay;
-        $id_keeper;
-        $first_day;
-        $last_day;
+        private $id_stay;
+        private $id_keeper;
+        private $first_day;
+        private $last_day;
 
         // -> SETTERS Y GETTERS
 
@@ -33,22 +33,22 @@
 
         public function getFirst_day()
         {
-            return $this->firstDay;
+            return $this->first_day;
         }
 
-        public function setFirst_day($firstDay)
+        public function setFirst_day($first_day)
         {
-            $this->firstDay = $firstDay;
+            $this->first_day = $first_day;
         }
 
         public function getLast_day()
         {
-            return $this->lastDay;
+            return $this->last_day;
         }
 
-        public function setLast_day($lastDay)
+        public function setLast_day($last_day)
         {
-            $this->lastDay = $lastDay;
+            $this->last_day = $last_day;
         }
 
         // -> SETTERS Y GETTERS

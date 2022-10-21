@@ -27,6 +27,10 @@
         }
 
 
+      /* ---------------------------------------------
+        Esta funcion no tiene uso por ahora, porque usamos la funcion 
+        de CreatePet que esta en AuthController, que crea una mascota*/
+
         public function Add($id_owner, $name, $img, $size, $video, $info)
         {
             $petDAO = new PetDAO();
@@ -48,6 +52,9 @@
 
             $petDAO->Add($pet);
         }
+
+    //----------------------------------------------------
+        
     }
 
 ?>

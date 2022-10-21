@@ -1,11 +1,10 @@
 <?php
     namespace Controllers;
 
-    use DAO\GuardianDAO as GuardianDAO;
     use DAO\AvStayDAO as AvStayDAO;
     use Models\AvStay as AvStay;
 
-    class GuardianController 
+    class AvStayController 
     {
         public function __contruct()
         {
@@ -17,17 +16,7 @@
             }
         } 
 
-        public function HomeGuardian()
-        {
-            $guardian_DAO = new GuardianDAO();
-
-            $user = $guardian_DAO->GetById($_SESSION["id"]);
-
-            $this->ShowAvStays();
-        }
-
-    
-        public function ShowAvStays()
+        public function ShowList()
         {
             $avStayDAO = new AvStayDAO();
             $avStayList = array();
@@ -38,4 +27,5 @@
         }
 
     }
+
 ?>

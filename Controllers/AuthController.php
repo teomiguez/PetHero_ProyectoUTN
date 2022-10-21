@@ -4,9 +4,13 @@
     use DAO\GuardianDAO as GuardianDAO;
     use DAO\OwnerDAO as OwnerDAO;
     use DAO\PetDAO as PetDAO;
+    use DAO\AvStayDAO as AvStayDAO;
+
     use Models\Guardian as Guardian;
     use Models\Owner as Owner;
     use Models\Pet as Pet;
+    use Models\AvStay as AvStay;
+
 
     class AuthController
     {
@@ -132,6 +136,27 @@
             // -> REDIRECTION TO PET/SHOWLIT
             header("location: " . FRONT_ROOT . "Pet/ShowList");
             // <- REDIRECTION TO PET/SHOWLIT
+        }
+
+        
+        public function CreateAvStay ($first_day, $last_day)
+        {
+            $avStayDAO = new AvStayDAO;
+            $avStay = new AvStay;
+
+            // -> SETs AvStay
+            $avStay->setId_keeper($_SESSION['id']);
+            $avStay->setFirst_day($first_day);
+            $avStay->setLast_day($last_day);
+            // <- SETs AvStay
+
+            // -> ADD AvStay TO JSON
+            $avStayDAO->Add($avStay);
+            // <- ADD AvStay TO JSON
+
+            // -> REDIRECTION TO AvStay/ShowList
+            header("location: " . FRONT_ROOT . "AvStay/ShowList");
+            // <- REDIRECTION TO AvStay/ShowList
         }
         
         // <- PUBLIC FUNCTIONs
