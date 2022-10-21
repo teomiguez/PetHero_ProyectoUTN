@@ -109,6 +109,7 @@
             else
             {
                 // AGREGAR EXCEPTION/ALERT!!
+                require_once(VIEWS_PATH . "Register.php");
             }
             
         }

@@ -31,7 +31,7 @@
             </h2>
 
             <div class="navbar-nav position-absolute top-50 start-50 translate-middle">
-                <a href="" class="nav-link text-decoration-none"> *Home* </a>
+                <a href="<?php echo FRONT_ROOT . "Guardian/HomeGuardian" ?>" class="nav-link text-decoration-none"> *Home* </a>
             </div>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -48,6 +48,10 @@
 
                     <li class="nav-item">
                         <a href="" class="nav-link active text-decoration-none"> *Mi Perfil* </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="<?php echo FRONT_ROOT . "Auth/Logout" ?>" class="nav-link text-decoration-none"> *Salir*</a>
                     </li>
                 </ul>
             </div>

@@ -54,6 +54,10 @@
                     <li class="nav-item">
                         <a href="<?php echo FRONT_ROOT . "Owner/ShowProfile" ?>" class="nav-link text-decoration-none"> *Mi Perfil*</a>
                     </li>
+
+                    <li class="nav-item">
+                        <a href="<?php echo FRONT_ROOT . "Auth/Logout" ?>" class="nav-link text-decoration-none"> *Salir*</a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -110,7 +114,7 @@
             </div>
 
             <div class="col-12 col-sm-4 pt-3">
-                <h2 class="text-center"> Cuidados previos </h2>
+                <!-- <h2 class="text-center"> Cuidados previos </h2>
                 <div class="accordion" id="accordionCuidados">
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="cuidado1">
@@ -222,7 +226,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
 
