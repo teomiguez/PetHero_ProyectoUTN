@@ -1,9 +1,9 @@
 <?php
     namespace DAO;
 
-    use Models/Cat as Cat;
+    use Models\Cat as Cat;
 
-    class I_CatDAO
+    interface I_CatDAO
     {
         function Add(Cat $cat);
         function GetAll();

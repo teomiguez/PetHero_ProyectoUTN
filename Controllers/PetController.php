@@ -1,8 +1,8 @@
 <?php
     namespace Controllers;
 
-    use DAO\PetDAO as PetDAO;
-    use Models\Pet as Pet;
+    use DAO\CatDAO as CatDAO;
+    use DAO\DogDAO as DogDAO;
 
     class PetController 
     {
@@ -18,10 +18,16 @@
 
         public function ShowList()
         {
-            $petDAO = new PetDAO();
-            $petList = array();
+            $catDAO = new CatDAO();
+            $dogDAO = new DogDAO();
+            $catList = array();
+            $dogList = array();
+            $petsList = array();
 
-            $petList = $petDAO->GetByOwner($_SESSION["id"]);
+            $catList = $catDAO->GetByOwner($_SESSION["id"]);
+            $dogList = $dogDAO->GetByOwner($_SESSION["id"]);
+
+            $petsList = array_merge($catList, $dogList);
 
             require_once(VIEWS_PATH . "PetsProfiles.php");
         }
@@ -31,26 +37,9 @@
         Esta funcion no tiene uso por ahora, porque usamos la funcion 
         de CreatePet que esta en AuthController, que crea una mascota*/
 
-        public function Add($id_owner, $name, $img, $size, $video, $info)
+        public function AddNewPet($id_owner, $name, $img, $size, $video, $info)
         {
-            $petDAO = new PetDAO();
-            $pet = new Pet();
-
-            $pet->setId_pet($petDAO->GetNextId());
-            $pet->setId_owner($id_owner);
-            $pet->setName($name);
-            $pet->setImg($img);
-            $pet->setSize($tamaño);
-            $pet->setInfo($info);
-
-            if ($video != null)
-                $pet->setVideo($video);
-            else {
-                $video = " ";
-                $pet->setVideo($video);
-            }
-
-            $petDAO->Add($pet);
+            
         }
 
     //----------------------------------------------------

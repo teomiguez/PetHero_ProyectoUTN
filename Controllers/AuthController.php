@@ -97,8 +97,6 @@
             }
         }
 
-        // $street, $nro, $days, $typeSize, $cost
-
         public function Register($name, $last_name, $dni, $tel, $email, $password, $radio_option, $street = '', $nro = '', $typeSize = '', $cost = '')
         {
             if (($this->checkExistenceEmail($email) == false) && ($this->checkExistenceDni($dni) == false))
@@ -124,7 +122,9 @@
             
         }
 
-        public function CreatePet ($imgFile, $name, $breed, $size, $pvFile, $video, $remarks)
+        // -> HAY QUE VER DE BORRAR ALGUNAS FUNCIONES (X) NO RELACIONADAS AL AUTH (USAR EL CONTROLLER ADECUADO)
+
+        public function CreatePet ($imgFile, $name, $breed, $size, $pvFile, $video, $remarks) // X
         {
             $petDAO = new PetDAO;
             $pet = new Pet;
@@ -150,7 +150,7 @@
         }
 
         
-        public function CreateAvStay ($first_day, $last_day)
+        public function CreateAvStay ($first_day, $last_day) // X
         {
             $avStayDAO = new AvStayDAO;
             $avStay = new AvStay;
@@ -211,7 +211,7 @@
             }
         }
 
-        public function checkDiffDays($first_day, $last_day)
+        public function checkDiffDays($first_day, $last_day) // X
         {
             if ($last_day > $first_day)
                 return true; // la fecha es mayor (tiene sentido)

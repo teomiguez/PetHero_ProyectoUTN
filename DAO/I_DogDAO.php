@@ -1,9 +1,9 @@
 <?php
     namespace DAO;
 
-    use Models/Dog as Dog;
+    use Models\Dog as Dog;
 
-    class I_DogDAO
+    interface I_DogDAO
     {
         function Add(Dog $dog);
         function GetAll();

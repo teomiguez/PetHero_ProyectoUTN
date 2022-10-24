@@ -1,8 +1,9 @@
 <?php
     namespace DAO;
 
-    use DAO/I_DogDAO as I_DogDAO;
-    use Models/Dog as Dog;
+    use DAO\I_DogDAO as I_DogDAO;
+    use Models\Pet as Pet;
+    use Models\Dog as Dog;
 
     class DogDAO implements I_DogDAO
     {

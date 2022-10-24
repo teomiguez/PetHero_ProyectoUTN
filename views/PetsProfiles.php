@@ -99,7 +99,6 @@
                         </thead>
                         <tbody>
                             <?php
-                            
                                 foreach ($petList as $pet) {
                             ?>
                             <tr>

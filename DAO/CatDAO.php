@@ -1,8 +1,9 @@
 <?php
     namespace DAO;
 
-    use DAO/I_CatDAO as I_CatDAO;
-    use Models/Cat as Cat;
+    use DAO\I_CatDAO as I_CatDAO;
+    use Models\Pet as Pet;
+    use Models\Cat as Cat;
 
     class CatDAO implements I_CatDAO
     {
