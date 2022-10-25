@@ -13,9 +13,9 @@ class Guardian
     private $address;
     private $email;
     private $password;
-    private $rating;
     private $sizeCare;
     private $cost;
+    private $id_review;
 
     // -> SETTERS Y GETTERS
 
@@ -100,16 +100,6 @@ class Guardian
         $this->passsword = $passsword;
     }
 
-    public function getRating()
-    {
-        return $this->rating;
-    }
-
-    public function setRating($rating)
-    {
-        $this->rating = $rating;
-    }
-
      public function getSizeCare()
     {
         return $this->sizeCare;
@@ -130,9 +120,17 @@ class Guardian
         $this->cost = $cost;
     }
     
-    // -> SETTERS Y GETTERS
+    public function getId_review()
+    {
+        return $this->id_review;
+    }
 
-    
+    public function setId_review($id_review)
+    {
+        $this->id_review = $id_review;
+    }
+
+    // -> SETTERS Y GETTERS
 }
 
 ?>

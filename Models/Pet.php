@@ -7,6 +7,7 @@ abstract class Pet
     private $id_owner;
     private $img;
     private $name;
+    private $type;
     private $breed;
     private $size;
     private $planVacunacion;
@@ -54,6 +55,16 @@ abstract class Pet
     public function setName($name)
     {
         $this->name = $name;
+    }
+
+    public function getType()
+    {
+        return $this->type;
+    }
+ 
+    public function setType($type)
+    {
+        $this->type = $type;
     }
 
     public function getBreed()
@@ -107,7 +118,6 @@ abstract class Pet
     }
 
     // <- SETTERS Y GETTERS
-
 }
 
 ?>

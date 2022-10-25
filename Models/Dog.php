@@ -6,7 +6,6 @@
     class Dog extends Pet
     {
         $id_dog;
-        $type;
 
         // -> SETTERS Y GETTERS
         
@@ -18,16 +17,6 @@
         public function setId_dog($id_dog)
         {
             $this->id_dog = $id_dog;
-        }
-
-        public function getType()
-        {
-            return $this->type;
-        }
-
-        public function setType($type)
-        {
-            $this->type = $type;
         }
 
         // <- SETTERS Y GETTERS
