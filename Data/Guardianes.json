@@ -50,5 +50,18 @@
         "sizeCare": "mediano",
         "cost": "300",
         "id_review": ""
+    },
+    {
+        "id_guardian": 5,
+        "name": "Karim",
+        "last_name": "Benzema",
+        "dni": "40987435",
+        "telephone": "223456789",
+        "address": "Viamonte 3333",
+        "email": "karim9@gmail.com",
+        "password": "karim9",
+        "sizeCare": "chico",
+        "cost": "480",
+        "id_review": ""
     }
 ]

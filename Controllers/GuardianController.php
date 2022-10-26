@@ -17,6 +17,16 @@
             }
         } 
 
+        public function ShowProfile()
+        {            
+            $guardian_DAO = new GuardianDAO();
+
+            $user = $guardian_DAO->GetById($_SESSION["id"]);
+
+            require_once(VIEWS_PATH . "GuardianProfile.php");
+        }
+
+        
         public function HomeGuardian()
         {
             $guardian_DAO = new GuardianDAO();

@@ -47,7 +47,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a href="" class="nav-link text-decoration-none"> *Mi Perfil*</a>
+                        <a href="<?php echo FRONT_ROOT . "Guardian/ShowProfile" ?>" class="nav-link text-decoration-none"> *Mi Perfil*</a>
                     </li>
 
                     <li class="nav-item">

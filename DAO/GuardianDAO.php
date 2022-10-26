@@ -125,10 +125,10 @@
                 $valuesArray["telephone"] = $guardian->getTelephone();
                 $valuesArray["address"] = $guardian->getAddress();
                 $valuesArray["email"] = $guardian->getEmail();
-                $valuesArray["password"] = $guardian->getPasssword();
-                $valuesArray["rating"] = $guardian->getRating();
+                $valuesArray["password"] = $guardian->getPassword();
                 $valuesArray["sizeCare"] = $guardian->getSizeCare();
                 $valuesArray["cost"] = $guardian->getCost();
+                $valuesArray["id_review"] = $guardian->getId_review();
                 array_push($arrayToEncode, $valuesArray);
             }
 

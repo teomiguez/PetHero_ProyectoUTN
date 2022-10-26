@@ -285,8 +285,8 @@
             $guardian->setAddress($address);
             $guardian->setSizeCare($typeSize);
             $guardian->setCost($cost); 
-            $guardian->id_review('');
-            // <- SETs GUARDIAN
+            $guardian->setId_review('');
+            // <- SETs GUARDIAN 
 
             // -> ADD GUARDIAN TO JSON
             $guardianDAO->Add($guardian);
