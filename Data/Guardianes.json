@@ -8,9 +8,9 @@
         "address": "Juab B. Justo 3975",
         "email": "pablo-miguez@hotmail.com",
         "password": "pablo123",
-        "rating": "",
         "sizeCare": "grande",
-        "cost": "500"
+        "cost": "500",
+        "id_review": ""
     },
     {
         "id_guardian": 2,
@@ -21,9 +21,9 @@
         "address": "Jara 3500",
         "email": "julianfasciani@hotmail.es",
         "password": "juli123",
-        "rating": "",
         "sizeCare": "mediano",
-        "cost": "350"
+        "cost": "350",
+        "id_review": ""
     },
     {
         "id_guardian": 3,
@@ -34,9 +34,9 @@
         "address": "Laprida 1234",
         "email": "valen@gmail.com",
         "password": "valen123",
-        "rating": "",
         "sizeCare": "mediano",
-        "cost": "400"
+        "cost": "400",
+        "id_review": ""
     },
     {
         "id_guardian": 4,
@@ -47,8 +47,8 @@
         "address": "av colon 1233",
         "email": "pepe@gmail.com",
         "password": "pepe123",
-        "rating": "",
         "sizeCare": "mediano",
-        "cost": "300"
+        "cost": "300",
+        "id_review": ""
     }
 ]

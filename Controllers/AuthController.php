@@ -253,9 +253,9 @@
             $guardian->setEmail($email);
             $guardian->setPassword($password);
             $guardian->setAddress($address);
-            $guardian->setRating('');
             $guardian->setSizeCare($typeSize);
-            $guardian->setCost($cost);
+            $guardian->setCost($cost); 
+            $guardian->id_review('');
             // <- SETs GUARDIAN
 
             // -> ADD GUARDIAN TO JSON

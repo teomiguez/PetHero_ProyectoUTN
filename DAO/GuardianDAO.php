@@ -103,9 +103,9 @@
                      $guardian->setAddress($content["address"]);
                      $guardian->setEmail($content["email"]);
                      $guardian->setPassword($content["password"]);
-                     $guardian->setRating($content["rating"]);
                      $guardian->setSizeCare($content["sizeCare"]);
                      $guardian->setCost($content["cost"]);
+                     $guardian->setId_review($content["id_review"]);
                      array_push($this->guardianList, $guardian);
                  }
              }
