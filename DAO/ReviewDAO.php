@@ -19,8 +19,6 @@
         {
             $this->RetrieveData();
 
-            $stay->setId_stay($this->GetNextId());
-
             array_push($this->reviewList, $review);
 
             $this->SaveData();
@@ -57,6 +55,24 @@
 
             return (count($Reviews) > 0) ? $Reviews[0] : null;
         }
+
+        function UpdateReview($id, $review)
+        {
+            $newReview = $this->GetById($id);
+            $this->Remove($id);
+
+            $previousQuantity = $newReview->getQuantity_reviews();
+            $previousSum = $newReview->getSum_reviews();
+            $previousReview = $newReview->getReview();
+
+            $newTotalReview = ($previousSum + $review) / ($previousQuantity + 1);
+
+            $newReview->setQuantity_reviews($previousQuantity + 1);
+            $newReview->setSum_reviews($previousSum + $review);
+            $newReview->setReview($newTotalReview);
+
+            $this->Add($newReview);
+        }
         
         function Remove($id)
         {
@@ -67,6 +83,20 @@
             });
 
             $this->SaveData();
+        }
+
+        function GetNextId_review()
+        {
+            $id = 0;
+
+            $this->RetrieveData();
+
+            foreach($this->reviewList as $review)
+            {
+                $id = ($review->getId_review() > $id) ? $review->getId_review() : $id;
+            }
+
+            return $id + 1;
         }
 
         private function RetrieveData()
@@ -113,18 +143,6 @@
             $fileContent = json_encode($arrayToEncode, JSON_PRETTY_PRINT);
 
             file_put_contents($this->fileName, $fileContent);
-        }
-
-        private function GetNextId()
-        {
-            $id = 0;
-
-            foreach($this->reviewList as $review)
-            {
-                $id = ($review->getId_review() > $id) ? $review->getId_review() : $id;
-            }
-
-            return $id + 1;
         }
     }
 

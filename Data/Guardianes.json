@@ -9,59 +9,33 @@
         "email": "pablo-miguez@hotmail.com",
         "password": "pablo123",
         "sizeCare": "grande",
-        "cost": "500",
-        "id_review": ""
+        "cost": "550",
+        "id_review": 1
     },
     {
         "id_guardian": 2,
-        "name": "Julian",
-        "last_name": "Fasciani",
-        "dni": "40659785",
-        "telephone": "2237895147",
-        "address": "Jara 3500",
-        "email": "julianfasciani@hotmail.es",
-        "password": "juli123",
+        "name": "Jose",
+        "last_name": "Miguez",
+        "dni": "11589633",
+        "telephone": "223669874",
+        "address": "Juab B. Justo 3975",
+        "email": "jose@hotmail.com",
+        "password": "jose123",
         "sizeCare": "mediano",
         "cost": "350",
-        "id_review": ""
+        "id_review": 2
     },
     {
         "id_guardian": 3,
-        "name": "Valentin",
-        "last_name": "Gonzalez",
-        "dni": "44566788",
-        "telephone": "2234565789",
-        "address": "Laprida 1234",
-        "email": "valen@gmail.com",
-        "password": "valen123",
-        "sizeCare": "mediano",
-        "cost": "400",
-        "id_review": ""
-    },
-    {
-        "id_guardian": 4,
-        "name": "Pepe",
-        "last_name": "Argento",
-        "dni": "44867867",
-        "telephone": "223456789",
-        "address": "av colon 1233",
-        "email": "pepe@gmail.com",
-        "password": "pepe123",
-        "sizeCare": "mediano",
-        "cost": "300",
-        "id_review": ""
-    },
-    {
-        "id_guardian": 5,
-        "name": "Karim",
-        "last_name": "Benzema",
-        "dni": "40987435",
-        "telephone": "223456789",
-        "address": "Viamonte 3333",
-        "email": "karim9@gmail.com",
-        "password": "karim9",
+        "name": "Juan Carlos",
+        "last_name": "Lopez",
+        "dni": "26336458",
+        "telephone": "2236978412",
+        "address": "pe\u00f1a 123",
+        "email": "jc@hotmail.com",
+        "password": "jc123",
         "sizeCare": "chico",
-        "cost": "480",
-        "id_review": ""
+        "cost": "100",
+        "id_review": 2
     }
 ]

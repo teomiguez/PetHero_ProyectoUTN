@@ -2,6 +2,7 @@
     namespace Controllers;
 
     use DAO\GuardianDAO as GuardianDAO;
+    use DAO\ReviewDAO as ReviewDAO;
     use DAO\OwnerDAO as OwnerDAO;
     use DAO\PetDAO as PetDAO;
     use DAO\AvStayDAO as AvStayDAO;
@@ -9,6 +10,7 @@
     use DAO\DogDAO as DogDAO;
 
     use Models\Guardian as Guardian;
+    use Models\Review as Review;
     use Models\Owner as Owner;
     use Models\Pet as Pet;
     use Models\AvStay as AvStay;
@@ -271,11 +273,14 @@
         function RegisterGuardian($name, $last_name, $dni, $tel, $email, $password, $street, $nro, $typeSize, $cost)
         {
             $guardianDAO = new GuardianDAO();
+            $reviewDAO = new ReviewDAO();
             $guardian = new Guardian();
+            $review = new Review();
 
             $address = $street . " " . $nro;
 
             // -> SETs GUARDIAN
+            $guardian->setId_guardian($guardianDAO->GetNextId_guardian());
             $guardian->setName($name);
             $guardian->setLast_name($last_name);
             $guardian->setDni($dni);
@@ -284,13 +289,29 @@
             $guardian->setPassword($password);
             $guardian->setAddress($address);
             $guardian->setSizeCare($typeSize);
-            $guardian->setCost($cost); 
-            $guardian->setId_review('');
+            $guardian->setCost($cost);
+            $guardian->setId_review($reviewDAO->GetNextId_review());
             // <- SETs GUARDIAN 
+
+            // -> SETs REVIEW
+            $review->setId_review($reviewDAO->GetNextId_review());
+            $review->setId_guardian($guardianDAO->GetNextId_guardian());
+            $review->setQuantity_reviews(0);
+            $review->setSum_reviews(0);
+            $review->setReview(0);
+            // <- SETs REVIEW
+            
+            // -> ADD REVIEW TO JSON
+            $reviewDAO->Add($review);
+            // <- ADD REVIEW TO JSON
 
             // -> ADD GUARDIAN TO JSON
             $guardianDAO->Add($guardian);
             // <- ADD GUARDIAN TO JSON
+
+            // -> PRUEBA DE UPDATE
+            $reviewDAO->UpdateReview(1, 3);
+            // <- PRUEBA DE UPDATE
         }
 
         // <- THIS  FUNCTIONs

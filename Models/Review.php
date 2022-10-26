@@ -2,13 +2,13 @@
 
 namespace Models;
 
-abstract class Review
+class Review
 {
     private $id_review;
     private $id_guardian;
     private $quantity_reviews;
     private $sum_reviews;
-    private $review;       // ver para inicializarla asi:   review = sum_reviews / quantity_reviews
+    private $review; // review = sum_reviews / quantity_reviews
 
 
     // -> SETTERS Y GETTERS

@@ -18,8 +18,6 @@
         {
             $this->RetrieveData();
 
-            $guardian->setId_guardian($this->GetNextId());
-
             array_push($this->guardianList, $guardian);
 
             $this->SaveData();
@@ -82,6 +80,20 @@
             $this->SaveData();
         }
 
+        function GetNextId_guardian()
+        {
+            $id = 0;
+
+            $this->RetrieveData();
+
+            foreach($this->guardianList as $guardian)
+            {
+                $id = ($guardian->getId_guardian() > $id) ? $guardian->getId_guardian() : $id;
+            }
+
+            return $id + 1;
+        }
+
         private function RetrieveData()
         {
              $this->guardianList = array();
@@ -135,18 +147,6 @@
             $fileContent = json_encode($arrayToEncode, JSON_PRETTY_PRINT);
 
             file_put_contents($this->fileName, $fileContent);
-        }
-
-        private function GetNextId()
-        {
-            $id = 0;
-
-            foreach($this->guardianList as $guardian)
-            {
-                $id = ($guardian->getId_guardian() > $id) ? $guardian->getId_guardian() : $id;
-            }
-
-            return $id + 1;
         }
     }
 ?>
