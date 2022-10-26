@@ -92,6 +92,7 @@
                     $dog->setId_owner($content["id_owner"]);
                     $dog->setImg($content["img"]);
                     $dog->setName($content["name"]);
+                    $dog->setType($content["type"]);
                     $dog->setBreed($content['breed']);
                     $dog->setSize($content["size"]);
                     $dog->setPlanVacunacion($content["pv"]);
@@ -113,6 +114,7 @@
                 $valuesArray["id_owner"] = $dog->getId_owner();
                 $valuesArray["img"] = $dog->getImg();
                 $valuesArray["name"] = $dog->getName();
+                $valuesArray["type"] = $dog->getType();
                 $valuesArray["breed"] = $dog->getBreed();
                 $valuesArray["size"] = $dog->getSize();
                 $valuesArray["pv"] = $dog->getPlanVacunacion();

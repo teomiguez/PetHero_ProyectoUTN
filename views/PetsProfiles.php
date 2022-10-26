@@ -92,6 +92,7 @@
                         <thead>
                             <tr>
                                 <th scope="col"> Nombre </th>
+                                <th scope="col"> Mascota </th>
                                 <th scope="col"> Raza </th>
                                 <th scope="col"> Tamaño </th>
                                 <th scope="col"> # </th>
@@ -99,10 +100,11 @@
                         </thead>
                         <tbody>
                             <?php
-                                foreach ($petList as $pet) {
+                                foreach ($petsList as $pet) {
                             ?>
                             <tr>
                                 <td> <?php echo $pet->getName() ?> </td>
+                                <td> <?php echo $pet->getType() ?> </td>
                                 <td> <?php echo $pet->getBreed() ?> </td>
                                 <td> <?php echo $pet->getSize() ?> </td>
                                 <td> <a href="#"> ver </a> </td>
@@ -158,6 +160,15 @@
                             <input id="name" name="name" type="text" class="form-control" required>
                         </div>
 
+                        <div class="my-1">    
+                            <label for="type" class="form-label"> Seleccione la mascota </label>
+                            <select id="type" class="form-select form-select-sm"
+                                aria-label=".form-select-sm example" name="type" required>
+                                <option value="gato"> Gato </option>
+                                <option value="perro"> Perro </option>
+                            </select>
+                        </div>
+
                         <div class="my-1">
                             <label for="breed" class="form-label"> Raza </label>
                             <input id="breed" name="breed" type="text" class="form-control" required>
@@ -167,7 +178,6 @@
                             <label for="size" class="form-label"> Seleccione el tamaño </label>
                             <select id="size" class="form-select form-select-sm"
                                 aria-label=".form-select-sm example" name="size" required>
-                                <option selected> ... </option>
                                 <option value="chico"> Chico </option>
                                 <option value="mediano"> Mediano </option>
                                 <option value="grande"> Grande </option>
@@ -185,9 +195,9 @@
                         </div>
 
                         <div class="my-1">
-                             <label for="obsTxt" class="form-label"> Observaciones </label>
-                            <textarea id="obsTxt" name="remarks" class="form-control" rows="3" required></textarea>
-                        </div>
+                             <label for="info" class="form-label"> Observaciones </label>
+                            <textarea id="info" name="info" class="form-control" rows="3" required></textarea>
+                        </div> 
 
                         <hr class="my-3">
 

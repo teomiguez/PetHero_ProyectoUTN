@@ -34,5 +34,14 @@
         "telephone": "223456789",
         "email": "moni@gmail.com",
         "password": "moni123"
+    },
+    {
+        "id": 5,
+        "name": "Lionel",
+        "last_name": "Messi",
+        "dni": "34567890",
+        "telephone": "223456789",
+        "email": "leo10@gmail.com",
+        "password": "leo10"
     }
 ]

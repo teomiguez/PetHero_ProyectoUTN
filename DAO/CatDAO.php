@@ -92,6 +92,7 @@
                     $cat->setId_owner($content["id_owner"]);
                     $cat->setImg($content["img"]);
                     $cat->setName($content["name"]);
+                    $cat->setType($content["type"]);
                     $cat->setBreed($content['breed']);
                     $cat->setSize($content["size"]);
                     $cat->setPlanVacunacion($content["pv"]);
@@ -113,6 +114,7 @@
                 $valuesArray["id_owner"] = $cat->getId_owner();
                 $valuesArray["img"] = $cat->getImg();
                 $valuesArray["name"] = $cat->getName();
+                $valuesArray["type"] = $cat->getType();
                 $valuesArray["breed"] = $cat->getBreed();
                 $valuesArray["size"] = $cat->getSize();
                 $valuesArray["pv"] = $cat->getPlanVacunacion();

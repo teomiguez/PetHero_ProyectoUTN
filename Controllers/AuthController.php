@@ -5,11 +5,15 @@
     use DAO\OwnerDAO as OwnerDAO;
     use DAO\PetDAO as PetDAO;
     use DAO\AvStayDAO as AvStayDAO;
+    use DAO\CatDAO as CatDAO;
+    use DAO\DogDAO as DogDAO;
 
     use Models\Guardian as Guardian;
     use Models\Owner as Owner;
     use Models\Pet as Pet;
     use Models\AvStay as AvStay;
+    use Models\Cat as Cat;
+    use Models\Dog as Dog;
 
 
     class AuthController
@@ -124,26 +128,52 @@
 
         // -> HAY QUE VER DE BORRAR ALGUNAS FUNCIONES (X) NO RELACIONADAS AL AUTH (USAR EL CONTROLLER ADECUADO)
 
-        public function CreatePet ($imgFile, $name, $breed, $size, $pvFile, $video, $remarks) // X
+        public function CreatePet ($imgFile, $name, $type, $breed, $size, $pvFile, $video, $info) // X
         {
-            $petDAO = new PetDAO;
-            $pet = new Pet;
 
-            // -> SETs PET
-            $pet->setId_owner($_SESSION['id']);
-            $pet->setImg($imgFile);
-            $pet->setName($name);
-            $pet->setBreed($breed);
-            $pet->setSize($size);
-            $pet->setPlanVacunacion($pvFile);
-            $pet->setVideo($video);
-            $pet->setInfo($remarks);
-            // <- SETs PET
+            if ($type == "gato")
+            {
+                $catDAO = new CatDAO;
+                $cat = new Cat;
 
-            // -> ADD PET TO JSON
-            $petDAO->Add($pet);
-            // <- ADD PET TO JSON
+                // -> SETs CAT
+                $cat->setId_owner($_SESSION['id']);
+                $cat->setImg($imgFile);
+                $cat->setName($name);
+                $cat->setType($type);
+                $cat->setBreed($breed);
+                $cat->setSize($size);
+                $cat->setPlanVacunacion($pvFile);
+                $cat->setVideo($video);
+                $cat->setInfo($info);
+                // <- SETs CAT
 
+                // -> ADD CAT TO JSON
+                $catDAO->Add($cat);
+                // <- ADD CAT TO JSON
+            }
+            else
+            {
+                $dogDAO = new DogDAO;
+                $dog = new Dog;
+
+                // -> SETs DOG
+                $dog->setId_owner($_SESSION['id']);
+                $dog->setImg($imgFile);
+                $dog->setName($name);
+                $dog->setType($type);
+                $dog->setBreed($breed);
+                $dog->setSize($size);
+                $dog->setPlanVacunacion($pvFile);
+                $dog->setVideo($video);
+                $dog->setInfo($info);
+                // <- SETs DOG
+
+                // -> ADD DOG TO JSON
+                $dogDAO->Add($dog);
+                // <- ADD DOG TO JSON
+            }
+            
             // -> REDIRECTION TO PET/SHOWLIT
             header("location: " . FRONT_ROOT . "Pet/ShowList");
             // <- REDIRECTION TO PET/SHOWLIT

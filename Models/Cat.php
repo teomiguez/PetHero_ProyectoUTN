@@ -5,7 +5,7 @@
 
     class Cat extends Pet
     {
-        $id_cat;
+        private $id_cat;
         
         // -> SETTERS Y GETTERS
         
