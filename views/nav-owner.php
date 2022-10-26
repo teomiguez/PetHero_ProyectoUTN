@@ -19,18 +19,14 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav position-absolute top-50 end-0 translate-middle-y">
                 <li class="nav-item">
-                    <a href="#" class="nav-link text-decoration-none"> *Notificaciones* </a>
-                </li>
-
-                <li class="nav-item">
                     <a href="<?php echo FRONT_ROOT . "Pet/ShowList" ?>" class="nav-link text-decoration-none"> *Mis Mascotas* </a>
                 </li>
 
                 <li class="nav-item">
-                    <a href="<?php echo FRONT_ROOT . "Owner/ShowProfile" ?>" class="nav-link text-decoration-none"> *Mi Perfil*</a>
+                    <a href="<?php echo FRONT_ROOT . "Owner/ShowProfile" ?>" class="nav-link text-decoration-none"> *Ver Perfil* </a>
                 </li>
 
-                <li class="nav-item">
+                <li class="nav-item me-3">
                     <a href="<?php echo FRONT_ROOT . "Auth/Logout" ?>" class="nav-link text-decoration-none"> *Salir*</a>
                 </li>
             </ul>

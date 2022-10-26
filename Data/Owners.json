@@ -1,0 +1,11 @@
+[
+    {
+        "id": 1,
+        "name": "Teo",
+        "last_name": "Miguez",
+        "dni": "44335611",
+        "telephone": "2235513587",
+        "email": "teo.miguez215@gmail.com",
+        "password": "teo123"
+    }
+]
