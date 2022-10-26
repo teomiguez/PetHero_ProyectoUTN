@@ -308,10 +308,6 @@
             // -> ADD GUARDIAN TO JSON
             $guardianDAO->Add($guardian);
             // <- ADD GUARDIAN TO JSON
-
-            // -> PRUEBA DE UPDATE
-            $reviewDAO->UpdateReview(1, 3);
-            // <- PRUEBA DE UPDATE
         }
 
         // <- THIS  FUNCTIONs
