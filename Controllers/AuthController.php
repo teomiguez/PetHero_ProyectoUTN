@@ -20,6 +20,11 @@
 
     class AuthController
     {
+        public function Index($message = "")
+        {
+            require_once(VIEWS_PATH."Home.php");
+        }
+        
         // -> PUBLIC FUNCTIONs
         
         public function ShowRegist()
