@@ -23,9 +23,15 @@
                     <a href="<?php echo FRONT_ROOT . "Guardian/ShowProfile" ?>" class="nav-link text-decoration-none"> *Mi Perfil*</a>
                 </li>
 
-                <li class="nav-item me-3">
-                    <a href="<?php echo FRONT_ROOT . "Auth/Logout" ?>" class="nav-link text-decoration-none"> *Salir*</a>
-                </li>
+                <button class="btn btnsecondary dropdown-toggle" type="button" 
+                        data-bs-toggle="dropdown" aria-expanded="false"
+                        > *Perfil* 
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item" href="<?php echo FRONT_ROOT . "Guardian/ShowProfile" ?>">Ver Perfil</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="<?php echo FRONT_ROOT . "Auth/Logout" ?>">Cerrar Sesion</a></li>
+                </ul>
             </ul>
         </div>
     </div>

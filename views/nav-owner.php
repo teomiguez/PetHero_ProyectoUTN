@@ -23,11 +23,15 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="<?php echo FRONT_ROOT . "Owner/ShowProfile" ?>" class="nav-link text-decoration-none"> *Ver Perfil* </a>
-                </li>
-
-                <li class="nav-item me-3">
-                    <a href="<?php echo FRONT_ROOT . "Auth/Logout" ?>" class="nav-link text-decoration-none"> *Salir*</a>
+                    <button class="btn btnsecondary dropdown-toggle" type="button" 
+                        data-bs-toggle="dropdown" aria-expanded="false"
+                        > *Perfil* 
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item" href="<?php echo FRONT_ROOT . "Owner/ShowProfile" ?>">Ver Perfil</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="<?php echo FRONT_ROOT . "Auth/Logout" ?>">Cerrar Sesion</a></li>
+                    </ul>
                 </li>
             </ul>
         </div>
