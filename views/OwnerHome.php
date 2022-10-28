@@ -39,15 +39,27 @@
             <div class="col-12 col-sm-8 col-lg-5 pt-3">
                 <h2 class="text-center"> Lista de guardianes </h2>
             
-                <form action="">
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Buscar guardian..."
-                            aria-label="Buscar guardian..." aria-describedby="button-addon2">
-                        <button class="btn btn-outline-secondary" type="button" id="button-addon2">
-                            <i class="bi bi-search"></i>
-                        </button>
-                    </div>
-                </form>
+                <!-- Filtro -->
+                <div class="my-4 border border-dark p-2 border-opacity-50 rounded-2">
+                    <h5 class="text-center mb-3"> Filtrar por disponibilidad </h5>
+                    <form action="" method="">
+                        <div class="d-flex justify-content-evenly text-center">
+                            <div class="mx-1">
+                                <label for="first_day" class="form-label"> Desde </label>
+                                <input id="first_day" name="first_day" type="date" class="form-control" required>
+                            </div>
+        
+                            <div class="mx-1">
+                                <label for="last_day" class="form-label"> Hasta </label>
+                                <input id="last_day" name="last_day" type="date" class="form-control" required>
+                            </div>
+                            
+                            <button class="btn btn-outline-secondary align-items-center mx-1" type="submit" id="button-addon2">
+                                *Filtrar*
+                            </button>
+                        </div>    
+                    </form>
+                </div>
 
                 <table class="table text-center">
                     <thead>
@@ -74,6 +86,12 @@
                 
                     <?php } ?>
                 </table>
+
+                <!-- Button whit modal -->
+                <button type="button" class="btn btn-primary w-100" data-bs-toggle="modal"
+                    data-bs-target="#requestReservation_modal">
+                    Solicitar reserva
+                </button>
             </div>
 
             <div class="col-12 col-sm-4 pt-3">
@@ -87,6 +105,30 @@
     <?php
         include('footer.php');
     ?>
+
+    <!-- Modal -->
+    <div class="modal fade" id="requestReservation_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel"> Solicitar una reserva </h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="<?php echo FRONT_ROOT . "" ?>" method="POST" class="text-start">
+                        
+
+                        <hr class="my-3">
+
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> Cerrar </button>
+                            <button type="submit" class="btn btn-primary"> Solicitar </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Boostrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"

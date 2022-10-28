@@ -113,8 +113,6 @@
                 </div>
                 <div class="modal-body">
                     <form action="<?php echo FRONT_ROOT . " Auth/CreateAvStay" ?>" method="POST" class="text-start">
-                    
-
                         <div class="my-1">
                             <label for="first_day" class="form-label"> Desde </label>
                             <input id="first_day" name="first_day" type="date" class="form-control" required>
