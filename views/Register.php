@@ -39,14 +39,14 @@
                     <div class="col-12 col-md-6 my-2">
                         <div>
                             <label for="dni" class="form-label"> DNI </label>
-                            <input id="dni" name="dni" type="number" class="form-control" required>
+                            <input id="dni" name="dni" type="number" class="form-control" min="5000000" max="44000000" required>
                         </div>
                     </div>
 
                     <div class="col-12 col-md-6 my-2">
                         <div>
-                            <label for="tel" class="form-label"> Telefono </label>
-                            <input id="tel" name="tel" type="tel" class="form-control" placeholder="123456789" required>
+                            <label for="tel" class="form-label"> Telefono  </label>
+                            <input id="tel" name="tel" type="tel" class="form-control" placeholder="xxx-xxx-xxxx" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
                         </div>
                     </div>
 
@@ -103,7 +103,7 @@
                         <input id="street" name="street" type="text" class="form-control" required disabled />
 
                         <label for="nro" class="form-label"> Altura </label>
-                        <input id="nro" name="nro" type="text" class="form-control" required disabled />
+                        <input id="nro" name="nro" type="number" class="form-control" max="9999" required disabled />
                     </div>
 
                     <div class="col-12 col-md-6 my-2">
@@ -120,7 +120,7 @@
                         <label for="cost" class="form-label"> Remuneracion x Dia </label>     
                         <div class="input-group mb-3">
                                 <span class="input-group-text">$</span>
-                                <input id="cost" type="text" class="form-control" name= "cost" aria-label="Amount (to the nearest dollar)" required disabled>
+                                <input id="cost" type="number" class="form-control" name= "cost" aria-label="Amount (to the nearest dollar)" required disabled>
                             </div>
                         </div>
                     </div>

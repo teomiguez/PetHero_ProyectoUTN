@@ -1,0 +1,28 @@
+[
+    {
+        "id_guardian": 1,
+        "name": "Valentin",
+        "last_name": "Gonzalez",
+        "dni": "44957151",
+        "telephone": "4324343",
+        "address": "lavalle  1111",
+        "email": "valen@gmail.com",
+        "password": "valen123",
+        "sizeCare": "chico",
+        "cost": "500",
+        "id_review": 1
+    },
+    {
+        "id_guardian": 2,
+        "name": "pepe",
+        "last_name": "flores",
+        "dni": "11111111",
+        "telephone": "111-111-1111",
+        "address": "lavalle  1111",
+        "email": "pepe@gmail.com",
+        "password": "pepe123",
+        "sizeCare": "chico",
+        "cost": "100",
+        "id_review": 2
+    }
+]
