@@ -8,7 +8,7 @@
 
     class OwnerController 
     {
-        public function __contruct()
+        public function __contruct() // no funciona ni le damos uso
         {
             require_once(FRONT_ROOT . "Utils/ValidateSession.php");
 
@@ -19,12 +19,21 @@
         }  
 
         public function HomeOwner()
-        {                      
-            $owner_DAO = new OwnerDAO();
+        {    
+            if ((isset($_SESSION['idOwner'])))
+            {
+                $owner_DAO = new OwnerDAO();
 
-            $user = $owner_DAO->GetById($_SESSION["id"]);
+                $user = $owner_DAO->GetById($_SESSION["idOwner"]);
 
-            $this->ShowGuardians();
+                var_dump($_SESSION);
+
+                $this->ShowGuardians();
+            }
+            else
+            {
+                header("location: " . FRONT_ROOT . "Auth/ShowLogin");
+            }                
         }
 
 
@@ -46,21 +55,35 @@
 
 
         public function ShowProfile()
-        {            
-            $owner_DAO = new OwnerDAO();
+        {    
+            if ((isset($_SESSION['idOwner'])))
+            {        
+                $owner_DAO = new OwnerDAO();
 
-            $user = $owner_DAO->GetById($_SESSION["id"]);
+                $user = $owner_DAO->GetById($_SESSION["idOwner"]);
 
-            require_once(VIEWS_PATH . "OwnerProfile.php");
+                require_once(VIEWS_PATH . "OwnerProfile.php");
+            }
+            else
+            {
+                header("location: " . FRONT_ROOT . "Auth/ShowLogin");
+            }  
         }
 
         public function ShowGuardians()
         {
-            $guardian_DAO = new GuardianDAO();
+            if ((isset($_SESSION['idOwner'])))
+            {  
+                $guardian_DAO = new GuardianDAO();
 
-            $guardians = $guardian_DAO->GetAll();
+                $guardians = $guardian_DAO->GetAll();
 
-            require_once(VIEWS_PATH . "OwnerHome.php");
+                require_once(VIEWS_PATH . "OwnerHome.php");
+            }
+            else
+            {
+                header("location: " . FRONT_ROOT . "Auth/ShowLogin");
+            }      
         }
     }
 ?>

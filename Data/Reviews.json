@@ -12,19 +12,5 @@
         "quantity_reviews": 0,
         "sum_reviews": 0,
         "review": 0
-    },
-    {
-        "id_review": 3,
-        "id_guardian": 3,
-        "quantity_reviews": 0,
-        "sum_reviews": 0,
-        "review": 0
-    },
-    {
-        "id_review": 4,
-        "id_guardian": 3,
-        "quantity_reviews": 0,
-        "sum_reviews": 0,
-        "review": 0
     }
 ]

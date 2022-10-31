@@ -48,6 +48,8 @@
             else
             {   // Login de owner o guardian
 
+                session_destroy();
+
                 $ownerDAO = new OwnerDAO;
                 $guardianDAO = new GuardianDAO;
     
@@ -61,8 +63,7 @@
                         // NEW SESSION
                         session_start();
     
-                        $_SESSION['id'] = $user1->getId_owner();
-                        $_SESSION['type'] = "owner";
+                        $_SESSION['idOwner'] = $user1->getId_owner();
     
                         // -> REDIRECTION TO HOME_OWNER
                         header("location: " . FRONT_ROOT . "Owner/HomeOwner");
@@ -81,8 +82,7 @@
                         // NEW SESSION
                         session_start();
         
-                        $_SESSION['id'] = $user2->getId_guardian();
-                        $_SESSION['type'] = "guardian";
+                        $_SESSION['idGuardian'] = $user2->getId_guardian();
     
                         // -> REDIRECTION TO HOME_GUARDIAN
                         header("location: " . FRONT_ROOT . "Guardian/HomeGuardian");
@@ -108,14 +108,9 @@
 
         public function Logout()
         {
-            session_start();
+            session_destroy();
 
-            if ($_SESSION["id"])
-            {
-                session_destroy();
-
-                header ("location: " . FRONT_ROOT . "Auth/ShowLogin");
-            }
+            header ("location: " . FRONT_ROOT . "Auth/ShowLogin"); 
         }
 
         public function Register($name = null, $last_name = null, $dni = null, $tel = null, $email = null, $password = null, $radio_option = null, $street = '', $nro = '', $typeSize = '', $cost = '')
@@ -135,7 +130,7 @@
                     {
                         $this->RegisterOwner($name, $last_name, $dni, $tel, $email, $password);
                     } 
-                    else if ($radio_option == 'dueño')
+                    else if ($radio_option == 'guardian')
                     {
                         $this->RegisterGuardian($name, $last_name, $dni, $tel, $email, $password, $street, $nro, $typeSize, $cost);
                     }
@@ -153,85 +148,99 @@
             
         }
 
-        // -> HAY QUE VER DE BORRAR ALGUNAS FUNCIONES (X) NO RELACIONADAS AL AUTH (USAR EL CONTROLLER ADECUADO)
+        // -> HAY QUE VER CAMBIAR DE LUGAR Y MODIFICAR ALGUNAS FUNCIONES (X) NO RELACIONADAS AL AUTH 
+        //    ORDENARLAS EN LOS CONTROLLERS ADECUADOS
 
         public function CreatePet ($imgFile, $name, $type, $breed, $size, $pvFile, $video, $info) // X
         {
+            if ((isset($_SESSION['idOwner'])))
+            {   
+                if ($type == "gato")
+                {
+                    $catDAO = new CatDAO;
+                    $cat = new Cat;
 
-            if ($type == "gato")
-            {
-                $catDAO = new CatDAO;
-                $cat = new Cat;
+                    // -> SETs CAT
+                    $cat->setId_owner($_SESSION['idOwner']);
+                    $cat->setImg($imgFile);
+                    $cat->setName($name);
+                    $cat->setType($type);
+                    $cat->setBreed($breed);
+                    $cat->setSize($size);
+                    $cat->setPlanVacunacion($pvFile);
+                    $cat->setVideo($video);
+                    $cat->setInfo($info);
+                    // <- SETs CAT
 
-                // -> SETs CAT
-                $cat->setId_owner($_SESSION['id']);
-                $cat->setImg($imgFile);
-                $cat->setName($name);
-                $cat->setType($type);
-                $cat->setBreed($breed);
-                $cat->setSize($size);
-                $cat->setPlanVacunacion($pvFile);
-                $cat->setVideo($video);
-                $cat->setInfo($info);
-                // <- SETs CAT
+                    // -> ADD CAT TO JSON
+                    $catDAO->Add($cat);
+                    // <- ADD CAT TO JSON
+                }
+                else
+                {
+                    $dogDAO = new DogDAO;
+                    $dog = new Dog;
 
-                // -> ADD CAT TO JSON
-                $catDAO->Add($cat);
-                // <- ADD CAT TO JSON
+                    // -> SETs DOG
+                    $dog->setId_owner($_SESSION['idOwner']);
+                    $dog->setImg($imgFile);
+                    $dog->setName($name);
+                    $dog->setType($type);
+                    $dog->setBreed($breed);
+                    $dog->setSize($size);
+                    $dog->setPlanVacunacion($pvFile);
+                    $dog->setVideo($video);
+                    $dog->setInfo($info);
+                    // <- SETs DOG
+
+                    // -> ADD DOG TO JSON
+                    $dogDAO->Add($dog);
+                    // <- ADD DOG TO JSON
+                }
+                
+                // -> REDIRECTION TO PET/SHOWLIT
+                header("location: " . FRONT_ROOT . "Pet/ShowList");
+                // <- REDIRECTION TO PET/SHOWLIT
             }
             else
             {
-                $dogDAO = new DogDAO;
-                $dog = new Dog;
-
-                // -> SETs DOG
-                $dog->setId_owner($_SESSION['id']);
-                $dog->setImg($imgFile);
-                $dog->setName($name);
-                $dog->setType($type);
-                $dog->setBreed($breed);
-                $dog->setSize($size);
-                $dog->setPlanVacunacion($pvFile);
-                $dog->setVideo($video);
-                $dog->setInfo($info);
-                // <- SETs DOG
-
-                // -> ADD DOG TO JSON
-                $dogDAO->Add($dog);
-                // <- ADD DOG TO JSON
-            }
-            
-            // -> REDIRECTION TO PET/SHOWLIT
-            header("location: " . FRONT_ROOT . "Pet/ShowList");
-            // <- REDIRECTION TO PET/SHOWLIT
+                header("location: " . FRONT_ROOT . "Auth/ShowLogin");
+            }  
         }
 
         
         public function CreateAvStay ($first_day, $last_day) // X
         {
-            $avStayDAO = new AvStayDAO;
-            $avStay = new AvStay;
-
-            if ($this->checkDiffDays($first_day, $last_day) == true)
-            {
-                // -> SETs AvStay
-                $avStay->setId_keeper($_SESSION['id']);
-                $avStay->setFirst_day($first_day);
-                $avStay->setLast_day($last_day);
-                // <- SETs AvStay
+            if ((isset($_SESSION['idGuardian'])))
+            {  
+                $avStayDAO = new AvStayDAO;
+                $avStay = new AvStay;
     
-                // -> ADD AvStay TO JSON
-                $avStayDAO->Add($avStay);
-                // <- ADD AvStay TO JSON
-    
-                // -> REDIRECTION TO AvStay/ShowList
-                header("location: " . FRONT_ROOT . "AvStay/ShowList");
-                // <- REDIRECTION TO AvStay/ShowList
+                if ($this->checkDiffDays($first_day, $last_day) == true)
+                {
+                    // -> SETs AvStay
+                    $avStay->setId_keeper($_SESSION['idGuardian']);
+                    $avStay->setFirst_day($first_day);
+                    $avStay->setLast_day($last_day);
+                    // <- SETs AvStay
+        
+                    // -> ADD AvStay TO JSON
+                    $avStayDAO->Add($avStay);
+                    // <- ADD AvStay TO JSON
+        
+                    // -> REDIRECTION TO AvStay/ShowList
+                    header("location: " . FRONT_ROOT . "AvStay/ShowList");
+                    // <- REDIRECTION TO AvStay/ShowList
+                }
+                else
+                {
+                    header("location: " . FRONT_ROOT . "AvStay/ShowList");
+                }
             }
             else
             {
-                header("location: " . FRONT_ROOT . "AvStay/ShowList");
-            }
+                 header("location: " . FRONT_ROOT . "Auth/ShowLogin");
+            }  
         }
         
         // <- PUBLIC FUNCTIONs

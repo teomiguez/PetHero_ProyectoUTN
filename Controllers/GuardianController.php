@@ -7,7 +7,7 @@
 
     class GuardianController 
     {
-        public function __contruct()
+        public function __contruct() // no funciona ni le damos uso
         {
             require_once(ROOT . "/Utils/ValidateSession.php");
 
@@ -18,33 +18,55 @@
         } 
 
         public function ShowProfile()
-        {            
-            $guardian_DAO = new GuardianDAO();
+        {   
+            if ((isset($_SESSION['idGuardian'])))
+            {         
+                $guardian_DAO = new GuardianDAO();
 
-            $user = $guardian_DAO->GetById($_SESSION["id"]);
+                $user = $guardian_DAO->GetById($_SESSION["idGuardian"]);
 
-            require_once(VIEWS_PATH . "GuardianProfile.php");
+                require_once(VIEWS_PATH . "GuardianProfile.php");
+            }
+            else
+            {
+                 header("location: " . FRONT_ROOT . "Auth/ShowLogin");
+            }  
+
         }
 
         
         public function HomeGuardian()
         {
-            $guardian_DAO = new GuardianDAO();
+            if ((isset($_SESSION['idGuardian'])))
+            {  
+                $guardian_DAO = new GuardianDAO();
 
-            $user = $guardian_DAO->GetById($_SESSION["id"]);
+                $user = $guardian_DAO->GetById($_SESSION["idGuardian"]);
 
-            $this->ShowAvStays();
+                $this->ShowAvStays();
+            }
+            else
+            {
+                 header("location: " . FRONT_ROOT . "Auth/ShowLogin");
+            }  
         }
 
     
         public function ShowAvStays()
         {
-            $avStayDAO = new AvStayDAO();
-            $avStayList = array();
+            if ((isset($_SESSION['idGuardian'])))
+            { 
+                $avStayDAO = new AvStayDAO();
+                $avStayList = array();
 
-            $avStayList = $avStayDAO->GetByKeeper($_SESSION["id"]);
+                $avStayList = $avStayDAO->GetByKeeper($_SESSION["idGuardian"]);
 
-            require_once(VIEWS_PATH . "GuardianHome.php");
+                require_once(VIEWS_PATH . "GuardianHome.php");
+            }
+            else
+            {
+                 header("location: " . FRONT_ROOT . "Auth/ShowLogin");
+            }  
         }
 
     }

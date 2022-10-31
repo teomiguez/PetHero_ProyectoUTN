@@ -18,18 +18,25 @@
 
         public function ShowList()
         {
-            $catDAO = new CatDAO();
-            $dogDAO = new DogDAO();
-            $catList = array();
-            $dogList = array();
-            $petsList = array();
+            if ((isset($_SESSION['idOwner'])))
+                {
+                $catDAO = new CatDAO();
+                $dogDAO = new DogDAO();
+                $catList = array();
+                $dogList = array();
+                $petsList = array();
 
-            $catList = $catDAO->GetByOwner($_SESSION["id"]);
-            $dogList = $dogDAO->GetByOwner($_SESSION["id"]);
+                $catList = $catDAO->GetByOwner($_SESSION["idOwner"]);
+                $dogList = $dogDAO->GetByOwner($_SESSION["idOwner"]);
 
-            $petsList = array_merge($catList, $dogList);
+                $petsList = array_merge($catList, $dogList);
 
-            require_once(VIEWS_PATH . "PetsProfiles.php");
+                require_once(VIEWS_PATH . "PetsProfiles.php");
+            }
+            else
+            {
+                header("location: " . FRONT_ROOT . "Auth/ShowLogin");
+            }   
         }
 
 
