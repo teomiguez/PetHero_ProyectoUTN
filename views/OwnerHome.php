@@ -67,7 +67,7 @@
                             <th scope="col"> Nombre </th>
                             <th scope="col"> Apellido </th>
                             <th scope="col"> Telefono </th>
-                            <th scope="col"> Perfil </th>
+                            <th scope="col">  </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -80,7 +80,7 @@
                             <td> <?php echo $guardian->getName() ?> </td>
                             <td> <?php echo $guardian->getLast_name() ?> </td>
                             <td> <?php echo $guardian->getTelephone() ?> </td>
-                            <td> <a href="#"> ver </a> </td>
+                            <td> <a href="#"> <i class="bi bi-eye-fill"></i> </a> </td>
                         </tr>
                     </tbody>   
                 

@@ -61,7 +61,7 @@
                                 <th scope="col"> Desde </th>
                                 <th scope="col"> Hasta </th>
                                 <th scope="col"> Dias en total </th>
-                                <th scope="col"> # </th>
+                                <th scope="col">  </th>
                         </tr>
                         </thead>
                         <tbody> 
@@ -74,7 +74,11 @@
                                 <td> <?php echo $avStay->getFirst_day() ?> </td>
                                 <td> <?php echo $avStay->getLast_day() ?> </td>
                                 <td> <?php echo "hacer la diferencia" ?> </td>
-                                <td> <a href=""> borrar </a> </td>
+                                <td> 
+                                    <a href=""> 
+                                        <i class="bi bi-trash3 text-danger"></i>    
+                                    </a> 
+                                </td>
                             </tr>
                         </tbody>
 

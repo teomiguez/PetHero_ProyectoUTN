@@ -151,11 +151,11 @@
         // -> HAY QUE VER CAMBIAR DE LUGAR Y MODIFICAR ALGUNAS FUNCIONES (X) NO RELACIONADAS AL AUTH 
         //    ORDENARLAS EN LOS CONTROLLERS ADECUADOS
 
-        public function CreatePet ($imgFile, $name, $type, $breed, $size, $pvFile, $video, $info) // X
+        public function CreatePet ($imgFile, $name, $radio_option, $breed, $size, $pvFile, $video, $info) // X
         {
             if ((isset($_SESSION['idOwner'])))
             {   
-                if ($type == "gato")
+                if ($radio_option == "gato")
                 {
                     $catDAO = new CatDAO;
                     $cat = new Cat;
@@ -164,7 +164,7 @@
                     $cat->setId_owner($_SESSION['idOwner']);
                     $cat->setImg($imgFile);
                     $cat->setName($name);
-                    $cat->setType($type);
+                    $cat->setType($radio_option);
                     $cat->setBreed($breed);
                     $cat->setSize($size);
                     $cat->setPlanVacunacion($pvFile);
@@ -185,7 +185,7 @@
                     $dog->setId_owner($_SESSION['idOwner']);
                     $dog->setImg($imgFile);
                     $dog->setName($name);
-                    $dog->setType($type);
+                    $dog->setType($radio_option);
                     $dog->setBreed($breed);
                     $dog->setSize($size);
                     $dog->setPlanVacunacion($pvFile);

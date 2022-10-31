@@ -8,7 +8,12 @@
         </h2>
 
         <div class="navbar-nav position-absolute top-50 start-50 translate-middle">
-            <a href="<?php echo FRONT_ROOT . "Guardian/HomeGuardian" ?>" class="nav-link active text-decoration-none"> *Home* </a>
+            <a href="<?php echo FRONT_ROOT . "Guardian/HomeGuardian" ?>" class="nav-link active text-decoration-none">
+                <h2 class="text-center">
+                    <i class="bi bi-house-door"></i>
+                    <p class="h6 lead"> Home </p>
+                </h2>
+            </a>
         </div>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -18,19 +23,18 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav position-absolute top-50 end-0 translate-middle-y">
-                <li class="nav-item">
-                    <a href="<?php echo FRONT_ROOT . "Guardian/ShowProfile" ?>" class="nav-link text-decoration-none"> *Mi Perfil*</a>
-                </li>
-
-                <button class="btn btnsecondary dropdown-toggle" type="button" 
-                        data-bs-toggle="dropdown" aria-expanded="false"
-                        > *Perfil* 
+            <ul class="navbar-nav position-absolute top-50 end-0 translate-middle-y me-2">
+                <button class="btn btnsecondary" type="button" 
+                    data-bs-toggle="dropdown" aria-expanded="false"
+                >
+                    <h2>
+                        <i class="bi bi-person-circle"></i>
+                    </h2> 
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end">
-                    <li><a class="dropdown-item" href="<?php echo FRONT_ROOT . "Guardian/ShowProfile" ?>">Ver Perfil</a></li>
+                    <li><a class="dropdown-item" href="<?php echo FRONT_ROOT . "Guardian/ShowProfile" ?>"> Ver Perfil </a></li>
                     <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="<?php echo FRONT_ROOT . "Auth/Logout" ?>">Cerrar Sesion</a></li>
+                    <li><a class="dropdown-item" href="<?php echo FRONT_ROOT . "Auth/Logout" ?>"> Cerrar Sesion </a></li>
                 </ul>
             </ul>
         </div>

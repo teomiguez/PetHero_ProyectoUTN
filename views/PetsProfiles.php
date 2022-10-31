@@ -58,7 +58,7 @@
                                 <th scope="col"> Mascota </th>
                                 <th scope="col"> Raza </th>
                                 <th scope="col"> Tamaño </th>
-                                <th scope="col"> # </th>
+                                <th scope="col"> </th>
                         </tr>
                         </thead>
                         <tbody>
@@ -70,7 +70,14 @@
                                 <td> <?php echo $pet->getType() ?> </td>
                                 <td> <?php echo $pet->getBreed() ?> </td>
                                 <td> <?php echo $pet->getSize() ?> </td>
-                                <td> <a href="#"> ver </a> </td>
+                                <td> 
+                                    <a href="#" class="text-decoration-none mx-1">
+                                        <i class="bi bi-eye-fill text-primary"></i> 
+                                    </a>
+                                    <a href="#" class="mx-1"> 
+                                        <i class="bi bi-trash3 text-danger"></i>    
+                                    </a>  
+                                </td>
                             </tr>
                         </tbody>
 
