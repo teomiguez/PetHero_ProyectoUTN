@@ -39,6 +39,21 @@
             }   
         }
 
+        public function RemovePet($id, $type)
+        {
+            $catDAO = new CatDAO();
+            $dogDAO = new DogDAO();
+
+            if ($type = 'Perro')
+            {
+                $dogDAO->Remove($id);
+            }
+            else
+            {
+                $catDAO->Remove($id);
+            }
+        }
+
 
       /* ---------------------------------------------
         Esta funcion no tiene uso por ahora, porque usamos la funcion 

@@ -65,15 +65,16 @@
                             <?php
                                 foreach ($petsList as $pet) {
                             ?>
-                            <tr>
+                            <tr class="align-middle">
                                 <td> <?php echo $pet->getName() ?> </td>
                                 <td> <?php echo $pet->getType() ?> </td>
                                 <td> <?php echo $pet->getBreed() ?> </td>
                                 <td> <?php echo $pet->getSize() ?> </td>
                                 <td> 
-                                    <a href="#" class="text-decoration-none mx-1">
-                                        <i class="bi bi-eye-fill text-primary"></i> 
-                                    </a>
+                                    <button type="button" class="btn btn-link" data-bs-toggle="modal"
+                                    data-bs-target="#viewPet_modal">
+                                        <i class="bi bi-eye-fill text-primary"></i>
+                                    </button>
                                     <a href="#" class="mx-1"> 
                                         <i class="bi bi-trash3 text-danger"></i>    
                                     </a>  
@@ -105,7 +106,7 @@
         include('footer.php');
     ?>
 
-    <!-- Modal -->
+    <!-- Modal - create pet -->
     <div class="modal fade" id="createPet_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -171,7 +172,7 @@
                         </div>
 
                         <div class="my-1">
-                             <label for="info" class="form-label"> Observaciones </label>
+                            <label for="info" class="form-label"> Observaciones </label>
                             <textarea id="info" name="info" class="form-control" rows="3" required></textarea>
                         </div> 
 
@@ -182,6 +183,21 @@
                             <button type="submit" class="btn btn-primary"> Agregar </button>
                         </div>
                     </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal - view pet -->
+    <div class="modal fade" id="viewPet_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel"> Perfil de Mascota</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    
                 </div>
             </div>
         </div>
