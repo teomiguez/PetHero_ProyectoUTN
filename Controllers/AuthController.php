@@ -37,62 +37,72 @@
             require_once(VIEWS_PATH . "Home.php");
         }
 
-        public function Login($email, $password)
+        public function Login($email = null, $password = null)
         {
-            $ownerDAO = new OwnerDAO;
-            $guardianDAO = new GuardianDAO;
 
-            $user1 = $ownerDAO->GetByEmail($email);
-            $user2 = $guardianDAO->GetByEmail($email);
-
-            if ($user1 != null)
+            // Validacion por si se quiere acceder a la funcion Login desde la URL, sin pasar los parametros $email y $password
+            if ($email == null || $password == null)
             {
-                if ($user1->getPassword() == $password)
-                {
-                    // NEW SESSION
-                    session_start();
-
-                    $_SESSION['id'] = $user1->getId_owner();
-                    $_SESSION['type'] = "owner";
-
-                    // -> REDIRECTION TO HOME_OWNER
-                    header("location: " . FRONT_ROOT . "Owner/HomeOwner");
-                    // <- REDIRECTION TO HOME_OWNER
-                }
-                else
-                {
-                    header("location: " . FRONT_ROOT . "Auth/ShowLogin");
-                    // AGREGAR EXCEPTION/ALERT 'CONTRASEÑA INCORRECTA'
-                }
-            }
-            else if ($user2 != null)
-            {
-                if ($user2->getPassword() == $password)
-                {
-                    // NEW SESSION
-                    session_start();
-    
-                    $_SESSION['id'] = $user2->getId_guardian();
-                    $_SESSION['type'] = "guardian";
-
-                    // -> REDIRECTION TO HOME_GUARDIAN
-                    header("location: " . FRONT_ROOT . "Guardian/HomeGuardian");
-                    // <- REDIRECTION TO HOME_GUARDIAN
-                }
-                else
-                {
-                    header("location: " . FRONT_ROOT . "Auth/ShowLogin");
-                    // AGREGAR EXCEPTION/ALERT 'CONTRASEÑA INCORRECTA'
-                }
-
+                header("location: " . FRONT_ROOT . "Auth/ShowLogin"); 
             }
             else
-            {
-                // AGREGAR EXCEPTION/ALERT 'USUARIO Y/O CONSTRASEÑA INCORRECTOS'
+            {   // Login de owner o guardian
 
-                // -> REDIRECTION TO 'Register.php'
-                require_once(VIEWS_PATH . "Register.php");
-                // <- REDIRECTION TO 'Register.php'
+                $ownerDAO = new OwnerDAO;
+                $guardianDAO = new GuardianDAO;
+    
+                $user1 = $ownerDAO->GetByEmail($email);
+                $user2 = $guardianDAO->GetByEmail($email);
+    
+                if ($user1 != null)
+                {
+                    if ($user1->getPassword() == $password)
+                    {
+                        // NEW SESSION
+                        session_start();
+    
+                        $_SESSION['id'] = $user1->getId_owner();
+                        $_SESSION['type'] = "owner";
+    
+                        // -> REDIRECTION TO HOME_OWNER
+                        header("location: " . FRONT_ROOT . "Owner/HomeOwner");
+                        // <- REDIRECTION TO HOME_OWNER
+                    }
+                    else
+                    {
+                        header("location: " . FRONT_ROOT . "Auth/ShowLogin");
+                        // AGREGAR EXCEPTION/ALERT 'CONTRASEÑA INCORRECTA'
+                    }
+                }
+                else if ($user2 != null)
+                {
+                    if ($user2->getPassword() == $password)
+                    {
+                        // NEW SESSION
+                        session_start();
+        
+                        $_SESSION['id'] = $user2->getId_guardian();
+                        $_SESSION['type'] = "guardian";
+    
+                        // -> REDIRECTION TO HOME_GUARDIAN
+                        header("location: " . FRONT_ROOT . "Guardian/HomeGuardian");
+                        // <- REDIRECTION TO HOME_GUARDIAN
+                    }
+                    else
+                    {
+                        header("location: " . FRONT_ROOT . "Auth/ShowLogin");
+                        // AGREGAR EXCEPTION/ALERT 'CONTRASEÑA INCORRECTA'
+                    }
+    
+                }
+                else
+                {
+                    // AGREGAR EXCEPTION/ALERT 'USUARIO Y/O CONSTRASEÑA INCORRECTOS'
+    
+                    // -> REDIRECTION TO 'Register.php'
+                    require_once(VIEWS_PATH . "Register.php");
+                    // <- REDIRECTION TO 'Register.php'
+                }
             }
         }
 
@@ -108,27 +118,37 @@
             }
         }
 
-        public function Register($name, $last_name, $dni, $tel, $email, $password, $radio_option, $street = '', $nro = '', $typeSize = '', $cost = '')
+        public function Register($name = null, $last_name = null, $dni = null, $tel = null, $email = null, $password = null, $radio_option = null, $street = '', $nro = '', $typeSize = '', $cost = '')
         {
-            if (($this->checkExistenceEmail($email) == false) && ($this->checkExistenceDni($dni) == false))
+
+           // Validacion por si se quiere acceder a la funcion Register desde la URL, sin pasar los parametros del registro
+            if ($name == null || $last_name == null || $dni == null || $tel == null || $email == null || $password == null || $radio_option == null)
             {
-                if ($radio_option == 'dueño')
-                {
-                    $this->RegisterOwner($name, $last_name, $dni, $tel, $email, $password);
-                } 
-                else 
-                {
-                    $this->RegisterGuardian($name, $last_name, $dni, $tel, $email, $password, $street, $nro, $typeSize, $cost);
-                }
-                
-                // -> REDIRECTION TO 'Home.php'
-                require_once(VIEWS_PATH . "Home.php");
-                // <- REDIRECTION TO 'Home.php'
+                header("location: " . FRONT_ROOT . "Auth/ShowRegist"); 
             }
             else
-            {
-                // AGREGAR EXCEPTION/ALERT!!
-                require_once(VIEWS_PATH . "Register.php");
+            {   // Register de un owner o guardian
+                
+                if (($this->checkExistenceEmail($email) == false) && ($this->checkExistenceDni($dni) == false))
+                {
+                    if ($radio_option == 'dueño')
+                    {
+                        $this->RegisterOwner($name, $last_name, $dni, $tel, $email, $password);
+                    } 
+                    else if ($radio_option == 'dueño')
+                    {
+                        $this->RegisterGuardian($name, $last_name, $dni, $tel, $email, $password, $street, $nro, $typeSize, $cost);
+                    }
+                    
+                    // -> REDIRECTION TO 'Home.php'
+                    require_once(VIEWS_PATH . "Home.php");
+                    // <- REDIRECTION TO 'Home.php'
+                }
+                else
+                {
+                    // AGREGAR EXCEPTION/ALERT!!
+                    require_once(VIEWS_PATH . "Register.php");
+                }
             }
             
         }
@@ -251,7 +271,7 @@
         public function checkDiffDays($first_day, $last_day) // X
         {
             if ($last_day > $first_day)
-                return true; // la fecha es mayor (tiene sentido)
+                return true; // la fecha de fin es mayor a la de inicio (tiene sentido)
             else
                 return false;
         }

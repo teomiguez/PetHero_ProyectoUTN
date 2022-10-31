@@ -39,14 +39,15 @@
                     <div class="col-12 col-md-6 my-2">
                         <div>
                             <label for="dni" class="form-label"> DNI </label>
-                            <input id="dni" name="dni" type="number" class="form-control" min="5000000" max="46000000" required>
+                            <input id="dni" name="dni" type="number" class="form-control" min="1000000" max="99000000" required>
                         </div>
                     </div>
 
                     <div class="col-12 col-md-6 my-2">
                         <div>
                             <label for="tel" class="form-label"> Telefono  </label>
-                            <input id="tel" name="tel" type="tel" class="form-control" placeholder="xxx-xxx-xxxx" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
+                            <input id="tel" name="tel" type="tel" class="form-control" placeholder="223xxxxxxx" 
+                                pattern="[2]{2}[3]{1}[0-9]{3}[0-9]{4}" required>
                         </div>
                     </div>
 
@@ -65,6 +66,9 @@
                                 required>
                         </div>
                     </div>
+
+
+                    <!--Confirmar contraseña sin uso -->
 
                     <div class="col-12 col-md-6 my-2">
                         <!-- <div>
@@ -108,7 +112,7 @@
 
                     <div class="col-12 col-md-6 my-2">
                         <div>
-                            <label for="typeSize" class="form-label"> Tamaño preferencia de la mascota </label>    
+                            <label for="typeSize" class="form-label"> Tamaño de preferencia de la mascota </label>    
                             <select id="typeSize" class="form-select" aria-label="form-select" name="typeSize" required disabled>
                                     <option value="chico"> Chico </option>
                                     <option value="mediano"> Mediano </option>
@@ -120,7 +124,8 @@
                         <label for="cost" class="form-label"> Remuneracion x Dia </label>     
                         <div class="input-group mb-3">
                                 <span class="input-group-text">$</span>
-                                <input id="cost" type="number" class="form-control" name= "cost" aria-label="Amount (to the nearest dollar)" min="1" required disabled>
+                                <input id="cost" type="number" class="form-control" name= "cost" aria-label="Amount (to the nearest dollar)" 
+                                    min="1" required disabled>
                             </div>
                         </div>
                     </div>

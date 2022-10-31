@@ -33,7 +33,7 @@
 
         <div class="row">
 
-            <!-- VER PERFIL DEL DUEÑO -->
+            <!-- VER PERFIL DEL GUARDIAN -->
             <!-- OPCION MODIFICAR -->
 
         </div>
