@@ -37,23 +37,6 @@
         }
 
 
-        /* ---------------------------------------------
-        Esta funcion no tiene uso por ahora, porque usamos la funcion 
-        de ShowList que esta en PetController, que hace lo mismo*/
-
-        public function ShowPets()
-        {            
-            $owner_DAO = new OwnerDAO();
-            $pet_DAO = new PetDAO();
-
-            $user = $owner_DAO->GetById($_SESSION['id']);
-            $pets = $pet_DAO->GetByOwner($_SESSION['id']);
-
-            require_once(VIEWS_PATH . "PetsProfiles.php");
-        }
-        // --------------------------------------------
-
-
         public function ShowProfile()
         {    
             if (isset($_SESSION['idOwner']))
