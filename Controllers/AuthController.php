@@ -22,6 +22,11 @@
     {
         public function Index($message = "")
         {
+            if ((isset($_SESSION['idOwner'])) || (isset($_SESSION['idOwner'])))
+            {
+                session_destroy();
+            }
+
             require_once(VIEWS_PATH."Home.php");
         }
         
@@ -153,7 +158,7 @@
 
         public function CreatePet ($imgFile, $name, $radio_option, $breed, $size, $pvFile, $video, $info) // X
         {
-            if ((isset($_SESSION['idOwner'])))
+            if (isset($_SESSION['idOwner']))
             {   
                 if ($radio_option == "Gato")
                 {
@@ -211,7 +216,7 @@
         
         public function CreateAvStay ($first_day, $last_day) // X
         {
-            if ((isset($_SESSION['idGuardian'])))
+            if (isset($_SESSION['idGuardian']))
             {  
                 $avStayDAO = new AvStayDAO;
                 $avStay = new AvStay;

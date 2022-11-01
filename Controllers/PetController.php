@@ -20,7 +20,7 @@
 
         public function ShowList()
         {
-            if ((isset($_SESSION['idOwner'])))
+            if (isset($_SESSION['idOwner']))
                 {
                 $catDAO = new CatDAO();
                 $dogDAO = new DogDAO();

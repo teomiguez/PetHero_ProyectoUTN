@@ -20,7 +20,7 @@
 
         public function HomeOwner()
         {    
-            if ((isset($_SESSION['idOwner'])))
+            if (isset($_SESSION['idOwner']))
             {
                 $owner_DAO = new OwnerDAO();
 
@@ -56,7 +56,7 @@
 
         public function ShowProfile()
         {    
-            if ((isset($_SESSION['idOwner'])))
+            if (isset($_SESSION['idOwner']))
             {        
                 $owner_DAO = new OwnerDAO();
 
@@ -72,7 +72,7 @@
 
         public function ShowGuardians()
         {
-            if ((isset($_SESSION['idOwner'])))
+            if (isset($_SESSION['idOwner']))
             {  
                 $guardian_DAO = new GuardianDAO();
 
@@ -88,7 +88,7 @@
 
         public function ShowFilterGuardians($fist_day, $last_day)
         {
-            if ((isset($_SESSION['idOwner'])))
+            if (isset($_SESSION['idOwner']))
             {  
                 $guardian_DAO = new GuardianDAO();
                 $avStayDAO = new AvStayDAO();

@@ -19,7 +19,7 @@
 
         public function ShowProfile()
         {   
-            if ((isset($_SESSION['idGuardian'])))
+            if (isset($_SESSION['idGuardian']))
             {         
                 $guardian_DAO = new GuardianDAO();
 
@@ -37,7 +37,7 @@
         
         public function HomeGuardian()
         {
-            if ((isset($_SESSION['idGuardian'])))
+            if (isset($_SESSION['idGuardian']))
             {  
                 $guardian_DAO = new GuardianDAO();
 
@@ -54,7 +54,7 @@
     
         public function ShowAvStays()
         {
-            if ((isset($_SESSION['idGuardian'])))
+            if (isset($_SESSION['idGuardian']))
             { 
                 $avStayDAO = new AvStayDAO();
                 $avStayList = array();
