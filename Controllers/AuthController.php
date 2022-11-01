@@ -155,7 +155,7 @@
         {
             if ((isset($_SESSION['idOwner'])))
             {   
-                if ($radio_option = "Gato")
+                if ($radio_option == "Gato")
                 {
                     $catDAO = new CatDAO;
                     $cat = new Cat;

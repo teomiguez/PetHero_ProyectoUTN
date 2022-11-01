@@ -3,6 +3,8 @@
 
     use DAO\CatDAO as CatDAO;
     use DAO\DogDAO as DogDAO;
+    use Models\Dog as Dog;
+    use Models\Cat as Cat;
 
     class PetController 
     {
@@ -37,6 +39,26 @@
             {
                 header("location: " . FRONT_ROOT . "Auth/ShowLogin");
             }   
+        }
+
+        public function ShowViewModal_Perro($id)
+        {
+            $dogDAO = new DogDAO();
+            $dog = new Dog();
+
+            $pet = $dogDAO->GetById($id);
+
+            // abrir el modal o (ultima opcion) crear pagina solo para la mascota
+        }
+
+        public function ShowViewModal_Gato($id)
+        {
+            $catDAO = new CatDAO();
+            $cat = new Cat();
+
+            $pet = $catDAO->GetById($id);
+            
+            // abrir el modal o (ultima opcion) crear pagina solo para la mascota
         }
 
         public function RemovePerro($id)

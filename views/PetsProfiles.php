@@ -70,19 +70,17 @@
                                 <td> <?php echo $pet->getType() ?> </td>
                                 <td> <?php echo $pet->getBreed() ?> </td>
                                 <td> <?php echo $pet->getSize() ?> </td>
-                                <td> 
-                                    <div class="d-inline-flex">
-                                        <button class="btn btn-link" type="button" data-bs-toggle="modal"
-                                        data-bs-target="#viewPet_modal">
-                                            <i class="bi bi-eye-fill text-primary"></i>
+                                <td class="d-inline-flex">
+                                    <form action="<?php echo FRONT_ROOT . "Pet/ShowViewModal_" . $pet->getType() ?>" method="POST">
+                                        <button class="btn btn-link" type="submit" name="id" value="<?php echo $pet->getId() ?>">
+                                            <i class="bi bi-eye-fill text-primary"></i>  
                                         </button>
-                                        <form action="<?php echo FRONT_ROOT . "Pet/Remove" . $pet->getType() ?>" method="POST">
-                                            <button class="btn btn-link" type="submit" name="id" 
-                                                    value="<?php echo $pet->getId() ?>">
-                                                <i class="bi bi-trash3 text-danger"></i>    
-                                            </button>
-                                        </form>  
-                                    </div>
+                                    </form> 
+                                    <form action="<?php echo FRONT_ROOT . "Pet/Remove" . $pet->getType() ?>" method="POST">
+                                        <button class="btn btn-link" type="submit" name="id" value="<?php echo $pet->getId() ?>">
+                                            <i class="bi bi-trash3 text-danger"></i>    
+                                        </button>
+                                    </form>  
                                 </td>
                             </tr>
                         </tbody>
@@ -198,11 +196,10 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel"> Perfil de Mascota</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel"> Perfil de Mascota </h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    
                 </div>
             </div>
         </div>

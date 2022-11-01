@@ -1,1 +1,14 @@
-[]
+[
+    {
+        "id_cat": 2,
+        "id_owner": 1,
+        "img": "Casio FX-570ES PLUS.pdf",
+        "name": "Michi",
+        "type": "Gato",
+        "breed": "michi",
+        "size": "chico",
+        "pv": "CalendarioTecnicaturas_2022.pdf",
+        "video": "",
+        "info": "qw"
+    }
+]
