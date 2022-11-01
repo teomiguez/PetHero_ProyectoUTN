@@ -76,7 +76,7 @@
                             foreach ($guardians as $guardian) {
                         ?>
 
-                        <tr>
+                        <tr class="align-middle">
                             <td> <?php echo $guardian->getName() ?> </td>
                             <td> <?php echo $guardian->getLast_name() ?> </td>
                             <td> <?php echo $guardian->getTelephone() ?> </td>
