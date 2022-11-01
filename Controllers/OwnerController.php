@@ -26,7 +26,7 @@
 
                 $user = $owner_DAO->GetById($_SESSION["idOwner"]);
 
-                var_dump($_SESSION);
+                //var_dump($_SESSION);
 
                 $this->ShowGuardians();
             }
@@ -84,6 +84,23 @@
             {
                 header("location: " . FRONT_ROOT . "Auth/ShowLogin");
             }      
+        }
+
+        public function ShowFilterGuardians($fist_day, $last_day)
+        {
+            if ((isset($_SESSION['idOwner'])))
+            {  
+                $guardian_DAO = new GuardianDAO();
+                $avStayDAO = new AvStayDAO();
+
+                $guardians = $guardian_DAO->GetById($avStayDAO->GetIdGuardian_ByDates($fist_day, $last_day));
+
+                require_once(VIEWS_PATH . "OwnerHome.php");
+            }
+            else
+            {
+                header("location: " . FRONT_ROOT . "Auth/ShowLogin");
+            }  
         }
     }
 ?>

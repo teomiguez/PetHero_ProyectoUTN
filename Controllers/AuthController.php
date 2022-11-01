@@ -242,6 +242,29 @@
                  header("location: " . FRONT_ROOT . "Auth/ShowLogin");
             }  
         }
+
+        // public function FilterDates ($first_day, $last_day) // VER COMO PASAR LAS FECHAS POR QUERYPARAMS (X)
+        // {
+        //     if ((isset($_SESSION['idOwner'])))
+        //     {  
+        //         if ($this->checkDiffDays($first_day, $last_day) == true)
+        //         {
+        //             // -> REDIRECTION TO HOME_FILTER_OWNER
+        //             header("location: " . FRONT_ROOT . "Owner/HomeFilterOwner"); // X
+        //             // <- REDIRECTION TO HOME_FILTER_OWNER
+        //         }
+        //         else
+        //         {
+        //             // -> REDIRECTION TO HOME_OWNER
+        //             header("location: " . FRONT_ROOT . "Owner/HomeOwner");
+        //             // <- REDIRECTION TO HOME_OWNER
+        //         }
+        //     }
+        //     else
+        //     {
+        //          header("location: " . FRONT_ROOT . "Auth/ShowLogin");
+        //     }  
+        }
         
         // <- PUBLIC FUNCTIONs
         

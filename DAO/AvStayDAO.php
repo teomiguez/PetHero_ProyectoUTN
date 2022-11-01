@@ -58,6 +58,23 @@
             return (count($AvStays) > 0) ? $AvStays[0] : null;
         }
 
+        function GetIdGuardian_ByDates($first_day, $last_day)
+        {
+            $this->RetrieveData();
+
+            $AvStays = array_filter($this->stayList, function($stay) use ($first_day, $last_day)
+            {
+                if (($stay->getFist_day() >= $first_day) && ($stay->getLast_day() <= $first_day))
+                {
+                    return $stay->getId_keeper();
+                }    
+            });
+            
+            $AvStays = array_values($AvStays); //Reorderding array
+
+            return (count($AvStays) > 0) ? $AvStays[0] : null;
+        }
+
         //function Update($id); -> (ver)
         
         function Remove($id)

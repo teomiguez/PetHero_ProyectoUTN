@@ -42,7 +42,7 @@
                 <!-- Filtro -->
                 <div class="my-4 border border-dark p-2 border-opacity-50 rounded-2">
                     <h5 class="text-center mb-3"> Filtrar por disponibilidad </h5>
-                    <form action="" method="">
+                    <form action="<?php echo FRONT_ROOT . " Owner/ShowFilterGuardians" ?>" method="POST">
                         <div class="d-flex justify-content-evenly text-center">
                             <div class="mx-1">
                                 <label for="first_day" class="form-label"> Desde </label>
@@ -54,8 +54,8 @@
                                 <input id="last_day" name="last_day" type="date" class="form-control" required>
                             </div>
                             
-                            <button class="btn btn-outline-secondary align-items-center mx-1" type="submit" id="button-addon2">
-                                *Filtrar*
+                            <button class="btn btn-outline-secondary mx-1 my-2" type="submit" id="button-addon2">
+                                <i class="bi bi-search"></i>
                             </button>
                         </div>    
                     </form>
@@ -80,7 +80,12 @@
                             <td> <?php echo $guardian->getName() ?> </td>
                             <td> <?php echo $guardian->getLast_name() ?> </td>
                             <td> <?php echo $guardian->getTelephone() ?> </td>
-                            <td> <a href="#"> <i class="bi bi-eye-fill"></i> </a> </td>
+                            <td> 
+                                <button class="btn btn-link" type="button" data-bs-toggle="modal"
+                                data-bs-target="#viewGuardian_modal">
+                                    <i class="bi bi-eye-fill"></i>
+                                </button>
+                            </td>
                         </tr>
                     </tbody>   
                 
@@ -106,7 +111,7 @@
         include('footer.php');
     ?>
 
-    <!-- Modal -->
+    <!-- Modal request reservation -->
     <div class="modal fade" id="requestReservation_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -125,6 +130,21 @@
                             <button type="submit" class="btn btn-primary"> Solicitar </button>
                         </div>
                     </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal - view guardian -->
+    <div class="modal fade" id="viewGuardian_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel"> <?php echo $guardian->getName() ?> </h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    
                 </div>
             </div>
         </div>
