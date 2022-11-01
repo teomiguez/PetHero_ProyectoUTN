@@ -7,5 +7,14 @@
         "telephone": "2235513587",
         "email": "teo.miguez215@gmail.com",
         "password": "teo123"
+    },
+    {
+        "id": 2,
+        "name": "Julian",
+        "last_name": "Fasciani",
+        "dni": "20330626",
+        "telephone": "2237895147",
+        "email": "julianfasciani@hotmail.es",
+        "password": "juli123"
     }
 ]

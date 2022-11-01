@@ -140,6 +140,15 @@
         </section>
     </main>
 
+    <?php if(isset($alert)) { ?>
+        <div class="position-absolute top-0 start-50 translate-middle-x">
+            <div class="alert alert-<?php echo $alert['type'] ?>" role="alert">
+                <?php echo $alert['text'] ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div>
+    <?php } ?>
+
     <!-- Funcionalidades JS -->
     <script src=" <?php echo JS_PATH . "FormController.js" ?> " ></script>
     

@@ -76,8 +76,9 @@
                     }
                     else
                     {
+                        $alert = array("type" => "danger", "text" => "Usuario y/o Contraseña incorrectos");
+
                         header("location: " . FRONT_ROOT . "Auth/ShowLogin");
-                        // AGREGAR EXCEPTION/ALERT 'CONTRASEÑA INCORRECTA'
                     }
                 }
                 else if ($user2 != null)
@@ -95,18 +96,19 @@
                     }
                     else
                     {
+                        $alert = array("type" => "danger", "text" => "Usuario y/o Contraseña incorrectos");
+                        
                         header("location: " . FRONT_ROOT . "Auth/ShowLogin");
-                        // AGREGAR EXCEPTION/ALERT 'CONTRASEÑA INCORRECTA'
                     }
     
                 }
                 else
                 {
-                    // AGREGAR EXCEPTION/ALERT 'USUARIO Y/O CONSTRASEÑA INCORRECTOS'
-    
-                    // -> REDIRECTION TO 'Register.php'
-                    require_once(VIEWS_PATH . "Register.php");
-                    // <- REDIRECTION TO 'Register.php'
+                    $alert = array("type" => "danger", "text" => "Usuario y/o Contraseña incorrectos");
+
+                    // -> REDIRECTION TO 'Home.php'
+                    require_once(VIEWS_PATH . "Home.php");
+                    // <- REDIRECTION TO 'Home.php'
                 }
             }
         }
@@ -140,13 +142,16 @@
                         $this->RegisterGuardian($name, $last_name, $dni, $tel, $email, $password, $street, $nro, $typeSize, $cost);
                     }
                     
+                    $alert_succes = array("type" => "success", "text" => "Registro exitoso");
+                    
                     // -> REDIRECTION TO 'Home.php'
                     require_once(VIEWS_PATH . "Home.php");
                     // <- REDIRECTION TO 'Home.php'
                 }
                 else
                 {
-                    // AGREGAR EXCEPTION/ALERT!!
+                    $alert = array("type" => "danger", "text" => "El Email o DNI ya estan registrados");
+                    
                     require_once(VIEWS_PATH . "Register.php");
                 }
             }
