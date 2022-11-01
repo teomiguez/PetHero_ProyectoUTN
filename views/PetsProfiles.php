@@ -71,13 +71,18 @@
                                 <td> <?php echo $pet->getBreed() ?> </td>
                                 <td> <?php echo $pet->getSize() ?> </td>
                                 <td> 
-                                    <button type="button" class="btn btn-link" data-bs-toggle="modal"
-                                    data-bs-target="#viewPet_modal">
-                                        <i class="bi bi-eye-fill text-primary"></i>
-                                    </button>
-                                    <a href="#" class="mx-1"> 
-                                        <i class="bi bi-trash3 text-danger"></i>    
-                                    </a>  
+                                    <div class="d-inline-flex">
+                                        <button class="btn btn-link" type="button" data-bs-toggle="modal"
+                                        data-bs-target="#viewPet_modal">
+                                            <i class="bi bi-eye-fill text-primary"></i>
+                                        </button>
+                                        <form action="<?php echo FRONT_ROOT . "Pet/Remove" . $pet->getType() ?>" method="POST">
+                                            <button class="btn btn-link" type="submit" name="id" 
+                                                    value="<?php echo $pet->getId() ?>">
+                                                <i class="bi bi-trash3 text-danger"></i>    
+                                            </button>
+                                        </form>  
+                                    </div>
                                 </td>
                             </tr>
                         </tbody>

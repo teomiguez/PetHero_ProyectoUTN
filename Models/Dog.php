@@ -5,18 +5,18 @@
 
     class Dog extends Pet
     {
-        private $id_dog;
+        private $id;
 
         // -> SETTERS Y GETTERS
         
-        public function getId_dog()
+        public function getId()
         {
-            return $this->id_dog;
+            return $this->id;
         }
 
-        public function setId_dog($id_dog)
+        public function setId($id)
         {
-            $this->id_dog = $id_dog;
+            $this->id = $id;
         }
 
         // <- SETTERS Y GETTERS

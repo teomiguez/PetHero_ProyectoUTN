@@ -44,7 +44,7 @@
             <div class="col-12 col-sm-4 ">
                 <h2 class="text-center"> Estadias disponibles </h2>
 
-                <form action="">
+                <!-- <form action="">
                     <div class="input-group mb-3">
                         <input type="text" class="form-control" placeholder="Buscar estadia..."
                             aria-label="Buscar estadia..." aria-describedby="button-addon2">
@@ -52,7 +52,7 @@
                             <i class="bi bi-search"></i>
                         </button>
                     </div>
-                </form>
+                </form> -->
 
                 <div class="mb-3">
                     <table class="table text-center">
@@ -66,18 +66,20 @@
                         </thead>
                         <tbody> 
                             <?php  
-                                
                                 foreach ($avStayList as $avStay) {
                             ?>
 
-                            <tr>
+                            <tr class="align-middle">
                                 <td> <?php echo $avStay->getFirst_day() ?> </td>
                                 <td> <?php echo $avStay->getLast_day() ?> </td>
                                 <td> <?php echo "hacer la diferencia" ?> </td>
                                 <td> 
-                                    <a href=""> 
-                                        <i class="bi bi-trash3 text-danger"></i>    
-                                    </a> 
+                                    <form action="<?php echo FRONT_ROOT . "AvStay/RemoveStay" ?>" method="POST">
+                                        <button class="btn btn-link" type="submit" name="id" 
+                                                value="<?php echo $avStay->getId_stay() ?>">
+                                            <i class="bi bi-trash3 text-danger"></i>    
+                                        </button>
+                                    </form> 
                                 </td>
                             </tr>
                         </tbody>

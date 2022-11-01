@@ -21,7 +21,7 @@
         {
             $this->RetrieveData();
     
-            $cat->setId_cat($this->GetNextId());
+            $cat->setId($this->GetNextId());
     
             array_push($this->catList, $cat);
     
@@ -40,7 +40,7 @@
             $this->RetrieveData();
     
             $Cats = array_filter($this->catList, function($cat) use ($id){
-                return $cat->getId_cat() == $id;
+                return $cat->getId() == $id;
             });
     
             $Cats = array_values($Cats); //Reorderding array
@@ -65,7 +65,7 @@
             $this->RetrieveData();
     
             $this->catList = array_filter($this->catList, function($cat) use($id){
-                return $cat->getId_cat() != $id;
+                return $cat->getId() != $id;
             });
     
             $this->SaveData();
@@ -88,7 +88,7 @@
                  foreach($contentArray as $content)
                  {
                     $cat = new Cat();
-                    $cat->setId_cat($content["id_cat"]);
+                    $cat->setId($content["id_cat"]);
                     $cat->setId_owner($content["id_owner"]);
                     $cat->setImg($content["img"]);
                     $cat->setName($content["name"]);
@@ -110,7 +110,7 @@
             foreach($this->catList as $cat)
             {
                 $valuesArray = array();
-                $valuesArray["id_cat"] = $cat->getId_cat();
+                $valuesArray["id_cat"] = $cat->getId();
                 $valuesArray["id_owner"] = $cat->getId_owner();
                 $valuesArray["img"] = $cat->getImg();
                 $valuesArray["name"] = $cat->getName();
@@ -134,7 +134,7 @@
 
             foreach($this->catList as $cat)
             {
-                $id = ($cat->getId_cat() > $id) ? $cat->getId_cat() : $id;
+                $id = ($cat->getId() > $id) ? $cat->getId() : $id;
             }
 
             return $id + 1;

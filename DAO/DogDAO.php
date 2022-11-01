@@ -21,7 +21,7 @@
         {
             $this->RetrieveData();
     
-            $dog->setId_dog($this->GetNextId());
+            $dog->setId($this->GetNextId());
     
             array_push($this->dogList, $dog);
     
@@ -40,7 +40,7 @@
             $this->RetrieveData();
     
             $Dogs = array_filter($this->dogList, function($dog) use ($id){
-                return $dog->getId_dog() == $id;
+                return $dog->getId() == $id;
             });
     
             $Dogs = array_values($Dogs); //Reorderding array
@@ -65,7 +65,7 @@
             $this->RetrieveData();
     
             $this->dogList = array_filter($this->dogList, function($dog) use($id){
-                return $dog->getId_dog() != $id;
+                return $dog->getId() != $id;
             });
     
             $this->SaveData();
@@ -88,7 +88,7 @@
                  foreach($contentArray as $content)
                  {
                     $dog = new Dog();
-                    $dog->setId_dog($content["id_dog"]);
+                    $dog->setId($content["id_dog"]);
                     $dog->setId_owner($content["id_owner"]);
                     $dog->setImg($content["img"]);
                     $dog->setName($content["name"]);
@@ -110,7 +110,7 @@
             foreach($this->dogList as $dog)
             {
                 $valuesArray = array();
-                $valuesArray["id_dog"] = $dog->getId_dog();
+                $valuesArray["id_dog"] = $dog->getId();
                 $valuesArray["id_owner"] = $dog->getId_owner();
                 $valuesArray["img"] = $dog->getImg();
                 $valuesArray["name"] = $dog->getName();
@@ -134,7 +134,7 @@
 
             foreach($this->dogList as $dog)
             {
-                $id = ($dog->getId_dog() > $id) ? $dog->getId_dog() : $id;
+                $id = ($dog->getId() > $id) ? $dog->getId() : $id;
             }
 
             return $id + 1;

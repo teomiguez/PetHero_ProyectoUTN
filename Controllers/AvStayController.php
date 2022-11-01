@@ -21,7 +21,7 @@
             $avStayDAO = new AvStayDAO();
             $avStayList = array();
 
-            $avStayList = $avStayDAO->GetByKeeper($_SESSION["id"]);
+            $avStayList = $avStayDAO->GetByKeeper($_SESSION["idGuardian"]);
 
             require_once(VIEWS_PATH . "GuardianHome.php");
         }
@@ -31,7 +31,9 @@
             $avStayDAO = new AvStayDAO();
             $avStayDAO->Remove($id);
 
-            require_once(VIEWS_PATH . "GuardianHome.php");
+            // -> REDIRECTION TO AvStay/SHOWLIT
+            header("location: " . FRONT_ROOT . "AvStay/ShowList");
+            // <- REDIRECTION TO AvStay/SHOWLIT
         }
 
     }
