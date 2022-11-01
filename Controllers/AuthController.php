@@ -264,7 +264,7 @@
         //     {
         //          header("location: " . FRONT_ROOT . "Auth/ShowLogin");
         //     }  
-        }
+        //}
         
         // <- PUBLIC FUNCTIONs
         
@@ -298,14 +298,6 @@
             {
                 return false; // NO EXISTE
             }
-        }
-
-        public function checkDiffDays($first_day, $last_day) // X
-        {
-            if ($last_day > $first_day)
-                return true; // la fecha de fin es mayor a la de inicio (tiene sentido)
-            else
-                return false;
         }
 
         function RegisterOwner($name, $last_name, $dni, $tel, $email, $password)
