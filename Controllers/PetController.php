@@ -80,18 +80,6 @@
             header("location: " . FRONT_ROOT . "Pet/ShowList");
             // <- REDIRECTION TO PET/SHOWLIT
         }
-
-
-      /* ---------------------------------------------
-        Esta funcion no tiene uso por ahora, porque usamos la funcion 
-        de CreatePet que esta en AuthController, que crea una mascota*/
-
-        public function AddNewPet($id_owner, $name, $img, $size, $video, $info)
-        {
-            
-        }
-
-    //----------------------------------------------------
         
     }
 
