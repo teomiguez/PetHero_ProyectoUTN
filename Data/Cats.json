@@ -10,5 +10,17 @@
         "pv": "CalendarioTecnicaturas_2022.pdf",
         "video": "",
         "info": "qw"
+    },
+    {
+        "id_cat": 3,
+        "id_owner": 1,
+        "img": "2021032212010545196.jpg",
+        "name": "michifu",
+        "type": "Gato",
+        "breed": "siames",
+        "size": "mediano",
+        "pv": "70-705960_aesthetic-pride-wallpaper-pc.png",
+        "video": "",
+        "info": "un crack"
     }
 ]

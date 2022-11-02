@@ -31,30 +31,26 @@
 
         // esta funcion no tiene uso por ahora, porque usamos la funcion CreatePet del AuthController que sirve para crear un cat o un dog 
        
-        public function AddNewdog($id_owner, $name, $img, $size, $video, $info)
+        public function AddNewDog($imgFile, $name, $radio_option, $breed, $size, $pvFile, $video, $info)
         {
-            $dogDAO = new DogDAO();
-            $dog = new Dog();
+            $dogDAO = new DogDAO;
+            $dog = new Dog;
 
             // -> SETs DOG
-            $dog->setId_owner($_SESSION['id']);
+            $dog->setId_owner($_SESSION['idOwner']);
             $dog->setImg($imgFile);
             $dog->setName($name);
+            $dog->setType($radio_option);
             $dog->setBreed($breed);
             $dog->setSize($size);
             $dog->setPlanVacunacion($pvFile);
-            $dog->setType('Perro');
             $dog->setVideo($video);
-            $dog->setInfo($remarks);
+            $dog->setInfo($info);
             // <- SETs DOG
 
             // -> ADD DOG TO JSON
             $dogDAO->Add($dog);
             // <- ADD DOG TO JSON
-
-            // -> REDIRECTION TO DOG/SHOWLIT
-            header("location: " . FRONT_ROOT . "Dog/ShowList");
-            // <- REDIRECTION TO DOG/SHOWLIT
         }
     }
     

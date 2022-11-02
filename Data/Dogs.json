@@ -1,1 +1,14 @@
-[]
+[
+    {
+        "id_dog": 1,
+        "id_owner": 1,
+        "img": "descarga.jpg",
+        "name": "Toby",
+        "type": "Perro",
+        "breed": "caniche",
+        "size": "chico",
+        "pv": "unnamed.jpg",
+        "video": "",
+        "info": "se calienta facil"
+    }
+]

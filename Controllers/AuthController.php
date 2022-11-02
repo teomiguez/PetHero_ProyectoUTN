@@ -160,7 +160,7 @@
 
         // -> HAY QUE VER CAMBIAR DE LUGAR Y MODIFICAR ALGUNAS FUNCIONES (X) NO RELACIONADAS AL AUTH 
         //    ORDENARLAS EN LOS CONTROLLERS ADECUADOS
-
+/*
         public function CreatePet ($imgFile, $name, $radio_option, $breed, $size, $pvFile, $video, $info) // X
         {
             if (isset($_SESSION['idOwner']))
@@ -217,7 +217,7 @@
                 header("location: " . FRONT_ROOT . "Auth/ShowLogin");
             }  
         }
-
+*/
         
         public function CreateAvStay ($first_day, $last_day) // X
         {

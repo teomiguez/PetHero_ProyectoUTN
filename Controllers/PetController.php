@@ -5,6 +5,8 @@
     use DAO\DogDAO as DogDAO;
     use Models\Dog as Dog;
     use Models\Cat as Cat;
+    use Controllers\CatController as CatController;
+    use Controllers\DogController as DogController;
 
     class PetController 
     {
@@ -40,6 +42,34 @@
                 header("location: " . FRONT_ROOT . "Auth/ShowLogin");
             }   
         }
+
+        public function CreatePet ($imgFile, $name, $radio_option, $breed, $size, $pvFile, $video, $info) // X
+        {
+            if (isset($_SESSION['idOwner']))
+            {   
+                if ($radio_option == "Gato")
+                {
+                    // CREA EL CAT CON LA FUNCION DEL CATCONTROLLER
+                    $catController = new CatController;
+                    $catController->AddNewCat($imgFile, $name, $radio_option, $breed, $size, $pvFile, $video, $info);
+                }
+                else
+                {
+                    // CREA EL DOG CON LA FUNCION DEL DOGCONTROLLER
+                    $dogController = new DogController;
+                    $dogController->AddNewDog($imgFile, $name, $radio_option, $breed, $size, $pvFile, $video, $info);
+                }
+                
+                // -> REDIRECTION TO PET/SHOWLIT
+                header("location: " . FRONT_ROOT . "Pet/ShowList");
+                // <- REDIRECTION TO PET/SHOWLIT
+            }
+            else
+            {
+                header("location: " . FRONT_ROOT . "Auth/ShowLogin");
+            }  
+        }
+
 
         public function ShowViewModal_Perro($id)
         {
