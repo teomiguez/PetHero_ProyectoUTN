@@ -60,7 +60,7 @@
                             <tr>
                                 <th scope="col"> Desde </th>
                                 <th scope="col"> Hasta </th>
-                                <th scope="col"> Dias en total </th>
+                                <th scope="col"> Total </th>
                                 <th scope="col">  </th>
                         </tr>
                         </thead>
@@ -72,7 +72,11 @@
                             <tr class="align-middle">
                                 <td> <?php echo $avStay->getFirst_day() ?> </td>
                                 <td> <?php echo $avStay->getLast_day() ?> </td>
-                                <td> <?php echo 'diferencia' ?> </td>
+                                <td> <?php  $date1 = new DateTime($avStay->getFirst_day());
+                                            $date2 = new DateTime($avStay->getLast_day());
+                                            $diff = $date1->diff($date2);                          
+                                            echo $diff->days .' dias ';
+                                 ?> </td>
                                 <td> 
                                     <form action="<?php echo FRONT_ROOT . "AvStay/RemoveStay" ?>" method="POST">
                                         <button class="btn btn-link" type="submit" name="id" 
