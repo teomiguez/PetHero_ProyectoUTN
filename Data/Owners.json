@@ -16,5 +16,14 @@
         "telephone": "2237895147",
         "email": "julianfasciani@hotmail.es",
         "password": "juli123"
+    },
+    {
+        "id": 3,
+        "name": "Pedro",
+        "last_name": "Montes",
+        "dni": "44369855",
+        "telephone": "2235513587",
+        "email": "pedro@htomail.com",
+        "password": "pedro123"
     }
 ]

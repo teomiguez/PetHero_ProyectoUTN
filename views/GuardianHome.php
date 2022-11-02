@@ -34,11 +34,11 @@
         <div class="row">
 
             <div class="col-12 col-sm-12 col-md-12 col-lg-3 ">
-                *Listado de Reservas activas y a confirmar*
+                <p class="text-center"> *Listado de Reservas activas y a confirmar* </p>
             </div>
 
             <div class="col-12 col-sm-8 col-lg-5 ">
-                rellenar...
+                <p class="text-center"> rellenar... </p>
             </div>
  
             <div class="col-12 col-sm-4 ">
@@ -113,7 +113,7 @@
     ?>
 
 
-    <!-- Modal -->
+    <!-- Modal - add new AvStay -->
     <div class="modal fade" id="addAvStay_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
