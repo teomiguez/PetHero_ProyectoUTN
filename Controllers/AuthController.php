@@ -160,64 +160,7 @@
 
         // -> HAY QUE VER CAMBIAR DE LUGAR Y MODIFICAR ALGUNAS FUNCIONES (X) NO RELACIONADAS AL AUTH 
         //    ORDENARLAS EN LOS CONTROLLERS ADECUADOS
-/*
-        public function CreatePet ($imgFile, $name, $radio_option, $breed, $size, $pvFile, $video, $info) // X
-        {
-            if (isset($_SESSION['idOwner']))
-            {   
-                if ($radio_option == "Gato")
-                {
-                    $catDAO = new CatDAO;
-                    $cat = new Cat;
 
-                    // -> SETs CAT
-                    $cat->setId_owner($_SESSION['idOwner']);
-                    $cat->setImg($imgFile);
-                    $cat->setName($name);
-                    $cat->setType($radio_option);
-                    $cat->setBreed($breed);
-                    $cat->setSize($size);
-                    $cat->setPlanVacunacion($pvFile);
-                    $cat->setVideo($video);
-                    $cat->setInfo($info);
-                    // <- SETs CAT
-
-                    // -> ADD CAT TO JSON
-                    $catDAO->Add($cat);
-                    // <- ADD CAT TO JSON
-                }
-                else
-                {
-                    $dogDAO = new DogDAO;
-                    $dog = new Dog;
-
-                    // -> SETs DOG
-                    $dog->setId_owner($_SESSION['idOwner']);
-                    $dog->setImg($imgFile);
-                    $dog->setName($name);
-                    $dog->setType($radio_option);
-                    $dog->setBreed($breed);
-                    $dog->setSize($size);
-                    $dog->setPlanVacunacion($pvFile);
-                    $dog->setVideo($video);
-                    $dog->setInfo($info);
-                    // <- SETs DOG
-
-                    // -> ADD DOG TO JSON
-                    $dogDAO->Add($dog);
-                    // <- ADD DOG TO JSON
-                }
-                
-                // -> REDIRECTION TO PET/SHOWLIT
-                header("location: " . FRONT_ROOT . "Pet/ShowList");
-                // <- REDIRECTION TO PET/SHOWLIT
-            }
-            else
-            {
-                header("location: " . FRONT_ROOT . "Auth/ShowLogin");
-            }  
-        }
-*/
         
         public function CreateAvStay ($first_day, $last_day) // X
         {
