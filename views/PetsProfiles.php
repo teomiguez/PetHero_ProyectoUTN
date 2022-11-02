@@ -93,7 +93,7 @@
                 <!-- Button whit modal -->
                 <button type="button" class="btn btn-primary w-100" data-bs-toggle="modal"
                     data-bs-target="#createPet_modal">
-                    Crear perfil
+                    Añadir Mascota
                 </button>
             </div>
 
