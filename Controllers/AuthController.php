@@ -244,7 +244,7 @@
                 }
                 else
                 {
-                    header("location: " . FRONT_ROOT . "AvStay/ShowList");
+                    header("location: " . FRONT_ROOT . "AvStay/ShowList/flag=1");
                 }
             }
             else
@@ -308,6 +308,21 @@
             {
                 return false; // NO EXISTE
             }
+        }
+
+        function checkDiffDays($first_day, $last_day)
+        {
+            $flag = false;
+            
+            if ($first_day >= date('Y-m-d'))
+            {
+                if ($last_day > $first_day)
+                {
+                    $flag = true;
+                }
+            }
+
+            return $flag;
         }
 
         function RegisterOwner($name, $last_name, $dni, $tel, $email, $password)

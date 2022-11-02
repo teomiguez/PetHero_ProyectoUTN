@@ -72,7 +72,7 @@
                             <tr class="align-middle">
                                 <td> <?php echo $avStay->getFirst_day() ?> </td>
                                 <td> <?php echo $avStay->getLast_day() ?> </td>
-                                <td> <?php echo "hacer la diferencia" ?> </td>
+                                <td> <?php echo 'diferencia' ?> </td>
                                 <td> 
                                     <form action="<?php echo FRONT_ROOT . "AvStay/RemoveStay" ?>" method="POST">
                                         <button class="btn btn-link" type="submit" name="id" 
@@ -140,6 +140,15 @@
             </div>
         </div>
     </div>
+
+    <?php if(isset($alert_days)) { ?>
+        <div class="position-absolute top-0 start-50 translate-middle-x">
+            <div class="alert alert-<?php echo $alert_days['type'] ?>" role="alert">
+                <?php echo $alert_days['text'] ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div>
+    <?php } ?>
 
     <!-- Funcionalidades JS propias de Boostrap (para uso de compoentes especificos) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"

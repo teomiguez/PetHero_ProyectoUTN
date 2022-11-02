@@ -16,12 +16,17 @@
             }
         } 
 
-        public function ShowList()
+        public function ShowList($flag = '')
         {
             $avStayDAO = new AvStayDAO();
             $avStayList = array();
 
             $avStayList = $avStayDAO->GetByKeeper($_SESSION["idGuardian"]);
+
+            if ($flag != '')
+            {
+                $alert_days = array("type" => "danger", "text" => "Las fechas ingresadas no son coherentes");
+            }
 
             require_once(VIEWS_PATH . "GuardianHome.php");
         }
