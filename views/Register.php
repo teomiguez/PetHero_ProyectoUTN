@@ -45,7 +45,7 @@
 
                     <div class="col-12 col-md-6 my-2">
                         <div>
-                            <label for="tel" class="form-label"> Telefono  </label>
+                            <label for="tel" class="form-label"> Teléfono  </label>
                             <input id="tel" name="tel" type="tel" class="form-control" placeholder="223xxxxxxx" 
                                 pattern="[2]{2}[3]{1}[0-9]{3}[0-9]{4}" required>
                         </div>
@@ -95,7 +95,7 @@
                                 <input class="form-check-input" type="radio" name="radio_option" id="radio_guardian" value="guardian"
                                     onclick= "enabledFields()" required 
                                 />
-                                <label class="form-check-label" for="radio_guardian"> Guardian </label>
+                                <label class="form-check-label" for="radio_guardian"> Guardián </label>
                             </div>
                         </div>
                     </div>
@@ -121,7 +121,7 @@
                         </div>
 
                         <div>
-                        <label for="cost" class="form-label"> Remuneracion x Dia </label>     
+                        <label for="cost" class="form-label"> Remuneración x Dia </label>     
                         <div class="input-group mb-3">
                                 <span class="input-group-text">$</span>
                                 <input id="cost" type="number" class="form-control" name= "cost" aria-label="Amount (to the nearest dollar)" 

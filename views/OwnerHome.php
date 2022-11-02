@@ -36,7 +36,7 @@
                 *Listado de Reservas activas y a pagar*
             </div>
 
-            <div class="col-12 col-sm-8 col-lg-5 pt-3">
+            <div class="text-center col-12 col-sm-8 col-lg-5 pt-3" >
                 <h2 class="text-center"> Lista de guardianes </h2>
             
                 <!-- Filtro -->

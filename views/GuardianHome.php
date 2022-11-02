@@ -42,7 +42,7 @@
             </div>
  
             <div class="col-12 col-sm-4 ">
-                <h2 class="text-center"> Estadias disponibles </h2>
+                <h2 class="text-center"> Estadías disponibles </h2>
 
                 <!-- <form action="">
                     <div class="input-group mb-3">
@@ -96,7 +96,7 @@
                 <!-- Button whit modal -->
                 <button type="button" class="btn btn-primary w-100" data-bs-toggle="modal"
                     data-bs-target="#addAvStay_modal">
-                    Agregar estadia
+                    Agregar estadía
                 </button>
             </div>
                 

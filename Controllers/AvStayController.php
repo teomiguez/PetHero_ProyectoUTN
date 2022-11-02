@@ -81,10 +81,6 @@
             return $flag;
         }
 
-
-
-
-
         public function RemoveStay($id)
         {
             $avStayDAO = new AvStayDAO();

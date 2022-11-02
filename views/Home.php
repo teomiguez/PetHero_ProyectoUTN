@@ -32,7 +32,7 @@
         </section>
 
         <section class="bg-white text-dark py-2 px-3 border-5 rounded-4">
-            <h2 class="text-center py-4"> Iniciar Sesion </h2>
+            <h2 class="text-center py-4"> Iniciar Sesión </h2>
             <form action="<?php echo FRONT_ROOT . "Auth/Login" ?>" method="POST">
 
                 <div>
