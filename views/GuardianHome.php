@@ -118,7 +118,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="<?php echo FRONT_ROOT . " Auth/CreateAvStay" ?>" method="POST" class="text-start">
+                    <form action="<?php echo FRONT_ROOT . " AvStay/CreateAvStay" ?>" method="POST" class="text-start">
                         <div class="my-1">
                             <label for="first_day" class="form-label"> Desde </label>
                             <input id="first_day" name="first_day" type="date" class="form-control" required>
