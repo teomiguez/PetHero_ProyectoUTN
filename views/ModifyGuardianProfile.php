@@ -36,6 +36,7 @@
         - CREAR METODO UPDATE EN GUARDIAN_CONTROLLER (BORRAR EL GUARDIAN EXISTENTE Y AGREGAR EL NUEVO MODIFICADO)
 
         Nota: Ver de dejar cargado en cada input los datos ya existentes (usar el $user y placeholder) y modificarlos
+        Nota2: Modificar el ancla de 'Modificar' del GuardianProfile (quedo feo jaja)
     */
     
     <main class="container text-center">
