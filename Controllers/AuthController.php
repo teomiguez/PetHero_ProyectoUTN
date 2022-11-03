@@ -120,6 +120,7 @@
             header ("location: " . FRONT_ROOT . "Auth/ShowLogin"); 
         }
 
+        
         public function Register($name = null, $last_name = null, $dni = null, $tel = null, $email = null, $password = null, $radio_option = null, $street = '', $nro = '', $typeSize = '', $cost = '')
         {
 

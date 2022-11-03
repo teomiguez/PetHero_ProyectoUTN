@@ -29,15 +29,12 @@
 
     <br>
 
-    /**
+<!-- 
         HAY QUE TERMINAR ESTA PÁGINA DE MODIFICACIÓN DEL PERFIL DEL GUARDIAN
 
-        - COMPLETAR LA VISTA DEL FORMULARIO
         - CREAR METODO UPDATE EN GUARDIAN_CONTROLLER (BORRAR EL GUARDIAN EXISTENTE Y AGREGAR EL NUEVO MODIFICADO)
-
-        Nota: Ver de dejar cargado en cada input los datos ya existentes (usar el $user y placeholder) y modificarlos
-        Nota2: Modificar el ancla de 'Modificar' del GuardianProfile (quedo feo jaja)
-    */
+        Nota: Modificar el ancla de 'Modificar' del GuardianProfile (quedo feo jaja)
+-->
     
     <main class="container text-center">
         <div class="col-md-6 offset-md-3">
@@ -71,8 +68,16 @@
                             </div>          
                     </tr>
                         <tr>
-                            <th scope="row"> Dirección: </th>
-                            <td> <?php echo $user->getAddress() ?> </td>
+                            <div class="d-flex">
+                                <th scope="row"><label class="me-3" for="adress" class="form-label"> </label> Calle: </th> 
+                                <td> <input id="street" name="street" type="text" class="form-control"  value="<?php echo strtok($user->getAddress()," ")   ?> " required ></td>   
+                            </div>
+                        </tr>     <!-- LA FUNCION QUE RECIBA LA CALLE Y LA ALTURA DEBE UNIRLAS PARA CONFORMAR ADRESS, IGUAL QUE EN EL REGISTERGUARDIAN (SI SE NOS COMPLICA SOLO MOSTRAMOS EL ADRESS Y PONEMOS DISABLED PARA QUE NO SE PUEDA MDIFICAR ;)-->
+                        <tr>
+                            <div class="d-flex">
+                                <th scope="row"><label class="me-3" for="adress" class="form-label"> </label> Altura: </th>
+                                <td> <input id="nro" name="nro" type="numer" class="form-control" min="1" max="9999" value="<?php echo filter_var($user->getAddress(), FILTER_SANITIZE_NUMBER_INT) ?> " required> </td>    
+                            </div>
                         </tr>
                         <tr>
                             <div class="d-flex">
@@ -86,16 +91,28 @@
                                 <td> <input id="password" name="password" type="password" class="form-control" value="<?php echo $user->getPassword() ?>" required ></td>    
                             </div>
                     </tr>
-                            <th scope="row"> Preferencia: </th>
-                            <td> Tamaño <?php echo $user->getSizeCare() ?> </td>
+                            <div class="d-flex">
+                                <th scope="row"><label class="me-3"  for="typeSize" class="form-label"> </label> Preferencia: </th> 
+                                <td> <select id="typeSize" class="form-select" aria-label="form-select" name="typeSize" value="<?php echo $user->getSizeCare()?>" required >
+                                    <option value="chico"> Chico </option>
+                                    <option value="mediano"> Mediano </option>
+                                    <option value="grande"> Grande </option>
+                            </select>
+                               </td>    
+                            </div>
                         </tr>
                         <tr>
-                            <th scope="row"> Remuneración: </th>
-                            <td> $<?php echo $user->getCost() ?> x dia </td>
+                            <div class="d-flex">
+                                <th scope="row"><label class="me-3" for="cost" class="form-label"> </label> Remuneración $ : </th> 
+                                <td>  <input id="cost" type="number" class="form-control" name= "cost" aria-label="Amount (to the nearest dollar)" 
+                                    min="1" value="<?php echo $user->getCost() ?>" required ></td>    
+                            </div>
                         </tr>
                         <tr>
-                            <th scope="row"> Calificación:  </th>
-                            <td> <?php echo $user_review->getReview() ?> (<?php echo $user_review->getQuantity_reviews() ?>) </td> 
+                            <div class="d-flex">
+                                <th scope="row"><label class="me-3" for="review" class="form-label"> </label> Calificación : </th> 
+                                <td>  <input id="review" type="number" class="form-control" name= "review" value="<?php $user_review->getId_review() ?>" placeholder= "<?php echo $user_review->getReview() ?> (<?php echo $user_review->getQuantity_reviews() ?>)" required disabled></td>    
+                            </div>
                         </tr>
                     </tbody>
             </form>
