@@ -28,16 +28,55 @@
     ?>
 
     <br>
-
-    <main class="container">
-
-        <div class="row">
-
-            <!-- VER PERFIL DEL GUARDIAN -->
-            <!-- OPCION MODIFICAR -->
-
+    
+    <main class="container text-center">
+        <div class="col-md-6 offset-md-3">
+            <h2 class="text-center my-3"> Perfil del guardian </h2>
+            <table class="table table-striped">
+                <tbody>
+                    <tr>
+                        <th scope="row"> Nombre: </th>
+                        <td> <?php echo $user->getName() ?> </td>
+                    </tr>
+                    <tr>
+                        <th scope="row"> Apellido: </th>
+                        <td> <?php echo $user->getLast_name() ?> </td>
+                    </tr>
+                    <tr>
+                        <th scope="row"> DNI: </th>
+                        <td> <?php echo $user->getDni() ?> </td>
+                    </tr>
+                    <tr>
+                        <th scope="row"> Telefono: </th>
+                        <td> <?php echo $user->getTelephone() ?> </td>
+                    </tr>
+                    <tr>
+                        <th scope="row"> Dirección: </th>
+                        <td> <?php echo $user->getAddress() ?> </td>
+                    </tr>
+                    <tr>
+                        <th scope="row"> Email: </th>
+                        <td> <?php echo $user->getEmail() ?> </td>
+                    </tr>
+                    <tr>
+                        <th scope="row"> Contraseña: </th>
+                        <td> <?php echo $user->getPassword() ?> </td>
+                    </tr>
+                    <tr>
+                        <th scope="row"> Preferencia: </th>
+                        <td> Tamaño <?php echo $user->getSizeCare() ?> </td>
+                    </tr>
+                    <tr>
+                        <th scope="row"> Remuneración: </th>
+                        <td> $<?php echo $user->getCost() ?> x dia </td>
+                    </tr>
+                    <tr>
+                        <th scope="row"> Calificación:  </th>
+                        <td> <?php echo $user_review->getReview() ?> (<?php echo $user_review->Quantity_reviews() ?>) </td> 
+                    </tr>
+                </tbody>
+            </table>    
         </div>
-
     </main>
 
     <!-- Linea divisoria main/footer -->

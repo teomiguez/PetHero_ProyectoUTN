@@ -3,6 +3,7 @@
 
     use DAO\GuardianDAO as GuardianDAO;
     use DAO\AvStayDAO as AvStayDAO;
+    use DAO\ReviewDAO as ReviewDAO;
     use Models\AvStay as AvStay;
 
     class GuardianController 
@@ -22,8 +23,10 @@
             if (isset($_SESSION['idGuardian']))
             {         
                 $guardian_DAO = new GuardianDAO();
+                $reviewDAO = new ReviewDAO();
 
                 $user = $guardian_DAO->GetById($_SESSION["idGuardian"]);
+                $user_review = $reviewDAO->GetById($_SESSION["idGuardian"]);
 
                 require_once(VIEWS_PATH . "GuardianProfile.php");
             }
