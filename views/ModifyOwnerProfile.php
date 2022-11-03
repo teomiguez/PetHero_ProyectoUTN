@@ -41,47 +41,53 @@
     
     <main class="container text-center">
         <div class="col-md-6 offset-md-3">
-            <h2 class="text-center my-3"> Perfil del guardian </h2>
+            <h2 class="text-center my-3"> Perfil del Dueño </h2>
             <form action="" method="">
 
                 <table class="table table-striped">
                     <tbody>
                         <tr>
                             <div class="d-flex">
-                                <label class="me-3" for="name" class="form-label"> Nombre </label>
-                                <input id="name" name="name" type="text" class="form-control" placeholder="<?php echo $user->getName() ?>" required>    
+                                <th scope="row"><label class="me-3" for="name" class="form-label"> </label> Nombre: </th> 
+                                <td> <input id="name" name="name" type="text" class="form-control" value="<?php echo $user->getName() ?>" required ></td>    
                             </div>
                         </tr>
-                        <tr>
-                            <th scope="row"> Apellido: </th>
-                            <td> <?php echo $user->getLast_name() ?> </td>
-                        </tr>
-                        <tr>
-                            <th scope="row"> DNI: </th>
-                            <td> <?php echo $user->getDni() ?> </td>
-                        </tr>
-                        <tr>
-                            <th scope="row"> Telefono: </th>
-                            <td> <?php echo $user->getTelephone() ?> </td>
-                        </tr>
-                        <tr>
-                            <th scope="row"> Dirección: </th>
-                            <td> <?php echo $user->getAddress() ?> </td>
-                        </tr>
-                        <tr>
-                            <th scope="row"> Email: </th>
-                            <td> <?php echo $user->getEmail() ?> </td>
-                        </tr>
-                        <tr>
-                            <th scope="row"> Contraseña: </th>
-                            <td> <?php for ($i=0 ; $i < strlen($user->getPassword()) ; $i++) { echo '*'; } ?> </td>
-                        </tr>   
+                    <tr>
+                            <div class="d-flex">
+                                <th scope="row"><label class="me-3" for="last_name" class="form-label"></label> Apellido: </th> 
+                                <td> <input id="last_name" name="last_name" type="text" class="form-control" value="<?php echo $user->getLast_name() ?>" required></td>    
+                            </div>
+                    </tr>
+                    <tr>
+                            <div class="d-flex">
+                                <th scope="row"><label class="me-3" for="dni" class="form-label"></label> DNI: </th> 
+                                <td> <input id="dni" name="dni" type="number" class="form-control" min="1000000" max="99000000" value="<?php echo $user->getDni() ?>" required></td>    
+                            </div>
+                    </tr>
+                    <tr>
+                            <div class="d-flex">
+                                <th scope="row"><label class="me-3" for="tel" class="form-label"> </label> Telefono: </th> 
+                                <td> <input id="tel" name="tel" type="tel" class="form-control" pattern="[2]{2}[3]{1}[0-9]{3}[0-9]{4}" value="<?php echo $user->getTelephone() ?>" required ></td>    
+                            </div>          
+                    </tr>
+                    <tr>
+                            <div class="d-flex">
+                                <th scope="row"><label class="me-3" for="email"class="form-label"> </label> Email: </th> 
+                                <td> <input id="name" name="name" type="text" class="form-control" value="<?php echo $user->getEmail() ?>" required ></td>    
+                            </div>
+                    </tr>
+                    <tr>
+                            <div class="d-flex">
+                                <th scope="row"><label class="me-3" for="password" class="form-label"> </label> Contraseña: </th> 
+                                <td> <input id="password" name="password" type="password" class="form-control" value="<?php echo $user->getPassword() ?>" required ></td>    
+                            </div>
+                    </tr>
                     </tbody>
             </form>
-                <div class="d-grid gap-2 col-6 me-auto">
-                    <a href="">  </a>
-                </div>
-            </table>    
+            </table>   
+            <div class="d-grid gap-2 col-6 me-auto">
+                    <a href=""> Guardar Cambios </a>
+                </div> 
         </div>
     </main>
 
