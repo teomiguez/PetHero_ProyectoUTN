@@ -53,6 +53,22 @@
             }  
         }
 
+        public function ModifyProfile_Owner()
+        {
+            if (isset($_SESSION['idOwner']))
+            {        
+                $owner_DAO = new OwnerDAO();
+
+                $user = $owner_DAO->GetById($_SESSION["idOwner"]);
+
+                require_once(VIEWS_PATH . "ModifyOwnerProfile.php");
+            }
+            else
+            {
+                header("location: " . FRONT_ROOT . "Auth/ShowLogin");
+            } 
+        }
+
         public function ShowGuardians()
         {
             if (isset($_SESSION['idOwner']))

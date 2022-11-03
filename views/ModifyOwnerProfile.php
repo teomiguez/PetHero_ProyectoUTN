@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Guardian - Mi Perfil </title>
+    <title> Dueño - Mi Perfil </title>
 
     <!-- Link use Css_file -->
     <link rel="stylesheet" href="css/styles.css">
@@ -23,20 +23,20 @@
     <!-- Barra de navegacion -->
     <?php
 
-    include('nav-guardian.php');
+    include('nav-owner.php');
 
     ?>
 
     <br>
 
     /**
-        HAY QUE TERMINAR ESTA PÁGINA DE MODIFICACIÓN DEL PERFIL DEL GUARDIAN
+        HAY QUE TERMINAR ESTA PÁGINA DE MODIFICACIÓN DEL PERFIL DEL DUEÑO
 
         - COMPLETAR LA VISTA DEL FORMULARIO
-        - CREAR METODO UPDATE EN GUARDIAN_CONTROLLER (BORRAR EL GUARDIAN EXISTENTE Y AGREGAR EL NUEVO MODIFICADO)
+        - CREAR METODO UPDATE EN OWNER_CONTROLLER (BORRAR EL DUEÑO EXISTENTE Y AGREGAR EL NUEVO MODIFICADO)
 
         Nota: Ver de dejar cargado en cada input los datos ya existentes (usar el $user y placeholder) y modificarlos
-        Nota2: Modificar el ancla de 'Modificar' del GuardianProfile (quedo feo jaja)
+        Nota2: Modificar el ancla de 'Modificar' del OwnerProfile (quedo feo jaja)
     */
     
     <main class="container text-center">
@@ -75,19 +75,7 @@
                         <tr>
                             <th scope="row"> Contraseña: </th>
                             <td> <?php for ($i=0 ; $i < strlen($user->getPassword()) ; $i++) { echo '*'; } ?> </td>
-                        </tr>
-                        <tr>
-                            <th scope="row"> Preferencia: </th>
-                            <td> Tamaño <?php echo $user->getSizeCare() ?> </td>
-                        </tr>
-                        <tr>
-                            <th scope="row"> Remuneración: </th>
-                            <td> $<?php echo $user->getCost() ?> x dia </td>
-                        </tr>
-                        <tr>
-                            <th scope="row"> Calificación:  </th>
-                            <td> <?php echo $user_review->getReview() ?> (<?php echo $user_review->getQuantity_reviews() ?>) </td> 
-                        </tr>
+                        </tr>   
                     </tbody>
             </form>
                 <div class="d-grid gap-2 col-6 me-auto">

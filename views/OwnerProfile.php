@@ -29,14 +29,40 @@
     <br>
 
     <main class="container">
-
-        <div class="row">
-
-            <!-- VER PERFIL DEL DUEÑO -->
-            <!-- OPCION MODIFICAR -->
-
+        <div class="col-md-6 offset-md-3">
+            <h2 class="text-center my-3"> Perfil del dueño </h2>
+            <table class="table table-striped">
+                <tbody>
+                    <tr>
+                        <th scope="row"> Nombre: </th>
+                        <td> <?php echo $user->getName() ?> </td>
+                    </tr>
+                    <tr>
+                        <th scope="row"> Apellido: </th>
+                        <td> <?php echo $user->getLast_name() ?> </td>
+                    </tr>
+                    <tr>
+                        <th scope="row"> DNI: </th>
+                        <td> <?php echo $user->getDni() ?> </td>
+                    </tr>
+                    <tr>
+                        <th scope="row"> Telefono: </th>
+                        <td> <?php echo $user->getTelephone() ?> </td>
+                    </tr>
+                    <tr>
+                        <th scope="row"> Email: </th>
+                        <td> <?php echo $user->getEmail() ?> </td>
+                    </tr>
+                    <tr>
+                        <th scope="row"> Contraseña: </th>
+                        <td> <?php for ($i=0 ; $i < strlen($user->getPassword()) ; $i++) { echo '*'; } ?> </td>
+                    </tr>
+                </tbody>
+            </table>    
+            <div class="d-grid gap-2 col-6 me-auto">
+                <a href="<?php echo FRONT_ROOT . "Owner/ModifyProfile_Owner" ?>"> Modificar </a>
+            </div>
         </div>
-
     </main>
 
     <!-- Footer -->

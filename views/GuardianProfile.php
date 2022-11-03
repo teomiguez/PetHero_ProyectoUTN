@@ -60,7 +60,7 @@
                     </tr>
                     <tr>
                         <th scope="row"> Contraseña: </th>
-                        <td> <?php echo $user->getPassword() ?> </td>
+                        <td> <?php for ($i=0 ; $i < strlen($user->getPassword()) ; $i++) { echo '*'; } ?> </td>
                     </tr>
                     <tr>
                         <th scope="row"> Preferencia: </th>
