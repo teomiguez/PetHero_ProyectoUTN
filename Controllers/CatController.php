@@ -29,6 +29,16 @@
             require_once(VIEWS_PATH . "PetsProfiles.php");
         }
 
+        public function ShowCatProfile($id)
+        {
+            $catDAO = new CatDAO();
+            $pet = $catDAO->GetById($id);
+
+            $("#viewPet_modal").modal("show");
+
+            require_once(VIEWS_PATH . "PetsProfiles.php");
+        }
+
         // esta funcion no tiene uso por ahora, porque usamos la funcion CreatePet del AuthController que sirve para crear un cat o un dog 
 
         public function AddNewCat($imgFile, $name, $radio_option, $breed, $size, $pvFile, $video, $info)

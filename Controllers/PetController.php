@@ -70,25 +70,18 @@
             }  
         }
 
-
         public function ShowViewModal_Perro($id)
         {
-            $dogDAO = new DogDAO();
-            $dog = new Dog();
-
-            $pet = $dogDAO->GetById($id);
-
-            // abrir el modal o (ultima opcion) crear pagina solo para la mascota
+           $dogController = new DogController();
+           
+            $dogController->ShowDogProfile($id);
         }
 
         public function ShowViewModal_Gato($id)
         {
-            $catDAO = new CatDAO();
-            $cat = new Cat();
-
-            $pet = $catDAO->GetById($id);
+            $catController = new CatController();
             
-            // abrir el modal o (ultima opcion) crear pagina solo para la mascota
+            $catController->ShowCatProfile($id);    
         }
 
         public function RemovePerro($id)
