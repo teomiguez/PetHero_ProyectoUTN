@@ -37,6 +37,24 @@
 
         }
 
+        public function ModifyProfile_Guardian()
+        {
+            if (isset($_SESSION['idGuardian']))
+            {         
+                $guardian_DAO = new GuardianDAO();
+                $reviewDAO = new ReviewDAO();
+
+                $user = $guardian_DAO->GetById($_SESSION["idGuardian"]);
+                $user_review = $reviewDAO->GetById($user->getId_review());
+
+                require_once(VIEWS_PATH . "ModifyGuardianProfile.php");
+            }
+            else
+            {
+                 header("location: " . FRONT_ROOT . "Auth/ShowLogin");
+            }  
+        }
+
         
         public function HomeGuardian()
         {
