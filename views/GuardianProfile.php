@@ -31,7 +31,7 @@
     
     <main class="container text-center">
         <div class="col-md-6 offset-md-3">
-            <h2 class="text-center my-3"> Perfil del guardian </h2>
+            <h2 class="text-center my-3"> Perfil del Guardian </h2>
             <table class="table table-striped">
                 <tbody>
                     <tr>

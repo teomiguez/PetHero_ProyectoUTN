@@ -30,7 +30,7 @@
 
     <main class="container">
         <div class="col-md-6 offset-md-3">
-            <h2 class="text-center my-3"> Perfil del dueño </h2>
+            <h2 class="text-center my-3"> Perfil del Dueño </h2>
             <table class="table table-striped">
                 <tbody>
                     <tr>
