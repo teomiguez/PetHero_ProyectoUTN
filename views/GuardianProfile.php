@@ -72,7 +72,7 @@
                     </tr>
                     <tr>
                         <th scope="row"> Calificación:  </th>
-                        <td> <?php echo $user_review->getReview() ?> (<?php echo $user_review->Quantity_reviews() ?>) </td> 
+                        <td> <?php echo $user_review->getReview() ?> (<?php echo $user_review->getQuantity_reviews() ?>) </td> 
                     </tr>
                 </tbody>
             </table>    

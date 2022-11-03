@@ -26,7 +26,7 @@
                 $reviewDAO = new ReviewDAO();
 
                 $user = $guardian_DAO->GetById($_SESSION["idGuardian"]);
-                $user_review = $reviewDAO->GetById($_SESSION["idGuardian"]);
+                $user_review = $reviewDAO->GetById($user->getId_review());
 
                 require_once(VIEWS_PATH . "GuardianProfile.php");
             }
