@@ -61,7 +61,7 @@
                     <tr>
                             <div class="d-flex">
                                 <th scope="row"><label class="me-3" for="dni" class="form-label"></label> DNI: </th> 
-                                <td> <input id="dni" name="dni" type="number" class="form-control" min="1000000" max="99000000" value="<?php echo $user->getDni() ?>" required></td>    
+                                <td> <input id="dni" name="dni" type="number" class="form-control" min="1000000" max="99000000" value="<?php echo $user->getDni() ?>" required disabled></td>    
                             </div>
                     </tr>
                     <tr>
@@ -73,7 +73,7 @@
                     <tr>
                             <div class="d-flex">
                                 <th scope="row"><label class="me-3" for="email"class="form-label"> </label> Email: </th> 
-                                <td> <input id="name" name="name" type="text" class="form-control" value="<?php echo $user->getEmail() ?>" required ></td>    
+                                <td> <input id="name" name="name" type="text" class="form-control" value="<?php echo $user->getEmail() ?>" required disabled></td>    
                             </div>
                     </tr>
                     <tr>
