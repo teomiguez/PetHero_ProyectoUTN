@@ -1,11 +1,10 @@
 <?php
     namespace DAO;
 
-    use DAO\I_GuardianDAO as I_GuardianDAO;
+    use DAO\I_DAO as I_DAO;
     use Models\Guardian as Guardian;
-    use Models\AvStay as AvStay;
 
-    class GuardianDao implements I_GuardianDAO
+    class GuardianDao implements I_DAO
     {
         private $guardianList = array();
         private $fileName;

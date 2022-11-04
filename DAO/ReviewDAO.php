@@ -2,10 +2,10 @@
 
     namespace DAO;
 
-    use DAO\I_ReviewDAO as I_ReviewDAO;
+    use DAO\I_DAO as I_DAO;
     use Models\Review as Review;
 
-    class ReviewDAO implements I_ReviewDAO
+    class ReviewDAO implements I_DAO
     {
         private $reviewList = array();
         private $fileName;

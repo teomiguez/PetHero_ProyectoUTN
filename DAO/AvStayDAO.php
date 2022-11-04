@@ -2,10 +2,10 @@
 
     namespace DAO;
 
-    use DAO\I_AvStayDAO as I_AvStayDAO;
+    use DAO\I_DAO as I_DAO;
     use Models\AvStay as AvStay;
 
-    class AvStayDAO implements I_AvStayDAO
+    class AvStayDAO implements I_DAO
     {
         private $stayList = array();
         private $fileName;

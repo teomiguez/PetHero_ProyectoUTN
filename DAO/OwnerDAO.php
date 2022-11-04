@@ -1,10 +1,10 @@
 <?php
     namespace DAO;
 
-    use DAO\I_OwnerDAO as I_OwnerDAO;
+    use DAO\I_DAO as I_DAO;
     use Models\Owner as Owner;
 
-    class OwnerDao implements I_OwnerDAO
+    class OwnerDao implements I_DAO
     { 
         private $ownerList = array();
         private $fileName;

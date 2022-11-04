@@ -1,11 +1,11 @@
 <?php
     namespace DAO;
 
-    use DAO\I_CatDAO as I_CatDAO;
+    use DAO\I_DAO as I_DAO;
     use Models\Pet as Pet;
     use Models\Cat as Cat;
 
-    class CatDAO implements I_CatDAO
+    class CatDAO implements I_DAO
     {
         private $catList = array();
         private $fileName;
