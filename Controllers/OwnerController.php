@@ -3,8 +3,10 @@
     
     use DAO\OwnerDAO as OwnerDAO;
     use DAO\GuardianDAO as GuardianDAO;
+    use DAO\AvStayDAO as AvStayDAO;
     use Models\Guardian as Guardian;
     use Models\Owner as Owner;
+    use Models\AvStay as AvStay;
 
     class OwnerController 
     {
@@ -85,14 +87,23 @@
             }      
         }
 
-        public function ShowFilterGuardians($fist_day, $last_day)
+        public function ShowFilterGuardians($first_day, $last_day)
         {
             if (isset($_SESSION['idOwner']))
             {  
                 $guardian_DAO = new GuardianDAO();
                 $avStayDAO = new AvStayDAO();
+                
+                $idsGuardiansAvailable = $avStayDAO->GetIdGuardian_ByDates($first_day, $last_day);
 
-                $guardians = $guardian_DAO->GetById($avStayDAO->GetIdGuardian_ByDates($fist_day, $last_day));
+                $guardiansAviable = $guardian_DAO->GetById($idsGuardiansAvailable);
+                
+                /**
+                *$guardiansAviable = array_filter($idsGuardiansAvailable, function ($guardian) use ($id_keeper) 
+                *{
+                *    return $guardian->getId_guardian() == $id_keeper;
+                *});
+                */
 
                 require_once(VIEWS_PATH . "OwnerHome.php");
             }

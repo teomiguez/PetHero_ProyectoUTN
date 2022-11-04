@@ -60,37 +60,76 @@
                         </div>    
                     </form>
                 </div>
+                <!-- Filtro -->
 
-                <table class="table text-center">
-                    <thead>
-                        <tr>
-                            <th scope="col"> Nombre </th>
-                            <th scope="col"> Apellido </th>
-                            <th scope="col"> Telefono </th>
-                            <th scope="col">  </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
+                <?php if(isset($guardians)) { ?>
 
-                            foreach ($guardians as $guardian) {
-                        ?>
+                    <table class="table text-center">
+                        <thead>
+                            <tr>
+                                <th scope="col"> Nombre </th>
+                                <th scope="col"> Apellido </th>
+                                <th scope="col"> Telefono </th>
+                                <th scope="col">  </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+    
+                                foreach ($guardians as $guardian) {
+                            ?>
+    
+                            <tr class="align-middle">
+                                <td> <?php echo $guardian->getName() ?> </td>
+                                <td> <?php echo $guardian->getLast_name() ?> </td>
+                                <td> <?php echo $guardian->getTelephone() ?> </td>
+                                <td> 
+                                    <button class="btn btn-link" type="button" data-bs-toggle="modal"
+                                    data-bs-target="#viewGuardian_modal">
+                                        <i class="bi bi-eye-fill"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>   
+                    
+                        <?php } ?>
+                    </table>
 
-                        <tr class="align-middle">
-                            <td> <?php echo $guardian->getName() ?> </td>
-                            <td> <?php echo $guardian->getLast_name() ?> </td>
-                            <td> <?php echo $guardian->getTelephone() ?> </td>
-                            <td> 
-                                <button class="btn btn-link" type="button" data-bs-toggle="modal"
-                                data-bs-target="#viewGuardian_modal">
-                                    <i class="bi bi-eye-fill"></i>
-                                </button>
-                            </td>
-                        </tr>
-                    </tbody>   
-                
-                    <?php } ?>
-                </table>
+                <?php }
+                      else if(isset($guardiansAviable)) { ?>
+
+                        <table class="table text-center">
+                        <thead>
+                            <tr>
+                                <th scope="col"> Nombre </th>
+                                <th scope="col"> Apellido </th>
+                                <th scope="col"> Telefono </th>
+                                <th scope="col">  </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+    
+                                foreach ($guardiansAviable as $guardian) {
+                            ?>
+    
+                            <tr class="align-middle">
+                                <td> <?php echo $guardian->getName() ?> </td>
+                                <td> <?php echo $guardian->getLast_name() ?> </td>
+                                <td> <?php echo $guardian->getTelephone() ?> </td>
+                                <td> 
+                                    <button class="btn btn-link" type="button" data-bs-toggle="modal"
+                                    data-bs-target="#viewGuardian_modal">
+                                        <i class="bi bi-eye-fill"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>   
+                    
+                        <?php } ?>
+                    </table>
+
+                <?php } ?>
 
                 <!-- Button whit modal -->
                 <button type="button" class="btn btn-primary w-100" data-bs-toggle="modal"

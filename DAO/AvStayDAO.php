@@ -64,7 +64,7 @@
 
             $AvStays = array_filter($this->stayList, function($stay) use ($first_day, $last_day)
             {
-                if (($stay->getFist_day() >= $first_day) && ($stay->getLast_day() <= $first_day))
+                if (($stay->getFirst_day() <= $first_day) && ($stay->getLast_day() >= $last_day))
                 {
                     return $stay->getId_keeper();
                 }    

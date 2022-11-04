@@ -3,6 +3,7 @@
 
     use DAO\I_GuardianDAO as I_GuardianDAO;
     use Models\Guardian as Guardian;
+    use Models\AvStay as AvStay;
 
     class GuardianDao implements I_GuardianDAO
     {
