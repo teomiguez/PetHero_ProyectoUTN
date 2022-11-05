@@ -10,7 +10,6 @@ class Review
     private $sum_reviews;
     private $review; // review = sum_reviews / quantity_reviews
 
-
     // -> SETTERS Y GETTERS
 
     public function getId_review()

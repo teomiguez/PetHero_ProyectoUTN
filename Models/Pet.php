@@ -14,7 +14,6 @@ abstract class Pet
     private $video;
     private $info;
 
-
     // -> SETTERS Y GETTERS
 
     public function getId_pet()

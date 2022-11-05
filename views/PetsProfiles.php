@@ -136,14 +136,14 @@
 
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="radio_option" id="radio_gato" 
-                                    value="Gato" required 
+                                    value="2" required 
                                 />
                                 <label class="form-check-label" for="radio_gato"> Gato </label>
                             </div>
 
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="radio_option" id="radio_perro" 
-                                    value="Perro" required 
+                                    value="1" required 
                                 />
                                 <label class="form-check-label" for="radio_perro"> Perro </label>
                             </div>

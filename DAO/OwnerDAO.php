@@ -23,7 +23,7 @@
             {
                 $this->connection = Connection::GetInstance();
 
-                $query = "INSERT INTO owners (id_owner, first_name, last_name, dni, telephone,, email, pass)
+                $query = "INSERT INTO owners (id_owner, first_name, last_name, dni, telephone, email, pass)
                       VALUES (:id_owner, :first_name, :last_name, :dni, :telephone,, :email, :pass)";
 
                 $parameters['first_name'] = $owner->getName();
@@ -43,25 +43,135 @@
 
         public function GetAll()
         {
+            try
+            {
+                $this->connection = Connection::GetInstance();
+                $query = "SELECT * FROM owners";
+                $rta = $this->connection->Execute($query);
 
+                return $this->map($rta);
+            }
+            catch (Exception $e) 
+            {
+                throw $e;
+            }
         }
 
         public function GetById($id){
-        try {
-            $this->connection = Connection::GetInstance();
-            $query = "SELECT * FROM owners WHERE id_owner = '$id' ";
-            $resultado = $this->connection->Execute($query);
-            
-            // crear y cargar owner (no lo cargamos x constructor - usar sets)
-            $user = new Dueño($resultado[0]['IdUser'], $resultado[0]['Nombre'], $resultado[0]['Apellido'], $resultado[0]['FechaNacimiento'], $resultado[0]['Dni'],
-                              $resultado[0]['Telefono'], $resultado[0]['Email'], $this->getCiudad($resultado[0]['IdCiudad']), $resultado[0]['Calle'], $resultado[0]['NumCalle']);
-
-            return $user;
-
-        } catch (Exception $e) {
-            throw $e;
+            try {
+                $this->connection = Connection::GetInstance();
+                $query = "SELECT * FROM owners WHERE id_owner = '$id' ";
+                $rta = $this->connection->Execute($query);
+                
+                return $this->map($rta);
+            } 
+            catch (Exception $e) 
+            {
+                throw $e;
+            }
         }
-    }
+
+        public function GetByDni($dni)
+        {
+            try {
+                $this->connection = Connection::GetInstance();
+                $query = "SELECT * FROM owners WHERE dni = '$dni' ";
+                $rta = $this->connection->Execute($query);
+                
+                return $this->map($rta);
+            } 
+            catch (Exception $e) 
+            {
+                throw $e;
+            }
+        }
+
+        public function GetByEmail($email)
+        {
+            try {
+                $this->connection = Connection::GetInstance();
+                $query = "SELECT * FROM owners WHERE email = '$email' ";
+                $rta = $this->connection->Execute($query);
+                
+                return $this->map($rta);
+            } 
+            catch (Exception $e) 
+            {
+                throw $e;
+            }
+        }
+
+        public function Update($id, Owner $owner)
+        {
+            try
+            {
+                $this->connection = Connection::GetInstance();
+
+                $query = "UPDATE owners SET first_name=:first_name, last_name=:last_name, dni=:dni, telephone=:telephone, email=:email, pass=:pass
+                            WHERE id_owner = '$id'";
+
+                $parameters['first_name'] = $owner->getName();
+                $parameters['last_name'] = $owner->getLast_name();
+                $parameters['dni'] = $owner->getDni();
+                $parameters['telephone'] = $owner->getTelephone();
+                $parameters['email'] = $owner->getEmail();
+                $parameters['pass'] = $owner->getPassword();
+
+                $this->connection->ExecuteNonQuery($query, $parameters);
+            }
+            catch (Exception $e)
+            {
+                throw $e;
+            }
+        }
+
+        public function Remove($id)
+        {
+            try {
+                $this->connection = Connection::GetInstance();
+                $query = "DELETE FROM owners WHERE id_owner = '$id' ";
+                $rta = $this->connection->ExecuteNonQuery($query);
+                
+                return $rta;
+            } 
+            catch (Exception $e) 
+            {
+                throw $e;
+            }
+        }
+
+        /**
+         *  Transofmra un listado (array) de X cosas
+         *  en objetos de X cosa
+         * 
+         *  @param Array listado de X cosas a transformar en objetos
+         */
+
+        protected function map ($values)
+        {
+            $values = is_array($values) ? $values : [];
+
+            $rta = array_map(function($p){
+
+                $owner = new Owner;
+
+                $owner->setId_owner($p['id_owner']);
+                $owner->setName($p['fist_name']);
+                $owner->setLast_name($p['last_name']);
+                $owner->setDni($p['dni']);
+                $owner->setTelephone($p['telephone']);
+                $owner->setAddress($p['address']);
+                $owner->setEmail($p['email']);
+                $owner->setPassword($p['pass']);
+                $owner->setSizeCare($p['id_size_care']);
+                $owner->setCost($p['cost']);
+                $owner->setId_review($p['id_review']);
+                return $owner;
+
+            }, $values);
+
+            return count($rta) > 1 ? $rta : $rta['0']; // esto tira error - ver
+        }
         
         // DATABASE CLASSES ↑
 

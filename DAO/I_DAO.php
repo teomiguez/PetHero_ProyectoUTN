@@ -3,7 +3,7 @@
 
     interface I_DAO
     {
-        function Add($obj);
+        //function Add($obj); 
         
         function GetAll();
         

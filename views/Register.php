@@ -114,9 +114,9 @@
                         <div>
                             <label for="typeSize" class="form-label"> Tamaño de preferencia de la mascota </label>    
                             <select id="typeSize" class="form-select" aria-label="form-select" name="typeSize" required disabled>
-                                    <option value="chico"> Chico </option>
-                                    <option value="mediano"> Mediano </option>
-                                    <option value="grande"> Grande </option>
+                                    <option value="1"> Chico </option>
+                                    <option value="2"> Mediano </option>
+                                    <option value="3"> Grande </option>
                             </select>
                         </div>
 
