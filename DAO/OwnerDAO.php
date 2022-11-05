@@ -48,12 +48,19 @@
                 $this->connection = Connection::GetInstance();
                 $query = "SELECT * FROM owners";
                 $rta = $this->connection->Execute($query);
-
-                return $this->map($rta);
             }
             catch (Exception $e) 
             {
                 throw $e;
+            }
+
+            if(!empty($rta))
+            {
+                return $this->map($rta);
+            }
+            else
+            {
+                return false;
             }
         }
 
@@ -62,12 +69,19 @@
                 $this->connection = Connection::GetInstance();
                 $query = "SELECT * FROM owners WHERE id_owner = '$id' ";
                 $rta = $this->connection->Execute($query);
-                
-                return $this->map($rta);
             } 
             catch (Exception $e) 
             {
                 throw $e;
+            }
+
+            if(!empty($rta))
+            {
+                return $this->map($rta);
+            }
+            else
+            {
+                return false;
             }
         }
 
@@ -77,12 +91,19 @@
                 $this->connection = Connection::GetInstance();
                 $query = "SELECT * FROM owners WHERE dni = '$dni' ";
                 $rta = $this->connection->Execute($query);
-                
-                return $this->map($rta);
             } 
             catch (Exception $e) 
             {
                 throw $e;
+            }
+
+            if(!empty($rta))
+            {
+                return $this->map($rta);
+            }
+            else
+            {
+                return false;
             }
         }
 
@@ -92,12 +113,19 @@
                 $this->connection = Connection::GetInstance();
                 $query = "SELECT * FROM owners WHERE email = '$email' ";
                 $rta = $this->connection->Execute($query);
-                
-                return $this->map($rta);
             } 
             catch (Exception $e) 
             {
                 throw $e;
+            }
+
+            if(!empty($rta))
+            {
+                return $this->map($rta);
+            }
+            else
+            {
+                return false;
             }
         }
 

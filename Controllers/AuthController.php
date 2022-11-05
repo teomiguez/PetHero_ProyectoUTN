@@ -153,10 +153,12 @@
                 {
                     if ($radio_option == 'dueño')
                     {
+                        // cambiar y redireccionar al OwnerController
                         $this->RegisterOwner($name, $last_name, $dni, $tel, $email, $password);
                     } 
                     else if ($radio_option == 'guardian')
                     {
+                        // cambiar y redireccionar al GuardianController
                         $this->RegisterGuardian($name, $last_name, $dni, $tel, $email, $password, $street, $nro, $typeSize, $cost);
                     }
                     
