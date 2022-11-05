@@ -31,37 +31,42 @@
         }
         
         // -> PUBLIC FUNCTIONs
+
+        // VISTA REGISTRO
         
         public function ShowRegist()
         {
             require_once(VIEWS_PATH . "Register.php");
         }
 
+         // VISTA LOGIN (INICIO)
+
         public function ShowLogin()
         {
             require_once(VIEWS_PATH . "Home.php");
         }
 
+        // INICIAR SESION
+
         public function Login($email = null, $password = null)
         {
 
-            // Validacion por si se quiere acceder a la funcion Login desde la URL, sin pasar los parametros $email y $password
+            // VALIDACION X SEGURIDAD
             if ($email == null || $password == null)
             {
                 header("location: " . FRONT_ROOT . "Auth/ShowLogin"); 
             }
             else
-            {   // Login de owner o guardian
-
+            {   
                 session_destroy();
 
                 $ownerDAO = new OwnerDAO;
                 $guardianDAO = new GuardianDAO;
     
-                $user1 = $ownerDAO->GetByEmail($email);
-                $user2 = $guardianDAO->GetByEmail($email);
+                $user1 = $ownerDAO->GetByEmail($email); // USER1 → OWNER
+                $user2 = $guardianDAO->GetByEmail($email); // USER2 → GUARDIAN
     
-                if ($user1 != null)
+                if ($user1 != null) // LOGIN OWNER
                 {
                     if ($user1->getPassword() == $password)
                     {
@@ -76,12 +81,15 @@
                     }
                     else
                     {
+                        // ALERT DATOS ERRONEOS
                         $alert = array("type" => "danger", "text" => "Usuario y/o Contraseña incorrectos");
 
+                        // -> REDIRECTION TO LOGIN_VIEW
                         header("location: " . FRONT_ROOT . "Auth/ShowLogin");
+                        // <- REDIRECTION TO LOGIN_VIEW
                     }
                 }
-                else if ($user2 != null)
+                else if ($user2 != null) // LOGIN GUARDIAN
                 {
                     if ($user2->getPassword() == $password)
                     {
@@ -96,42 +104,51 @@
                     }
                     else
                     {
+                        // ALERT DATOS ERRONEOS
                         $alert = array("type" => "danger", "text" => "Usuario y/o Contraseña incorrectos");
                         
+                        // -> REDIRECTION TO LOGIN_VIEW
                         header("location: " . FRONT_ROOT . "Auth/ShowLogin");
+                        // <- REDIRECTION TO LOGIN_VIEW
                     }
     
                 }
                 else
                 {
+                    // ALERT DATOS ERRONEOS
                     $alert = array("type" => "danger", "text" => "Usuario y/o Contraseña incorrectos");
 
-                    // -> REDIRECTION TO 'Home.php'
+                    // -> REDIRECTION TO LOGIN_VIEW
                     require_once(VIEWS_PATH . "Home.php");
-                    // <- REDIRECTION TO 'Home.php'
+                    // <- REDIRECTION TO LOGIN_VIEW
                 }
             }
         }
+
+        // CERRAR SESION
 
         public function Logout()
         {
             session_destroy();
 
+            // -> REDIRECTION TO LOGIN_VIEW
             header ("location: " . FRONT_ROOT . "Auth/ShowLogin"); 
+            // <- REDIRECTION TO LOGIN_VIEW
         }
 
+        // REGISTRO DE UN OWNER/GUARDIAN
         
         public function Register($name = null, $last_name = null, $dni = null, $tel = null, $email = null, $password = null, $radio_option = null, $street = '', $nro = '', $typeSize = '', $cost = '')
         {
 
-           // Validacion por si se quiere acceder a la funcion Register desde la URL, sin pasar los parametros del registro
+            // VALIDACION X SEGURIDAD
             if ($name == null || $last_name == null || $dni == null || $tel == null || $email == null || $password == null || $radio_option == null)
             {
                 header("location: " . FRONT_ROOT . "Auth/ShowRegist"); 
             }
             else
-            {   // Register de un owner o guardian
-                
+            {   
+                // VALIDACION 'SI EXISTE' UN EMAIL O DNI 
                 if (($this->checkExistenceEmail($email) == false) && ($this->checkExistenceDni($dni) == false))
                 {
                     if ($radio_option == 'dueño')
@@ -145,47 +162,22 @@
                     
                     $alert_succes = array("type" => "success", "text" => "Registro exitoso");
                     
-                    // -> REDIRECTION TO 'Home.php'
+                    // -> REDIRECTION TO LOGIN_VIEW
                     require_once(VIEWS_PATH . "Home.php");
-                    // <- REDIRECTION TO 'Home.php'
+                    // <- REDIRECTION TO LOGIN_VIEW
                 }
                 else
                 {
+                    // ALERT - EXISTE EL EMAIL O DNI
                     $alert = array("type" => "danger", "text" => "El Email o DNI ya estan registrados");
                     
+                    // -> REDIRECTION TO REGISTER_VIEW
                     require_once(VIEWS_PATH . "Register.php");
+                    // <- REDIRECTION TO REGISTER_VIEW
                 }
             }
             
         }
-
-        // -> HAY QUE VER CAMBIAR DE LUGAR Y MODIFICAR ALGUNAS FUNCIONES (X) NO RELACIONADAS AL AUTH 
-        //    ORDENARLAS EN LOS CONTROLLERS ADECUADOS
-
-
-
-        // public function FilterDates ($first_day, $last_day) // VER COMO PASAR LAS FECHAS POR QUERYPARAMS (X)
-        // {
-        //     if ((isset($_SESSION['idOwner'])))
-        //     {  
-        //         if ($this->checkDiffDays($first_day, $last_day) == true)
-        //         {
-        //             // -> REDIRECTION TO HOME_FILTER_OWNER
-        //             header("location: " . FRONT_ROOT . "Owner/HomeFilterOwner"); // X
-        //             // <- REDIRECTION TO HOME_FILTER_OWNER
-        //         }
-        //         else
-        //         {
-        //             // -> REDIRECTION TO HOME_OWNER
-        //             header("location: " . FRONT_ROOT . "Owner/HomeOwner");
-        //             // <- REDIRECTION TO HOME_OWNER
-        //         }
-        //     }
-        //     else
-        //     {
-        //          header("location: " . FRONT_ROOT . "Auth/ShowLogin");
-        //     }  
-        //}
         
         // <- PUBLIC FUNCTIONs
         

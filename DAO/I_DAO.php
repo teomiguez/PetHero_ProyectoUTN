@@ -3,9 +3,7 @@
 
     interface I_DAO
     {
-        // ver porque tira error al usar el object
-
-        //function Add(Object $obj);
+        function Add($obj);
         
         function GetAll();
         

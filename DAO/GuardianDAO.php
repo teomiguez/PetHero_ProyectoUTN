@@ -3,16 +3,17 @@
 
     use DAO\I_DAO as I_DAO;
     use Models\Guardian as Guardian;
+    // use to bdd
+    use DAO\Connection as Connection;
+    use Exception;
+    use PDOException;
 
     class GuardianDao implements I_DAO
     {
         private $guardianList = array();
-        private $fileName;
+        private $fileName = ROOT . "Data/Guardianes.json";
 
-        public function __construct() 
-        {
-            $this->fileName = dirname(__DIR__)."/Data/Guardianes.json";
-        }
+        private $connection;
 
         function Add(Guardian $guardian)
         {

@@ -4,16 +4,17 @@
 
     use DAO\I_DAO as I_DAO;
     use Models\Review as Review;
+    // use to bdd
+    use DAO\Connection as Connection;
+    use Exception;
+    use PDOException;
 
     class ReviewDAO implements I_DAO
     {
         private $reviewList = array();
-        private $fileName;
+        private $fileName = ROOT . "Data/Reviews.json";
 
-        public function __construct() 
-        {
-            $this->fileName = dirname(__DIR__)."/Data/Reviews.json";
-        }
+        private $connection;
 
         function Add(Review $review)
         {

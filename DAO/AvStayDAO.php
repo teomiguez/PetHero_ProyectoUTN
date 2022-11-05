@@ -4,16 +4,17 @@
 
     use DAO\I_DAO as I_DAO;
     use Models\AvStay as AvStay;
+    // use to bdd
+    use DAO\Connection as Connection;
+    use Exception;
+    use PDOException;
 
     class AvStayDAO implements I_DAO
     {
         private $stayList = array();
-        private $fileName;
+        private $fileName = ROOT . "Data/AviableStays.json";
 
-        public function __construct() 
-        {
-            $this->fileName = dirname(__DIR__)."/Data/AviableStays.json";
-        }
+        private $connection;
 
         function Add(AvStay $stay)
         {
