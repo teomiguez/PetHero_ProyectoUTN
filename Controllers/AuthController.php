@@ -22,7 +22,7 @@
     {
         public function Index($message = "")
         {
-            if ((isset($_SESSION['idOwner'])) || (isset($_SESSION['idOwner'])))
+            if ((isset($_SESSION['idOwner'])) || (isset($_SESSION['idGuardian'])))
             {
                 session_destroy();
             }
@@ -129,6 +129,8 @@
 
         public function Logout()
         {
+            session_start();
+            
             session_destroy();
 
             // -> REDIRECTION TO LOGIN_VIEW
