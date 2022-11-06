@@ -23,8 +23,7 @@
             {
                 $this->connection = Connection::GetInstance();
 
-                $query = "INSERT INTO owners (id_owner, first_name, last_name, dni, telephone, email, pass)
-                      VALUES (:id_owner, :first_name, :last_name, :dni, :telephone,, :email, :pass)";
+                $query = "INSERT INTO owners (first_name, last_name, dni, telephone, email, pass) VALUES (:first_name, :last_name, :dni, :telephone, :email, :pass)";
 
                 $parameters['first_name'] = $owner->getName();
                 $parameters['last_name'] = $owner->getLast_name();
@@ -33,7 +32,7 @@
                 $parameters['email'] = $owner->getEmail();
                 $parameters['pass'] = $owner->getPassword();
 
-            $this->connection->ExecuteNonQuery($query, $parameters);
+                $this->connection->ExecuteNonQuery($query, $parameters);
             }
             catch (Exception $e)
             {
@@ -109,7 +108,8 @@
 
         public function GetByEmail($email)
         {
-            try {
+            try 
+            {
                 $this->connection = Connection::GetInstance();
                 $query = "SELECT * FROM owners WHERE email = '$email' ";
                 $rta = $this->connection->Execute($query);
@@ -184,16 +184,13 @@
                 $owner = new Owner;
 
                 $owner->setId_owner($p['id_owner']);
-                $owner->setName($p['fist_name']);
+                $owner->setName($p['first_name']);
                 $owner->setLast_name($p['last_name']);
                 $owner->setDni($p['dni']);
                 $owner->setTelephone($p['telephone']);
-                $owner->setAddress($p['address']);
                 $owner->setEmail($p['email']);
                 $owner->setPassword($p['pass']);
-                $owner->setSizeCare($p['id_size_care']);
-                $owner->setCost($p['cost']);
-                $owner->setId_review($p['id_review']);
+
                 return $owner;
 
             }, $values);

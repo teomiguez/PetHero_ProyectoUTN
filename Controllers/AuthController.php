@@ -65,7 +65,7 @@
     
                 $user1 = $ownerDAO->GetByEmail($email); // USER1 → OWNER
                 $user2 = $guardianDAO->GetByEmail($email); // USER2 → GUARDIAN
-    
+
                 if ($user1 != null) // LOGIN OWNER
                 {
                     if ($user1->getPassword() == $password)
