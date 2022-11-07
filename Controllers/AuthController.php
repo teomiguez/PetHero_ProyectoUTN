@@ -160,7 +160,7 @@
                     } 
                     else if ($radio_option == 'guardian')
                     {
-                        // cambiar y redireccionar al GuardianController
+                        // cambiar y redireccionar al GuardianController y ReviewController la parte de Review
                         $this->RegisterGuardian($name, $last_name, $dni, $tel, $email, $password, $street, $nro, $typeSize, $cost);
                     }
                     
@@ -243,10 +243,27 @@
             $guardian = new Guardian();
             $review = new Review();
 
+            $update_review = new Review;
+            $last_guardian = new Guardian;
+
             $address = $street . " " . $nro;
 
+            // -> SETs REVIEW
+            $review->setQuantity_reviews(0);
+            $review->setSum_reviews(0);
+            $review->setReview(0);
+            // <- SETs REVIEW
+            
+            // -> ADD REVIEW
+            $reviewDAO->Add($review);
+            // <- ADD REVIEW
+
+            // → GET REVIEW CON id_guardian = 0
+            $update_review = $reviewDAO->GetByIdGuardian(0);
+            $last_idReview = $update_review->getId_review();
+            // ← UPDATE GET CON id_guardian = 0
+            
             // -> SETs GUARDIAN
-            $guardian->setId_guardian($guardianDAO->GetNextId_guardian());
             $guardian->setName($name);
             $guardian->setLast_name($last_name);
             $guardian->setDni($dni);
@@ -256,24 +273,22 @@
             $guardian->setAddress($address);
             $guardian->setSizeCare($typeSize);
             $guardian->setCost($cost);
-            $guardian->setId_review($reviewDAO->GetNextId_review());
+            $guardian->setId_review($last_idReview);
             // <- SETs GUARDIAN 
 
-            // -> SETs REVIEW
-            $review->setId_review($reviewDAO->GetNextId_review());
-            $review->setId_guardian($guardianDAO->GetNextId_guardian());
-            $review->setQuantity_reviews(0);
-            $review->setSum_reviews(0);
-            $review->setReview(0);
-            // <- SETs REVIEW
-            
-            // -> ADD REVIEW TO JSON
-            $reviewDAO->Add($review);
-            // <- ADD REVIEW TO JSON
-
-            // -> ADD GUARDIAN TO JSON
+            // -> ADD GUARDIAN
             $guardianDAO->Add($guardian);
-            // <- ADD GUARDIAN TO JSON
+            // <- ADD GUARDIAN
+
+            // → GET LAST_GUARDIAN CON EL EMAIL
+            $last_guardian = $guardianDAO->GetByEmail($email);
+            $last_idGuardian = $last_guardian->getId_guardian();
+            // ← GET LAST_GUARDIAN CON EL EMAIL
+
+            // → UPDATE and ADD REVIEW
+            $update_review->setId_guardian($last_idGuardian);
+            $reviewDAO->Update($update_review->getId_review(), $update_review);
+            // → UPDATE and ADD REVIEW
         }
 
         // <- THIS  FUNCTIONs

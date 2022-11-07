@@ -195,7 +195,7 @@
 
             }, $values);
 
-            return count($rta) > 1 ? $rta : $rta['0']; // esto tira error - ver
+            return count($rta) > 1 ? $rta : $rta['0'];
         }
         
         // DATABASE CLASSES ↑

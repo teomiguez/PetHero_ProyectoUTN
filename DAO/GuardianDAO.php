@@ -25,8 +25,8 @@
             {
                 $this->connection = Connection::GetInstance();
 
-                $query = "INSERT INTO guardians (id_guardian, first_name, last_name, dni, telephone, address, email, pass, id_size_care, cost, id_review)
-                      VALUES (:id_guardian, :first_name, :last_name, :dni, :telephone, :address, :email, :pass, :id_size_care, :cost, :id_review)";
+                $query = "INSERT INTO guardians (first_name, last_name, dni, telephone, address, email, pass, id_size_care, cost, id_review)
+                      VALUES (:first_name, :last_name, :dni, :telephone, :address, :email, :pass, :id_size_care, :cost, :id_review)";
 
                 $parameters['first_name'] = $guardian->getName();
                 $parameters['last_name'] = $guardian->getLast_name();
@@ -35,7 +35,7 @@
                 $parameters['address'] = $guardian->getAddress();
                 $parameters['email'] = $guardian->getEmail();
                 $parameters['pass'] = $guardian->getPassword();
-                $parameters['id_size_care'] = $guardian->getSizeCare(); // ver de cargar una id (1,2,3), no un string
+                $parameters['id_size_care'] = $guardian->getSizeCare();
                 $parameters['cost'] = $guardian->getCost();
                 $parameters['id_review'] = $guardian->getId_review();
 
@@ -135,6 +135,28 @@
             }
         }
 
+        public function GetByIdReview($id)
+        {
+            try {
+                $this->connection = Connection::GetInstance();
+                $query = "SELECT * FROM guardians WHERE id_review = '$id'";
+                $rta = $this->connection->Execute($query);
+            } 
+            catch (Exception $e) 
+            {
+                throw $e;
+            }
+
+            if(!empty($rta))
+            {
+                return $this->map($rta);
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public function Update($id, Guardian $guardian)
         {
             try
@@ -193,7 +215,7 @@
                 $guardian = new Guardian;
 
                 $guardian->setId_guardian($p['id_guardian']);
-                $guardian->setName($p['fist_name']);
+                $guardian->setName($p['first_name']);
                 $guardian->setLast_name($p['last_name']);
                 $guardian->setDni($p['dni']);
                 $guardian->setTelephone($p['telephone']);
@@ -207,7 +229,7 @@
 
             }, $values);
 
-            return count($rta) > 1 ? $rta : $rta['0']; // esto tira error - ver
+            return count($rta) > 1 ? $rta : $rta['0'];
         }
 
         // DATABASE CLASSES ↑
