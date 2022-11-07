@@ -24,8 +24,9 @@
             {
                 $this->connection = Connection::GetInstance();
 
-                $query = "INSERT INTO review (quantity_reviews, sum_reviews, review) VALUES (:quantity_reviews, :sum_reviews, :review)";
+                $query = "INSERT INTO review (id_guardian, quantity_reviews, sum_reviews, review) VALUES (:id_guardian, :quantity_reviews, :sum_reviews, :review)";
 
+                $parameters['id_guardian'] = $review->getId_guardian();
                 $parameters['quantity_reviews'] = $review->getQuantity_reviews();
                 $parameters['sum_reviews'] = $review->getSum_reviews();
                 $parameters['review'] = $review->getReview();

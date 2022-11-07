@@ -25,8 +25,8 @@
             {
                 $this->connection = Connection::GetInstance();
 
-                $query = "INSERT INTO guardians (first_name, last_name, dni, telephone, address, email, pass, id_size_care, cost, id_review)
-                      VALUES (:first_name, :last_name, :dni, :telephone, :address, :email, :pass, :id_size_care, :cost, :id_review)";
+                $query = "INSERT INTO guardians (first_name, last_name, dni, telephone, address, email, pass, id_size_care, cost)
+                      VALUES (:first_name, :last_name, :dni, :telephone, :address, :email, :pass, :id_size_care, :cost)";
 
                 $parameters['first_name'] = $guardian->getName();
                 $parameters['last_name'] = $guardian->getLast_name();
@@ -37,7 +37,6 @@
                 $parameters['pass'] = $guardian->getPassword();
                 $parameters['id_size_care'] = $guardian->getSizeCare();
                 $parameters['cost'] = $guardian->getCost();
-                $parameters['id_review'] = $guardian->getId_review();
 
             $this->connection->ExecuteNonQuery($query, $parameters);
             }
@@ -135,28 +134,6 @@
             }
         }
 
-        public function GetByIdReview($id)
-        {
-            try {
-                $this->connection = Connection::GetInstance();
-                $query = "SELECT * FROM guardians WHERE id_review = '$id'";
-                $rta = $this->connection->Execute($query);
-            } 
-            catch (Exception $e) 
-            {
-                throw $e;
-            }
-
-            if(!empty($rta))
-            {
-                return $this->map($rta);
-            }
-            else
-            {
-                return false;
-            }
-        }
-
         public function Update($id, Guardian $guardian)
         {
             try
@@ -224,7 +201,7 @@
                 $guardian->setPassword($p['pass']);
                 $guardian->setSizeCare($p['id_size_care']);
                 $guardian->setCost($p['cost']);
-                $guardian->setId_review($p['id_review']);
+                
                 return $guardian;
 
             }, $values);

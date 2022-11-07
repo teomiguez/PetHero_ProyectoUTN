@@ -243,25 +243,9 @@
             $guardian = new Guardian();
             $review = new Review();
 
-            $update_review = new Review;
             $last_guardian = new Guardian;
 
             $address = $street . " " . $nro;
-
-            // -> SETs REVIEW
-            $review->setQuantity_reviews(0);
-            $review->setSum_reviews(0);
-            $review->setReview(0);
-            // <- SETs REVIEW
-            
-            // -> ADD REVIEW
-            $reviewDAO->Add($review);
-            // <- ADD REVIEW
-
-            // → GET REVIEW CON id_guardian = 0
-            $update_review = $reviewDAO->GetByIdGuardian(0);
-            $last_idReview = $update_review->getId_review();
-            // ← UPDATE GET CON id_guardian = 0
             
             // -> SETs GUARDIAN
             $guardian->setName($name);
@@ -273,7 +257,6 @@
             $guardian->setAddress($address);
             $guardian->setSizeCare($typeSize);
             $guardian->setCost($cost);
-            $guardian->setId_review($last_idReview);
             // <- SETs GUARDIAN 
 
             // -> ADD GUARDIAN
@@ -285,10 +268,17 @@
             $last_idGuardian = $last_guardian->getId_guardian();
             // ← GET LAST_GUARDIAN CON EL EMAIL
 
-            // → UPDATE and ADD REVIEW
-            $update_review->setId_guardian($last_idGuardian);
-            $reviewDAO->Update($update_review->getId_review(), $update_review);
-            // → UPDATE and ADD REVIEW
+            // -> SETs REVIEW
+            $review->setId_guardian($last_idGuardian);
+            $review->setQuantity_reviews(0);
+            $review->setSum_reviews(0);
+            $review->setReview(0);
+            // <- SETs REVIEW
+            
+            // -> ADD REVIEW
+            $reviewDAO->Add($review);
+            // <- ADD REVIEW
+
         }
 
         // <- THIS  FUNCTIONs
