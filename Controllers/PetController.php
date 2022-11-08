@@ -93,16 +93,16 @@
                         // -> ADD PET
                         $pet_id = $petDAO->Add($pet);
                         // <- ADD PET
-
+                        var_dump($pet_id);
                         // -> REDIRECTION TO PET/SHOWLIT
                         header("location: " . FRONT_ROOT . "Pet/ShowList");
                         // <- REDIRECTION TO PET/SHOWLIT
 
                         if($pet_id)
                         {
-                            mkdir(IMG_PATH . $pet_id);
-                            move_uploaded_file($tempFileName, IMG_PATH . $pet_id . "/" .basename($filePath) );
-                            move_uploaded_file($tempFileName1, IMG_PATH . $pet_id . "/" .basename($filePath1) );                   
+                            mkdir(IMG_PETS_PATH . $pet_id);
+                            move_uploaded_file($tempFileName, IMG_PETS_PATH . $pet_id . "/" .basename($filePath) );
+                            move_uploaded_file($tempFileName1, IMG_PETS_PATH . $pet_id . "/" .basename($filePath1) );                   
                         }
                     }
                     else

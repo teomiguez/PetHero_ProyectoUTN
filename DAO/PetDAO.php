@@ -31,14 +31,7 @@
                 $parameters['video'] = $pet->getVideo();
                 $parameters['info'] = $pet->getInfo();
 
-                $resultSet = $this->connection->ExecuteNonQuery($query, $parameters);
-            
-                if (!$resultSet[0]) 
-                {
-                    return null;
-                }
-                
-                return $resultSet[0]["id_pet"];
+                $this->connection->ExecuteNonQuery($query, $parameters);
             }
             catch (Exception $e)
             {
@@ -61,7 +54,13 @@
 
             if(!empty($rta))
             {
-                return $this->map($rta);
+                foreach ($rta as $row) 
+                {
+                    $pet = $this->map($row);
+                    array_push($petList, $pet);
+                }
+
+                return $petList;
             }
             else
             {
@@ -71,6 +70,8 @@
 
         public function GetByOwner($id)
         {
+            $petList = array();
+            
             try 
             {
                 $this->connection = Connection::GetInstance();
@@ -81,15 +82,15 @@
             {
                 throw $e;
             }
-
             if(!empty($rta))
             {
                 foreach ($rta as $row) 
                 {
-                    $pet = $this->LoadData($row);
-                    array_push($PetList, $pet);
+                    $pet = $this->map($row);
+                    array_push($petList, $pet);
                 }
-                return $PetList;
+
+                return $petList;
             }
             else
             {
@@ -111,7 +112,13 @@
 
             if(!empty($rta))
             {
-                return $this->map($rta[0]);
+                foreach ($rta as $row) 
+                {
+                    $pet = $this->map($row);
+                    array_push($petList, $pet);
+                }
+
+                return $petList;
             }
             else
             {
@@ -205,30 +212,32 @@
          *  @param Array listado de X cosas a transformar en objetos
         */
 
-        protected function map ($values)
+        protected function map ($rta)
         {
-            $values = is_array($values) ? $values : [];
+            $pet = new Pet();
 
-            $rta = array_map(function($p){
+            $pet->setId_pet($rta['id_pet']);
+            $pet->setId_owner($rta['id_owner']);
+            $pet->setImg($rta['img']);
+            $pet->setName($rta['name']);
+            $pet->setType($this->GetType($rta['id_type'])); // ver esto
+            $pet->setBreed($rta['breed']);
+            $pet->setSize($this->GetSize($rta['id_size'])); // ver esto
+            $pet->setPlanVacunacion($rta['plan_vacunacion']);
+            $pet->setVideo($rta['video']);
+            $pet->setInfo($rta['info']);
+            
+            return $pet;
 
-                $pet = new Pet();
+            // funcion anterior ->
 
-                $pet->setId_pet($p['id_pet']);
-                $pet->setId_owner($p['id_owner']);
-                $pet->setImg($p['img']);
-                $pet->setName($p['name']);
-                $pet->setType($this->GetType($p['id_type'])); // ver esto
-                $pet->setBreed($p['breed']);
-                $pet->setSize($this->GetSize($p['id_size'])); // ver esto
-                $pet->setPlanVacunacion($p['plan_vacunacion']);
-                $pet->setVideo($p['video']);
-                $pet->setInfo($p['info']);
-                
-                return $pet;
+            // $values = is_array($values) ? $values : [];
 
-            }, $values);
+            // $rta = array_map(function($p){
+                // aca iba todos los set
+            // }, $values);
 
-            return count($rta) > 1 ? $rta : $rta['0'];
+            // return count($rta) > 1 ? $rta : $rta['0'];
         }
     }
 ?>

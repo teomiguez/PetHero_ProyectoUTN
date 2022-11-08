@@ -118,7 +118,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="<?php echo FRONT_ROOT . " Pet/CreatePet" ?>" method="POST" class="text-start">
+                    <form action="<?php echo FRONT_ROOT . " Pet/CreatePet" ?>" method="POST" enctype="multipart/form-data" class="text-start">
                         <div class="my-1">
                             <label for="formFile" class="form-label">Seleccione una Foto</label>
                             <input id="imgFile" name="imgFile" class="form-control" type="file" required>
