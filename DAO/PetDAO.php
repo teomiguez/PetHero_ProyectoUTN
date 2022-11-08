@@ -140,7 +140,7 @@
 
             if (!empty($rta))
             {
-                return $rta[0];
+                return $rta[0][0];
             }
         }
 
@@ -159,7 +159,7 @@
 
             if (!empty($rta))
             {
-                return $rta[0];
+                return $rta[0][0];
             }
         }
 

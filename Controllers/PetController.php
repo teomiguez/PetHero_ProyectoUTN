@@ -83,6 +83,12 @@
             }
         }
 
+        public function Remove ($id)
+        {
+            $petDAO = new PetDAO();
+            $petDAO->Remove($id);
+        }
+
         // DATABASE CLASSES ↑
 
         // JSON CLASSES ↓
