@@ -51,25 +51,65 @@
                 $petDAO = new PetDAO();
                 $pet = new Pet();
 
-                // -> SETs PET
-                $pet->setId_owner($_SESSION['idOwner']);
-                $pet->setImg($imgFile);
-                $pet->setName($name);
-                $pet->setType($radio_option);
-                $pet->setBreed($breed);
-                $pet->setSize($size);
-                $pet->setPlanVacunacion($pvFile);
-                $pet->setVideo($video);
-                $pet->setInfo($info);
-                // <- SETs PET
+                echo "--------------";
+                $fileName = $imgFile["name"];
+                $tempFileName = $imgFile["tmp_name"];
+                $type1 = $imgFile["type"];
+                
+                $filePath = VIEWS_PATH.basename($fileName);            
+                echo "*********";
+                $fileType = strtolower(pathinfo($filePath, PATHINFO_EXTENSION));
 
-                // -> ADD PET
-                $petDAO->Add($pet);
-                // <- ADD PET
+                $imageSize = getimagesize($tempFileName);
 
-                // -> REDIRECTION TO PET/SHOWLIT
-                header("location: " . FRONT_ROOT . "Pet/ShowList");
-                // <- REDIRECTION TO PET/SHOWLIT
+
+                echo "--------------";
+                $fileName1 = $pvFile["name"];
+                $tempFileName1 = $pvFile["tmp_name"];
+                $type1 = $pvFile["type"];
+                
+                $filePath1 = VIEWS_PATH.basename($fileName1);            
+                echo "*********";
+                $fileType1 = strtolower(pathinfo($filePath1, PATHINFO_EXTENSION));
+
+                $imageSize1 = getimagesize($tempFileName1);
+
+                if($imageSize !== false && $imageSize1 !==false)
+                {
+                    if ($imageSize !== false && $imageSize1 !==false)
+                    {
+                        // -> SETs PET
+                        $pet->setId_owner($_SESSION['idOwner']);
+                        $pet->setImg($imgFile);
+                        $pet->setName($name);
+                        $pet->setType($radio_option);
+                        $pet->setBreed($breed);
+                        $pet->setSize($size);
+                        $pet->setPlanVacunacion($pvFile);
+                        $pet->setVideo($video);
+                        $pet->setInfo($info);
+                        // <- SETs PET
+
+                        // -> ADD PET
+                        $pet_id = $petDAO->Add($pet);
+                        // <- ADD PET
+
+                        // -> REDIRECTION TO PET/SHOWLIT
+                        header("location: " . FRONT_ROOT . "Pet/ShowList");
+                        // <- REDIRECTION TO PET/SHOWLIT
+
+                        if($pet_id)
+                        {
+                            mkdir(IMG_PATH . $pet_id);
+                            move_uploaded_file($tempFileName, IMG_PATH . $pet_id . "/" .basename($filePath) );
+                            move_uploaded_file($tempFileName1, IMG_PATH . $pet_id . "/" .basename($filePath1) );                   
+                        }
+                    }
+                    else
+                        $message = "Ocurrió un error al intentar subir la imagen";
+                }
+                else   
+                    $message = "El archivo no corresponde a una imágen";
             }
             else
             {

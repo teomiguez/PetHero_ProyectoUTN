@@ -31,7 +31,14 @@
                 $parameters['video'] = $pet->getVideo();
                 $parameters['info'] = $pet->getInfo();
 
-            $this->connection->ExecuteNonQuery($query, $parameters);
+                $resultSet = $this->connection->ExecuteNonQuery($query, $parameters);
+            
+                if (!$resultSet[0]) 
+                {
+                    return null;
+                }
+                
+                return $resultSet[0]["id_pet"];
             }
             catch (Exception $e)
             {
@@ -77,7 +84,12 @@
 
             if(!empty($rta))
             {
-                return $this->map($rta);
+                foreach ($rta as $row) 
+                {
+                    $pet = $this->LoadData($row);
+                    array_push($PetList, $pet);
+                }
+                return $PetList;
             }
             else
             {
@@ -99,7 +111,7 @@
 
             if(!empty($rta))
             {
-                return $this->map($rta);
+                return $this->map($rta[0]);
             }
             else
             {
