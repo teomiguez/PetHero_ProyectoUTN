@@ -17,7 +17,7 @@
             }
         } 
 
-        // esta funcion no tiene uso por ahora, porque usamos la funcion ShowList del AuthController que muestra todas las mascotas 
+        // esta funcion no tiene uso por ahora, porque usamos la funcion ShowList del PetController que muestra todas las mascotas 
 
         public function ShowList()
         {
@@ -38,8 +38,6 @@
 
             require_once(VIEWS_PATH . "PetsProfiles.php");
         }
-
-        // esta funcion no tiene uso por ahora, porque usamos la funcion CreatePet del AuthController que sirve para crear un cat o un dog 
 
         public function AddNewCat($imgFile, $name, $radio_option, $breed, $size, $pvFile, $video, $info)
         {
