@@ -35,8 +35,6 @@
                 $petsList = array();
 
                 $petsList = $petDAO->GetByOwner($_SESSION['idOwner']);
-                
-                var_dump($petsList);
 
                 require_once(VIEWS_PATH . "PetsProfiles.php");
             }
