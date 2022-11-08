@@ -71,13 +71,13 @@
                                 <td> <?php echo $pet->getBreed() ?> </td>
                                 <td> <?php echo $pet->getSize() ?> </td>
                                 <td class="d-inline-flex">
-                                    <form action="<?php echo FRONT_ROOT . "Pet/ShowViewModal_" . $pet->getType() ?>" method="POST">
-                                        <button class="btn btn-link" type="submit" name="id" value="<?php echo $pet->getId() ?>">
+                                    <form action="<?php echo FRONT_ROOT . " Pet/ShowViewProfile" ?>" method="POST">
+                                        <button class="btn btn-link" type="submit" name="id" value="<?php echo $pet->getId_pet() ?>">
                                             <i class="bi bi-eye-fill text-primary"></i>  
                                         </button>
                                     </form> 
-                                    <form action="<?php echo FRONT_ROOT . "Pet/Remove" . $pet->getType() ?>" method="POST">
-                                        <button class="btn btn-link" type="submit" name="id" value="<?php echo $pet->getId() ?>">
+                                    <form action="<?php echo FRONT_ROOT . " Pet/Remove" ?>" method="POST">
+                                        <button class="btn btn-link" type="submit" name="id" value="<?php echo $pet->getId_pet() ?>">
                                             <i class="bi bi-trash3 text-danger"></i>    
                                         </button>
                                     </form>  
@@ -158,9 +158,9 @@
                             <label for="size" class="form-label"> Seleccione el tamaño </label>
                             <select id="size" class="form-select form-select-sm"
                                 aria-label=".form-select-sm example" name="size" required>
-                                <option value="chico"> Chico </option>
-                                <option value="mediano"> Mediano </option>
-                                <option value="grande"> Grande </option>
+                                <option value="1"> Chico </option>
+                                <option value="2"> Mediano </option>
+                                <option value="3"> Grande </option>
                             </select>
                         </div>
 

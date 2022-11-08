@@ -4,6 +4,7 @@
     use DAO\OwnerDAO as OwnerDAO;
     use DAO\GuardianDAO as GuardianDAO;
     use DAO\AvStayDAO as AvStayDAO;
+
     use Models\Guardian as Guardian;
     use Models\Owner as Owner;
     use Models\AvStay as AvStay;
@@ -53,6 +54,25 @@
             {
                 header("location: " . FRONT_ROOT . "Auth/ShowLogin");
             }  
+        }
+
+        public function RegisterOwner($name, $last_name, $dni, $tel, $email, $password)
+        {
+            $ownerDAO = new OwnerDAO();
+            $owner = new Owner();
+
+            // -> SETs OWNER
+            $owner->setName($name);
+            $owner->setLast_name($last_name);
+            $owner->setDni($dni);
+            $owner->setTelephone($tel);
+            $owner->setEmail($email);
+            $owner->setPassword($password);
+            // <- SETs OWNER
+
+            // -> ADD OWNER TO JSON
+            $ownerDAO->Add($owner);
+            // <- ADD OWNER TO JSON
         }
 
         public function ModifyProfile_Owner()

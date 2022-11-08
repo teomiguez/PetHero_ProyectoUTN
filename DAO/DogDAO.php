@@ -4,17 +4,12 @@
     use DAO\I_DAO as I_DAO;
     use Models\Pet as Pet;
     use Models\Dog as Dog;
-    // use to bdd
-    use DAO\Connection as Connection;
-    use Exception;
-    use PDOException;
+    
 
     class DogDAO implements I_DAO
     {
         private $dogList = array();
         private $fileName = ROOT . "Data/Dogs.json";
-
-        private $connection;
 
         // -> PUBLIC FUNCTIONS
 

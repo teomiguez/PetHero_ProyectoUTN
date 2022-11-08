@@ -4,7 +4,12 @@
     use DAO\GuardianDAO as GuardianDAO;
     use DAO\AvStayDAO as AvStayDAO;
     use DAO\ReviewDAO as ReviewDAO;
+
+    use Models\Guardian as Guardian;
     use Models\AvStay as AvStay;
+    use Models\Review as Review;
+
+    use Controllers\ReviewController as ReviewController;
 
     class GuardianController 
     {
@@ -32,9 +37,68 @@
             }
             else
             {
-                 header("location: " . FRONT_ROOT . "Auth/ShowLogin");
+                header("location: " . FRONT_ROOT . "Auth/ShowLogin");
             }  
 
+        }
+        
+        public function HomeGuardian()
+        {
+            if (isset($_SESSION['idGuardian']))
+            {  
+                $guardian_DAO = new GuardianDAO();
+
+                $user = $guardian_DAO->GetById($_SESSION["idGuardian"]);
+
+                $this->ShowAvStays();
+            }
+            else
+            {
+                header("location: " . FRONT_ROOT . "Auth/ShowLogin");
+            }  
+        }
+
+        public function RegisterGuardian($name, $last_name, $dni, $tel, $email, $password, $street, $nro, $typeSize, $cost)
+        {
+            if (isset($_SESSION['idGuardian']))
+            {  
+                $guardianDAO = new GuardianDAO();
+                $reviewDAO = new ReviewDAO();
+                $reviewController = new ReviewController();
+                $guardian = new Guardian();
+                $review = new Review();
+
+                $last_guardian = new Guardian;
+
+                $address = $street . " " . $nro;
+                
+                // -> SETs GUARDIAN
+                $guardian->setName($name);
+                $guardian->setLast_name($last_name);
+                $guardian->setDni($dni);
+                $guardian->setTelephone($tel);
+                $guardian->setEmail($email);
+                $guardian->setPassword($password);
+                $guardian->setAddress($address);
+                $guardian->setSizeCare($typeSize);
+                $guardian->setCost($cost);
+                // <- SETs GUARDIAN 
+
+                // -> ADD GUARDIAN
+                $guardianDAO->Add($guardian);
+                // <- ADD GUARDIAN
+
+                // → GET LAST_GUARDIAN CON EL EMAIL
+                $last_guardian = $guardianDAO->GetByEmail($email);
+                $last_idGuardian = $last_guardian->getId_guardian();
+                // ← GET LAST_GUARDIAN CON EL EMAIL
+
+                $reviewController->CreateNewReview($last_idGuardian);
+            }
+            else
+            {
+                header("location: " . FRONT_ROOT . "Auth/ShowLogin");
+            }  
         }
 
         public function ModifyProfile_Guardian()
@@ -51,27 +115,9 @@
             }
             else
             {
-                 header("location: " . FRONT_ROOT . "Auth/ShowLogin");
+                header("location: " . FRONT_ROOT . "Auth/ShowLogin");
             }  
         }
-
-        
-        public function HomeGuardian()
-        {
-            if (isset($_SESSION['idGuardian']))
-            {  
-                $guardian_DAO = new GuardianDAO();
-
-                $user = $guardian_DAO->GetById($_SESSION["idGuardian"]);
-
-                $this->ShowAvStays();
-            }
-            else
-            {
-                 header("location: " . FRONT_ROOT . "Auth/ShowLogin");
-            }  
-        }
-
     
         public function ShowAvStays()
         {
@@ -86,7 +132,7 @@
             }
             else
             {
-                 header("location: " . FRONT_ROOT . "Auth/ShowLogin");
+                header("location: " . FRONT_ROOT . "Auth/ShowLogin");
             }  
         }
 

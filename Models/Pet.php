@@ -2,8 +2,9 @@
 
 namespace Models;
 
-abstract class Pet
+class Pet
 {
+    private $id_pet;
     private $id_owner;
     private $img;
     private $name;

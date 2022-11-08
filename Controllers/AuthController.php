@@ -4,18 +4,12 @@
     use DAO\GuardianDAO as GuardianDAO;
     use DAO\ReviewDAO as ReviewDAO;
     use DAO\OwnerDAO as OwnerDAO;
-    use DAO\PetDAO as PetDAO;
     use DAO\AvStayDAO as AvStayDAO;
-    use DAO\CatDAO as CatDAO;
-    use DAO\DogDAO as DogDAO;
 
     use Models\Guardian as Guardian;
     use Models\Review as Review;
     use Models\Owner as Owner;
-    use Models\Pet as Pet;
     use Models\AvStay as AvStay;
-    use Models\Cat as Cat;
-    use Models\Dog as Dog;
 
 
     class AuthController
@@ -231,9 +225,9 @@
             $owner->setPassword($password);
             // <- SETs OWNER
 
-            // -> ADD OWNER TO JSON
+            // -> ADD OWNER
             $ownerDAO->Add($owner);
-            // <- ADD OWNER TO JSON
+            // <- ADD OWNER
         }
 
         function RegisterGuardian($name, $last_name, $dni, $tel, $email, $password, $street, $nro, $typeSize, $cost)
