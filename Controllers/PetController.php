@@ -34,13 +34,9 @@
                 $petDAO = new PetDAO();
                 $petsList = array();
 
-                $petsList = $petDAO->GetAll();
-
-                foreach($petsList as $pet)
-                {   
-                    $pet->setType($petDAO->GetType($pet->getType()));
-                    $pet->setSize($petDAO->GetSize($pet->getSize()));
-                }
+                $petsList = $petDAO->GetByOwner($_SESSION['idOwner']);
+                
+                var_dump($petsList);
 
                 require_once(VIEWS_PATH . "PetsProfiles.php");
             }
@@ -87,6 +83,10 @@
         {
             $petDAO = new PetDAO();
             $petDAO->Remove($id);
+
+            // -> REDIRECTION TO PET/SHOWLIT
+            header("location: " . FRONT_ROOT . "Pet/ShowList");
+            // <- REDIRECTION TO PET/SHOWLIT
         }
 
         // DATABASE CLASSES ↑

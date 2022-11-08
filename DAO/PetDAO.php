@@ -62,6 +62,29 @@
             }
         }
 
+        public function GetByOwner($id)
+        {
+            try 
+            {
+                $this->connection = Connection::GetInstance();
+                $query = "SELECT * FROM pets p WHERE p.id_owner = '$id' ";
+                $rta = $this->connection->Execute($query);
+            } 
+            catch (Exception $e) 
+            {
+                throw $e;
+            }
+
+            if(!empty($rta))
+            {
+                return $this->map($rta);
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public function GetById($id){
             try 
             {
@@ -182,9 +205,9 @@
                 $pet->setId_owner($p['id_owner']);
                 $pet->setImg($p['img']);
                 $pet->setName($p['name']);
-                $pet->setType($p['id_type']);
+                $pet->setType($this->GetType($p['id_type'])); // ver esto
                 $pet->setBreed($p['breed']);
-                $pet->setSize($p['id_size']);
+                $pet->setSize($this->GetSize($p['id_size'])); // ver esto
                 $pet->setPlanVacunacion($p['plan_vacunacion']);
                 $pet->setVideo($p['video']);
                 $pet->setInfo($p['info']);
