@@ -159,7 +159,7 @@
                 $review->setId_review($p['id_review']);
                 $review->setId_guardian($p['id_guardian']);
                 $review->setQuantity_reviews($p['quantity_reviews']);
-                $review->setSum_reviewsi($p['sum_reviews']);
+                $review->setSum_reviews($p['sum_reviews']);
                 $review->setReview($p['review']);
 
                 return $review;

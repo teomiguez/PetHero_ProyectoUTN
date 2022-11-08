@@ -93,7 +93,7 @@
                         // -> ADD PET
                         $pet_id = $petDAO->Add($pet);
                         // <- ADD PET
-                        var_dump($pet_id);
+                        
                         // -> REDIRECTION TO PET/SHOWLIT
                         header("location: " . FRONT_ROOT . "Pet/ShowList");
                         // <- REDIRECTION TO PET/SHOWLIT
