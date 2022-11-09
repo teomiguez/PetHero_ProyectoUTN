@@ -126,13 +126,15 @@
             }      
         }
 
-        public function ShowFilterGuardians($first_day, $last_day)
-        {
+        public function ShowFilterGuardians($first_day, $last_day) // funciona para mostrar el primer guardian disponible 
+                                                                  //que encuentra con las fechas solicitadas
+        { 
             if (isset($_SESSION['idOwner']))
             {  
                 $guardian_DAO = new GuardianDAO();
                 $avStayDAO = new AvStayDAO();
-                
+                $guardiansAviable = new Guardian();
+                 
                 $idsGuardiansAvailable = $avStayDAO->GetIdGuardian_ByDates($first_day, $last_day);
 
                 $guardiansAviable = $guardian_DAO->GetById($idsGuardiansAvailable);

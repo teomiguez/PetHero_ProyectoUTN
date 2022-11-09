@@ -40,6 +40,8 @@
 
         public function GetAll()
         {
+            $avstayList = array();
+
             try
             {
                 $this->connection = Connection::GetInstance();
@@ -53,12 +55,14 @@
 
             if(!empty($rta))
             {
-                return $this->map($rta);
+                foreach ($rta as $row) 
+                {
+                    $avstay = $this->map($row);
+                    array_push($avstayList, $avstay);
+                }
             }
-            else
-            {
-                return false;
-            }
+
+            return $avstayList;
         }
 
         public function GetByKeeper($id_guardian){
@@ -77,14 +81,20 @@
  
             if(!empty($rta))
             {
-                $avstayList = $this->map($rta);
+                foreach ($rta as $row) 
+                {
+                    $avstay = $this->map($row);
+                    array_push($avstayList, $avstay);
+                }
             }
 
             return $avstayList;
-
         }
 
         public function GetById($id){
+           
+            $avstayList = array();
+
             try {
                 $this->connection = Connection::GetInstance();
                 $query = "SELECT * FROM avstay WHERE id_stay = '$id' ";
@@ -97,15 +107,22 @@
 
             if(!empty($rta))
             {
-                return $this->map($rta);
+                foreach ($rta as $row) 
+                {
+                    $avstay = $this->map($row);
+                    array_push($avstayList, $avstay);
+                }
+
+                return $avstayList[0];  
             }
             else
             {
-                return false;
+                return null;
             }
         }
 
         public function GetIdGuardian_ByDates($first_day, $last_day){
+           
             try {
                 $this->connection = Connection::GetInstance();
                 $query = "SELECT id_guardian FROM avstay WHERE fist_day <= '$first_day' AND last_day >= '$last_day' ";
@@ -118,11 +135,11 @@
 
             if(!empty($rta))
             {
-                return $this->map($rta);
+                return $rta[0][0];  
             }
             else
             {
-                return false;
+                return null;
             }
         }
 
@@ -162,15 +179,21 @@
             }
         }
 
-        /**
-         *  Transofmra un listado (array) de X cosas
-         *  en objetos de X cosa
-         * 
-         *  @param Array listado de X cosas a transformar en objetos
-         */
+        // Transforma un arreglo (que se pasa por parametro) en un objeto
 
-        protected function map ($values)
+        protected function map ($rta) 
         {
+            $avstay = new AvStay();
+
+            $avstay->setId_stay($rta['id_stay']);
+            $avstay->setId_keeper($rta['id_guardian']);
+            $avstay->setFirst_day($rta['fist_day']);
+            $avstay->setLast_day($rta['last_day']);
+
+            return $avstay;
+
+            /* codigo original que transforma un arraglo de arreglos, en un arreglo de objetos
+            
             $values = is_array($values) ? $values : [];
 
             $rta = array_map(function($p){
@@ -187,6 +210,7 @@
             }, $values);
 
             return count($rta) > 1 ? $rta : $rta['0'];
+            */
         }
 
         // DATABASE CLASSES ↑

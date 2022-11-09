@@ -108,15 +108,11 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php
-    
-                                foreach ($guardiansAviable as $guardian) {
-                            ?>
     
                             <tr class="align-middle">
-                                <td> <?php echo $guardian->getName() ?> </td>
-                                <td> <?php echo $guardian->getLast_name() ?> </td>
-                                <td> <?php echo $guardian->getTelephone() ?> </td>
+                                <td> <?php echo $guardiansAviable->getName() ?> </td>
+                                <td> <?php echo $guardiansAviable->getLast_name() ?> </td>
+                                <td> <?php echo $guardiansAviable->getTelephone() ?> </td>
                                 <td> 
                                     <button class="btn btn-link" type="button" data-bs-toggle="modal"
                                     data-bs-target="#viewGuardian_modal">
@@ -126,7 +122,6 @@
                             </tr>
                         </tbody>   
                     
-                        <?php } ?>
                     </table>
 
                 <?php } ?>
