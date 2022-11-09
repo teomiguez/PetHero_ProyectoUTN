@@ -39,94 +39,90 @@
     <main class="container text-center">
         <div class="col-md-6 offset-md-3">
             <h2 class="text-center my-3"> Modificar Perfil </h2>
-            <form action="" method="">
-
+            <form action="<?php echo FRONT_ROOT . " Guardian/UpdateProfile" ?>" method="POST">
                 <table class="table table-striped">
                     <tbody>
-                    <tr>
+                        <tr class="align-middle">
                             <div class="d-flex">
                                 <th scope="row"><label class="me-3" for="name" class="form-label"> </label> Nombre: </th> 
                                 <td> <input id="name" name="name" type="text" class="form-control" value="<?php echo $user->getName() ?>" required ></td>    
                             </div>
                         </tr>
-                    <tr>
+                        <tr class="align-middle">
                             <div class="d-flex">
                                 <th scope="row"><label class="me-3" for="last_name" class="form-label"></label> Apellido: </th> 
                                 <td> <input id="last_name" name="last_name" type="text" class="form-control" value="<?php echo $user->getLast_name() ?>" required></td>    
                             </div>
-                    </tr>
-                    <tr>
+                        </tr>
+                        <tr class="align-middle">
                             <div class="d-flex">
                                 <th scope="row"><label class="me-3" for="dni" class="form-label"></label> DNI: </th> 
-                                <td> <input id="dni" name="dni" type="number" class="form-control" min="1000000" max="99000000" value="<?php echo $user->getDni() ?>" required disabled></td>    
+                                <td> <?php echo $user->getDni() ?> </td>    
                             </div>
-                    </tr>
-                    <tr>
+                        </tr>
+                        <tr class="align-middle">
                             <div class="d-flex">
                                 <th scope="row"><label class="me-3" for="tel" class="form-label"> </label> Telefono: </th> 
                                 <td> <input id="tel" name="tel" type="tel" class="form-control" pattern="[2]{2}[3]{1}[0-9]{3}[0-9]{4}" value="<?php echo $user->getTelephone() ?>" required ></td>    
                             </div>          
-                    </tr>
-                        <tr>
+                        </tr>
+                        <tr class="align-middle">
                             <div class="d-flex">
-                                <th scope="row"><label class="me-3" for="adress" class="form-label"> </label> Calle: </th> 
-                                <td> <input id="street" name="street" type="text" class="form-control"  value="<?php echo strtok($user->getAddress()," ")   ?> " required ></td>   
-                            </div>
-                        </tr>     <!-- LA FUNCION QUE RECIBA LA CALLE Y LA ALTURA DEBE UNIRLAS PARA CONFORMAR ADRESS, IGUAL QUE EN EL REGISTERGUARDIAN (SI SE NOS COMPLICA SOLO MOSTRAMOS EL ADRESS Y PONEMOS DISABLED PARA QUE NO SE PUEDA MDIFICAR ;)-->
-                        <tr>
-                            <div class="d-flex">
-                                <th scope="row"><label class="me-3" for="adress" class="form-label"> </label> Altura: </th>
-                                <td> <input id="nro" name="nro" type="numer" class="form-control" min="1" max="9999" value="<?php echo filter_var($user->getAddress(), FILTER_SANITIZE_NUMBER_INT) ?> " required> </td>    
+                                <th scope="row"><label class="me-3" for="adress" class="form-label"> </label> Direccion: </th> 
+                                <td> <input id="address" name="address" type="text" class="form-control"  value="<?php echo $user->getAddress() ?> " required ></td>   
                             </div>
                         </tr>
-                        <tr>
+                        <tr class="align-middle">
                             <div class="d-flex">
-                                <th scope="row"><label class="me-3" for="email"class="form-label"> </label> Email: </th> 
-                                <td> <input id="name" name="name" type="text" class="form-control" value="<?php echo $user->getEmail() ?>" required disabled></td>    
+                                <th scope="row"><label class="me-3" for="email" class="form-label"> </label> Email: </th> 
+                                <td> <?php echo $user->getEmail() ?> </td>    
                             </div>
-                    </tr>
-                    <tr>
+                        </tr>
+                        <tr class="align-middle">
                             <div class="d-flex">
                                 <th scope="row"><label class="me-3" for="password" class="form-label"> </label> Contraseña: </th> 
                                 <td> <input id="password" name="password" type="password" class="form-control" value="<?php echo $user->getPassword() ?>" required ></td>    
-                            </div>
-                    </tr>
+                            </div>   
+                        </tr class="align-middle">
                             <div class="d-flex">
-                                <th scope="row"><label class="me-3"  for="typeSize" class="form-label"> </label> Preferencia: </th> 
-                                <td> <select id="typeSize" class="form-select" aria-label="form-select" name="typeSize" value="<?php echo $user->getSizeCare()?>" required >
-                                    <option value="chico"> Chico </option>
-                                    <option value="mediano"> Mediano </option>
-                                    <option value="grande"> Grande </option>
-                            </select>
-                               </td>    
+                                <th scope="row"><label class="me-3"  for="typeSize" class="form-label align-middle"> </label> Preferencia: </th> 
+                                <td> 
+                                    <select id="typeSize" class="form-select" aria-label="form-select" name="typeSize" required >
+                                        <option selected value="<?php echo $user->getSizeCare()?>"> <?php echo $user->getSizeCare()?> </option>
+                                        <option value="1"> Chico </option>
+                                        <option value="2"> Mediano </option>
+                                        <option value="3"> Grande </option>
+                                    </select>
+                            </td>    
                             </div>
                         </tr>
-                        <tr>
+                        <tr class="align-middle">
                             <div class="d-flex">
                                 <th scope="row"><label class="me-3" for="cost" class="form-label"> </label> Remuneración $ : </th> 
                                 <td>  <input id="cost" type="number" class="form-control" name= "cost" aria-label="Amount (to the nearest dollar)" 
                                     min="1" value="<?php echo $user->getCost() ?>" required ></td>    
                             </div>
                         </tr>
-                        <tr>
+                        <tr class="align-middle">
                             <div class="d-flex">
                                 <th scope="row"><label class="me-3" for="review" class="form-label"> </label> Calificación : </th> 
-                                <td>  <input id="review" type="number" class="form-control" name= "review" value="<?php $user_review->getId_review() ?>" placeholder= "<?php echo $user_review->getReview() ?> (<?php echo $user_review->getQuantity_reviews() ?>)" required disabled></td>    
+                                <td> <?php echo $user_review->getReview() ?> (<?php echo $user_review->getQuantity_reviews() ?>) </td>    
                             </div>
                         </tr>
                     </tbody>
-            </form>
-            </table> 
-            <div class="d-grid gap-2 col-6 me-auto">
-                    <a href=""> Guardar Cambios </a>
-                </div>   
+                </table> 
+                
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <button type="submit" class="btn btn-primary" name="id" value="<?php echo $user->getId_guardian() ?>"> Guardar cambios </button>
+                </div>
+            </form> 
         </div>
     </main>
 
     <!-- Linea divisoria main/footer -->
     <?php
 
-    include('footer.php');
+    //include('footer.php');
 
     ?>
 

@@ -101,6 +101,29 @@
             }  
         }
 
+        public function UpdateProfile($id, $name, $last_name, $tel, $password, $address, $typeSize, $cost)
+        {
+            $guardianDAO = new GuardianDAO();
+            $guardian = new Guardian();
+            
+            // -> SETs GUARDIAN
+            $guardian->setName($name);
+            $guardian->setLast_name($last_name);
+            $guardian->setTelephone($tel);
+            $guardian->setPassword($password);
+            $guardian->setAddress($address);
+            $guardian->setSizeCare($typeSize);
+            $guardian->setCost($cost);
+            // <- SETs GUARDIAN 
+
+            // -> UPDATE GUARDIAN
+            $guardianDAO->Update($id, $guardian);
+            // <- UPDATE GUARDIAN
+
+            $this->ShowProfile();
+        }
+
+
         public function ModifyProfile_Guardian()
         {
             if (isset($_SESSION['idGuardian']))
@@ -109,7 +132,7 @@
                 $reviewDAO = new ReviewDAO();
 
                 $user = $guardian_DAO->GetById($_SESSION["idGuardian"]);
-                $user_review = $reviewDAO->GetById($user->getId_review());
+                $user_review = $reviewDAO->GetByIdGuardian($user->getId_guardian());
 
                 require_once(VIEWS_PATH . "ModifyGuardianProfile.php");
             }

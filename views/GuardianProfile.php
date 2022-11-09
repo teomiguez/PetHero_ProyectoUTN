@@ -63,8 +63,8 @@
                         <td> <?php for ($i=0 ; $i < strlen($user->getPassword()) ; $i++) { echo '*'; } ?> </td>
                     </tr>
                     <tr>
-                        <th scope="row"> Preferencia: </th>
-                        <td> Tamaño <?php echo $user->getSizeCare() ?> </td>
+                        <th scope="row"> Preferencia de tamaño: </th>
+                        <td> <?php echo $user->getSizeCare() ?> </td>
                     </tr>
                     <tr>
                         <th scope="row"> Remuneración: </th>
