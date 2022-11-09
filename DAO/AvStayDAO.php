@@ -15,7 +15,7 @@
         private $fileName = ROOT . "Data/AviableStays.json";
 
         private $connection;
-
+ 
         // DATABASE CLASSES ↓
 
         public function Add(AvStay $avstay)

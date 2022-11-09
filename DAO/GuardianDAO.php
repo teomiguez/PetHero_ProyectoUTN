@@ -48,6 +48,8 @@
 
         public function GetAll()
         {
+            $guardList = array();
+
             try
             {
                 $this->connection = Connection::GetInstance();
@@ -61,15 +63,20 @@
 
             if(!empty($rta))
             {
-                return $this->map($rta);
+                foreach ($rta as $row) 
+                {
+                    $guardian = $this->map($row);
+                    array_push($guardList, $guardian);
+                }
             }
-            else
-            {
-                return false;
-            }
+
+            return $guardList;
         }
 
         public function GetById($id){
+
+            $guardList = array();
+
             try {
                 $this->connection = Connection::GetInstance();
                 $query = "SELECT * FROM guardians WHERE id_guardian = '$id' ";
@@ -82,16 +89,24 @@
 
             if(!empty($rta))
             {
-                return $this->map($rta);
+                foreach ($rta as $row) 
+                {
+                    $guardian = $this->map($row);
+                    array_push($guardList, $guardian);
+                }
+
+                return $guardList[0];  
             }
             else
             {
-                return false;
+                return null;
             }
         }
 
-        public function GetByDni($dni)
-        {
+        public function GetByDni($dni){
+
+            $guardList = array();
+
             try {
                 $this->connection = Connection::GetInstance();
                 $query = "SELECT * FROM guardians WHERE dni = '$dni' ";
@@ -104,16 +119,24 @@
 
             if(!empty($rta))
             {
-                return $this->map($rta);
+                foreach ($rta as $row) 
+                {
+                    $guardian = $this->map($row);
+                    array_push($guardList, $guardian);
+                }
+
+                return $guardList[0];  
             }
             else
             {
-                return false;
+                return null;
             }
         }
 
-        public function GetByEmail($email)
-        {
+        public function GetByEmail($email){
+            
+            $guardList = array();
+
             try {
                 $this->connection = Connection::GetInstance();
                 $query = "SELECT * FROM guardians WHERE email = '$email' ";
@@ -126,11 +149,17 @@
 
             if(!empty($rta))
             {
-                return $this->map($rta);
+                foreach ($rta as $row) 
+                {
+                    $guardian = $this->map($row);
+                    array_push($guardList, $guardian);
+                }
+
+                return $guardList[0];  
             }
             else
             {
-                return false;
+                return null;
             }
         }
 
@@ -221,15 +250,27 @@
             }
         }
 
-        /**
-         *  Transofmra un listado (array) de X cosas
-         *  en objetos de X cosa
-         * 
-         *  @param Array listado de X cosas a transformar en objetos
-        */
+        // Transforma un arreglo (que se pasa por parametro) en un objeto
 
-        protected function map ($values)
+        protected function map ($rta)
         {
+            $guardian = new Guardian;
+
+            $guardian->setId_guardian($rta['id_guardian']);
+            $guardian->setName($rta['first_name']);
+            $guardian->setLast_name($rta['last_name']);
+            $guardian->setDni($rta['dni']);
+            $guardian->setTelephone($rta['telephone']);
+            $guardian->setAddress($rta['address']);
+            $guardian->setEmail($rta['email']);
+            $guardian->setPassword($rta['pass']);
+            $guardian->setSizeCare($this->GetSize($rta['id_size_care']));
+            $guardian->setCost($rta['cost']);
+            
+            return $guardian;
+
+            /* codigo original que transforma un arraglo de arreglos, en un arreglo de objetos
+
             $values = is_array($values) ? $values : [];
 
             $rta = array_map(function($p){
@@ -252,6 +293,7 @@
             }, $values);
 
             return count($rta) > 1 ? $rta : $rta['0'];
+                            */
         }
 
         // DATABASE CLASSES ↑

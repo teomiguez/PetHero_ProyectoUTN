@@ -41,6 +41,8 @@
 
         public function GetAll()
         {
+            $revList = array();
+
             try
             {
                 $this->connection = Connection::GetInstance();
@@ -54,15 +56,20 @@
 
             if(!empty($rta))
             {
-                return $this->map($rta);
+                foreach ($rta as $row) 
+                {
+                    $review = $this->map($row);
+                    array_push($revList, $review);
+                }
             }
-            else
-            {
-                return false;
-            }
+
+            return $revList;
         }
 
         public function GetById($id){
+            
+            $revList = array();
+
             try {
                 $this->connection = Connection::GetInstance();
                 $query = "SELECT * FROM review WHERE id_review = '$id' ";
@@ -75,16 +82,24 @@
 
             if(!empty($rta))
             {
-                return $this->map($rta);
+                foreach ($rta as $row) 
+                {
+                    $review = $this->map($row);
+                    array_push($revList, $review);
+                }
+
+                return $revList[0];  
             }
             else
             {
-                return false;
+                return null;
             }
         }
 
-        public function GetByIdGuardian($id)
-        {
+        public function GetByIdGuardian($id) {
+            
+            $revList = array();
+
             try {
                 $this->connection = Connection::GetInstance();
                 $query = "SELECT * FROM review WHERE id_guardian = '$id' ";
@@ -97,11 +112,17 @@
 
             if(!empty($rta))
             {
-                return $this->map($rta);
+                foreach ($rta as $row) 
+                {
+                    $review = $this->map($row);
+                    array_push($revList, $review);
+                }
+
+                return $revList[0];  
             }
             else
             {
-                return false;
+                return null;
             }
         }
 
@@ -141,15 +162,22 @@
             }
         }
 
-        /**
-         *  Transofmra un listado (array) de X cosas
-         *  en objetos de X cosa
-         * 
-         *  @param Array listado de X cosas a transformar en objetos
-         */
+        // Transforma un arreglo (que se pasa por parametro) en un objeto
 
-        protected function map ($values)
+        protected function map ($rta)
         {
+            $review = new Review;
+
+            $review->setId_review($rta['id_review']);
+            $review->setId_guardian($rta['id_guardian']);
+            $review->setQuantity_reviews($rta['quantity_reviews']);
+            $review->setSum_reviews($rta['sum_reviews']);
+            $review->setReview($rta['review']);
+
+            return $review;
+
+            /* codigo original que transforma un arraglo de arreglos, en un arreglo de objetos
+            /*
             $values = is_array($values) ? $values : [];
 
             $rta = array_map(function($p){
@@ -167,6 +195,7 @@
             }, $values);
 
             return count($rta) > 1 ? $rta : $rta['0'];
+            */
         }
         
         // DATABASE CLASSES ↑

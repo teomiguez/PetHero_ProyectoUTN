@@ -42,6 +42,8 @@
 
         public function GetAll()
         {
+            $owList = array();
+
             try
             {
                 $this->connection = Connection::GetInstance();
@@ -55,15 +57,20 @@
 
             if(!empty($rta))
             {
-                return $this->map($rta);
+                foreach ($rta as $row) 
+                {
+                    $owner = $this->map($row);
+                    array_push($owList, $owner);
+                }
             }
-            else
-            {
-                return false;
-            }
+
+            return $owList;
         }
 
         public function GetById($id){
+
+            $owList = array();
+
             try {
                 $this->connection = Connection::GetInstance();
                 $query = "SELECT * FROM owners WHERE id_owner = '$id' ";
@@ -76,16 +83,24 @@
 
             if(!empty($rta))
             {
-                return $this->map($rta);
+                foreach ($rta as $row) 
+                {
+                    $owner = $this->map($row);
+                    array_push($owList, $owner);
+                }
+
+                return $owList[0];  
             }
             else
             {
-                return false;
+                return null;
             }
         }
 
         public function GetByDni($dni)
         {
+            $owList = array();
+
             try {
                 $this->connection = Connection::GetInstance();
                 $query = "SELECT * FROM owners WHERE dni = '$dni' ";
@@ -98,16 +113,24 @@
 
             if(!empty($rta))
             {
-                return $this->map($rta);
+                foreach ($rta as $row) 
+                {
+                    $owner = $this->map($row);
+                    array_push($owList, $owner);
+                }
+
+                return $owList[0];  
             }
             else
             {
-                return false;
+                return null;
             }
         }
 
         public function GetByEmail($email)
         {
+            $owList = array();
+            
             try 
             {
                 $this->connection = Connection::GetInstance();
@@ -121,11 +144,17 @@
 
             if(!empty($rta))
             {
-                return $this->map($rta);
+                foreach ($rta as $row) 
+                {
+                    $owner = $this->map($row);
+                    array_push($owList, $owner);
+                }
+
+                return $owList[0];  
             }
             else
             {
-                return false;
+                return null;
             }
         }
 
@@ -166,15 +195,24 @@
             }
         }
 
-        /**
-         *  Transofmra un listado (array) de X cosas
-         *  en objetos de X cosa
-         * 
-         *  @param Array listado de X cosas a transformar en objetos
-         */
+        // Transforma un arreglo (que se pasa por parametro) en un objeto
 
-        protected function map ($values)
+        protected function map ($rta)
         {
+            $owner = new Owner;
+
+            $owner->setId_owner($rta['id_owner']);
+            $owner->setName($rta['first_name']);
+            $owner->setLast_name($rta['last_name']);
+            $owner->setDni($rta['dni']);
+            $owner->setTelephone($rta['telephone']);
+            $owner->setEmail($rta['email']);
+            $owner->setPassword($rta['pass']);
+
+            return $owner;
+
+            /* codigo original que transforma un arraglo de arreglos, en un arreglo de objetos
+
             $values = is_array($values) ? $values : [];
 
             $rta = array_map(function($p){
@@ -194,6 +232,7 @@
             }, $values);
 
             return count($rta) > 1 ? $rta : $rta['0'];
+            */
         }
         
         // DATABASE CLASSES ↑

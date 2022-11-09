@@ -41,6 +41,8 @@
 
         public function GetAll()
         {
+            $petList = array();
+
             try
             {
                 $this->connection = Connection::GetInstance();
@@ -93,6 +95,9 @@
         }
 
         public function GetById($id){
+           
+            $petList = array();
+
             try 
             {
                 $this->connection = Connection::GetInstance();
@@ -111,9 +116,14 @@
                     $pet = $this->map($row);
                     array_push($petList, $pet);
                 }
+
+                return $petList[0];
+            }
+            else
+            {
+                return null;
             }
 
-            return $petList;
         }
 
         public function Update($id, Pet $pet)
@@ -195,12 +205,8 @@
             }
         }
 
-        /**
-         *  Transofmra un listado (array) de X cosas
-         *  en objetos de X cosa
-         * 
-         *  @param Array listado de X cosas a transformar en objetos
-        */
+
+        // Transforma un arreglo (que se pasa por parametro) en un objeto
 
         protected function map ($rta)
         {
@@ -219,7 +225,7 @@
             
             return $pet;
 
-            // funcion anterior ->
+            // funcion anterior ->  codigo original que transforma un arraglo de arreglos, en un arreglo de objetos
 
             // $values = is_array($values) ? $values : [];
 
