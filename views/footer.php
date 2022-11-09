@@ -1,4 +1,4 @@
-<footer class="position-absolute bottom-0 start-50 translate-middle-x my-2">
+<footer class="position-absolute bottom-0 start-50 translate-middle-x">
     <div class="d-flex justify-content-center">
         <a href="#" class="mx-3">
             <h2>

@@ -91,6 +91,25 @@
             } 
         }
 
+        public function UpdateProfile($id, $name, $last_name, $tel, $password)
+        {
+            $ownerDAO = new OwnerDAO();
+            $owner = new Owner();
+
+            // -> SETs OWNER
+            $owner->setName($name);
+            $owner->setLast_name($last_name);
+            $owner->setTelephone($tel);
+            $owner->setPassword($password);
+            // <- SETs OWNER
+
+            // -> UPDATE OWNER
+            $ownerDAO->Update($id, $owner);
+            // <- UPDATE OWNER
+
+            $this->ShowProfile();
+        }
+
         public function ShowGuardians()
         {
             if (isset($_SESSION['idOwner']))

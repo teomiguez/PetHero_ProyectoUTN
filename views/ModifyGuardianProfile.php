@@ -28,13 +28,6 @@
     ?>
 
     <br>
-
-<!-- 
-        HAY QUE TERMINAR ESTA PÁGINA DE MODIFICACIÓN DEL PERFIL DEL GUARDIAN
-
-        - CREAR METODO UPDATE EN GUARDIAN_CONTROLLER (BORRAR EL GUARDIAN EXISTENTE Y AGREGAR EL NUEVO MODIFICADO)
-        Nota: Modificar el ancla de 'Modificar' del GuardianProfile (quedo feo jaja)
--->
     
     <main class="container text-center">
         <div class="col-md-6 offset-md-3">

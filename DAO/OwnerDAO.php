@@ -135,14 +135,12 @@
             {
                 $this->connection = Connection::GetInstance();
 
-                $query = "UPDATE owners SET first_name=:first_name, last_name=:last_name, dni=:dni, telephone=:telephone, email=:email, pass=:pass
+                $query = "UPDATE owners SET first_name=:first_name, last_name=:last_name, telephone=:telephone, pass=:pass
                             WHERE id_owner = '$id'";
 
                 $parameters['first_name'] = $owner->getName();
                 $parameters['last_name'] = $owner->getLast_name();
-                $parameters['dni'] = $owner->getDni();
                 $parameters['telephone'] = $owner->getTelephone();
-                $parameters['email'] = $owner->getEmail();
                 $parameters['pass'] = $owner->getPassword();
 
                 $this->connection->ExecuteNonQuery($query, $parameters);

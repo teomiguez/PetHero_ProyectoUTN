@@ -59,8 +59,8 @@
                     </tr>
                 </tbody>
             </table>    
-            <div class="d-grid gap-2 col-6 me-auto">
-                <a href="<?php echo FRONT_ROOT . "Owner/ModifyProfile_Owner" ?>"> Modificar </a>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <a class="text-decoration-none" href="<?php echo FRONT_ROOT . "Owner/ModifyProfile_Owner" ?>"> Modificar </a>
             </div>
         </div>
     </main>

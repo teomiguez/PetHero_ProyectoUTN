@@ -183,10 +183,8 @@
 
                 $parameters['first_name'] = $guardian->getName();
                 $parameters['last_name'] = $guardian->getLast_name();
-                $parameters['dni'] = $guardian->getDni();
                 $parameters['telephone'] = $guardian->getTelephone();
                 $parameters['address'] = $guardian->getAddress();
-                $parameters['email'] = $guardian->getEmail();
                 $parameters['pass'] = $guardian->getPassword();
 
                 if (($guardian->getSizeCare() != 1) || ($guardian->getSizeCare() != 2) || ($guardian->getSizeCare() != 3))
