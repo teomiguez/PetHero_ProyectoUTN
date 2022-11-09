@@ -59,13 +59,9 @@
                     $pet = $this->map($row);
                     array_push($petList, $pet);
                 }
+            }
 
-                return $petList;
-            }
-            else
-            {
-                return false;
-            }
+            return $petList;
         }
 
         public function GetByOwner($id)
@@ -82,6 +78,7 @@
             {
                 throw $e;
             }
+            
             if(!empty($rta))
             {
                 foreach ($rta as $row) 
@@ -89,13 +86,10 @@
                     $pet = $this->map($row);
                     array_push($petList, $pet);
                 }
+            }
 
-                return $petList;
-            }
-            else
-            {
-                return false;
-            }
+            return $petList;
+
         }
 
         public function GetById($id){
@@ -117,13 +111,9 @@
                     $pet = $this->map($row);
                     array_push($petList, $pet);
                 }
+            }
 
-                return $petList;
-            }
-            else
-            {
-                return false;
-            }
+            return $petList;
         }
 
         public function Update($id, Pet $pet)
