@@ -96,7 +96,8 @@
                     </table>
 
                 <?php }
-                      else if(isset($guardiansAviable)) { ?>
+                      else if(isset($guardiansAviable)) { 
+                                foreach($guardiansAviable as $guardian) {?>
 
                         <table class="table text-center">
                         <thead>
@@ -110,9 +111,9 @@
                         <tbody>
     
                             <tr class="align-middle">
-                                <td> <?php echo $guardiansAviable->getName() ?> </td>
-                                <td> <?php echo $guardiansAviable->getLast_name() ?> </td>
-                                <td> <?php echo $guardiansAviable->getTelephone() ?> </td>
+                                <td> <?php echo $guardian->getName() ?> </td>
+                                <td> <?php echo $guardian->getLast_name() ?> </td>
+                                <td> <?php echo $guardian->getTelephone() ?> </td>
                                 <td> 
                                     <button class="btn btn-link" type="button" data-bs-toggle="modal"
                                     data-bs-target="#viewGuardian_modal">
@@ -124,7 +125,8 @@
                     
                     </table>
 
-                <?php } ?>
+                <?php } 
+                        } ?>
 
                 <!-- Button whit modal -->
                 <button type="button" class="btn btn-primary w-100" data-bs-toggle="modal"
@@ -154,8 +156,38 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="<?php echo FRONT_ROOT . "" ?>" method="POST" class="text-start">
-                        
+                    <form action="<?php echo FRONT_ROOT . "Reservation/RequestReservation" ?>" method="POST" class="text-start">
+                        <div class="my-1">
+                            <label for="first_day" class="form-label"> Desde </label>
+                            <input id="first_day" name="first_day" type="date" class="form-control" required>
+                        </div>
+
+                        <div class="my-1">
+                            <label for="last_day" class="form-label"> Hasta </label>
+                            <input id="last_day" name="last_day" type="date" class="form-control" required>
+                        </div>
+
+                        <!-- SELECT GUARDIAN -->
+                        <div class="my-1">    
+                            <label for="id_guardian" class="form-label"> Seleccione el guardian </label>
+                            <select id="id_guardian" class="form-select form-select-sm"
+                                aria-label=".form-select-sm example" name="id_guardian" required>
+                                <?php foreach ($guardians as $guardian) { ?>
+                                <option value="<?php echo $guardian->getId_guardian() ?>"> <?php echo $guardian->getName() . " " . $guardian->getLast_name() ?> </option>
+                                <?php } ?>
+                            </select>
+                        </div>
+
+                        <!-- SELECT PET -->
+                        <div class="my-1">    
+                            <label for="id_pet" class="form-label"> Seleccione la mascota </label>
+                            <select id="id_pet" class="form-select form-select-sm"
+                                aria-label=".form-select-sm example" name="id_pet" required>
+                                <?php foreach ($petsList as $pet) { ?>
+                                <option value="<?php echo $pet->getId_pet() ?>"> <?php echo $pet->getName() . " - " . $pet->getType() . " - " . $pet->getBreed() . " - " . $pet->getSize() ?> </option>
+                                <?php } ?>
+                            </select>
+                        </div>
 
                         <hr class="my-3">
 
@@ -169,20 +201,23 @@
         </div>
     </div>
 
-    <!-- Modal - view guardian -->
-    <div class="modal fade" id="viewGuardian_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel"> <?php echo $guardian->getName() ?> </h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    
-                </div>
+    <?php if(isset($alert_danger)) { ?>
+        <div class="position-absolute top-0 start-50 translate-middle-x">
+            <div class="alert alert-<?php echo $alert['type'] ?>" role="alert">
+                <?php echo $alert['text'] ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         </div>
-    </div>
+    <?php } ?>
+
+    <?php if(isset($alert_succes)) { ?>
+        <div class="position-absolute top-0 start-50 translate-middle-x">
+            <div class="alert alert-<?php echo $alert_succes['type'] ?>" role="alert">
+                <?php echo $alert_succes['text'] ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div>
+    <?php } ?>
 
     <!-- Boostrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"

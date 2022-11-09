@@ -7,7 +7,7 @@ abstract class Reservation
 
     private $id_reservation;
     private $id_guardian;
-    private $pet_type;
+    private $pet_size;
     private $pet_breed;
     private $first_day;
     private $last_day;
@@ -37,12 +37,12 @@ abstract class Reservation
     }
 
 
-    public function getPet_type()
+    public function getPet_size()
     {
         return $this->pet_type;
     }
 
-    public function setPet_type($pet_type)
+    public function setPet_size($pet_size)
     {
         $this->pet_type = $pet_type;
     }

@@ -91,8 +91,8 @@
             return $avstayList;
         }
 
-        public function GetById($id){
-           
+        public function GetById($id)
+        {   
             $avstayList = array();
 
             try {
@@ -121,9 +121,35 @@
             }
         }
 
-        public function GetIdGuardian_ByDates($first_day, $last_day){
-           
-            try {
+        public function IsExist_Stay($first_day, $last_day)
+        {
+            try 
+            {
+                $this->connection = Connection::GetInstance();
+                $query = "SELECT * FROM avstay WHERE fist_day <= '$first_day' AND last_day >= '$last_day' ";
+                $rta = $this->connection->Execute($query);
+            } 
+            catch (Exception $e) 
+            {
+                throw $e;
+            }
+
+            if(!empty($rta))
+            {
+                return true; // EXISTE 
+            }
+            else
+            {
+                return false; // NO EXISTE
+            }
+        }
+
+        public function GetIdGuardian_ByDates($first_day, $last_day)
+        {
+            $avstayList = array();
+            
+            try 
+            {
                 $this->connection = Connection::GetInstance();
                 $query = "SELECT id_guardian FROM avstay WHERE fist_day <= '$first_day' AND last_day >= '$last_day' ";
                 $rta = $this->connection->Execute($query);
@@ -135,12 +161,17 @@
 
             if(!empty($rta))
             {
-                return $rta[0][0];  
+                foreach ($rta as $row) 
+                {
+                    $avstay = $row[0];
+                    array_push($avstayList, $avstay);
+                }
             }
-            else
-            {
-                return null;
-            }
+
+            //var_dump($rta);
+            //var_dump($avstayList);
+
+            return $avstayList;
         }
 
         public function Update($id, AvStay $avstay)

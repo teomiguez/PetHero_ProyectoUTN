@@ -4,6 +4,7 @@
     use DAO\OwnerDAO as OwnerDAO;
     use DAO\GuardianDAO as GuardianDAO;
     use DAO\AvStayDAO as AvStayDAO;
+    use DAO\PetDAO as PetDAO;
 
     use Models\Guardian as Guardian;
     use Models\Owner as Owner;
@@ -28,8 +29,6 @@
                 $owner_DAO = new OwnerDAO();
 
                 $user = $owner_DAO->GetById($_SESSION["idOwner"]);
-
-                //var_dump($_SESSION);
 
                 $this->ShowGuardians();
             }
@@ -115,8 +114,11 @@
             if (isset($_SESSION['idOwner']))
             {  
                 $guardian_DAO = new GuardianDAO();
+                $petDAO = new PetDAO();
 
                 $guardians = $guardian_DAO->GetAll();
+
+                $petsList = $petDAO->GetByOwner($_SESSION['idOwner']);
 
                 require_once(VIEWS_PATH . "OwnerHome.php");
             }
@@ -133,11 +135,16 @@
             {  
                 $guardian_DAO = new GuardianDAO();
                 $avStayDAO = new AvStayDAO();
-                $guardiansAviable = new Guardian();
+                $guardian = new Guardian();
+                $guardiansAviable = array();
                  
                 $idsGuardiansAvailable = $avStayDAO->GetIdGuardian_ByDates($first_day, $last_day);
 
-                $guardiansAviable = $guardian_DAO->GetById($idsGuardiansAvailable);
+                foreach($idsGuardiansAvailable as $id)
+                {
+                    $guardian = $guardian_DAO->GetById($id);
+                    array_push($guardiansAviable, $guardian);
+                }
                 
                 /**
                 *$guardiansAviable = array_filter($idsGuardiansAvailable, function ($guardian) use ($id_keeper) 
