@@ -45,13 +45,11 @@
             {
                 if ($guardian->getSizeCare() == $pet->getSize())
                 {
-                    $accepted = 0;
                     $diff = 0;
                     
                     $reserv->setId_guardian($id_guardian);
                     $reserv->setPet_size($pet->getSize());
                     $reserv->setPet_breed($pet->getBreed());
-                    $reserv->setIs_accepted($accepted);
                     $reserv->setFirst_day($first_day);
                     $reserv->setLast_day($last_day);
                     $reserv->setTotal_days($diff); // ver hacer la diferencia (tira error con lo que usamos en el GuarianHome)
@@ -75,6 +73,14 @@
             }
 
             header("location: " . FRONT_ROOT . "Owner/ShowGuardians");
+        }
+
+        public function AcceptedReserv($id)
+        {
+            $reservationDAO = new ReservationDAO();
+            $reservationDAO->ChangeToAccepted($id);
+
+            header("location: " . FRONT_ROOT . "Guardian/ShowAvStays");
         }
     }
 ?>

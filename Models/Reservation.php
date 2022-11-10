@@ -9,7 +9,7 @@ class Reservation
     private $id_guardian;
     private $pet_size;
     private $pet_breed;
-    private $id_accepted;
+    private $is_accepted;
     private $first_day;
     private $last_day;
     private $total_days;

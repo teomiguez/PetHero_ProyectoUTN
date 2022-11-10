@@ -34,7 +34,42 @@
         <div class="row">
 
             <div class="col-12 col-sm-12 col-md-12 col-lg-3 ">
-                <p class="text-center"> *Listado de Reservas activas y a confirmar* </p>
+                <h2 class="text-center"> Listado de reservas </h2>
+
+                <div class="mb-3">
+                    <table class="table text-center">
+                        <thead>
+                            <tr>
+                                <th scope="col"> Desde </th>
+                                <th scope="col"> Hasta </th>
+                                <th scope="col">  </th>
+                        </tr>
+                        </thead>
+                        <tbody> 
+                            <?php  
+                                foreach ($reservList as $reserv) {
+                            ?>
+
+                            <tr class="align-middle">
+                                <td> <?php echo $reserv->getFirst_day() ?> </td>
+                                <td> <?php echo $reserv->getLast_day() ?> </td>
+                                <td> 
+                                    <?php if (($reserv->getIs_accepted()) != 1) {?>
+                                        <form action="<?php echo FRONT_ROOT . "Reservation/AcceptedReserv" ?>" method="POST">
+                                            <button class="btn btn-link" type="submit" name="id" 
+                                                    value="<?php echo $reserv->getId_reservation() ?>">
+                                                <i class="bi bi-check-circle"></i>    
+                                            </button>
+                                        </form>
+                                    <?php } ?> 
+                                </td>
+                            </tr>
+                        </tbody>
+
+                        <?php }  ?> 
+                    </table>
+                    
+                </div>
             </div>
 
             <div class="col-12 col-sm-8 col-lg-5 ">
@@ -90,7 +125,6 @@
 
                         <?php }  ?> 
                     </table>
-                    
                 </div>
 
                 <!-- Button whit modal -->

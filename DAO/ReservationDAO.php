@@ -29,12 +29,12 @@
                 $parameters['id_guardian'] = $reserv->getId_guardian();
                 $parameters['pet_size'] = $reserv->getPet_size();
                 $parameters['pet_breed'] = $reserv->getPet_breed();
-                $parameters['is_accepted'] = $reserv->getIs_accepted();
+                $parameters['is_accepted'] = 0;
                 $parameters['first_day'] = $reserv->getFirst_day();
                 $parameters['last_day'] = $reserv->getLast_day();
                 $parameters['total_days'] = $reserv->getTotal_days();
 
-            $this->connection->ExecuteNonQuery($query, $parameters);
+                $this->connection->ExecuteNonQuery($query, $parameters);
             }
             catch (Exception $e)
             {
@@ -128,6 +128,60 @@
             return $rta[0][0];
         }
 
+        public function GetByGuardian($id_guardian)
+        {
+            $reservList = array();
+            
+            try
+            {
+                $this->connection = Connection::GetInstance();
+                $query = "SELECT * FROM reservation WHERE id_guardian = '$id_guardian' ";
+                $rta = $this->connection->Execute($query);
+            }
+            catch (Exception $e) 
+            {
+                throw $e;
+            }
+
+            if(!empty($rta))
+            {
+                foreach ($rta as $row) 
+                {
+                    $reserv = $this->map($row);
+                    array_push($reservList, $reserv);
+                }
+            }
+
+            return $reservList;
+        }
+        
+        public function GetByGuardian_ToAccepted($id_guardian)
+        {
+            $reservList = array();
+            
+            try
+            {
+                $this->connection = Connection::GetInstance();
+                $query = "SELECT * FROM reservation WHERE id_guardian = '$id_guardian' AND is_accepted = 0";
+                $rta = $this->connection->Execute($query);
+            }
+            catch (Exception $e) 
+            {
+                throw $e;
+            }
+
+            if(!empty($rta))
+            {
+                foreach ($rta as $row) 
+                {
+                    $reserv = $this->map($row);
+                    array_push($reservList, $reserv);
+                }
+            }
+
+            return $reservList;
+        }
+
         public function IsExist_Reserv($first_day, $last_day)
         {
             try 
@@ -157,12 +211,11 @@
             {
                 $this->connection = Connection::GetInstance();
 
-                $query = "UPDATE reservation SET is_accepted:is_accepted
+                $query = "UPDATE reservation SET is_accepted = '1'
                             WHERE id_reservation = '$id'";
 
-                $parameters['is_accepted'] = 1;
 
-                $this->connection->ExecuteNonQuery($query, $parameters);
+                $this->connection->ExecuteNonQuery($query);
             }
             catch (Exception $e)
             {

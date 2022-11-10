@@ -4,10 +4,12 @@
     use DAO\GuardianDAO as GuardianDAO;
     use DAO\AvStayDAO as AvStayDAO;
     use DAO\ReviewDAO as ReviewDAO;
+    use DAO\ReservationDAO as ReservationDAO;
 
     use Models\Guardian as Guardian;
     use Models\AvStay as AvStay;
     use Models\Review as Review;
+    use Models\Reservation as Reservation;
 
     use Controllers\ReviewController as ReviewController;
 
@@ -147,10 +149,14 @@
             if (isset($_SESSION['idGuardian']))
             { 
                 $avStayDAO = new AvStayDAO();
+                $reservationDAO = new ReservationDAO();
                 $avStayList = array();
+                $reservList = array();
 
                 $avStayList = $avStayDAO->GetByKeeper($_SESSION["idGuardian"]);
+                $reservList = $reservationDAO->GetByGuardian($_SESSION["idGuardian"]);
 
+                var_dump($reservList);
                 require_once(VIEWS_PATH . "GuardianHome.php");
             }
             else
