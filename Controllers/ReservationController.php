@@ -13,6 +13,11 @@
 
     class ReservationController 
     {
+        public function __contruct()
+        {
+            
+        }
+        
         public function RequestReservation($first_day, $last_day, $id_guardian, $id_pet)
         {
             $reservationDAO = new ReservationDAO();

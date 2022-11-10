@@ -9,15 +9,8 @@
     {
         public function __contruct()
         {
-            require_once(ROOT . "/Utils/ValidateSession.php");
-
-            if ($_SESSION["type"] == "guardian") 
-            {
-                header("location: " . FRONT_ROOT . "Guardian/HomeGuardian");
-            }
+            
         } 
-
-         // esta funcion no tiene uso por ahora, porque usamos la funcion ShowList del PetController que muestra todas las mascotas 
 
         public function ShowList()
         {

@@ -6,6 +6,11 @@
 
     class ReviewController
     {
+        public function __contruct()
+        {
+            
+        }
+        
         function CreateNewReview ($id_guardian)
         {
             $reviewDAO = new ReviewDAO();

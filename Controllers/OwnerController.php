@@ -14,12 +14,7 @@
     {
         public function __contruct() // no funciona ni le damos uso
         {
-            require_once(FRONT_ROOT . "Utils/ValidateSession.php");
-
-            if ($_SESSION["type"] == "guardian") 
-            {
-                header("location: " . FRONT_ROOT . "Guardian/HomeGuardian");
-            }
+            
         }  
 
         public function HomeOwner()

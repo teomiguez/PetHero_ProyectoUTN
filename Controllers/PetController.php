@@ -17,12 +17,7 @@
     {
         public function __contruct()
         {
-            require_once(ROOT . "/Utils/ValidateSession.php");
-
-            if ($_SESSION["type"] == "guardian") 
-            {
-                header("location: " . FRONT_ROOT . "Guardian/HomeGuardian");
-            }
+            
         }
 
         // DATABASE CLASSES ↓

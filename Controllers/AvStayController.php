@@ -8,12 +8,7 @@
     {
         public function __contruct()
         {
-            require_once(ROOT . "/Utils/ValidateSession.php");
-
-            if ($_SESSION["type"] == "owner") 
-            {
-                header("location: " . FRONT_ROOT . "Owner/HomeOwner");
-            }
+            
         } 
 
         public function ShowList($flag = '')
