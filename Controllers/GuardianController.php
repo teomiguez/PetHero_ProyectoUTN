@@ -15,7 +15,7 @@
 
     class GuardianController 
     {
-        public function __contruct() // no funciona ni le damos uso
+        public function __contruct() 
         {
             
         } 

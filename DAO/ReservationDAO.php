@@ -300,11 +300,8 @@
             }
         }
 
-        /** MODIFICAR COMO LO DEJARON LOS CHICOS!!
-         *  Transofmra un listado (array) de X cosas
-         *  en objetos de X cosa
-         * 
-         *  @param Array listado de X cosas a transformar en objetos
+        /**
+        *	@param Array -> listado que se transforma en objeto
         */
 
         protected function map ($p)

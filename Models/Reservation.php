@@ -4,7 +4,6 @@ namespace Models;
 
 class Reservation
 {
-
     private $id_reservation;
     private $id_guardian;
     private $pet_size;

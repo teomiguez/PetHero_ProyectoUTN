@@ -233,7 +233,9 @@
             }
         }
 
-        // Transforma un arreglo (que se pasa por parametro) en un objeto
+        /**
+        *	@param Array -> listado que se transforma en objeto
+        */
 
         protected function map ($rta) 
         {

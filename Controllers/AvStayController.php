@@ -27,7 +27,7 @@
         }
 
 
-        public function CreateAvStay ($first_day, $last_day) // X
+        public function CreateAvStay ($first_day, $last_day) 
         {
             if (isset($_SESSION['idGuardian']))
             {  

@@ -12,7 +12,7 @@
 
     class OwnerController 
     {
-        public function __contruct() // no funciona ni le damos uso
+        public function __contruct() 
         {
             
         }  
@@ -123,8 +123,7 @@
             }      
         }
 
-        public function ShowFilterGuardians($first_day, $last_day) // funciona para mostrar el primer guardian disponible 
-                                                                  //que encuentra con las fechas solicitadas
+        public function ShowFilterGuardians($first_day, $last_day) 
         { 
             if (isset($_SESSION['idOwner']))
             {  
