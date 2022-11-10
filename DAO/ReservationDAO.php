@@ -5,6 +5,7 @@
     use DAO\GuardianDAO as GuardianDAO;
     use Models\Guardian as Guardian;
     use Models\Pet as Pet;
+    use Models\Reservation as Reservation;
     // use to bdd
     use DAO\Connection as Connection;
     use Exception;
@@ -29,7 +30,7 @@
                 $parameters['pet_size'] = $reserv->getPet_size();
                 $parameters['pet_breed'] = $reserv->getPet_breed();
                 $parameters['is_accepted'] = $reserv->getIs_accepted();
-                $parameters['first_day'] = $reserv->getFirs_day();
+                $parameters['first_day'] = $reserv->getFirst_day();
                 $parameters['last_day'] = $reserv->getLast_day();
                 $parameters['total_days'] = $reserv->getTotal_days();
 
@@ -116,7 +117,7 @@
             try 
             {
                 $this->connection = Connection::GetInstance();
-                $query = "SELECT id_reservation FROM reservation WHERE fist_day <= '$first_day' AND last_day >= '$last_day' ";
+                $query = "SELECT id_reservation FROM reservation WHERE first_day <= '$first_day' AND last_day >= '$last_day' ";
                 $rta = $this->connection->Execute($query);
             } 
             catch (Exception $e) 
@@ -132,7 +133,7 @@
             try 
             {
                 $this->connection = Connection::GetInstance();
-                $query = "SELECT * FROM reservation WHERE fist_day <= '$first_day' AND last_day >= '$last_day' ";
+                $query = "SELECT * FROM reservation WHERE first_day <= '$first_day' AND last_day >= '$last_day' ";
                 $rta = $this->connection->Execute($query);
             } 
             catch (Exception $e) 

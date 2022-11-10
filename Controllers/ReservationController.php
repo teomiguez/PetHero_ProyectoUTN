@@ -8,20 +8,23 @@
 
     use Models\Guardian as Guardian;
     use Models\Pet as Pet;
+    use Models\Reservation as Reservation;
     use Models\AvStay as AvStay;
 
-    class OwnerController 
+    class ReservationController 
     {
         public function RequestReservation($first_day, $last_day, $id_guardian, $id_pet)
         {
             $reservationDAO = new ReservationDAO();
+            $guardianDAO = new GuardianDAO();
             $avstayDAO = new AvStayDAO();
             $petDAO = new PetDAO();
 
-            $reserv = new Reserv();
+            $reserv = new Reservation();
             $pet = $petDAO->GetById($id_pet);
+            $guardian = $guardianDAO->GetById($id_guardian);
 
-            if (($reservationDAO->IsExist_Reserv($first_day, $last_day)))
+            if ($reservationDAO->IsExist_Reserv($first_day, $last_day))
             {
                 $id_exist = $reservationDAO->GetIdByDates($first_day, $last_day);
 
@@ -29,7 +32,7 @@
                 {
                     // CREAR EL CUPON DE PAGO
                     
-                    $reservationDAO->AddPet_ToReservation($id_exist, 1 /*cambiar*/, $id_pet);
+                    $reservationDAO->AddPet_ToReservation($id_exist, 1 /*cambiar*/, $pet);
 
                     $alert_succes = array("type" => "succes", "text" => "Se agregó la mascota a unareserva previa");
                 }
@@ -38,23 +41,40 @@
                     $alert_danger = array("type" => "danger", "text" => "La reserva ya existe y la mascota seleccionada no cumple con las condiciones de tamaño/raza");
                 }
             }
-            else if (($avstayDAO->IsExist_Stay($first_day, $last_day)) && ($avstayDAO->GetIdGuardian_ByDates($first_day, $last_day) == $id_guardian))
+            else if (($avstayDAO->IsExist_Stay($first_day, $last_day)) && ($avstayDAO->ThisGuardianIsAviable($id_guardian, $first_day, $last_day)))
             {
-                $reserv->setId_guardian($id_guardian);
-                $reserv->setPet_size($pet->getSize());
-                $reserv->setPet_size($pet->getBreed());
-                $reserv->setFirst_day($first_day);
-                $reserv->setLast_day($last_day);
-                $reserv->setTotal_days($first_day->diff($last_day));
+                if ($guardian->getSizeCare() == $pet->getSize())
+                {
+                    $accepted = 0;
+                    $diff = 0;
+                    
+                    $reserv->setId_guardian($id_guardian);
+                    $reserv->setPet_size($pet->getSize());
+                    $reserv->setPet_breed($pet->getBreed());
+                    $reserv->setIs_accepted($accepted);
+                    $reserv->setFirst_day($first_day);
+                    $reserv->setLast_day($last_day);
+                    $reserv->setTotal_days($diff); // ver hacer la diferencia (tira error con lo que usamos en el GuarianHome)
+    
+                    /* id_reserv =*/$reservationDAO->AddReservation($reserv); // ver que retorne la id (así se agrega la mascota)
 
-                $reservationDAO->AddReservation($reserv);
+                    // CREAR CUPON DE PAGO
 
-                $alert_succes = array("type" => "succes", "text" => "Se envió la solicitud al guardian");
+                    //$reservationDAO->AddPet_ToReservation(/* id_reserv, id_cupon*/, $pet);
+    
+                    $alert_succes = array("type" => "succes", "text" => "Se envió la solicitud al guardian");
+                }
+                else
+                {
+                    $alert_danger = array("type" => "danger", "text" => "El guardian no cuida el tamaño de su mascota");
+                }
             }
-            else if ($avstayDAO->GetIdGuardian_ByDates($first_day, $last_day) != $id_guardian)
+            else if (!$avstayDAO->ThisGuardianIsAviable($id_guardian, $first_day, $last_day))
             {
                 $alert_danger = array("type" => "danger", "text" => "El guardian no tiene esas fechas disponibles");
             }
+
+            header("location: " . FRONT_ROOT . "Owner/ShowGuardians");
         }
     }
 ?>

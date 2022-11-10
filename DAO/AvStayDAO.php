@@ -144,6 +144,29 @@
             }
         }
 
+        public function ThisGuardianIsAviable($id, $first_day, $last_day)
+        {
+            try 
+            {
+                $this->connection = Connection::GetInstance();
+                $query = "SELECT * FROM avstay WHERE id_guardian = '$id' AND fist_day <= '$first_day' AND last_day >= '$last_day' ";
+                $rta = $this->connection->Execute($query);
+            } 
+            catch (Exception $e) 
+            {
+                throw $e;
+            }
+
+            if(!empty($rta))
+            {
+                return true; // EXISTE 
+            }
+            else
+            {
+                return false; // NO EXISTE
+            }
+        }
+
         public function GetIdGuardian_ByDates($first_day, $last_day)
         {
             $avstayList = array();

@@ -2,13 +2,14 @@
 
 namespace Models;
 
-abstract class Reservation
+class Reservation
 {
 
     private $id_reservation;
     private $id_guardian;
     private $pet_size;
     private $pet_breed;
+    private $id_accepted;
     private $first_day;
     private $last_day;
     private $total_days;
@@ -39,12 +40,12 @@ abstract class Reservation
 
     public function getPet_size()
     {
-        return $this->pet_type;
+        return $this->pet_size;
     }
 
     public function setPet_size($pet_size)
     {
-        $this->pet_type = $pet_type;
+        $this->pet_size = $pet_size;
     }
 
 
@@ -58,6 +59,15 @@ abstract class Reservation
         $this->pet_breed = $pet_breed;
     }
 
+    public function getIs_accepted()
+    {
+        $this->is_accepted;
+    }
+
+    public function setIs_accepted($is_accepted)
+    {
+        $this->is_accepted = $is_accepted;
+    }
 
     public function getFirst_day()
     {

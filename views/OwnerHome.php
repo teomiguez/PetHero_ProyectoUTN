@@ -201,7 +201,7 @@
         </div>
     </div>
 
-    <?php if(isset($alert_danger)) { ?>
+    <?php if(isset($alertSet)) { ?>
         <div class="position-absolute top-0 start-50 translate-middle-x">
             <div class="alert alert-<?php echo $alert['type'] ?>" role="alert">
                 <?php echo $alert['text'] ?>
@@ -210,14 +210,6 @@
         </div>
     <?php } ?>
 
-    <?php if(isset($alert_succes)) { ?>
-        <div class="position-absolute top-0 start-50 translate-middle-x">
-            <div class="alert alert-<?php echo $alert_succes['type'] ?>" role="alert">
-                <?php echo $alert_succes['text'] ?>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        </div>
-    <?php } ?>
 
     <!-- Boostrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
