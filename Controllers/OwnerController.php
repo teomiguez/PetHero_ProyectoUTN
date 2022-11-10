@@ -64,9 +64,9 @@
             $owner->setPassword($password);
             // <- SETs OWNER
 
-            // -> ADD OWNER TO JSON
+            // -> ADD OWNER
             $ownerDAO->Add($owner);
-            // <- ADD OWNER TO JSON
+            // <- ADD OWNER
         }
 
         public function ModifyProfile_Owner()
