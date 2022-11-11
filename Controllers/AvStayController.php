@@ -20,7 +20,7 @@
     
                 if ($this->checkDiffDays($first_day, $last_day) == true)
                 {
-                    if ($this->checkExistStayDays($first_day, $last_day) == true)
+                    if ($this->checkExistStayDays($_SESSION['idGuardian'], $first_day, $last_day) == true)
                     {
                         // -> SETs AvStay
                         $avStay->setId_keeper($_SESSION['idGuardian']);
@@ -67,7 +67,7 @@
             return $flag;
         }
 
-        function checkExistStayDays($first_day, $last_day)
+        function checkExistStayDays($id_guardian, $first_day, $last_day)
         {
             $avStayDAO = new AvStayDAO;
             $avStay = new AvStay;
@@ -75,7 +75,7 @@
 
             $flag = true;
 
-            $avStayList = $avStayDAO->GetAll();
+            $avStayList = $avStayDAO->GetByKeeper($id_guardian);
 
             foreach($avStayList as $avStay) 
             {
