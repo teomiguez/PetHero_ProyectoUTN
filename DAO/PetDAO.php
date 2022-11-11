@@ -11,6 +11,7 @@
     class PetDAO implements I_DAO
     {
         private $connection;
+        private $tableName = "pets";
         
         public function Add(Pet $pet)
         {
@@ -18,7 +19,7 @@
             {
                 $this->connection = Connection::GetInstance();
 
-                $query = "INSERT INTO pets (id_owner, img, name, id_type, breed, id_size, plan_vacunacion, video, info)
+                $query = "INSERT INTO $this->tableName (id_owner, img, name, id_type, breed, id_size, plan_vacunacion, video, info)
                       VALUES (:id_owner, :img, :name, :id_type, :breed, :id_size, :plan_vacunacion, :video, :info)";
 
                 $parameters['id_owner'] = $pet->getId_owner();
@@ -46,7 +47,7 @@
             try
             {
                 $this->connection = Connection::GetInstance();
-                $query = "SELECT * FROM pets";
+                $query = "SELECT * FROM $this->tableName";
                 $rta = $this->connection->Execute($query);
             }
             catch (Exception $e) 
@@ -73,8 +74,10 @@
             try 
             {
                 $this->connection = Connection::GetInstance();
-                $query = "SELECT * FROM pets p WHERE p.id_owner = '$id' ";
-                $rta = $this->connection->Execute($query);
+                $query = "SELECT * FROM $this->tableName p WHERE p.id_owner = :id ";
+                $parameters['id'] = $id;
+
+                $rta = $this->connection->Execute($query, $parameters);
             } 
             catch (Exception $e) 
             {
@@ -101,8 +104,10 @@
             try 
             {
                 $this->connection = Connection::GetInstance();
-                $query = "SELECT * FROM pets WHERE id_pet = '$id' ";
-                $rta = $this->connection->Execute($query);
+                $query = "SELECT * FROM $this->tableName WHERE id_pet = :id ";
+                $parameters['id'] = $id;
+
+                $rta = $this->connection->Execute($query, $parameters);
             } 
             catch (Exception $e) 
             {
@@ -132,8 +137,8 @@
             {
                 $this->connection = Connection::GetInstance();
 
-                $query = "UPDATE pets SET img:img, name:name, type:type, breed:breed, size:size, planVacunacion:planVacunacion, video:video, info:info
-                            WHERE id_pet = '$id'";
+                $query = "UPDATE $this->tableName SET img:img, name:name, type:type, breed:breed, size:size, planVacunacion:planVacunacion, video:video, info:info
+                            WHERE id_pet = :id";
 
                 $parameters['img'] = $pet->getImg();
                 $parameters['name'] = $pet->getName();
@@ -143,6 +148,7 @@
                 $parameters['plan_vacunacion'] = $pet->getPlanVacunacion();
                 $parameters['video'] = $pet->getVideo();
                 $parameters['info'] = $pet->getInfo();
+                $parameters['id'] = $id;
 
                 $this->connection->ExecuteNonQuery($query, $parameters);
             }
@@ -156,8 +162,10 @@
         {
             try {
                 $this->connection = Connection::GetInstance();
-                $query = "DELETE FROM pets WHERE id_pet = '$id' ";
-                $rta = $this->connection->ExecuteNonQuery($query);
+                $query = "DELETE FROM $this->tableName WHERE id_pet = :id ";
+                $parameters['id'] = $id;
+
+                $rta = $this->connection->ExecuteNonQuery($query, $parameters);
                 
                 return $rta;
             } 
@@ -172,8 +180,10 @@
             try 
             {
                 $this->connection = Connection::GetInstance();
-                $query = "SELECT type FROM types WHERE id_type = '$id' ";
-                $rta = $this->connection->Execute($query);
+                $query = "SELECT type FROM types WHERE id_type = :id ";
+                $parameters['id'] = $id;
+
+                $rta = $this->connection->Execute($query, $parameters);
             } 
             catch (Exception $e) 
             {
@@ -191,8 +201,10 @@
             try 
             {
                 $this->connection = Connection::GetInstance();
-                $query = "SELECT size FROM sizes WHERE id_size = '$id' ";
-                $rta = $this->connection->Execute($query);
+                $query = "SELECT size FROM sizes WHERE id_size = :id ";
+                $parameters['id'] = $id;
+
+                $rta = $this->connection->Execute($query, $parameters);
             } 
             catch (Exception $e) 
             {
@@ -226,16 +238,6 @@
             $pet->setInfo($rta['info']);
             
             return $pet;
-
-            // funcion anterior ->  codigo original que transforma un arraglo de arreglos, en un arreglo de objetos
-
-            // $values = is_array($values) ? $values : [];
-
-            // $rta = array_map(function($p){
-                // aca iba todos los set
-            // }, $values);
-
-            // return count($rta) > 1 ? $rta : $rta['0'];
         }
     }
 ?>

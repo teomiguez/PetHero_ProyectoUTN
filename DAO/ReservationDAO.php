@@ -14,6 +14,7 @@
     class ReservationDAO implements I_DAO
     {
         private $connection;
+        private $tableName = "reservation";
 
         // DATABASE CLASSES ↓
 
@@ -23,7 +24,7 @@
             {
                 $this->connection = Connection::GetInstance();
 
-                $query = "INSERT INTO reservation (id_guardian, pet_size, pet_breed, is_accepted, first_day, last_day, total_days)
+                $query = "INSERT INTO $this->tableName (id_guardian, pet_size, pet_breed, is_accepted, first_day, last_day, total_days)
                       VALUES (:id_guardian, :pet_size, :pet_breed, :is_accepted, :first_day, :last_day, :total_days)";
 
                 $parameters['id_guardian'] = $reserv->getId_guardian();
@@ -68,7 +69,7 @@
             try
             {
                 $this->connection = Connection::GetInstance();
-                $query = "SELECT * FROM reservation";
+                $query = "SELECT * FROM $this->tableName";
                 $rta = $this->connection->Execute($query);
             }
             catch (Exception $e) 
@@ -92,8 +93,10 @@
             try 
             {
                 $this->connection = Connection::GetInstance();
-                $query = "SELECT * FROM reservation WHERE id_guardian = '$id' ";
-                $rta = $this->connection->Execute($query);
+                $query = "SELECT * FROM $this->tableName WHERE id_guardian = :id ";
+                $parameters['id'] = $id;
+
+                $rta = $this->connection->Execute($query, $parameters);
             } 
             catch (Exception $e) 
             {
@@ -117,8 +120,11 @@
             try 
             {
                 $this->connection = Connection::GetInstance();
-                $query = "SELECT id_reservation FROM reservation WHERE first_day <= '$first_day' AND last_day >= '$last_day' ";
-                $rta = $this->connection->Execute($query);
+                $query = "SELECT id_reservation FROM $this->tableName WHERE first_day <= :first_day AND last_day >= :last_day ";
+                $parameters['first_day'] = $first_day;
+                $parameters['last_day'] = $last_day;
+
+                $rta = $this->connection->Execute($query, $parameters);
             } 
             catch (Exception $e) 
             {
@@ -135,8 +141,10 @@
             try
             {
                 $this->connection = Connection::GetInstance();
-                $query = "SELECT * FROM reservation WHERE id_guardian = '$id_guardian' ";
-                $rta = $this->connection->Execute($query);
+                $query = "SELECT * FROM $this->tableName WHERE id_guardian = :id_guardian ";
+                $parameters['id_guardian'] = $id_guardian;
+                
+                $rta = $this->connection->Execute($query, $parameters);
             }
             catch (Exception $e) 
             {
@@ -162,8 +170,11 @@
             try
             {
                 $this->connection = Connection::GetInstance();
-                $query = "SELECT * FROM reservation WHERE id_guardian = '$id_guardian' AND is_accepted = 0";
-                $rta = $this->connection->Execute($query);
+                $query = "SELECT * FROM $this->tableName WHERE id_guardian = :id_guardian AND is_accepted = :is_accepted";
+                $parameters['id_guardian'] = $id_guardian;
+                $parameters['is_accepted'] = 0;
+
+                $rta = $this->connection->Execute($query, $parameters);
             }
             catch (Exception $e) 
             {
@@ -187,8 +198,11 @@
             try 
             {
                 $this->connection = Connection::GetInstance();
-                $query = "SELECT * FROM reservation WHERE first_day <= '$first_day' AND last_day >= '$last_day' ";
-                $rta = $this->connection->Execute($query);
+                $query = "SELECT * FROM $this->tableName WHERE first_day <= :first_day AND last_day >= :last_day ";
+                $parameters['first_day'] = $first_day;
+                $parameters['last_day'] = $last_day;
+
+                $rta = $this->connection->Execute($query, $parameters);
             } 
             catch (Exception $e) 
             {
@@ -211,11 +225,12 @@
             {
                 $this->connection = Connection::GetInstance();
 
-                $query = "UPDATE reservation SET is_accepted = '1'
-                            WHERE id_reservation = '$id'";
+                $query = "UPDATE $this->tableName SET is_accepted = :is_accepted
+                            WHERE id_reservation = :id";
+                $parameters['is_accepted'] = 1;
+                $parameters['id'] = $id;
 
-
-                $this->connection->ExecuteNonQuery($query);
+                $this->connection->ExecuteNonQuery($query, $parameters);
             }
             catch (Exception $e)
             {
@@ -228,8 +243,10 @@
             try 
             {
                 $this->connection = Connection::GetInstance();
-                $query = "SELECT pet_size FROM reservation WHERE id_reservation = '$id' ";
-                $rta = $this->connection->Execute($query);
+                $query = "SELECT pet_size FROM $this->tableName WHERE id_reservation = :id ";
+                $parameters['id'] = $id;
+
+                $rta = $this->connection->Execute($query, $parameters);
             } 
             catch (Exception $e) 
             {
@@ -247,8 +264,10 @@
             try 
             {
                 $this->connection = Connection::GetInstance();
-                $query = "SELECT pet_breed FROM reservation WHERE id_reservation = '$id' ";
-                $rta = $this->connection->Execute($query);
+                $query = "SELECT pet_breed FROM $this->tableName WHERE id_reservation = :id ";
+                $parameters['id'] = $id;
+
+                $rta = $this->connection->Execute($query, $parameters);
             } 
             catch (Exception $e) 
             {
@@ -267,8 +286,8 @@
             {
                 $this->connection = Connection::GetInstance();
 
-                $query = "UPDATE reservation SET pet_size:pet_size, pet_breed:pet_breed, is_accepted:is_accepted, first_day:first_day, last_day:last_day, total_days:total_days
-                            WHERE id_reservation = '$id'";
+                $query = "UPDATE $this->tableName SET pet_size:pet_size, pet_breed:pet_breed, is_accepted:is_accepted, first_day:first_day, last_day:last_day, total_days:total_days
+                            WHERE id_reservation = :id";
 
                 $parameters['pet_size'] = $reserv->getPet_size();
                 $parameters['pet_breed'] = $reserv->getPet_breed();
@@ -276,6 +295,7 @@
                 $parameters['first_day'] = $reserv->getFirs_day();
                 $parameters['last_day'] = $reserv->getLast_day();
                 $parameters['total_days'] = $reserv->getTotal_days();
+                $parameters['id'] = $id;
 
                 $this->connection->ExecuteNonQuery($query, $parameters);
             }
@@ -289,8 +309,10 @@
         {
             try {
                 $this->connection = Connection::GetInstance();
-                $query = "DELETE FROM reservation WHERE id_reservation = '$id' ";
-                $rta = $this->connection->ExecuteNonQuery($query);
+                $query = "DELETE FROM $this->tableName WHERE id_reservation = :id";
+                $parameters['id'] = $id;
+
+                $rta = $this->connection->ExecuteNonQuery($query, $parameters);
                 
                 return $rta;
             } 

@@ -15,6 +15,7 @@
         private $fileName = ROOT . "Data/Reviews.json";
 
         private $connection;
+        private $tableName = "review";
 
         // DATABASE CLASSES ↓
 
@@ -24,7 +25,7 @@
             {
                 $this->connection = Connection::GetInstance();
 
-                $query = "INSERT INTO review (id_guardian, quantity_reviews, sum_reviews, review) VALUES (:id_guardian, :quantity_reviews, :sum_reviews, :review)";
+                $query = "INSERT INTO $this->tableName (id_guardian, quantity_reviews, sum_reviews, review) VALUES (:id_guardian, :quantity_reviews, :sum_reviews, :review)";
 
                 $parameters['id_guardian'] = $review->getId_guardian();
                 $parameters['quantity_reviews'] = $review->getQuantity_reviews();
@@ -46,7 +47,7 @@
             try
             {
                 $this->connection = Connection::GetInstance();
-                $query = "SELECT * FROM review";
+                $query = "SELECT * FROM $this->tableName";
                 $rta = $this->connection->Execute($query);
             }
             catch (Exception $e) 
@@ -72,8 +73,10 @@
 
             try {
                 $this->connection = Connection::GetInstance();
-                $query = "SELECT * FROM review WHERE id_review = '$id' ";
-                $rta = $this->connection->Execute($query);
+                $query = "SELECT * FROM $this->tableName WHERE id_review = :id ";
+                $parameters['id'] = $id;
+
+                $rta = $this->connection->Execute($query, $parameters);
             } 
             catch (Exception $e) 
             {
@@ -102,8 +105,10 @@
 
             try {
                 $this->connection = Connection::GetInstance();
-                $query = "SELECT * FROM review WHERE id_guardian = '$id' ";
-                $rta = $this->connection->Execute($query);
+                $query = "SELECT * FROM $this->tableName WHERE id_guardian = :id";
+                $parameters['id'] = $id;
+
+                $rta = $this->connection->Execute($query, $parameters);
             } 
             catch (Exception $e) 
             {
@@ -132,12 +137,13 @@
             {
                 $this->connection = Connection::GetInstance();
 
-                $query = "UPDATE review SET quantity_reviews:quantity_reviews, sum_reviews:sum_reviews, review:review
-                            WHERE id_review = '$id'";
+                $query = "UPDATE $this->tableName SET quantity_reviews:quantity_reviews, sum_reviews:sum_reviews, review:review
+                            WHERE id_review = :id";
 
                 $parameters['quantity_reviews'] = $review->getQuantity_reviews();
                 $parameters['sum_reviews'] = $review->getSum_reviews();
                 $parameters['review'] = $review->getReview();
+                $parameters['id'] = $id;
 
                 $this->connection->ExecuteNonQuery($query, $parameters);
             }
@@ -151,8 +157,10 @@
         {
             try {
                 $this->connection = Connection::GetInstance();
-                $query = "DELETE FROM review WHERE id_review = '$id' ";
-                $rta = $this->connection->ExecuteNonQuery($query);
+                $query = "DELETE FROM $this->tableName WHERE id_review = :id";
+                $parameters['id'] = $id;
+
+                $rta = $this->connection->ExecuteNonQuery($query, $parameters);
                 
                 return $rta;
             } 

@@ -21,8 +21,7 @@
 
         public function Add(AvStay $avstay)
         {
-            try
-            {
+            try {
                 $this->connection = Connection::GetInstance();
 
                 $query = "INSERT INTO $this->tableName (id_guardian, fist_day, last_day) VALUES (:id_guardian, :fist_day, :last_day)";

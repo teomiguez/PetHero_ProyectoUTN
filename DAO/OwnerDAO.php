@@ -14,6 +14,7 @@
         private $fileName = ROOT . "Data/Owners.json";
 
         private $connection;
+        private $tableName = "owners";
 
         // DATABASE CLASSES ↓
 
@@ -23,7 +24,7 @@
             {
                 $this->connection = Connection::GetInstance();
 
-                $query = "INSERT INTO owners (first_name, last_name, dni, telephone, email, pass) VALUES (:first_name, :last_name, :dni, :telephone, :email, :pass)";
+                $query = "INSERT INTO $this->tableName (first_name, last_name, dni, telephone, email, pass) VALUES (:first_name, :last_name, :dni, :telephone, :email, :pass)";
 
                 $parameters['first_name'] = $owner->getName();
                 $parameters['last_name'] = $owner->getLast_name();
@@ -47,7 +48,7 @@
             try
             {
                 $this->connection = Connection::GetInstance();
-                $query = "SELECT * FROM owners";
+                $query = "SELECT * FROM $this->tableName";
                 $rta = $this->connection->Execute($query);
             }
             catch (Exception $e) 
@@ -73,8 +74,10 @@
 
             try {
                 $this->connection = Connection::GetInstance();
-                $query = "SELECT * FROM owners WHERE id_owner = '$id' ";
-                $rta = $this->connection->Execute($query);
+                $query = "SELECT * FROM $this->tableName WHERE id_owner = :id ";
+                $parameters['id'] = $id;
+
+                $rta = $this->connection->Execute($query, $parameters);
             } 
             catch (Exception $e) 
             {
@@ -103,8 +106,10 @@
 
             try {
                 $this->connection = Connection::GetInstance();
-                $query = "SELECT * FROM owners WHERE dni = '$dni' ";
-                $rta = $this->connection->Execute($query);
+                $query = "SELECT * FROM $this->tableName WHERE dni = :dni ";
+                $parameters['dni'] = $dni;
+
+                $rta = $this->connection->Execute($query, $parameters);
             } 
             catch (Exception $e) 
             {
@@ -134,8 +139,10 @@
             try 
             {
                 $this->connection = Connection::GetInstance();
-                $query = "SELECT * FROM owners WHERE email = '$email' ";
-                $rta = $this->connection->Execute($query);
+                $query = "SELECT * FROM $this->tableName WHERE email = :email ";
+                $parameters['email'] = $email;
+
+                $rta = $this->connection->Execute($query, $parameters);
             } 
             catch (Exception $e) 
             {
@@ -164,13 +171,14 @@
             {
                 $this->connection = Connection::GetInstance();
 
-                $query = "UPDATE owners SET first_name=:first_name, last_name=:last_name, telephone=:telephone, pass=:pass
-                            WHERE id_owner = '$id'";
+                $query = "UPDATE $this->tableName SET first_name=:first_name, last_name=:last_name, telephone=:telephone, pass=:pass
+                            WHERE id_owner = :id";
 
                 $parameters['first_name'] = $owner->getName();
                 $parameters['last_name'] = $owner->getLast_name();
                 $parameters['telephone'] = $owner->getTelephone();
                 $parameters['pass'] = $owner->getPassword();
+                $parameters['id'] = $id;
 
                 $this->connection->ExecuteNonQuery($query, $parameters);
             }
@@ -184,8 +192,10 @@
         {
             try {
                 $this->connection = Connection::GetInstance();
-                $query = "DELETE FROM owners WHERE id_owner = '$id' ";
-                $rta = $this->connection->ExecuteNonQuery($query);
+                $query = "DELETE FROM $this->tableName WHERE id_owner = :id ";
+                $parameters['id'] = $id;
+
+                $rta = $this->connection->ExecuteNonQuery($query, $parameters);
                 
                 return $rta;
             } 
@@ -212,29 +222,6 @@
             $owner->setPassword($rta['pass']);
 
             return $owner;
-
-            /* codigo original que transforma un arraglo de arreglos, en un arreglo de objetos
-
-            $values = is_array($values) ? $values : [];
-
-            $rta = array_map(function($p){
-
-                $owner = new Owner;
-
-                $owner->setId_owner($p['id_owner']);
-                $owner->setName($p['first_name']);
-                $owner->setLast_name($p['last_name']);
-                $owner->setDni($p['dni']);
-                $owner->setTelephone($p['telephone']);
-                $owner->setEmail($p['email']);
-                $owner->setPassword($p['pass']);
-
-                return $owner;
-
-            }, $values);
-
-            return count($rta) > 1 ? $rta : $rta['0'];
-            */
         }
         
         // DATABASE CLASSES ↑
