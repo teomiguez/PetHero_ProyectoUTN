@@ -77,7 +77,7 @@
                 $alert_danger = array("type" => "danger", "text" => "El guardian no tiene esas fechas disponibles");
             }
 
-            header("location: " . FRONT_ROOT . "Owner/ShowGuardians");
+            header("location: " . FRONT_ROOT . "Owner/ShowHome_Owner");
         }
 
         public function AcceptedReserv($id)
@@ -85,7 +85,7 @@
             $reservationDAO = new ReservationDAO();
             $reservationDAO->ChangeToAccepted($id);
 
-            header("location: " . FRONT_ROOT . "Guardian/ShowAvStays");
+            header("location: " . FRONT_ROOT . "Guardian/ShowHome_Guardian");
         }
     }
 ?>

@@ -61,40 +61,36 @@
                     </form>
                 </div>
                 <!-- Filtro -->
-
-                <?php if(isset($guardians)) { ?>
-
-                    <table class="table text-center">
-                        <thead>
-                            <tr>
-                                <th scope="col"> Nombre </th>
-                                <th scope="col"> Apellido </th>
-                                <th scope="col"> Telefono </th>
-                                <th scope="col">  </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-    
+                <table class="table text-center">
+                    <thead>
+                        <tr>
+                            <th scope="col"> Nombre </th>
+                            <th scope="col"> Apellido </th>
+                            <th scope="col"> Telefono </th>
+                            <th scope="col">  </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                            if(isset($guardians)) {
                                 foreach ($guardians as $guardian) {
-                            ?>
-    
-                            <tr class="align-middle">
-                                <td> <?php echo $guardian->getName() ?> </td>
-                                <td> <?php echo $guardian->getLast_name() ?> </td>
-                                <td> <?php echo $guardian->getTelephone() ?> </td>
-                                <td> 
-                                    <button class="btn btn-link" type="button" data-bs-toggle="modal"
-                                    data-bs-target="#viewGuardian_modal">
-                                        <i class="bi bi-eye-fill"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                        </tbody>   
-                    
-                        <?php } ?>
-                    </table>
+                        ?>
 
+                        <tr class="align-middle">
+                            <td> <?php echo $guardian->getName() ?> </td>
+                            <td> <?php echo $guardian->getLast_name() ?> </td>
+                            <td> <?php echo $guardian->getTelephone() ?> </td>
+                            <td> 
+                                <button class="btn btn-link" type="button" data-bs-toggle="modal"
+                                data-bs-target="#viewGuardian_modal">
+                                    <i class="bi bi-eye-fill"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>   
+                    
+                    <?php } ?>
+                </table>
                 <?php }
                       else if(isset($guardiansAviable)) { 
                                 foreach($guardiansAviable as $guardian) {?>
@@ -172,9 +168,11 @@
                             <label for="id_guardian" class="form-label"> Seleccione el guardian </label>
                             <select id="id_guardian" class="form-select form-select-sm"
                                 aria-label=".form-select-sm example" name="id_guardian" required>
-                                <?php foreach ($guardians as $guardian) { ?>
+                                <?php if (isset($guardian) || isset($guardiansSelect)) {
+                                            foreach ($guardians as $guardian) { ?>
                                 <option value="<?php echo $guardian->getId_guardian() ?>"> <?php echo $guardian->getName() . " " . $guardian->getLast_name() ?> </option>
-                                <?php } ?>
+                                <?php }
+                                        } ?>
                             </select>
                         </div>
 
@@ -201,7 +199,7 @@
         </div>
     </div>
 
-    <?php if(isset($alertSet)) { ?>
+    <?php if(isset($alert)) { ?>
         <div class="position-absolute top-0 start-50 translate-middle-x">
             <div class="alert alert-<?php echo $alert['type'] ?>" role="alert">
                 <?php echo $alert['text'] ?>

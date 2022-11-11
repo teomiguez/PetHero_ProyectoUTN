@@ -11,22 +11,6 @@
             
         } 
 
-        public function ShowList($flag = '')
-        {
-            $avStayDAO = new AvStayDAO();
-            $avStayList = array();
-
-            $avStayList = $avStayDAO->GetByKeeper($_SESSION["idGuardian"]);
-
-            if ($flag != '')
-            {
-                $alert_days = array("type" => "danger", "text" => "Las fechas ingresadas no son coherentes"); //ALERT
-            }
-
-            require_once(VIEWS_PATH . "GuardianHome.php");
-        }
-
-
         public function CreateAvStay ($first_day, $last_day) 
         {
             if (isset($_SESSION['idGuardian']))
@@ -49,17 +33,17 @@
                         // <- ADD AvStay TO JSON
             
                         // -> REDIRECTION TO AvStay/ShowList
-                        header("location: " . FRONT_ROOT . "AvStay/ShowList");
+                        header("location: " . FRONT_ROOT . "Guardian/ShowHome_Guardian");
                         // <- REDIRECTION TO AvStay/ShowList
                     }
                     else
                     {
-                        header("location: " . FRONT_ROOT . "AvStay/ShowList/flag=1");
+                        header("location: " . FRONT_ROOT . "Guardian/ShowHome_Guardian"); // ver pasar alert
                     }
                 }
                 else
                 {
-                    header("location: " . FRONT_ROOT . "AvStay/ShowList/flag=1");
+                    header("location: " . FRONT_ROOT . "Guardian/ShowHome_Guardian"); // ver pasar alert
                 }
             }
             else
@@ -122,7 +106,7 @@
             $avStayDAO->Remove($id);
 
             // -> REDIRECTION TO AvStay/SHOWLIT
-            header("location: " . FRONT_ROOT . "AvStay/ShowList");
+            header("location: " . FRONT_ROOT . "Guardian/ShowHome_Guardian");
             // <- REDIRECTION TO AvStay/SHOWLIT
         }
 

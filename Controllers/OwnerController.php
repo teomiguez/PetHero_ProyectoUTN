@@ -17,15 +17,19 @@
             
         }  
 
-        public function HomeOwner()
+        public function ShowHome_Owner()
         {    
             if (isset($_SESSION['idOwner']))
             {
-                $owner_DAO = new OwnerDAO();
+                $ownerDAO = new OwnerDAO();
+                $guardianDAO = new GuardianDAO();
+                $petDAO = new PetDAO();
+                
+                $user = $ownerDAO->GetById($_SESSION["idOwner"]);
+                $guardians = $guardianDAO->GetAll();
+                $petsList = $petDAO->GetByOwner($_SESSION['idOwner']);
 
-                $user = $owner_DAO->GetById($_SESSION["idOwner"]);
-
-                $this->ShowGuardians();
+                require_once(VIEWS_PATH . "OwnerHome.php");
             }
             else
             {
@@ -33,8 +37,35 @@
             }                
         }
 
+        public function ShowHome_FilterGuardians($first_day, $last_day) 
+        { 
+            if (isset($_SESSION['idOwner']))
+            {  
+                $guardianDAO = new GuardianDAO();
+                $avStayDAO = new AvStayDAO();
+                $petDAO = new PetDAO();
 
-        public function ShowProfile()
+                $guardian = new Guardian();
+                $guardiansAviable = array();
+                 
+                $guardiansSelect = $guardianDAO->GetAll();
+                $idsGuardiansAvailable = $avStayDAO->GetIdGuardian_ByDates($first_day, $last_day);
+
+                foreach($idsGuardiansAvailable as $id)
+                {
+                    $guardian = $guardianDAO->GetById($id);
+                    array_push($guardiansAviable, $guardian);
+                }
+
+                require_once(VIEWS_PATH . "OwnerHome.php");
+            }
+            else
+            {
+                header("location: " . FRONT_ROOT . "Auth/ShowLogin");
+            }  
+        }
+
+        public function ShowProfile_Owner()
         {    
             if (isset($_SESSION['idOwner']))
             {        
@@ -50,7 +81,23 @@
             }  
         }
 
-        public function RegisterOwner($name, $last_name, $dni, $tel, $email, $password)
+        public function ShowModifyProfile_Owner()
+        {
+            if (isset($_SESSION['idOwner']))
+            {        
+                $owner_DAO = new OwnerDAO();
+
+                $user = $owner_DAO->GetById($_SESSION["idOwner"]);
+
+                require_once(VIEWS_PATH . "ModifyOwnerProfile.php");
+            }
+            else
+            {
+                header("location: " . FRONT_ROOT . "Auth/ShowLogin");
+            } 
+        }
+
+        public function Register_Owner($name, $last_name, $dni, $tel, $email, $password)
         {
             $ownerDAO = new OwnerDAO();
             $owner = new Owner();
@@ -69,23 +116,7 @@
             // <- ADD OWNER
         }
 
-        public function ModifyProfile_Owner()
-        {
-            if (isset($_SESSION['idOwner']))
-            {        
-                $owner_DAO = new OwnerDAO();
-
-                $user = $owner_DAO->GetById($_SESSION["idOwner"]);
-
-                require_once(VIEWS_PATH . "ModifyOwnerProfile.php");
-            }
-            else
-            {
-                header("location: " . FRONT_ROOT . "Auth/ShowLogin");
-            } 
-        }
-
-        public function UpdateProfile($id, $name, $last_name, $tel, $password)
+        public function UpdateProfile_Owner($id, $name, $last_name, $tel, $password)
         {
             $ownerDAO = new OwnerDAO();
             $owner = new Owner();
@@ -101,58 +132,7 @@
             $ownerDAO->Update($id, $owner);
             // <- UPDATE OWNER
 
-            $this->ShowProfile();
-        }
-
-        public function ShowGuardians()
-        {
-            if (isset($_SESSION['idOwner']))
-            {  
-                $guardian_DAO = new GuardianDAO();
-                $petDAO = new PetDAO();
-
-                $guardians = $guardian_DAO->GetAll();
-
-                $petsList = $petDAO->GetByOwner($_SESSION['idOwner']);
-
-                require_once(VIEWS_PATH . "OwnerHome.php");
-            }
-            else
-            {
-                header("location: " . FRONT_ROOT . "Auth/ShowLogin");
-            }      
-        }
-
-        public function ShowFilterGuardians($first_day, $last_day) 
-        { 
-            if (isset($_SESSION['idOwner']))
-            {  
-                $guardian_DAO = new GuardianDAO();
-                $avStayDAO = new AvStayDAO();
-                $guardian = new Guardian();
-                $guardiansAviable = array();
-                 
-                $idsGuardiansAvailable = $avStayDAO->GetIdGuardian_ByDates($first_day, $last_day);
-
-                foreach($idsGuardiansAvailable as $id)
-                {
-                    $guardian = $guardian_DAO->GetById($id);
-                    array_push($guardiansAviable, $guardian);
-                }
-                
-                /**
-                *$guardiansAviable = array_filter($idsGuardiansAvailable, function ($guardian) use ($id_keeper) 
-                *{
-                *    return $guardian->getId_guardian() == $id_keeper;
-                *});
-                */
-
-                require_once(VIEWS_PATH . "OwnerHome.php");
-            }
-            else
-            {
-                header("location: " . FRONT_ROOT . "Auth/ShowLogin");
-            }  
+            $this->ShowProfile_Owner();
         }
     }
 ?>

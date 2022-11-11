@@ -70,7 +70,7 @@
                         $_SESSION['idOwner'] = $user1->getId_owner(); // SET ID_OWNER IN $_SESSION
     
                         // -> REDIRECTION TO HOME_OWNER
-                        header("location: " . FRONT_ROOT . "Owner/HomeOwner");
+                        header("location: " . FRONT_ROOT . "Owner/ShowHome_Owner");
                         // <- REDIRECTION TO HOME_OWNER
                     }
                     else
@@ -94,7 +94,7 @@
                         $_SESSION['idGuardian'] = $user2->getId_guardian(); // SET ID_GUARDIAN IN $_SESSION
     
                         // -> REDIRECTION TO HOME_GUARDIAN
-                        header("location: " . FRONT_ROOT . "Guardian/HomeGuardian");
+                        header("location: " . FRONT_ROOT . "Guardian/ShowHome_Guardian");
                         // <- REDIRECTION TO HOME_GUARDIAN
                     }
                     else
@@ -155,12 +155,12 @@
                     if ($radio_option == 'dueño')
                     {
                         $ownerController = new OwnerController();
-                        $ownerController->RegisterOwner($name, $last_name, $dni, $tel, $email, $password);
+                        $ownerController->Register_Owner($name, $last_name, $dni, $tel, $email, $password);
                     } 
                     else if ($radio_option == 'guardian')
                     {
                         $guardianController = new GuardianController();
-                        $guardianController->RegisterGuardian($name, $last_name, $dni, $tel, $email, $password, $street, $nro, $typeSize, $cost);
+                        $guardianController->Register_Guardian($name, $last_name, $dni, $tel, $email, $password, $street, $nro, $typeSize, $cost);
                     }
                     
                     $alert_succes = array("type" => "success", "text" => "Registro exitoso");

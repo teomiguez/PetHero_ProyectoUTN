@@ -20,7 +20,30 @@
             
         } 
 
-        public function ShowProfile()
+        public function ShowHome_Guardian()
+        {
+            if (isset($_SESSION['idGuardian']))
+            {  
+                $guardian_DAO = new GuardianDAO();
+                $avStayDAO = new AvStayDAO();
+                $reservationDAO = new ReservationDAO();
+
+                $avStayList = array();
+                $reservList = array();
+
+                $user = $guardian_DAO->GetById($_SESSION["idGuardian"]);
+                $avStayList = $avStayDAO->GetByKeeper($_SESSION["idGuardian"]);
+                $reservList = $reservationDAO->GetByGuardian($_SESSION["idGuardian"]);
+
+                require_once(VIEWS_PATH . "GuardianHome.php");
+            }
+            else
+            {
+                header("location: " . FRONT_ROOT . "Auth/ShowLogin");
+            }  
+        }
+        
+        public function ShowProfile_Guardian()
         {   
             if (isset($_SESSION['idGuardian']))
             {         
@@ -38,16 +61,18 @@
             }  
 
         }
-        
-        public function HomeGuardian()
+
+        public function ShowModifyProfile_Guardian()
         {
             if (isset($_SESSION['idGuardian']))
-            {  
+            {         
                 $guardian_DAO = new GuardianDAO();
+                $reviewDAO = new ReviewDAO();
 
                 $user = $guardian_DAO->GetById($_SESSION["idGuardian"]);
+                $user_review = $reviewDAO->GetByIdGuardian($user->getId_guardian());
 
-                $this->ShowAvStays();
+                require_once(VIEWS_PATH . "ModifyGuardianProfile.php");
             }
             else
             {
@@ -55,7 +80,7 @@
             }  
         }
 
-        function RegisterGuardian($name, $last_name, $dni, $tel, $email, $password, $street, $nro, $typeSize, $cost)
+        function Register_Guardian($name, $last_name, $dni, $tel, $email, $password, $street, $nro, $typeSize, $cost)
         {
             $guardianDAO = new GuardianDAO();
             $reviewDAO = new ReviewDAO();
@@ -95,7 +120,7 @@
             $reviewController->CreateNewReview($last_idGuardian); 
         }
 
-        public function UpdateProfile($id, $name, $last_name, $tel, $password, $address, $typeSize, $cost)
+        public function UpdateProfile_Guardian($id, $name, $last_name, $tel, $password, $address, $typeSize, $cost)
         {
             $guardianDAO = new GuardianDAO();
             $guardian = new Guardian();
@@ -114,48 +139,7 @@
             $guardianDAO->Update($id, $guardian);
             // <- UPDATE GUARDIAN
 
-            $this->ShowProfile();
+            $this->ShowProfile_Guardian();
         }
-
-
-        public function ModifyProfile_Guardian()
-        {
-            if (isset($_SESSION['idGuardian']))
-            {         
-                $guardian_DAO = new GuardianDAO();
-                $reviewDAO = new ReviewDAO();
-
-                $user = $guardian_DAO->GetById($_SESSION["idGuardian"]);
-                $user_review = $reviewDAO->GetByIdGuardian($user->getId_guardian());
-
-                require_once(VIEWS_PATH . "ModifyGuardianProfile.php");
-            }
-            else
-            {
-                header("location: " . FRONT_ROOT . "Auth/ShowLogin");
-            }  
-        }
-    
-        public function ShowAvStays()
-        {
-            if (isset($_SESSION['idGuardian']))
-            { 
-                $avStayDAO = new AvStayDAO();
-                $reservationDAO = new ReservationDAO();
-                $avStayList = array();
-                $reservList = array();
-
-                $avStayList = $avStayDAO->GetByKeeper($_SESSION["idGuardian"]);
-                $reservList = $reservationDAO->GetByGuardian($_SESSION["idGuardian"]);
-
-                var_dump($reservList);
-                require_once(VIEWS_PATH . "GuardianHome.php");
-            }
-            else
-            {
-                header("location: " . FRONT_ROOT . "Auth/ShowLogin");
-            }  
-        }
-
     }
 ?>
