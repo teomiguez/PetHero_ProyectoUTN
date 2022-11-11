@@ -15,6 +15,7 @@
         private $fileName = ROOT . "Data/AviableStays.json";
 
         private $connection;
+        private $tableName = "avstay";
  
         // DATABASE CLASSES ↓
 
@@ -24,7 +25,7 @@
             {
                 $this->connection = Connection::GetInstance();
 
-                $query = "INSERT INTO avstay (id_guardian, fist_day, last_day) VALUES (:id_guardian, :fist_day, :last_day)";
+                $query = "INSERT INTO $this->tableName (id_guardian, fist_day, last_day) VALUES (:id_guardian, :fist_day, :last_day)";
 
                 $parameters['id_guardian'] = $avstay->getId_keeper();
                 $parameters['fist_day'] = $avstay->getFirst_day();
@@ -45,7 +46,7 @@
             try
             {
                 $this->connection = Connection::GetInstance();
-                $query = "SELECT * FROM avstay";
+                $query = "SELECT * FROM $this->tableName";
                 $rta = $this->connection->Execute($query);
             }
             catch (Exception $e) 
@@ -71,8 +72,10 @@
             
             try {
                 $this->connection = Connection::GetInstance();
-                $query = "SELECT * FROM avstay WHERE id_guardian = '$id_guardian' ";
-                $rta = $this->connection->Execute($query);
+                $query = "SELECT * FROM $this->tableName WHERE id_guardian = :id_guardian ";
+                $parameters['id_guardian'] = $id_guardian;
+
+                $rta = $this->connection->Execute($query, $parameters);
             } 
             catch (Exception $e) 
             {
@@ -97,8 +100,10 @@
 
             try {
                 $this->connection = Connection::GetInstance();
-                $query = "SELECT * FROM avstay WHERE id_stay = '$id' ";
-                $rta = $this->connection->Execute($query);
+                $query = "SELECT * FROM $this->tableName WHERE id_stay = :id ";
+                $parameters['id'] = $id;
+
+                $rta = $this->connection->Execute($query, $parameters);
             } 
             catch (Exception $e) 
             {
@@ -126,8 +131,11 @@
             try 
             {
                 $this->connection = Connection::GetInstance();
-                $query = "SELECT * FROM avstay WHERE fist_day <= '$first_day' AND last_day >= '$last_day' ";
-                $rta = $this->connection->Execute($query);
+                $query = "SELECT * FROM $this->tableName WHERE fist_day <= :first_day' AND last_day >= :last_day ";
+                $parameters['first_day'] = $first_day;
+                $parameters['last_day'] = $last_day;
+
+                $rta = $this->connection->Execute($query, $parameters);
             } 
             catch (Exception $e) 
             {
@@ -149,8 +157,12 @@
             try 
             {
                 $this->connection = Connection::GetInstance();
-                $query = "SELECT * FROM avstay WHERE id_guardian = '$id' AND fist_day <= '$first_day' AND last_day >= '$last_day' ";
-                $rta = $this->connection->Execute($query);
+                $query = "SELECT * FROM $this->tableName WHERE id_guardian = :id AND fist_day <= :first_day AND last_day >= :last_day ";
+                $parameters['id'] = $id;
+                $parameters['first_day'] = $first_day;
+                $parameters['last_day'] = $last_day;
+                
+                $rta = $this->connection->Execute($query, $parameters);
             } 
             catch (Exception $e) 
             {
@@ -174,8 +186,11 @@
             try 
             {
                 $this->connection = Connection::GetInstance();
-                $query = "SELECT id_guardian FROM avstay WHERE fist_day <= '$first_day' AND last_day >= '$last_day' ";
-                $rta = $this->connection->Execute($query);
+                $query = "SELECT id_guardian FROM $this->tableName WHERE fist_day <= :first_day AND last_day >= :last_day ";
+                $parameters['first_day'] = $first_day;
+                $parameters['last_day'] = $last_day;
+
+                $rta = $this->connection->Execute($query, $parameters);
             } 
             catch (Exception $e) 
             {
@@ -203,12 +218,13 @@
             {
                 $this->connection = Connection::GetInstance();
 
-                $query = "UPDATE avstay SET id_guardian=:id_guardian, fist_day=:fist_day, last_day=:last_day                
-                            WHERE id_stay = '$id'";
+                $query = "UPDATE $this->tableName SET id_guardian=:id_guardian, fist_day=:fist_day, last_day=:last_day                
+                            WHERE id_stay = :id";
 
                 $parameters['id_guardian'] = $avstay->getId_keeper();
                 $parameters['fist_day'] = $avstay->getFirst_day();
                 $parameters['last_day'] = $avstay->getLast_day();
+                $parameters['id'] = $id;
 
                 $this->connection->ExecuteNonQuery($query, $parameters);
             }
@@ -222,8 +238,10 @@
         {
             try {
                 $this->connection = Connection::GetInstance();
-                $query = "DELETE FROM avstay WHERE id_stay = '$id' ";
-                $rta = $this->connection->ExecuteNonQuery($query);
+                $query = "DELETE FROM $this->tableName WHERE id_stay = :id ";
+                $parameters['id'] = $id;
+
+                $rta = $this->connection->ExecuteNonQuery($query, $parameters);
                 
                 return $rta;
             } 
@@ -247,26 +265,6 @@
             $avstay->setLast_day($rta['last_day']);
 
             return $avstay;
-
-            /* codigo original que transforma un arraglo de arreglos, en un arreglo de objetos
-            
-            $values = is_array($values) ? $values : [];
-
-            $rta = array_map(function($p){
-
-                $avstay = new AvStay;
-
-                $avstay->setId_stay($p['id_stay']);
-                $avstay->setId_keeper($p['id_guardian']);
-                $avstay->setFirst_day($p['fist_day']);
-                $avstay->setLast_day($p['last_day']);
-
-                return $avstay;
-
-            }, $values);
-
-            return count($rta) > 1 ? $rta : $rta['0'];
-            */
         }
 
         // DATABASE CLASSES ↑
