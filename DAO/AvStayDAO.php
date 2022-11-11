@@ -24,10 +24,10 @@
             try {
                 $this->connection = Connection::GetInstance();
 
-                $query = "INSERT INTO $this->tableName (id_guardian, fist_day, last_day) VALUES (:id_guardian, :fist_day, :last_day)";
+                $query = "INSERT INTO $this->tableName (id_guardian, first_day, last_day) VALUES (:id_guardian, :first_day, :last_day)";
 
                 $parameters['id_guardian'] = $avstay->getId_keeper();
-                $parameters['fist_day'] = $avstay->getFirst_day();
+                $parameters['first_day'] = $avstay->getFirst_day();
                 $parameters['last_day'] = $avstay->getLast_day();
 
                 $this->connection->ExecuteNonQuery($query, $parameters);
@@ -130,7 +130,7 @@
             try 
             {
                 $this->connection = Connection::GetInstance();
-                $query = "SELECT * FROM $this->tableName WHERE fist_day <= :first_day' AND last_day >= :last_day ";
+                $query = "SELECT * FROM $this->tableName WHERE first_day <= :first_day' AND last_day >= :last_day ";
                 $parameters['first_day'] = $first_day;
                 $parameters['last_day'] = $last_day;
 
@@ -156,7 +156,7 @@
             try 
             {
                 $this->connection = Connection::GetInstance();
-                $query = "SELECT * FROM $this->tableName WHERE id_guardian = :id AND fist_day <= :first_day AND last_day >= :last_day ";
+                $query = "SELECT * FROM $this->tableName WHERE id_guardian = :id AND first_day <= :first_day AND last_day >= :last_day ";
                 $parameters['id'] = $id;
                 $parameters['first_day'] = $first_day;
                 $parameters['last_day'] = $last_day;
@@ -185,7 +185,7 @@
             try 
             {
                 $this->connection = Connection::GetInstance();
-                $query = "SELECT id_guardian FROM $this->tableName WHERE fist_day <= :first_day AND last_day >= :last_day ";
+                $query = "SELECT id_guardian FROM $this->tableName WHERE first_day <= :first_day AND last_day >= :last_day ";
                 $parameters['first_day'] = $first_day;
                 $parameters['last_day'] = $last_day;
 
@@ -217,11 +217,11 @@
             {
                 $this->connection = Connection::GetInstance();
 
-                $query = "UPDATE $this->tableName SET id_guardian=:id_guardian, fist_day=:fist_day, last_day=:last_day                
+                $query = "UPDATE $this->tableName SET id_guardian=:id_guardian, first_day=:first_day, last_day=:last_day                
                             WHERE id_stay = :id";
 
                 $parameters['id_guardian'] = $avstay->getId_keeper();
-                $parameters['fist_day'] = $avstay->getFirst_day();
+                $parameters['first_day'] = $avstay->getFirst_day();
                 $parameters['last_day'] = $avstay->getLast_day();
                 $parameters['id'] = $id;
 
@@ -260,7 +260,7 @@
 
             $avstay->setId_stay($rta['id_stay']);
             $avstay->setId_keeper($rta['id_guardian']);
-            $avstay->setFirst_day($rta['fist_day']);
+            $avstay->setFirst_day($rta['first_day']);
             $avstay->setLast_day($rta['last_day']);
 
             return $avstay;
