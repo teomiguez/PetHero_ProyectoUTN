@@ -32,7 +32,7 @@
     <main class="container text-center">
         <div class="col-md-6 offset-md-3">
             <h2 class="text-center my-3"> Modificar Perfil </h2>
-            <form action="<?php echo FRONT_ROOT . " Guardian/UpdateProfile" ?>" method="POST">
+            <form action="<?php echo FRONT_ROOT . "Guardian/UpdateProfile_Guardian" ?>" method="POST">
                 <table class="table table-striped">
                     <tbody>
                         <tr class="align-middle">

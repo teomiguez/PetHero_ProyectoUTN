@@ -60,9 +60,9 @@
                 </tbody>
             </table>    
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                <a class="text-decoration-none" href="<?php echo FRONT_ROOT . "Owner/ModifyProfile_Owner" ?>"> Modificar </a>
+                <a class="text-decoration-none" href="<?php echo FRONT_ROOT . "Owner/ShowModifyProfile_Owner" ?>"> Modificar </a>
             </div>
-        </div>
+        </div> 
     </main>
 
     <!-- Footer -->

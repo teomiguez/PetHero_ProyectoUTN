@@ -8,14 +8,14 @@
         </h2>
 
         <div class="navbar-nav position-absolute top-50 start-50 translate-middle">
-            <a href="<?php echo FRONT_ROOT . "Guardian/HomeGuardian" ?>" class="nav-link active text-decoration-none">
+            <a href="<?php echo FRONT_ROOT . "Guardian/ShowHome_Guardian" ?>" class="nav-link active text-decoration-none">
                 <h2 class="text-center">
                     <i class="bi bi-house-door"></i>
                     <p class="h6 lead"> Home </p>
                 </h2>
             </a>
         </div>
-
+ 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
             data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
             aria-label="Toggle navigation">
@@ -32,7 +32,7 @@
                     </h2> 
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end">
-                    <li><a class="dropdown-item" href="<?php echo FRONT_ROOT . "Guardian/ShowProfile" ?>"> Ver Perfil </a></li>
+                    <li><a class="dropdown-item" href="<?php echo FRONT_ROOT . "Guardian/ShowProfile_Guardian" ?>"> Ver Perfil </a></li>
                     <li><hr class="dropdown-divider"></li>
                     <li><a class="dropdown-item" href="<?php echo FRONT_ROOT . "Auth/Logout" ?>"> Cerrar Sesion </a></li>
                 </ul>

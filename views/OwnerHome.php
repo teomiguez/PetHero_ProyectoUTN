@@ -42,7 +42,7 @@
                 <!-- Filtro -->
                 <div class="my-4 border border-dark p-2 border-opacity-50 rounded-2">
                     <h5 class="text-center mb-3"> Filtrar por disponibilidad </h5>
-                    <form action="<?php echo FRONT_ROOT . " Owner/ShowFilterGuardians" ?>" method="POST">
+                    <form action="<?php echo FRONT_ROOT . " Owner/ShowHome_FilterGuardians" ?>" method="POST">
                         <div class="d-flex justify-content-evenly text-center">
                             <div class="mx-1">
                                 <label for="first_day" class="form-label"> Desde </label>

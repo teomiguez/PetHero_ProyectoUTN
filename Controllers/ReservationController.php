@@ -39,7 +39,7 @@
                     
                     $reservationDAO->AddPet_ToReservation($id_exist, 1 /*cambiar*/, $pet);
 
-                    $alert_succes = array("type" => "succes", "text" => "Se agregó la mascota a unareserva previa");
+                    $alert_succes = array("type" => "succes", "text" => "Se agregó la mascota a una reserva previa");
                 }
                 else
                 {

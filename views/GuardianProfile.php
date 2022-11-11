@@ -77,7 +77,7 @@
                 </tbody>
             </table>    
             <div class="d-grid gap-2 col-6 me-auto">
-                <a href="<?php echo FRONT_ROOT . "Guardian/ModifyProfile_Guardian" ?>"> Modificar </a>
+                <a href="<?php echo FRONT_ROOT . "Guardian/ShowModifyProfile_Guardian" ?>"> Modificar </a>
             </div>
         </div>
     </main>

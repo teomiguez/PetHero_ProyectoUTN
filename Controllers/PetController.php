@@ -67,6 +67,7 @@
                 // -> REDIRECTION TO PET/SHOWLIT
                 header("location: " . FRONT_ROOT . "Pet/ShowList");
                 // <- REDIRECTION TO PET/SHOWLIT
+            }
             else
             {
                 header("location: " . FRONT_ROOT . "Auth/ShowLogin");

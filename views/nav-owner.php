@@ -7,7 +7,7 @@
         </h2>
 
         <div class="navbar-nav position-absolute top-50 start-50 translate-middle">
-            <a href="<?php echo FRONT_ROOT . "Owner/HomeOwner" ?>" class="nav-link active text-decoration-none">
+            <a href="<?php echo FRONT_ROOT . "Owner/ShowHome_Owner" ?>" class="nav-link active text-decoration-none">
                 <h2 class="text-center">
                     <i class="bi bi-house-door"></i>
                     <p class="h6 lead"> Home </p>
@@ -40,7 +40,7 @@
                     </h2>    
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end">
-                        <li><a class="dropdown-item" href="<?php echo FRONT_ROOT . "Owner/ShowProfile" ?>">Ver Perfil</a></li>
+                        <li><a class="dropdown-item" href="<?php echo FRONT_ROOT . "Owner/ShowProfile_Owner" ?>">Ver Perfil</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="<?php echo FRONT_ROOT . "Auth/Logout" ?>">Cerrar Sesion</a></li>
                     </ul>
