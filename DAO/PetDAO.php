@@ -97,8 +97,8 @@
 
         }
 
-        public function GetById($id){
-           
+        public function GetById($id)
+        {   
             $petList = array();
 
             try 

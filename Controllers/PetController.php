@@ -39,6 +39,40 @@
             }
         }
 
+        public function ShowView_Profile($id)
+        {
+            if (isset($_SESSION['idOwner']))
+            {
+                $petDAO = new PetDAO();
+                $pet = new Pet();
+
+                $pet = $petDAO->GetById($id);
+
+                require_once(VIEWS_PATH . "PetProfile.php");
+            }
+            else
+            {
+                header("location: " . FRONT_ROOT . "Auth/ShowLogin");
+            }
+        }
+
+        public function ShowModifyProfile_Pet($id)
+        {
+            if (isset($_SESSION['idOwner']))
+            {
+                $petDAO = new PetDAO();
+                $pet = new Pet();
+
+                $pet = $petDAO->GetById($id);
+
+                require_once(VIEWS_PATH . "ModifyPetProfile.php");
+            }
+            else
+            {
+                header("location: " . FRONT_ROOT . "Auth/ShowLogin");
+            }
+        }
+
         public function CreatePet ($imgFile, $name, $radio_option, $breed, $size, $pvFile, $video, $info)
         {
             if (isset($_SESSION['idOwner']))
@@ -72,6 +106,11 @@
             {
                 header("location: " . FRONT_ROOT . "Auth/ShowLogin");
             }
+        }
+
+        public function UpdateProfile_Pet($id)
+        {
+            // terminar
         }
 
         public function Remove ($id)
@@ -136,20 +175,6 @@
         //     {
         //         header("location: " . FRONT_ROOT . "Auth/ShowLogin");
         //     }  
-        // }
-
-        // public function ShowViewModal_Perro($id)
-        // {
-        //    $petController = new petController();
-           
-        //     $petController->ShowpetProfile($id);
-        // }
-
-        // public function ShowViewModal_Gato($id)
-        // {
-        //     $catController = new CatController();
-            
-        //     $catController->ShowCatProfile($id);    
         // }
 
         // public function RemovePerro($id)

@@ -70,12 +70,13 @@
                             <th scope="col">  </th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <?php
-                            if(isset($guardians)) {
-                                foreach ($guardians as $guardian) {
-                        ?>
+                    
+                    <?php
+                        if(isset($guardiansAviable)) {
+                            foreach ($guardiansAviable as $guardian) {
+                    ?>
 
+                    <tbody>
                         <tr class="align-middle">
                             <td> <?php echo $guardian->getName() ?> </td>
                             <td> <?php echo $guardian->getLast_name() ?> </td>
@@ -87,25 +88,15 @@
                                 </button>
                             </td>
                         </tr>
-                    </tbody>   
-                    
-                    <?php } ?>
-                </table>
-                <?php }
-                      else if(isset($guardiansAviable)) { 
-                                foreach($guardiansAviable as $guardian) {?>
+                    </tbody>
 
-                        <table class="table text-center">
-                        <thead>
-                            <tr>
-                                <th scope="col"> Nombre </th>
-                                <th scope="col"> Apellido </th>
-                                <th scope="col"> Telefono </th>
-                                <th scope="col">  </th>
-                            </tr>
-                        </thead>
+                    <?php   } 
+                        }
+                        else if(isset($guardians)) { 
+                            foreach($guardians as $guardian) {
+                    ?>
+
                         <tbody>
-    
                             <tr class="align-middle">
                                 <td> <?php echo $guardian->getName() ?> </td>
                                 <td> <?php echo $guardian->getLast_name() ?> </td>
@@ -117,12 +108,13 @@
                                     </button>
                                 </td>
                             </tr>
-                        </tbody>   
+                        </tbody> 
+  
+                    <?php } 
+                        } 
+                    ?>
                     
                     </table>
-
-                <?php } 
-                        } ?>
 
                 <!-- Button whit modal -->
                 <button type="button" class="btn btn-primary w-100" data-bs-toggle="modal"

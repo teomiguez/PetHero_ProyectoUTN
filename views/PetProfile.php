@@ -28,10 +28,43 @@
     <br>
 
     <main class="container">
-
-        <!-- PERFIL DE UNA MASCOTA (CUANDO SELECCIONO UNA ESPECIFICA) -->
-        <!-- OPCION PARA MODIFICAR -->
-
+        <div class="col-md-6 offset-md-3">
+            <h2 class="text-center my-3"> Perfil Mascota </h2>
+            <table class="table table-striped">
+                <tbody>
+                    <tr>
+                        <th scope="row"> Nombre: </th>
+                        <td> <?php echo $pet->getName() ?> </td>
+                    </tr>
+                    <tr>
+                        <th scope="row"> Tipo: </th>
+                        <td> <?php echo $pet->getType() ?> </td>
+                    </tr>
+                    <tr>
+                        <th scope="row"> Raza: </th>
+                        <td> <?php echo $pet->getBreed() ?> </td>
+                    </tr>                        <tr>
+                       <th scope="row"> Tamaño: </th>
+                        <td> <?php echo $pet->getSize() ?> </td>
+                    </tr>
+                    <tr>
+                        <th scope="row"> Observaciones: </th>
+                        <td> <?php echo $pet->getInfo() ?> </td>
+                    </tr>
+                </tbody>
+            </table>    
+            <div class="text-center">
+                <div class="row justify-content-evenly">
+                    <div class="col-4">
+                        <a class="text-decoration-none" href="<?php echo FRONT_ROOT . "Pet/ShowList" ?>"> Volver </a>
+                    </div>
+                    <!-- AGREGAR ID_PET POR PARAMETROS -->
+                    <div class="col-4">
+                        <a class="text-decoration-none" href="<?php echo FRONT_ROOT . "Pet/ShowModifyProfile_Pet" ?>"> Modificar </a>
+                    </div>
+                </div>
+            </div>
+        </div> 
     </main>
 
     <!-- Linea divisoria main/footer -->

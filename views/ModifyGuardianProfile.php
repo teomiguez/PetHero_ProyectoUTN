@@ -86,7 +86,7 @@
                                         <option value="2"> Mediano </option>
                                         <option value="3"> Grande </option>
                                     </select>
-                            </td>    
+                                </td>    
                             </div>
                         </tr>
                         <tr class="align-middle">

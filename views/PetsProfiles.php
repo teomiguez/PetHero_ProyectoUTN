@@ -38,9 +38,9 @@
             </div>
 
             <div class="text-center col-12 col-sm-8 col-lg-5 mb-3">
-                <h2 class="text-center"> Lista de mascotas </h2>
+                <h2 class="text-center mb-3"> Lista de mascotas </h2>
 
-                <form action="">
+                <!-- <form action="">
                     <div class="input-group mb-3">
                         <input type="text" class="form-control" placeholder="Buscar mascota..."
                             aria-label="Buscar mascota..." aria-describedby="button-addon2">
@@ -48,7 +48,7 @@
                             <i class="bi bi-search"></i>
                         </button>
                     </div>
-                </form>
+                </form> -->
 
                 <div class="mb-3">
                     <table class="table text-center">
@@ -71,7 +71,7 @@
                                 <td> <?php echo $pet->getBreed() ?> </td>
                                 <td> <?php echo $pet->getSize() ?> </td>
                                 <td class="d-inline-flex">
-                                    <form action="<?php echo FRONT_ROOT . " Pet/ShowViewProfile" ?>" method="POST">
+                                    <form action="<?php echo FRONT_ROOT . " Pet/ShowView_Profile" ?>" method="POST">
                                         <button class="btn btn-link" type="submit" name="id" value="<?php echo $pet->getId_pet() ?>">
                                             <i class="bi bi-eye-fill text-primary"></i>  
                                         </button>
