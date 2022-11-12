@@ -191,25 +191,6 @@
         </div>
     </div>
 
-    <!-- Modal - view pet -->
-    <?php if(isset($modal)) { ?>
-        <div class="modal fade" id="viewPet_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel"> Perfil de Mascota </h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <?php
-                            echo $pet->getName();
-                        ?>
-                    </div>
-                </div>
-            </div>
-        </div>
-    <?php } ?>
-
     <!-- Funcionalidades JS propias de Boostrap (para uso de componentes especificos) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"

@@ -82,10 +82,11 @@
                             <td> <?php echo $guardian->getLast_name() ?> </td>
                             <td> <?php echo $guardian->getTelephone() ?> </td>
                             <td> 
-                                <button class="btn btn-link" type="button" data-bs-toggle="modal"
-                                data-bs-target="#viewGuardian_modal">
-                                    <i class="bi bi-eye-fill"></i>
-                                </button>
+                                <form action="<?php echo FRONT_ROOT . "Owner/ShowViewGuardian" ?>" method="POST">
+                                    <button class="btn btn-link" type="submit" name="id" value="<?php echo $guardian->getId_guardian() ?>">
+                                        <i class="bi bi-eye-fill text-primary"></i>  
+                                    </button>
+                                </form> 
                             </td>
                         </tr>
                     </tbody>
@@ -102,10 +103,11 @@
                                 <td> <?php echo $guardian->getLast_name() ?> </td>
                                 <td> <?php echo $guardian->getTelephone() ?> </td>
                                 <td> 
-                                    <button class="btn btn-link" type="button" data-bs-toggle="modal"
-                                    data-bs-target="#viewGuardian_modal">
-                                        <i class="bi bi-eye-fill"></i>
-                                    </button>
+                                    <form action="<?php echo FRONT_ROOT . "Owner/ShowViewGuardian" ?>" method="POST">
+                                        <button class="btn btn-link" type="submit" name="id" value="<?php echo $guardian->getId_guardian() ?>">
+                                            <i class="bi bi-eye-fill text-primary"></i>  
+                                        </button>
+                                    </form> 
                                 </td>
                             </tr>
                         </tbody> 

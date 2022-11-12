@@ -137,16 +137,15 @@
             {
                 $this->connection = Connection::GetInstance();
 
-                $query = "UPDATE $this->tableName SET img:img, name:name, type:type, breed:breed, size:size, planVacunacion:planVacunacion, video:video, info:info
+                $query = "UPDATE $this->tableName SET /*img=:img,*/ name=:name, breed=:breed, id_size=:id_size, /*planVacunacion=:planVacunacion, video=:video,*/ info=:info
                             WHERE id_pet = :id";
 
-                $parameters['img'] = $pet->getImg();
+                //$parameters['img'] = $pet->getImg();
                 $parameters['name'] = $pet->getName();
-                $parameters['id_type'] = $pet->getType();
                 $parameters['breed'] = $pet->getBreed();
-                $parameters['id_size'] = $pet->getSize();
-                $parameters['plan_vacunacion'] = $pet->getPlanVacunacion();
-                $parameters['video'] = $pet->getVideo();
+                $parameters['id_size'] = $this->GetIdSize($pet->getSize());
+                //$parameters['plan_vacunacion'] = $pet->getPlanVacunacion();
+                //$parameters['video'] = $pet->getVideo();
                 $parameters['info'] = $pet->getInfo();
                 $parameters['id'] = $id;
 
@@ -182,6 +181,48 @@
                 $this->connection = Connection::GetInstance();
                 $query = "SELECT type FROM types WHERE id_type = :id ";
                 $parameters['id'] = $id;
+
+                $rta = $this->connection->Execute($query, $parameters);
+            } 
+            catch (Exception $e) 
+            {
+                throw $e;
+            }
+
+            if (!empty($rta))
+            {
+                return $rta[0][0];
+            }
+        }
+
+        public function GetIdType($type)
+        {
+            try 
+            {
+                $this->connection = Connection::GetInstance();
+                $query = "SELECT id_type FROM types WHERE type = :type ";
+                $parameters['type'] = $type;
+
+                $rta = $this->connection->Execute($query, $parameters);
+            } 
+            catch (Exception $e) 
+            {
+                throw $e;
+            }
+
+            if (!empty($rta))
+            {
+                return $rta[0][0];
+            }
+        }
+
+        public function GetIdSize($size)
+        {
+            try 
+            {
+                $this->connection = Connection::GetInstance();
+                $query = "SELECT id_size FROM sizes WHERE size = :size ";
+                $parameters['size'] = $size;
 
                 $rta = $this->connection->Execute($query, $parameters);
             } 
@@ -232,7 +273,7 @@
             $pet->setName($rta['name']);
             $pet->setType($this->GetType($rta['id_type'])); // ver esto
             $pet->setBreed($rta['breed']);
-            $pet->setSize($this->GetSize($rta['id_size'])); // ver esto
+            $pet->setSize($this->GetSize($rta['id_size']));
             $pet->setPlanVacunacion($rta['plan_vacunacion']);
             $pet->setVideo($rta['video']);
             $pet->setInfo($rta['info']);

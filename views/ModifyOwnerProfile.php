@@ -73,10 +73,14 @@
                         </tr>
                     </tbody>
                 </table>
-
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <div class="row justify-content-evenly">
+                    <div class="col-4">
+                        <a class="btn btn-primary px-5" role="button" href="<?php echo FRONT_ROOT . "Owner/ShowProfile_Owner"?>"> Volver </a>
+                    </div>
+                    <div class="col-4">
                         <button type="submit" class="btn btn-primary" name="id" value="<?php echo $user->getId_owner() ?>"> Guardar cambios </button>
                     </div>
+                </div>
             </form>
         </div>
     </main>

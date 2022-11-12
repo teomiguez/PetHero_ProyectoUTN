@@ -59,8 +59,15 @@
                     </tr>
                 </tbody>
             </table>    
-            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                <a class="text-decoration-none" href="<?php echo FRONT_ROOT . "Owner/ShowModifyProfile_Owner" ?>"> Modificar </a>
+            <div class="text-center">
+                <div class="row justify-content-evenly">
+                    <div class="col-4">
+                        <a class="btn btn-primary px-5" role="button" href="<?php echo FRONT_ROOT . "Owner/ShowHome_Owner" ?>"> Volver </a>
+                    </div>
+                    <div class="col-4">
+                        <a class="btn btn-primary px-5" role="button" href="<?php echo FRONT_ROOT . "Owner/ShowModifyProfile_Owner" ?>"> Modificar </a>
+                    </div>
+                </div>
             </div>
         </div> 
     </main>

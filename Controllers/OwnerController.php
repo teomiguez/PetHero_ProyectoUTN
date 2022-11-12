@@ -3,12 +3,15 @@
     
     use DAO\OwnerDAO as OwnerDAO;
     use DAO\GuardianDAO as GuardianDAO;
+    use DAO\ReviewDAO as ReviewDAO;
     use DAO\AvStayDAO as AvStayDAO;
     use DAO\PetDAO as PetDAO;
 
-    use Models\Guardian as Guardian;
     use Models\Owner as Owner;
+    use Models\Guardian as Guardian;
+    use Models\Review as Review;
     use Models\AvStay as AvStay;
+    use Models\Pet as Pet;
 
     class OwnerController 
     {
@@ -71,9 +74,9 @@
         {    
             if (isset($_SESSION['idOwner']))
             {        
-                $owner_DAO = new OwnerDAO();
+                $ownerDAO = new OwnerDAO();
 
-                $user = $owner_DAO->GetById($_SESSION["idOwner"]);
+                $user = $ownerDAO->GetById($_SESSION["idOwner"]);
 
                 require_once(VIEWS_PATH . "OwnerProfile.php");
             }
@@ -87,11 +90,29 @@
         {
             if (isset($_SESSION['idOwner']))
             {        
-                $owner_DAO = new OwnerDAO();
+                $ownerDAO = new OwnerDAO();
 
-                $user = $owner_DAO->GetById($_SESSION["idOwner"]);
+                $user = $ownerDAO->GetById($_SESSION["idOwner"]);
 
                 require_once(VIEWS_PATH . "ModifyOwnerProfile.php");
+            }
+            else
+            {
+                header("location: " . FRONT_ROOT . "Auth/ShowLogin");
+            } 
+        }
+
+        public function ShowViewGuardian($id)
+        {
+            if (isset($_SESSION['idOwner']))
+            {         
+                $guardianDAO = new GuardianDAO();
+                $reviewDAO = new ReviewDAO();
+
+                $guardian = $guardianDAO->GetById($id);
+                $guardian_review = $reviewDAO->GetByIdGuardian($id);
+
+                require_once(VIEWS_PATH . "GuardianProfile_ViewOwner.php");
             }
             else
             {

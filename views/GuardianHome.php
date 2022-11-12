@@ -54,19 +54,19 @@
                                 <td> <?php echo $reserv->getFirst_day() ?> </td>
                                 <td> <?php echo $reserv->getLast_day() ?> </td>
                                 <td> 
-                                    <?php if (($reserv->getIs_accepted()) != 1) {?>
+                                    <?php if($reserv->getIs_accepted() != 1) { ?>
                                         <form action="<?php echo FRONT_ROOT . "Reservation/AcceptedReserv" ?>" method="POST">
                                             <button class="btn btn-link" type="submit" name="id" 
                                                     value="<?php echo $reserv->getId_reservation() ?>">
                                                 <i class="bi bi-check-circle"></i>    
                                             </button>
                                         </form>
-                                    <?php } ?> 
+                                    <?php } ?>
                                 </td>
                             </tr>
-                        </tbody>
 
-                        <?php }  ?> 
+                            <?php }  ?> 
+                        </tbody>
                     </table>
                     
                 </div>

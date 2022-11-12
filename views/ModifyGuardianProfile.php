@@ -80,7 +80,7 @@
                             <div class="d-flex">
                                 <th scope="row"><label class="me-3"  for="typeSize" class="form-label align-middle"> </label> Preferencia: </th> 
                                 <td> 
-                                    <select id="typeSize" class="form-select" aria-label="form-select" name="typeSize" required >
+                                    <select id="typeSize" class="form-select" aria-label="Default select example" name="typeSize" required >
                                         <option selected value="<?php echo $user->getSizeCare()?>"> <?php echo $user->getSizeCare()?> </option>
                                         <option value="1"> Chico </option>
                                         <option value="2"> Mediano </option>
@@ -104,9 +104,13 @@
                         </tr>
                     </tbody>
                 </table> 
-                
-                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <button type="submit" class="btn btn-primary" name="id" value="<?php echo $user->getId_guardian() ?>"> Guardar cambios </button>
+                <div class="row justify-content-evenly mb-5">
+                    <div class="col-4">
+                        <a class="btn btn-primary px-5" role="button" href="<?php echo FRONT_ROOT . "Guardian/ShowProfile_Guardian"?>"> Volver </a>
+                    </div>
+                    <div class="col-4">
+                        <button type="submit" class="btn btn-primary" name="id" value="<?php echo $user->getId_guardian() ?>"> Guardar cambios </button>
+                    </div>
                 </div>
             </form> 
         </div>

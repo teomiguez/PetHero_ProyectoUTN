@@ -108,9 +108,33 @@
             }
         }
 
-        public function UpdateProfile_Pet($id)
+        /**
+         *  FALTAN AGREGAR LOS PARAMETROS -> $imgFile - $pvFile - $video
+         *  AGREGAR A LA VISTA (CUANDO SE LOGRE GUARDAR Y MOSTRAR ARCHIVOS)
+         *  PARA LUEGO DAR OPCION A MODIFICARLOS
+         */
+        public function UpdateProfile_Pet($id, $name, $breed, $size, $info)
         {
-            // terminar
+            $petDAO = new PetDAO();
+            $pet = new Pet();
+
+            // VER - CARGA ARCHIVOS!
+            
+            // -> SETs PET
+            $pet->setImg(' ');
+            $pet->setName($name);
+            $pet->setBreed($breed);
+            $pet->setSize($size);
+            $pet->setPlanVacunacion(' ');
+            $pet->setVideo(' ');
+            $pet->setInfo($info);
+            // <- SETs PET
+
+            // -> ADD PET
+            $pet_id = $petDAO->Update($id, $pet);
+            // <- ADD PET
+            
+            $this->ShowView_Profile($id);
         }
 
         public function Remove ($id)

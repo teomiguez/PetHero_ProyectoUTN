@@ -27,6 +27,8 @@
 
     <br>
 
+    <!-- AGREGAR LAS IMAGENES Y EL VIDEO CUANDO SE SOLUCIONE LO DE CARGAR ARCHIVOS -->
+
     <main class="container">
         <div class="col-md-6 offset-md-3">
             <h2 class="text-center my-3"> Perfil Mascota </h2>
@@ -56,11 +58,12 @@
             <div class="text-center">
                 <div class="row justify-content-evenly">
                     <div class="col-4">
-                        <a class="text-decoration-none" href="<?php echo FRONT_ROOT . "Pet/ShowList" ?>"> Volver </a>
+                        <a class="btn btn-primary px-5" role="button" href="<?php echo FRONT_ROOT . "Pet/ShowList" ?>"> Volver </a>
                     </div>
-                    <!-- AGREGAR ID_PET POR PARAMETROS -->
                     <div class="col-4">
-                        <a class="text-decoration-none" href="<?php echo FRONT_ROOT . "Pet/ShowModifyProfile_Pet" ?>"> Modificar </a>
+                        <form action="<?php echo FRONT_ROOT . "Pet/ShowModifyProfile_Pet" ?>" method="POST">
+                            <button class="btn btn-primary" type="submit" name="id" value="<?php echo $pet->getId_pet() ?>"> Modificar </button>
+                        </form>
                     </div>
                 </div>
             </div>

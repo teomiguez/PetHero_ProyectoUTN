@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Guardian - Mi Perfil </title>
+    <title> Owner - Perfil Guardian </title>
 
     <!-- Link use Css_file -->
     <link rel="stylesheet" href="css/styles.css">
@@ -23,7 +23,7 @@
     <!-- Barra de navegacion -->
     <?php
 
-    include('nav-guardian.php');
+    include('nav-owner.php');
 
     ?>
 
@@ -36,54 +36,45 @@
                 <tbody>
                     <tr>
                         <th scope="row"> Nombre: </th>
-                        <td> <?php echo $user->getName() ?> </td>
+                        <td> <?php echo $guardian->getName() ?> </td>
                     </tr>
                     <tr>
                         <th scope="row"> Apellido: </th>
-                        <td> <?php echo $user->getLast_name() ?> </td>
+                        <td> <?php echo $guardian->getLast_name() ?> </td>
                     </tr>
                     <tr>
                         <th scope="row"> DNI: </th>
-                        <td> <?php echo $user->getDni() ?> </td>
+                        <td> <?php echo $guardian->getDni() ?> </td>
                     </tr>
                     <tr>
                         <th scope="row"> Telefono: </th>
-                        <td> <?php echo $user->getTelephone() ?> </td>
+                        <td> <?php echo $guardian->getTelephone() ?> </td>
                     </tr>
                     <tr>
                         <th scope="row"> Dirección: </th>
-                        <td> <?php echo $user->getAddress() ?> </td>
+                        <td> <?php echo $guardian->getAddress() ?> </td>
                     </tr>
                     <tr>
                         <th scope="row"> Email: </th>
-                        <td> <?php echo $user->getEmail() ?> </td>
-                    </tr>
-                    <tr>
-                        <th scope="row"> Contraseña: </th>
-                        <td> <?php for ($i=0 ; $i < strlen($user->getPassword()) ; $i++) { echo '*'; } ?> </td>
+                        <td> <?php echo $guardian->getEmail() ?> </td>
                     </tr>
                     <tr>
                         <th scope="row"> Preferencia de tamaño: </th>
-                        <td> <?php echo $user->getSizeCare() ?> </td>
+                        <td> <?php echo $guardian->getSizeCare() ?> </td>
                     </tr>
                     <tr>
                         <th scope="row"> Remuneración: </th>
-                        <td> $<?php echo $user->getCost() ?> x dia </td>
+                        <td> $<?php echo $guardian->getCost() ?> x dia </td>
                     </tr>
                     <tr>
                         <th scope="row"> Calificación:  </th>
-                        <td> <?php echo $user_review->getReview() ?> (<?php echo $user_review->getQuantity_reviews() ?>) </td> 
+                        <td> <?php echo $guardian_review->getReview() ?> (<?php echo $guardian_review->getQuantity_reviews() ?>) </td> 
                     </tr>
                 </tbody>
             </table>    
-            <div class="text-center">
-                <div class="row justify-content-evenly">
-                    <div class="col-4">
-                        <a class="btn btn-primary px-5" role="button" href="<?php echo FRONT_ROOT . "Guardian/ShowHome_Guardian" ?>"> Volver </a>
-                    </div>
-                    <div class="col-4">
-                        <a class="btn btn-primary px-5" role="button" href="<?php echo FRONT_ROOT . "Guardian/ShowModifyProfile_Guardian" ?>"> Modificar </a>
-                    </div>
+            <div class="row justify-content-evenly">
+                <div class="col-4">
+                    <a class="btn btn-primary px-5" role="button" href="<?php echo FRONT_ROOT . "Owner/ShowHome_Owner" ?>"> Volver </a>
                 </div>
             </div>
         </div>
