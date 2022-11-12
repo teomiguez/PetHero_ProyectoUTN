@@ -162,11 +162,23 @@
                             <label for="id_guardian" class="form-label"> Seleccione el guardian </label>
                             <select id="id_guardian" class="form-select form-select-sm"
                                 aria-label=".form-select-sm example" name="id_guardian" required>
-                                <?php if (isset($guardian) || isset($guardiansSelect)) {
-                                            foreach ($guardians as $guardian) { ?>
-                                <option value="<?php echo $guardian->getId_guardian() ?>"> <?php echo $guardian->getName() . " " . $guardian->getLast_name() ?> </option>
-                                <?php }
-                                        } ?>
+                                <?php if (isset($guardiansAviable))
+                                {
+                                    foreach ($guardiansAviable as $guardian)
+                                    { ?>
+                                    <option value="<?php echo $guardian->getId_guardian() ?>"> <?php echo $guardian->getName() . " " . $guardian->getLast_name() ?> </option>
+                                     <?php 
+                                     }
+                                     
+                                } elseif(isset($guardians))
+                                {
+                                    foreach ($guardians as $guardian)
+                                    { ?>
+                                    <option value="<?php echo $guardian->getId_guardian() ?>"> <?php echo $guardian->getName() . " " . $guardian->getLast_name() ?> </option>
+                                     <?php 
+                                     }
+                                } ?>
+                                
                             </select>
                         </div>
 

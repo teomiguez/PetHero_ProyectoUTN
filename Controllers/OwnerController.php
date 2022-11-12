@@ -52,9 +52,11 @@
 
                 $guardians = array();
                 $guardiansAviable = array();
+                $petsList = array();
                  
                 $guardians = $guardianDAO->GetAll();
                 $idsGuardiansAvailable = $avStayDAO->GetIdGuardian_ByDates($first_day, $last_day);
+                $petsList = $petDAO->GetByOwner($_SESSION['idOwner']);
 
                 foreach($idsGuardiansAvailable as $id)
                 {
