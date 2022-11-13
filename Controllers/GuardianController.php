@@ -13,6 +13,8 @@
     use Models\Review as Review;
     use Models\Reservation as Reservation;
 
+    use Exception;
+
     class GuardianController 
     {
         public function __contruct() 

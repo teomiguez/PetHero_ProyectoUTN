@@ -29,55 +29,65 @@
             $pet = $petDAO->GetById($id_pet);
             $guardian = $guardianDAO->GetById($id_guardian);
 
-            if ($reservationDAO->IsExist_Reserv($first_day, $last_day))
+            try 
             {
-                $id_exist = $reservationDAO->GetIdByDates($first_day, $last_day);
-
-                if (($reservationDAO->GetSize_Condition($id_exist) == $pet->getSize()) && ($reservationDAO->GetBreed_Condition($id_exist) == $pet->getBreed()))
+                if ($reservationDAO->IsExist_Reserv($first_day, $last_day))
                 {
-                    // CREAR EL CUPON DE PAGO
-                    
-                    $reservationDAO->AddPet_ToReservation($id_exist, 1 /*cambiar*/, $pet);
-
-                    $alert_succes = array("type" => "succes", "text" => "Se agregó la mascota a una reserva previa");
-                }
-                else
-                {
-                    $alert_danger = array("type" => "danger", "text" => "La reserva ya existe y la mascota seleccionada no cumple con las condiciones de tamaño/raza");
-                }
-            }
-            else if (($avstayDAO->IsExist_Stay($first_day, $last_day)) && ($avstayDAO->ThisGuardianIsAviable($id_guardian, $first_day, $last_day)))
-            {
-                if ($guardian->getSizeCare() == $pet->getSize())
-                {
-                    $diff = 0;
-                    
-                    $reserv->setId_guardian($id_guardian);
-                    $reserv->setPet_size($pet->getSize());
-                    $reserv->setPet_breed($pet->getBreed());
-                    $reserv->setFirst_day($first_day);
-                    $reserv->setLast_day($last_day);
-                    $reserv->setTotal_days($diff); // ver hacer la diferencia (tira error con lo que usamos en el GuarianHome)
+                    $id_exist = $reservationDAO->GetIdByDates($first_day, $last_day);
     
-                    /* id_reserv =*/$reservationDAO->AddReservation($reserv); // ver que retorne la id (así se agrega la mascota)
-
-                    // CREAR CUPON DE PAGO
-
-                    //$reservationDAO->AddPet_ToReservation(/* id_reserv, id_cupon*/, $pet);
+                    if (($reservationDAO->GetSize_Condition($id_exist) == $pet->getSize()) && ($reservationDAO->GetBreed_Condition($id_exist) == $pet->getBreed()))
+                    {
+                        // CREAR EL CUPON DE PAGO
+                        
+                        $reservationDAO->AddPet_ToReservation($id_exist, 1 /*cambiar*/, $pet);
     
-                    $alert_succes = array("type" => "succes", "text" => "Se envió la solicitud al guardian");
+                        $alert_succes = array("type" => "succes", "text" => "Se agregó la mascota a una reserva previa");
+                    }
+                    else
+                    {
+                        $alert_danger = array("type" => "danger", "text" => "La reserva ya existe y la mascota seleccionada no cumple con las condiciones de tamaño/raza");
+                    }
                 }
-                else
+                else if (($avstayDAO->IsExist_Stay($first_day, $last_day)) && ($avstayDAO->ThisGuardianIsAviable($id_guardian, $first_day, $last_day)))
                 {
-                    $alert_danger = array("type" => "danger", "text" => "El guardian no cuida el tamaño de su mascota");
+                    if ($guardian->getSizeCare() == $pet->getSize())
+                    {
+                        $diff = 0;
+                        
+                        $reserv->setId_guardian($id_guardian);
+                        $reserv->setPet_size($pet->getSize());
+                        $reserv->setPet_breed($pet->getBreed());
+                        $reserv->setFirst_day($first_day);
+                        $reserv->setLast_day($last_day);
+                        $reserv->setTotal_days($diff); // ver hacer la diferencia (tira error con lo que usamos en el GuarianHome)
+        
+                        /* id_reserv =*/$reservationDAO->AddReservation($reserv); // ver que retorne la id (así se agrega la mascota)
+    
+                        // CREAR CUPON DE PAGO
+    
+                        //$reservationDAO->AddPet_ToReservation(/* id_reserv, id_cupon*/, $pet);
+        
+                        $alert_succes = array("type" => "succes", "text" => "Se envió la solicitud al guardian");
+                    }
+                    else
+                    {
+                        throw new Exception("El guardian no cuida el tamaño de su mascota");
+                    }
                 }
+                else if (!$avstayDAO->ThisGuardianIsAviable($id_guardian, $first_day, $last_day))
+                {
+                    throw new Exception("El guardian no tiene esas fechas disponibles");
+                }
+    
+                header("location: " . FRONT_ROOT . "Owner/ShowHome_Owner");
             }
-            else if (!$avstayDAO->ThisGuardianIsAviable($id_guardian, $first_day, $last_day))
+            catch (Exception $ex)
             {
-                $alert_danger = array("type" => "danger", "text" => "El guardian no tiene esas fechas disponibles");
+                $alert = [
+                    "type" => "danger",
+                    "text" => $ex->getMessage();
+                ]
             }
-
-            header("location: " . FRONT_ROOT . "Owner/ShowHome_Owner");
         }
 
         public function AcceptedReserv($id)

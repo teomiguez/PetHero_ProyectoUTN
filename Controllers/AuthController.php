@@ -14,6 +14,8 @@
     use Models\Owner as Owner;
     use Models\AvStay as AvStay;
 
+    use Exception;
+
 
     class AuthController
     {
@@ -47,80 +49,73 @@
 
         public function Login($email = null, $password = null)
         {
-            if ($email == null || $password == null) // VALIDACION X SEGURIDAD
+            try
             {
-                header("location: " . FRONT_ROOT . "Auth/ShowLogin"); 
-            }
-            else
-            {   
-                session_destroy();
-
-                $ownerDAO = new OwnerDAO;
-                $guardianDAO = new GuardianDAO;
-    
-                $user1 = $ownerDAO->GetByEmail($email); // USER1 → OWNER
-                $user2 = $guardianDAO->GetByEmail($email); // USER2 → GUARDIAN
-
-                if ($user1 != null) // LOGIN -> OWNER
+                if ($email == null || $password == null) // VALIDACION X SEGURIDAD
                 {
-                    if ($user1->getPassword() == $password)
-                    {
-                        session_start(); // NEW SESSION
-    
-                        $_SESSION['idOwner'] = $user1->getId_owner(); // SET ID_OWNER IN $_SESSION
-    
-                        // -> REDIRECTION TO HOME_OWNER
-                        header("location: " . FRONT_ROOT . "Owner/ShowHome_Owner");
-                        // <- REDIRECTION TO HOME_OWNER
-                    }
-                    else
-                    {
-                        $alert = [
-                            "type" => "danger",
-                            "text" => "Usuario y/o Contraseña incorrectos"
-                        ];
-
-                        // -> REDIRECTION TO LOGIN_VIEW
-                        require_once(VIEWS_PATH . "Home.php");
-                        // <- REDIRECTION TO LOGIN_VIEW
-                    }
-                }
-                else if ($user2 != null) // LOGIN -> GUARDIAN
-                {
-                    if ($user2->getPassword() == $password)
-                    {
-                        session_start(); // NEW SESSION
-        
-                        $_SESSION['idGuardian'] = $user2->getId_guardian(); // SET ID_GUARDIAN IN $_SESSION
-    
-                        // -> REDIRECTION TO HOME_GUARDIAN
-                        header("location: " . FRONT_ROOT . "Guardian/ShowHome_Guardian");
-                        // <- REDIRECTION TO HOME_GUARDIAN
-                    }
-                    else
-                    {
-                        $alert = [
-                            "type" => "danger",
-                            "text" => "Usuario y/o Contraseña incorrectos"
-                        ];
-                        
-                        // -> REDIRECTION TO LOGIN_VIEW
-                        require_once(VIEWS_PATH . "Home.php");
-                        // <- REDIRECTION TO LOGIN_VIEW
-                    }
-    
+                    header("location: " . FRONT_ROOT . "Auth/ShowLogin"); 
                 }
                 else
-                {
-                    $alert = [
-                            "type" => "danger",
-                            "text" => "Usuario y/o Contraseña incorrectos"
-                        ];
-
-                    // -> REDIRECTION TO LOGIN_VIEW
-                    require_once(VIEWS_PATH . "Home.php");
-                    // <- REDIRECTION TO LOGIN_VIEW
+                {   
+                    session_destroy();
+    
+                    $ownerDAO = new OwnerDAO;
+                    $guardianDAO = new GuardianDAO;
+        
+                    $user1 = $ownerDAO->GetByEmail($email); // USER1 → OWNER
+                    $user2 = $guardianDAO->GetByEmail($email); // USER2 → GUARDIAN
+    
+                    if ($user1 != null) // LOGIN -> OWNER
+                    {
+                        if ($user1->getPassword() == $password)
+                        {
+                            session_start(); // NEW SESSION
+        
+                            $_SESSION['idOwner'] = $user1->getId_owner(); // SET ID_OWNER IN $_SESSION
+        
+                            // -> REDIRECTION TO HOME_OWNER
+                            header("location: " . FRONT_ROOT . "Owner/ShowHome_Owner");
+                            // <- REDIRECTION TO HOME_OWNER
+                        }
+                        else
+                        {
+                            throw new Exception('Usuario y/o Contraseña incorrectos');
+                        }
+                    }
+                    else if ($user2 != null) // LOGIN -> GUARDIAN
+                    {
+                        if ($user2->getPassword() == $password)
+                        {
+                            session_start(); // NEW SESSION
+            
+                            $_SESSION['idGuardian'] = $user2->getId_guardian(); // SET ID_GUARDIAN IN $_SESSION
+        
+                            // -> REDIRECTION TO HOME_GUARDIAN
+                            header("location: " . FRONT_ROOT . "Guardian/ShowHome_Guardian");
+                            // <- REDIRECTION TO HOME_GUARDIAN
+                        }
+                        else
+                        {
+                            throw new Exception('Usuario y/o Contraseña incorrectos');
+                        }
+        
+                    }
+                    else
+                    {
+                        throw new Exception('Usuario y/o Contraseña incorrectos');
+                    }
                 }
+            } 
+            catch (Exception $ex)
+            {
+                $alert = [
+                    "type" => "danger",
+                    "text" => $ex->getMessage()
+                ];
+
+                // -> REDIRECTION TO LOGIN_VIEW
+                require_once(VIEWS_PATH . "Home.php");
+                // <- REDIRECTION TO LOGIN_VIEW
             }
         }
 
@@ -141,45 +136,52 @@
         
         public function Register($name = null, $last_name = null, $dni = null, $tel = null, $email = null, $password = null, $radio_option = null, $street = '', $nro = '', $typeSize = '', $cost = '')
         {
-
-            // VALIDACION X SEGURIDAD
-            if ($name == null || $last_name == null || $dni == null || $tel == null || $email == null || $password == null || $radio_option == null)
+            try
             {
-                header("location: " . FRONT_ROOT . "Auth/ShowRegist"); 
-            }
-            else
-            {   
-                // VALIDACION 'SI EXISTE' UN EMAIL O DNI 
-                if (($this->checkExistenceEmail($email) == false) && ($this->checkExistenceDni($dni) == false))
+                // VALIDACION X SEGURIDAD
+                if ($name == null || $last_name == null || $dni == null || $tel == null || $email == null || $password == null || $radio_option == null)
                 {
-                    if ($radio_option == 'dueño')
-                    {
-                        $ownerController = new OwnerController();
-                        $ownerController->Register_Owner($name, $last_name, $dni, $tel, $email, $password);
-                    } 
-                    else if ($radio_option == 'guardian')
-                    {
-                        $guardianController = new GuardianController();
-                        $guardianController->Register_Guardian($name, $last_name, $dni, $tel, $email, $password, $street, $nro, $typeSize, $cost);
-                    }
-                    
-                    $alert_succes = array("type" => "success", "text" => "Registro exitoso");
-                    
-                    // -> REDIRECTION TO LOGIN_VIEW
-                    require_once(VIEWS_PATH . "Home.php");
-                    // <- REDIRECTION TO LOGIN_VIEW
+                    header("location: " . FRONT_ROOT . "Auth/ShowRegist"); 
                 }
                 else
-                {
-                    // ALERT - EXISTE EL EMAIL O DNI
-                    $alert = array("type" => "danger", "text" => "El Email o DNI ya estan registrados");
-                    
-                    // -> REDIRECTION TO REGISTER_VIEW
-                    require_once(VIEWS_PATH . "Register.php");
-                    // <- REDIRECTION TO REGISTER_VIEW
+                {   
+                    // VALIDACION 'SI EXISTE' UN EMAIL O DNI 
+                    if (($this->checkExistenceEmail($email) == false) && ($this->checkExistenceDni($dni) == false))
+                    {
+                        if ($radio_option == 'dueño')
+                        {
+                            $ownerController = new OwnerController();
+                            $ownerController->Register_Owner($name, $last_name, $dni, $tel, $email, $password);
+                        } 
+                        else if ($radio_option == 'guardian')
+                        {
+                            $guardianController = new GuardianController();
+                            $guardianController->Register_Guardian($name, $last_name, $dni, $tel, $email, $password, $street, $nro, $typeSize, $cost);
+                        }
+                        
+                        $alert_succes = array("type" => "success", "text" => "Registro exitoso");
+                        
+                        // -> REDIRECTION TO LOGIN_VIEW
+                        require_once(VIEWS_PATH . "Home.php");
+                        // <- REDIRECTION TO LOGIN_VIEW
+                    }
+                    else
+                    {
+                        throw new Exception('El Email o DNI ya estan registrados');
+                    }
                 }
             }
-            
+            catch (Exception $ex)
+            {
+                $alert = [
+                    "type" => "danger",
+                    "text" => $ex->getMessage()
+                ];
+
+                // -> REDIRECTION TO REGISTER_VIEW
+                require_once(VIEWS_PATH . "Register.php");
+                // <- REDIRECTION TO REGISTER_VIEW
+            }
         }
         
         // <- PUBLIC FUNCTIONs

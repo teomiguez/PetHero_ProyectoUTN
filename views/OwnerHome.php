@@ -166,7 +166,7 @@
                                 {
                                     foreach ($guardiansAviable as $guardian)
                                     { ?>
-                                    <option value="<?php echo $guardian->getId_guardian() ?>"> <?php echo $guardian->getName() . " " . $guardian->getLast_name() ?> </option>
+                                    <option value="<?php echo $guardian->getId_guardian() ?>"> <?php echo $guardian->getName() . " " . $guardian->getLast_name() . " - Preferencia: " . $guardian->getSizeCare() ?> </option>
                                      <?php 
                                      }
                                      
@@ -174,9 +174,9 @@
                                 {
                                     foreach ($guardians as $guardian)
                                     { ?>
-                                    <option value="<?php echo $guardian->getId_guardian() ?>"> <?php echo $guardian->getName() . " " . $guardian->getLast_name() ?> </option>
+                                    <option value="<?php echo $guardian->getId_guardian() ?>"> <?php echo $guardian->getName() . " " . $guardian->getLast_name() . " - Preferencia: " . $guardian->getSizeCare() ?> </option>
                                      <?php 
-                                     }
+                                     } 
                                 } ?>
                                 
                             </select>

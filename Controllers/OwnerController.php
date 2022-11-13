@@ -13,6 +13,8 @@
     use Models\AvStay as AvStay;
     use Models\Pet as Pet;
 
+    use Exception;
+
     class OwnerController 
     {
         public function __contruct() 

@@ -1,8 +1,12 @@
 <?php
     namespace Controllers;
 
+    use Controllers\GuardianController as GuardianController;
+
     use DAO\AvStayDAO as AvStayDAO;
     use Models\AvStay as AvStay;
+
+    use Exception;
 
     class AvStayController 
     {
@@ -12,44 +16,55 @@
         } 
 
         public function CreateAvStay ($first_day, $last_day) 
-        {
-            if (isset($_SESSION['idGuardian']))
-            {  
-                $avStayDAO = new AvStayDAO;
-                $avStay = new AvStay;
-    
-                if ($this->checkDiffDays($first_day, $last_day) == true)
-                {
-                    if ($this->checkExistStayDays($_SESSION['idGuardian'], $first_day, $last_day) == true)
+        {   
+           $guardianController = new GuardianController();
+            try
+            {
+                if (isset($_SESSION['idGuardian']))
+                {  
+                    $avStayDAO = new AvStayDAO;
+                    $avStay = new AvStay;
+        
+                    if ($this->checkDiffDays($first_day, $last_day) == true)
                     {
-                        // -> SETs AvStay
-                        $avStay->setId_keeper($_SESSION['idGuardian']);
-                        $avStay->setFirst_day($first_day);
-                        $avStay->setLast_day($last_day);
-                        // <- SETs AvStay
-            
-                        // -> ADD AvStay TO JSON
-                        $avStayDAO->Add($avStay);
-                        // <- ADD AvStay TO JSON
-            
-                        // -> REDIRECTION TO AvStay/ShowList
-                        header("location: " . FRONT_ROOT . "Guardian/ShowHome_Guardian");
-                        // <- REDIRECTION TO AvStay/ShowList
+                        if ($this->checkExistStayDays($_SESSION['idGuardian'], $first_day, $last_day) == true)
+                        {
+                            // -> SETs AvStay
+                            $avStay->setId_keeper($_SESSION['idGuardian']);
+                            $avStay->setFirst_day($first_day);
+                            $avStay->setLast_day($last_day);
+                            // <- SETs AvStay
+                
+                            // -> ADD AvStay TO JSON
+                            $avStayDAO->Add($avStay);
+                            // <- ADD AvStay TO JSON
+
+                            $guardianController->ShowHome_Guardian();
+                        }
+                        else
+                        {
+                            throw new Exception('Las fechas ingresadas se superponen con otras ya establecidas');
+                        }
                     }
                     else
                     {
-                        header("location: " . FRONT_ROOT . "Guardian/ShowHome_Guardian"); // ver pasar alert
+                        throw new Exception('Las fechas ingresadas no son coherentes coherentes');
                     }
                 }
                 else
                 {
-                    header("location: " . FRONT_ROOT . "Guardian/ShowHome_Guardian"); // ver pasar alert
-                }
+                    header("location: " . FRONT_ROOT . "Auth/ShowLogin");
+                }  
             }
-            else
+            catch (Exception $ex)
             {
-                 header("location: " . FRONT_ROOT . "Auth/ShowLogin");
-            }  
+                $alert = [
+                    "type" => "danger",
+                    "text" => $ex->getMessage()
+                ];
+
+                header("location: " . FRONT_ROOT . "Guardian/ShowHome_Guardian"); // ver como mostrar las excepciones
+            }
         }
 
         function checkDiffDays($first_day, $last_day)

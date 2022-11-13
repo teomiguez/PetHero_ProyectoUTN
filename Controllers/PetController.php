@@ -6,6 +6,8 @@
 
     use Models\pet as pet;
     use Models\Cat as Cat;
+
+    use Exception;
     
     use Controllers\CatController as CatController;
     use Controllers\DogController as DogController;

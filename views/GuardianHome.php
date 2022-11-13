@@ -179,10 +179,10 @@
         </div>
     </div>
 
-    <?php if(isset($alert_days)) { ?>
+    <?php if(isset($alert)) { ?>
         <div class="position-absolute top-0 start-50 translate-middle-x">
-            <div class="alert alert-<?php echo $alert_days['type'] ?>" role="alert">
-                <?php echo $alert_days['text'] ?>
+            <div class="alert alert-<?php echo $alert['type'] ?>" role="alert">
+                <?php echo $alert['text'] ?>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         </div>

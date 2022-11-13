@@ -193,6 +193,35 @@
             return $reservList;
         }
 
+        public function GetByOwner($id_owner) // esta se va a usar para listar las reservas que tiene pendientes el dueño
+        {
+            $reservList = array();
+            
+            try
+            {
+                $this->connection = Connection::GetInstance();
+                $query = "SELECT * FROM pets_x_reservation WHERE id_owner = :id_owner";
+                $parameters['id_owner'] = $id_owner;
+
+                $rta = $this->connection->Execute($query, $parameters);
+            }
+            catch (Exception $e) 
+            {
+                throw $e;
+            }
+
+            if(!empty($rta))
+            {
+                foreach ($rta as $row) 
+                {
+                    $reserv = $this->map($row);
+                    array_push($reservList, $reserv);
+                }
+            }
+
+            return $reservList;
+        }
+
         public function IsExist_Reserv($first_day, $last_day)
         {
             try 
