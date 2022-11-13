@@ -8,7 +8,8 @@
     use Models\Cat as Cat;
     
     use Controllers\CatController as CatController;
-    use Controllers\petController as petController;
+    use Controllers\DogController as DogController;
+    use Controllers\FileController as FileController;
     
     // use to bdd
     use DAO\PetDAO as PetDAO;
@@ -77,26 +78,39 @@
         {
             if (isset($_SESSION['idOwner']))
             {
+                $fileController = new FileController();
                 $petDAO = new PetDAO();
                 $pet = new Pet();
 
-                // VER - CARGA ARCHIVOS!
-                
-                // -> SETs PET
-                $pet->setId_owner($_SESSION['idOwner']);
-                $pet->setImg($imgFile);
-                $pet->setName($name);
-                $pet->setType($radio_option);
-                $pet->setBreed($breed);
-                $pet->setSize($size);
-                $pet->setPlanVacunacion($pvFile);
-                $pet->setVideo($video);
-                $pet->setInfo($info);
-                // <- SETs PET
+                $uploadImg = false;
+                $uploadPv = false;
 
-                // -> ADD PET
-                $pet_id = $petDAO->Add($pet);
-                // <- ADD PET
+                $uploadImg = $fileController->upload($imgFile, "img");
+
+                $uploadPv = $fileController->upload($pvFile, "pv");
+                
+                if(($uploadImg == true) && ($uploadPv == true))
+                {
+                    // -> SETs PET
+                    $pet->setId_owner($_SESSION['idOwner']);
+                    $pet->setImg($imgFile);
+                    $pet->setName($name);
+                    $pet->setType($radio_option);
+                    $pet->setBreed($breed);
+                    $pet->setSize($size);
+                    $pet->setPlanVacunacion($pvFile);
+                    $pet->setVideo($video);
+                    $pet->setInfo($info);
+                    // <- SETs PET
+    
+                    // -> ADD PET
+                    $pet_id = $petDAO->Add($pet);
+                    // <- ADD PET
+                }
+                else
+                {
+                    // alert -> error de carga
+                }
                 
                 // -> REDIRECTION TO PET/SHOWLIT
                 header("location: " . FRONT_ROOT . "Pet/ShowList");
@@ -121,12 +135,12 @@
             // VER - CARGA ARCHIVOS!
             
             // -> SETs PET
-            $pet->setImg(' ');
+            //$pet->setImg(' ');
             $pet->setName($name);
             $pet->setBreed($breed);
             $pet->setSize($size);
-            $pet->setPlanVacunacion(' ');
-            $pet->setVideo(' ');
+            //$pet->setPlanVacunacion(' ');
+            //$pet->setVideo(' ');
             $pet->setInfo($info);
             // <- SETs PET
 
