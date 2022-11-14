@@ -64,7 +64,7 @@
                         
                         $reservationDAO->AddPet_ToReservation($id_exist, $id_coupon, $pet); // agrego la mascota a la reserva
     
-                        $alert_succes = array("type" => "succes", "text" => "Se agregó la mascota a una reserva previa"); // VER
+                        $alert = array("type" => "succes", "text" => "Se agregó la mascota a una reserva previa"); // VER
                     }
                     else
                     {
@@ -87,7 +87,7 @@
     
                         $reservationDAO->AddPet_ToReservation($id_reserv, $id_coupon, $pet); // agrego la mascota a la reserva
         
-                        $alert_succes = array("type" => "succes", "text" => "Se envió la solicitud al guardian"); // VER
+                        $alert = array("type" => "succes", "text" => "Se envió la solicitud al guardian"); // VER
                     }
                     else
                     {
@@ -114,6 +114,15 @@
         {
             $reservationDAO = new ReservationDAO();
             $reservationDAO->ChangeToAccepted($id);
+
+            header("location: " . FRONT_ROOT . "Guardian/ShowHome_Guardian");
+        }
+
+        public function DenyReserv($id)
+        {
+            $reservationDAO = new ReservationDAO();
+            $reservationDAO->Remove($id);
+            $reservationDAO->RemovePets($id);
 
             header("location: " . FRONT_ROOT . "Guardian/ShowHome_Guardian");
         }

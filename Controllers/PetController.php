@@ -140,14 +140,24 @@
             //$pet->setImg(' ');
             $pet->setName($name);
             $pet->setBreed($breed);
-            $pet->setSize($size);
+
+            if(($size != 1) || ($size != 2) || ($size != 3))
+            {
+                $id_size = $petDAO->GetIdSize($size);
+                $pet->setSize($id_size);
+            }
+            else
+            {
+                $pet->setSize($size);
+            }
+            
             //$pet->setPlanVacunacion(' ');
             //$pet->setVideo(' ');
             $pet->setInfo($info);
             // <- SETs PET
 
             // -> ADD PET
-            $pet_id = $petDAO->Update($id, $pet);
+            $petDAO->Update($id, $pet);
             // <- ADD PET
             
             $this->ShowView_Profile($id);

@@ -227,16 +227,7 @@
                 $parameters['address'] = $guardian->getAddress();
                 $parameters['pass'] = $guardian->getPassword();
                 $parameters['id_guardian'] = $id;
-
-                if (($guardian->getSizeCare() != 1) || ($guardian->getSizeCare() != 2) || ($guardian->getSizeCare() != 3))
-                {
-                    $parameters['id_size_care'] = $this->GetIdSize($guardian->getSizeCare());
-                }
-                else
-                {
-                    $parameters['id_size_care'] = $guardian->getSizeCare();
-                }
-
+                $parameters['id_size_care'] = $guardian->getSizeCare();
                 $parameters['cost'] = $guardian->getCost();
 
                 $this->connection->ExecuteNonQuery($query, $parameters);

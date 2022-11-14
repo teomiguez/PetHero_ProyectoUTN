@@ -143,7 +143,7 @@
                 //$parameters['img'] = $pet->getImg();
                 $parameters['name'] = $pet->getName();
                 $parameters['breed'] = $pet->getBreed();
-                $parameters['id_size'] =$pet->getSize();
+                $parameters['id_size'] = $pet->getSize();
                 //$parameters['plan_vacunacion'] = $pet->getPlanVacunacion();
                 //$parameters['video'] = $pet->getVideo();
                 $parameters['info'] = $pet->getInfo();

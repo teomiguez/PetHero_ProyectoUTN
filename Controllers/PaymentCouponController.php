@@ -37,8 +37,8 @@
 
             $cost = ($guardianCost * $total_days)/2;
 
-            $paymentCouponDAO->setId_reservation();
-            $paymentCouponDAO->setId_owner();
+            $paymentCouponDAO->setId_reservation($id_reservation);
+            $paymentCouponDAO->setId_owner($id_owner);
             $paymentCouponDAO->setIs_payment(0);
             $paymentCouponDAO->setCoupon_cost($cost);
 

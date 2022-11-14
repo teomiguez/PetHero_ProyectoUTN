@@ -119,12 +119,13 @@
             return $reservList;
         }
 
-        public function GetIdByDates($first_day, $last_day)
+        public function GetIdByDates($id_guardian, $first_day, $last_day)
         {
             try 
             {
                 $this->connection = Connection::GetInstance();
-                $query = "SELECT id_reservation FROM $this->tableName WHERE first_day = :first_day AND last_day = :last_day ";
+                $query = "SELECT id_reservation FROM $this->tableName WHERE id_guardian = :id_guardian AND first_day <= :first_day AND last_day => :last_day ";
+                $parameters['id_guardian'] = $id_guardian;
                 $parameters['first_day'] = $first_day;
                 $parameters['last_day'] = $last_day;
 
@@ -340,9 +341,28 @@
 
         public function Remove($id)
         {
-            try {
+            try 
+            {
                 $this->connection = Connection::GetInstance();
                 $query = "DELETE FROM $this->tableName WHERE id_reservation = :id";
+                $parameters['id'] = $id;
+
+                $rta = $this->connection->ExecuteNonQuery($query, $parameters);
+                
+                return $rta;
+            } 
+            catch (Exception $e) 
+            {
+                throw $e;
+            }
+        }
+
+        public function RemovePets($id)
+        {
+            try 
+            {
+                $this->connection = Connection::GetInstance();
+                $query = "DELETE FROM pets_x_reservation WHERE id_reservation = :id";
                 $parameters['id'] = $id;
 
                 $rta = $this->connection->ExecuteNonQuery($query, $parameters);

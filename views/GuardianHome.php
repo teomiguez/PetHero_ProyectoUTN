@@ -42,7 +42,7 @@
                             <tr>
                                 <th scope="col"> Desde </th>
                                 <th scope="col"> Hasta </th>
-                                <th scope="col"> Aceptar </th>
+                                <th scope="col"> Confirmacion </th>
                         </tr>
                         </thead>
                         <tbody> 
@@ -59,6 +59,13 @@
                                             <button class="btn btn-link" type="submit" name="id" 
                                                     value="<?php echo $reserv->getId_reservation() ?>">
                                                 <i class="bi bi-check-circle"></i>    
+                                            </button>
+                                        </form>
+
+                                        <form action="<?php echo FRONT_ROOT . "Reservation/DenyReserv" ?>" method="POST">
+                                            <button class="btn btn-link" type="submit" name="id" 
+                                                    value="<?php echo $reserv->getId_reservation() ?>">
+                                                <i class="bi bi-x-circle"></i>    
                                             </button>
                                         </form>
                                     <?php } ?>

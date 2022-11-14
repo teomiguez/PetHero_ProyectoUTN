@@ -133,7 +133,17 @@
             $guardian->setTelephone($tel);
             $guardian->setPassword($password);
             $guardian->setAddress($address);
-            $guardian->setSizeCare($typeSize);
+
+            if(($typeSize != 1) || ($typeSize != 2) || ($typeSize != 3))
+            {
+                $id_size = $guardianDAO->GetIdSize($typeSize);
+                $guardian->setSizeCare($id_size);
+            }
+            else
+            {
+                $guardian->setSizeCare($typeSize);
+            }
+
             $guardian->setCost($cost);
             // <- SETs GUARDIAN 
 
