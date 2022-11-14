@@ -34,6 +34,42 @@
 
             <div class="col-12 col-sm-12 col-md-12 col-lg-4 pt-3">
                 <h2 class="text-center"> Reservas aceptadas </h2>
+
+                <div class="mb-3">
+                    <table class="table text-center">
+                        <thead>
+                            <tr>
+                                <th scope="col"> Desde </th>
+                                <th scope="col"> Hasta </th>
+                                <th scope="col">  </th>
+                        </tr>
+                        </thead>
+                        <tbody> 
+                            <?php  
+                                if (isset($reservList)) {
+                                        foreach ($reservList as $reserv) {
+                                            if(($reserv->getReservattion())->getIs_accepted() == 1) {
+                            ?>
+
+                            <tr class="align-middle">
+                                <td> <?php echo ($reserv->getReservattion())->getFirst_day() ?> </td>
+                                <td> <?php echo ($reserv->getReservattion())->getLast_day() ?> </td>
+                                <td> 
+                                    <form action="<?php  ?>" method="POST">
+                                    <button class="btn btn-link" type="submit" name="id" value="<?php echo (($reserv->getReservattion())->getReservation())->getId_reservation() ?>">
+                                        <i class="bi bi-eye-fill text-primary"></i>  
+                                    </button>
+                                    </form> 
+                                </td>
+                            </tr>
+
+                            <?php       }
+                                    }
+                                }     
+                            ?> 
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
             <div class="text-center col-12 col-sm-8 col-lg-5 pt-3" >

@@ -42,20 +42,12 @@
                 $guardians = $guardianDAO->GetAll();
                 $petsList = $petDAO->GetByOwner($_SESSION['idOwner']);
                 $reservList_Ids = $reservationDAO->GetByOwner($_SESSION['idOwner']); // obtengo las reservas de pet_x_reservation
-
-                /*
-                    cargar en un nuevo arreglo las reservas con las ids cambiadas por objetos (usar el $reservationForPet)
-
-                    COMPLETAR EL CHANGE EN EL CONTROLLER!!
-
-                    foreach ($reservList_Ids as $row) 
-                    {
-                        $reserv = $reservationForPet->ChangeIdsForObjects($row);
-                        array_push($reservsList, $reserv);
-                    }
-
-                    $reservsList -> se muestra en el Home
-                */
+                
+                foreach ($reservList_Ids as $row) 
+                {
+                    $reserv = $reservationForPet->ChangeIdsForObjects($row);
+                    array_push($reservList, $reserv); // -> reservsList es la que muestro en el OwnerHome
+                }
 
                 require_once(VIEWS_PATH . "OwnerHome.php");
             }

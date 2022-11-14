@@ -45,10 +45,12 @@
 
             $newFile->setFileName($file['name']);
             $newFile->setTempName($file['tmp_name']);
-            $newFile->setSize(getimagesize($newFile->getTempName()));
             $newFile->setType($file['type']);
+            $newFile->setSize(getimagesize($file['tmp_name']));
         
-            $filePath = $this->uploadFilePath . $type . "/";
+            $fileName = $newFile->getFileName();
+
+            $filePath = $this->uploadFilePath . basename($fileName);
         
             // Si no existe el directorio, lo crea.
             if(!file_exists($filePath))
@@ -56,11 +58,10 @@
                 mkdir($filePath);
             }
         
-            $fileName = $newFile->getFileName();
         
-            $fileLocation = $filePath . $fileName;	// ruta completa y file.
+            $fileLocation = $filePath . $fileName;	// ruta completa + file.
         
-            //Obtenemos la extensión del file. Nos sirve para comprobar el verdadero type$type del file
+            //Obtenemos la extensión del file. Nos sirve para comprobar el verdadero $type del file
             $fileExtension = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
         
             if(in_array($fileExtension, $this->allowedExtensions) ) 
@@ -69,9 +70,10 @@
                 {
                     if($newFile->getSize() < $this->maxSize) //Menor a 5 MB
                     { 
-                        move_uploaded_file($newFile->getTempName(), $fileLocation);
-
-                        return true;
+                        if(move_uploaded_file($newFile->getTempName(), $fileLocation))
+                        {
+                            return true;
+                        }
                     }
                 }
             }
