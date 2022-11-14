@@ -125,12 +125,13 @@
             }
         }
 
-        public function IsExist_Stay($first_day, $last_day)
+        public function IsExist_Stay($id_guardian, $first_day, $last_day)
         {
             try 
             {
                 $this->connection = Connection::GetInstance();
-                $query = "SELECT * FROM $this->tableName WHERE first_day <= :first_day' AND last_day >= :last_day ";
+                $query = "SELECT * FROM $this->tableName WHERE id_guardian = :id_guardian AND first_day <= :first_day' AND last_day >= :last_day ";
+                $parameters['id_guardian'] = $id_guardian;
                 $parameters['first_day'] = $first_day;
                 $parameters['last_day'] = $last_day;
 

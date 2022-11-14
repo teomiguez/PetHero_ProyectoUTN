@@ -34,21 +34,11 @@
         <div class="row">
 
             <div class="col-12 col-sm-12 col-md-12 col-lg-3">
-                *Calendario*
+                <h2 class="text-center"> Reservas aceptadas </h2>
             </div>
 
             <div class="text-center col-12 col-sm-8 col-lg-5 mb-3">
                 <h2 class="text-center mb-3"> Lista de mascotas </h2>
-
-                <!-- <form action="">
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Buscar mascota..."
-                            aria-label="Buscar mascota..." aria-describedby="button-addon2">
-                        <button class="btn btn-outline-secondary" type="button" id="button-addon2">
-                            <i class="bi bi-search"></i>
-                        </button>
-                    </div>
-                </form> -->
 
                 <div class="mb-3">
                     <table class="table text-center">
@@ -98,7 +88,7 @@
             </div>
 
             <div class="col-12 col-sm-4 text-center">
-                rellenar...
+                <h2 class="text-center"> Reservas pasadas </h2>
             </div>
         </div>
 

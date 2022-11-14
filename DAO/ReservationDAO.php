@@ -3,9 +3,12 @@
 
     use DAO\I_DAO as I_DAO;
     use DAO\GuardianDAO as GuardianDAO;
+    
     use Models\Guardian as Guardian;
     use Models\Pet as Pet;
     use Models\Reservation as Reservation;
+    use Models\ReservationForPet as ReservationForPet;
+    
     // use to bdd
     use DAO\Connection as Connection;
     use Exception;
@@ -89,7 +92,8 @@
             return $reservList;
         }
 
-        public function GetById($id){
+        public function GetById($id)
+        {
             try 
             {
                 $this->connection = Connection::GetInstance();
@@ -120,7 +124,7 @@
             try 
             {
                 $this->connection = Connection::GetInstance();
-                $query = "SELECT id_reservation FROM $this->tableName WHERE first_day <= :first_day AND last_day >= :last_day ";
+                $query = "SELECT id_reservation FROM $this->tableName WHERE first_day = :first_day AND last_day = :last_day ";
                 $parameters['first_day'] = $first_day;
                 $parameters['last_day'] = $last_day;
 
@@ -214,7 +218,7 @@
             {
                 foreach ($rta as $row) 
                 {
-                    $reserv = $this->map($row);
+                    $reserv = $this->map_petXreserv($row);
                     array_push($reservList, $reserv);
                 }
             }
@@ -227,7 +231,7 @@
             try 
             {
                 $this->connection = Connection::GetInstance();
-                $query = "SELECT * FROM $this->tableName WHERE first_day <= :first_day AND last_day >= :last_day ";
+                $query = "SELECT * FROM $this->tableName WHERE first_day = :first_day AND last_day = :last_day ";
                 $parameters['first_day'] = $first_day;
                 $parameters['last_day'] = $last_day;
 
@@ -354,7 +358,6 @@
         /**
         *	@param Array -> listado que se transforma en objeto
         */
-
         protected function map ($p)
         {
             $reserv = new Reservation();
@@ -369,6 +372,21 @@
             $reserv->setTotal_days($p['total_days']);
             
             return $reserv;
+        }
+
+        /**
+        *	@param Array -> listado que se transforma en objeto
+        */
+        protected function map_petXreserv ($p)
+        {
+            $reservForPet = new ReservationForPet();
+
+            $reservForPet = setId_reservation($p['id_reservation']);
+            $reservForPet = setId_owner($p['id_owner']);
+            $reservForPet = setId_pet($p['id_pet']);
+            $reservForPet = setId_coupon($p['id_payment_coupon']);
+
+            return $reservForPet;
         }
         
         // DATABASE CLASSES ↑

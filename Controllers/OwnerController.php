@@ -1,16 +1,21 @@
 <?php
     namespace Controllers;
     
+    use Controllers\ReservationForPetController as ReservationForPetController;
+    
     use DAO\OwnerDAO as OwnerDAO;
     use DAO\GuardianDAO as GuardianDAO;
     use DAO\ReviewDAO as ReviewDAO;
     use DAO\AvStayDAO as AvStayDAO;
+    use DAO\ReservationDAO as ReservationDAO;
     use DAO\PetDAO as PetDAO;
 
     use Models\Owner as Owner;
     use Models\Guardian as Guardian;
     use Models\Review as Review;
     use Models\AvStay as AvStay;
+    use Models\Reservation as Reservation;
+    use Models\ReservationForPet as ReservationForPet;
     use Models\Pet as Pet;
 
     use Exception;
@@ -26,13 +31,31 @@
         {    
             if (isset($_SESSION['idOwner']))
             {
+                $reservationForPet = new ReservationForPetController();
+                
                 $ownerDAO = new OwnerDAO();
                 $guardianDAO = new GuardianDAO();
+                $reservationDAO = new ReservationDAO();
                 $petDAO = new PetDAO();
                 
                 $user = $ownerDAO->GetById($_SESSION["idOwner"]);
                 $guardians = $guardianDAO->GetAll();
                 $petsList = $petDAO->GetByOwner($_SESSION['idOwner']);
+                $reservList_Ids = $reservationDAO->GetByOwner($_SESSION['idOwner']); // obtengo las reservas de pet_x_reservation
+
+                /*
+                    cargar en un nuevo arreglo las reservas con las ids cambiadas por objetos (usar el $reservationForPet)
+
+                    COMPLETAR EL CHANGE EN EL CONTROLLER!!
+
+                    foreach ($reservList_Ids as $row) 
+                    {
+                        $reserv = $reservationForPet->ChangeIdsForObjects($row);
+                        array_push($reservsList, $reserv);
+                    }
+
+                    $reservsList -> se muestra en el Home
+                */
 
                 require_once(VIEWS_PATH . "OwnerHome.php");
             }
