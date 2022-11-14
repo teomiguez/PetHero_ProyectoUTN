@@ -86,13 +86,13 @@
 
                 $uploadImg = false;
                 $uploadPv = false;
-
+ 
                 $uploadImg = $fileController->upload($imgFile, "img");
 
                 $uploadPv = $fileController->upload($pvFile, "pv");
                 
-                if(($uploadImg == true) && ($uploadPv == true))
-                {
+                //if(($uploadImg == true) && ($uploadPv == true))
+                //{
                     // -> SETs PET
                     $pet->setId_owner($_SESSION['idOwner']);
                     $pet->setImg($imgFile);
@@ -108,11 +108,11 @@
                     // -> ADD PET
                     $pet_id = $petDAO->Add($pet);
                     // <- ADD PET
-                }
-                else
-                {
+                //}
+                //else
+                //{
                     // alert -> error de carga
-                }
+                //}
                 
                 // -> REDIRECTION TO PET/SHOWLIT
                 header("location: " . FRONT_ROOT . "Pet/ShowList");

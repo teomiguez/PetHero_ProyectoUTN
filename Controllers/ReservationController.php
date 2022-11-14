@@ -105,8 +105,8 @@
             {
                 $alert = [
                     "type" => "danger",
-                    "text" => $ex->getMessage();
-                ]
+                    "text" => $ex->getMessage()
+                ];
             }
         }
 

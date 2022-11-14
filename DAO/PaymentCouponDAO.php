@@ -165,7 +165,7 @@
         
         public function Remove($id)
         {
-            ry {
+            try {
                 $this->connection = Connection::GetInstance();
                 $query = "DELETE FROM $this->tableName WHERE id_payment_coupon = :id";
                 $parameters['id'] = $id;
