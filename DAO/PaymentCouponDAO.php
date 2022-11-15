@@ -90,6 +90,8 @@
 
         public function GetByReservation($id)
         {
+            $$couponList = array();
+            
             try 
             {
                 $this->connection = Connection::GetInstance();

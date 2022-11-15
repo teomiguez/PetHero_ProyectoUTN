@@ -174,7 +174,7 @@
         include('footer.php');
     ?>
 
-    <!-- Modal request reservation -->
+    <!-- Modal - request reservation -->
     <div class="modal fade" id="requestReservation_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -242,7 +242,7 @@
         </div>
     </div>
 
-    <?php if(isset($alert)) { ?>
+    <?php if($alert != '') { ?>
         <div class="position-absolute top-0 start-50 translate-middle-x">
             <div class="alert alert-<?php echo $alert['type'] ?>" role="alert">
                 <?php echo $alert['text'] ?>

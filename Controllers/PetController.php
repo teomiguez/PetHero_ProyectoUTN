@@ -141,7 +141,7 @@
             $pet->setName($name);
             $pet->setBreed($breed);
 
-            if(($size != 1) || ($size != 2) || ($size != 3))
+            if(($size != 1) && ($size != 2) && ($size != 3))
             {
                 $id_size = $petDAO->GetIdSize($size);
                 $pet->setSize($id_size);

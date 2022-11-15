@@ -134,7 +134,7 @@
             $guardian->setPassword($password);
             $guardian->setAddress($address);
 
-            if(($typeSize != 1) || ($typeSize != 2) || ($typeSize != 3))
+            if(($typeSize != 1) && ($typeSize != 2) && ($typeSize != 3))
             {
                 $id_size = $guardianDAO->GetIdSize($typeSize);
                 $guardian->setSizeCare($id_size);

@@ -27,7 +27,7 @@
             
         }  
 
-        public function ShowHome_Owner()
+        public function ShowHome_Owner($alert = '')
         {    
             if (isset($_SESSION['idOwner']))
             {
@@ -57,7 +57,7 @@
             }                
         }
 
-        public function ShowHome_FilterGuardians($first_day, $last_day) 
+        public function ShowHome_FilterGuardians($first_day, $last_day, $alert = '') 
         { 
             if (isset($_SESSION['idOwner']))
             {  
@@ -75,13 +75,25 @@
                 $idsGuardiansAvailable = $avStayDAO->GetIdGuardian_ByDates($first_day, $last_day);
                 $petsList = $petDAO->GetByOwner($_SESSION['idOwner']);
 
-                foreach($idsGuardiansAvailable as $id)
+                if(empty($idsGuardiansAvailable))
                 {
-                    $guardian = $guardianDAO->GetById($id);
-                    array_push($guardiansAviable, $guardian);
-                }
+                    $alert = [
+                        "type" => "danger",
+                        "text" => "No hay guardianes disponibles en esas fechas"
+                    ];
 
-                require_once(VIEWS_PATH . "OwnerHome.php");
+                    $this->ShowHome_Owner($alert);
+                }
+                else
+                {
+                    foreach($idsGuardiansAvailable as $id)
+                    {
+                        $guardian = $guardianDAO->GetById($id);
+                        array_push($guardiansAviable, $guardian);
+                    }
+
+                    require_once(VIEWS_PATH . "OwnerHome.php");
+                }
             }
             else
             {

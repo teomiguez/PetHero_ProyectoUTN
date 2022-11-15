@@ -69,6 +69,8 @@
 
         public function GetAll()
         {
+            $reservList = array();
+            
             try
             {
                 $this->connection = Connection::GetInstance();
@@ -81,7 +83,7 @@
             }
 
             if(!empty($rta))
-            {
+            {   
                 foreach ($rta as $row) 
                 {
                     $reserv = $this->map($row);
@@ -94,10 +96,12 @@
 
         public function GetById($id)
         {
+            $reservList = array();
+            
             try 
             {
                 $this->connection = Connection::GetInstance();
-                $query = "SELECT * FROM $this->tableName WHERE id_guardian = :id ";
+                $query = "SELECT * FROM $this->tableName WHERE id_reservation = :id ";
                 $parameters['id'] = $id;
 
                 $rta = $this->connection->Execute($query, $parameters);
@@ -111,12 +115,9 @@
             {
                 foreach ($rta as $row) 
                 {
-                    $reserv = $this->map($row);
-                    array_push($reservList, $reserv);
+                    return $this->map($row);
                 }
             }
-
-            return $reservList;
         }
 
         public function GetIdByDates($id_guardian, $first_day, $last_day)
@@ -227,12 +228,13 @@
             return $reservList;
         }
 
-        public function IsExist_Reserv($first_day, $last_day)
+        public function IsExist_Reserv($id_guardian, $first_day, $last_day)
         {
             try 
             {
                 $this->connection = Connection::GetInstance();
-                $query = "SELECT * FROM $this->tableName WHERE first_day = :first_day AND last_day = :last_day ";
+                $query = "SELECT * FROM $this->tableName WHERE id_guardian = :id_guardian AND first_day <= :first_day AND last_day >= :last_day";
+                $parameters['id_guardian'] = $id_guardian;
                 $parameters['first_day'] = $first_day;
                 $parameters['last_day'] = $last_day;
 

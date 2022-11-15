@@ -65,8 +65,8 @@
             return $avstayList;
         }
 
-        public function GetByKeeper($id_guardian){
-            
+        public function GetByKeeper($id_guardian)
+        {    
             $avstayList = array();
             
             try {
@@ -130,7 +130,7 @@
             try 
             {
                 $this->connection = Connection::GetInstance();
-                $query = "SELECT * FROM $this->tableName WHERE id_guardian = :id_guardian AND first_day <= :first_day' AND last_day >= :last_day ";
+                $query = "SELECT * FROM $this->tableName WHERE id_guardian = :id_guardian AND first_day <= :first_day AND last_day >= :last_day ";
                 $parameters['id_guardian'] = $id_guardian;
                 $parameters['first_day'] = $first_day;
                 $parameters['last_day'] = $last_day;

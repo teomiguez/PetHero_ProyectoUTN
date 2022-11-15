@@ -1,6 +1,7 @@
 <?php
     namespace Controllers;
 
+    use Controllers\OwnerController as OwnerController;
     use Controllers\PaymentCouponController as PaymentCouponController;
 
     use DAO\GuardianDAO as GuardianDAO;
@@ -26,6 +27,9 @@
 
         public function Create_Reserv($id_guardian, $pet_size, $pet_breed, $first_day, $last_day, $diff_days)
         {
+            $reservationDAO = new ReservationDAO();
+            $reserv = new Reservation();
+            
             $reserv->setId_guardian($id_guardian);
             $reserv->setPet_size($pet_size);
             $reserv->setPet_breed($pet_breed);
@@ -38,6 +42,7 @@
         
         public function RequestReservation($first_day, $last_day, $id_guardian, $id_pet)
         {
+            $ownerController = new OwnerController();
             $paymentCouponController = new PaymentCouponController();
             
             $reservationDAO = new ReservationDAO();
@@ -46,15 +51,16 @@
             $paymentCouponDAO = new PaymentCouponDAO();
             $petDAO = new PetDAO();
 
-            $reserv = new Reservation();
+            $reservForGuardian = $reservationDAO->GetByGuardian($id_guardian);
+            $staysForGuardian = $avstayDAO->GetByKeeper($id_guardian);
             $pet = $petDAO->GetById($id_pet);
             $guardian = $guardianDAO->GetById($id_guardian);
 
             try 
             {
-                if ($reservationDAO->IsExist_Reserv($first_day, $last_day)) // si existe o no la reserva
+                if ($this->IsExist_Reserv($reservForGuardian, $first_day, $last_day)) // si existe o no la reserva
                 {
-                    $id_exist = $reservationDAO->GetIdByDates($first_day, $last_day); // obtengo id por las fechas
+                    $id_exist = $this->GetIdReserv($reservForGuardian, $first_day, $last_day); // obtengo id por las fechas
     
                     if (($reservationDAO->GetSize_Condition($id_exist) == $pet->getSize()) && ($reservationDAO->GetBreed_Condition($id_exist) == $pet->getBreed())) // si la mascota cumple las condiciones de la reserva
                     {
@@ -71,7 +77,7 @@
                         throw new Exception("La reserva ya existe y la mascota seleccionada no cumple con las condiciones de tamaño/raza"); // si no cumple las condiciones -> alert
                     }
                 }
-                else if ($avstayDAO->IsExist_Stay($id_guardian, $first_day, $last_day)) // si el guardian tiene libre esos dias
+                else if ($this->IsExist_Stay($staysForGuardian, $first_day, $last_day)) // si el guardian tiene libre esos dias
                 {
                     if ($guardian->getSizeCare() == $pet->getSize())
                     {
@@ -79,7 +85,8 @@
                         
                         $this->Create_Reserv($id_guardian, $pet->getSize(), $pet->getBreed(), $first_day, $last_day, $diff); // creo la reserva
                         
-                        $id_reserv = $reservationDAO->GetIdByDates($first_day, $last_day); // obtengo el id de la reserva
+                        $reservForGuardian2 = $reservationDAO->GetByGuardian($id_guardian);
+                        $id_reserv = $this->GetIdReserv($reservForGuardian2, $first_day, $last_day); // obtengo el id de la reserva
 
                         $paymentCouponController->Create_PaymentCoupon($id_reserv, $pet->getId_owner()); // creo el cupon
                         
@@ -87,19 +94,19 @@
     
                         $reservationDAO->AddPet_ToReservation($id_reserv, $id_coupon, $pet); // agrego la mascota a la reserva
         
-                        $alert = array("type" => "succes", "text" => "Se envió la solicitud al guardian"); // VER
+                        $alert = array("type" => "success", "text" => "Se envió la solicitud al guardian"); // VER
                     }
                     else
                     {
                         throw new Exception("El guardian no cuida el tamaño de su mascota"); // si no cumple las condiciones -> alert
                     }
                 }
-                else if (!$avstayDAO->ThisGuardianIsAviable($id_guardian, $first_day, $last_day))
+                else
                 {
                     throw new Exception("El guardian no tiene esas fechas disponibles"); // si no tiene libre -> alert
                 }
     
-                header("location: " . FRONT_ROOT . "Owner/ShowHome_Owner");
+                $ownerController->ShowHome_Owner($alert);
             }
             catch (Exception $ex)
             {
@@ -107,6 +114,8 @@
                     "type" => "danger",
                     "text" => $ex->getMessage()
                 ];
+
+                $ownerController->ShowHome_Owner($alert);
             }
         }
 
@@ -126,5 +135,57 @@
 
             header("location: " . FRONT_ROOT . "Guardian/ShowHome_Guardian");
         }
+
+        /**
+        *	@param Array -> listado de reservas
+        */
+        function IsExist_Reserv($reservsForGuardian, $first_day, $last_day)
+        {
+            $reserv = new Reservation();
+            
+            foreach($reservsForGuardian as $reserv)
+            {
+                if(($reserv->getFirst_day() <= $first_day) && ($reserv->getLast_day() >= $last_day))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        /**
+        *	@param Array -> listado de estadias
+        */
+        function IsExist_Stay($staysForGuardian, $first_day, $last_day)
+        {
+            $avstay = new AvStay();
+
+            foreach($staysForGuardian as $avstay)
+            {
+                if(($avstay->getFirst_day() <= $first_day) && ($avstay->getLast_day() >= $last_day))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        /**
+        *	@param Array -> listado de reservas
+        */
+        function GetIdReserv($reservsForGuardian, $first_day, $last_day)
+        {
+            $reserv = new Reservation();
+            
+            foreach($reservsForGuardian as $reserv)
+            {
+                if(($reserv->getFirst_day() == $first_day) && ($reserv->getLast_day() == $last_day))
+                {
+                    return $reserv->getId_reservation();
+                }
+            }
+            return false;
+        }
+
     }
 ?>

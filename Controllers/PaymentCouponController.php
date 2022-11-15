@@ -30,17 +30,18 @@
             $guardian = new Guardian();
 
             $reserv = $reservationDAO->GetById($id_reservation);
-            $guardian = $guardianDAO->GetById($reserv->getId_guardia());
+            $id_guardian = $reserv->getId_guardian();
+            $guardian = $guardianDAO->GetById($id_guardian);
 
             $guardianCost = $guardian->getCost();
             $total_days = $reserv->getTotal_days();
 
             $cost = ($guardianCost * $total_days)/2;
 
-            $paymentCouponDAO->setId_reservation($id_reservation);
-            $paymentCouponDAO->setId_owner($id_owner);
-            $paymentCouponDAO->setIs_payment(0);
-            $paymentCouponDAO->setCoupon_cost($cost);
+            $paymentCoupon->setId_reservation($id_reservation);
+            $paymentCoupon->setId_owner($id_owner);
+            $paymentCoupon->setIs_payment(0);
+            $paymentCoupon->setCoupon_cost($cost);
 
             $paymentCouponDAO->Add($paymentCoupon);
         }
