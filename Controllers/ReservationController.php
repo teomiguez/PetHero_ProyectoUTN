@@ -67,14 +67,11 @@
     
                     if (($reservationDAO->GetSize_Condition($id_exist) == $pet->getSize()) && ($reservationDAO->GetBreed_Condition($id_exist) == $pet->getBreed())) // si la mascota cumple las condiciones de la reserva
                     {
-                        // VER LA TABLA DE paymentCoupon en la BDD (NO TIENE EL AUTO_INCREMENT)
-                        $paymentCouponController->Create_PaymentCoupon($id_exist, $pet->getId_owner()); // creo el cupon
-    
-                        // Validar que no haya un cupon con el id del owner ya (que este metiendo otra mascota a la misma reserva)
+                        $paymentCouponController->Create_PaymentCoupon($id_exist, $pet->getId_pet() ,$pet->getId_owner()); // creo el cupon
                         
                         $id_coupon = $paymentCouponDAO->GetByReservation($id_exist); // obtengo el id del cupon
                         
-                        $reservationDAO->AddPet_ToReservation($id_exist, $id_coupon, $pet); // agrego la mascota a la reserva
+                        $reservationDAO->AddPet_ToReservation($id_exist,$pet->getId_pet() ,$pet->getId_owner(), $id_coupon); // agrego la mascota a la reserva
     
                         $alert = array("type" => "succes", "text" => "Se agregó la mascota a una reserva previa"); // VER
                     }

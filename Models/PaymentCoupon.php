@@ -5,6 +5,7 @@
     {
         private $id_paymentCoupon;
         private $id_reservation;
+        private $id_pet;
         private $id_owner;
         private $is_payment;
         private $coupon_cost;
@@ -39,6 +40,16 @@
         public function setId_owner($id_owner)
         {
             $this->id_owner = $id_owner;
+        }
+
+        public function getId_pet()
+        {
+            return $this->id_pet;
+        }
+
+        public function setId_pet($id_pet)
+        {
+            $this->id_pet = $id_pet;
         }
  
         public function getIs_payment()

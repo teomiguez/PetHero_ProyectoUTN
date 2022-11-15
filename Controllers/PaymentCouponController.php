@@ -19,7 +19,7 @@
             
         }
         
-        public function Create_PaymentCoupon($id_reservation, $id_owner) // ver cuando llamo la función si puedo pasar las ids o los objetos completos (ahorramos el buscarlos en el DAO) -> VER
+        public function Create_PaymentCoupon($id_reservation, $id_pet ,$id_owner)
         {
             $paymentCouponDAO = new PaymentCouponDAO();
             $guardianDAO = new GuardianDAO();
@@ -39,6 +39,7 @@
             $cost = ($guardianCost * $total_days)/2;
 
             $paymentCoupon->setId_reservation($id_reservation);
+            $paymentCoupon->setId_pet($id_pet);
             $paymentCoupon->setId_owner($id_owner);
             $paymentCoupon->setIs_payment(0);
             $paymentCoupon->setCoupon_cost($cost);

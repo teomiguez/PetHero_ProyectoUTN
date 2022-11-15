@@ -20,10 +20,11 @@
             {
                 $this->connection = Connection::GetInstance();
 
-                $query = "INSERT INTO $this->tableName (id_reservation, id_owner, is_payment, coupon_cost)
-                      VALUES (:id_reservation, :id_owner, :is_payment, :coupon_cost)";
+                $query = "INSERT INTO $this->tableName (id_reservation, id_pet, id_owner, is_payment, coupon_cost)
+                      VALUES (:id_reservation, :id_pet, :id_owner, :is_payment, :coupon_cost)";
 
                 $parameters['id_reservation'] = $paymentCoupon->getId_reservation();
+                $parameters['id_pet'] = $paymentCoupon->getId_pet();
                 $parameters['id_owner'] = $paymentCoupon->getId_owner();
                 $parameters['is_payment'] = $paymentCoupon->getIs_payment();
                 $parameters['coupon_cost'] = $paymentCoupon->getCoupon_cost();
@@ -85,13 +86,14 @@
             }
         }
 
-        public function GetByReservation($id)
+        public function GetByReservation($id_reserv, $id_pet)
         {
             try 
             {
                 $this->connection = Connection::GetInstance();
-                $query = "SELECT * FROM $this->tableName WHERE id_reservation = :id_reservation ";
-                $parameters['id_reservation'] = $id;
+                $query = "SELECT * FROM $this->tableName WHERE id_reservation = :id_reservation AND id_pet = :id_pet ";
+                $parameters['id_reservation'] = $id_reserv;
+                $parameters['id_pet'] = $id_pet;
 
                 $rta = $this->connection->Execute($query, $parameters);
             } 
@@ -109,10 +111,8 @@
             }
         }
 
-        public function GetByOwner($id_owner) // esta se va a usar para listaros en el owner
+        public function IsExist_Coupon($id_owner)
         {
-            $reservList = array();
-            
             try
             {
                 $this->connection = Connection::GetInstance();
@@ -128,14 +128,39 @@
 
             if(!empty($rta))
             {
-                foreach ($rta as $row) 
-                {
-                    $coupon = $this->map($row);
-                    array_push($couponList, $coupon);
-                }
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public function GetByOwner($id_reserv, $id_owner) // esta se va a usar para listaros en el owner
+        {
+            $reservList = array();
+            
+            try
+            {
+                $this->connection = Connection::GetInstance();
+                $query = "SELECT * FROM pets_x_reservation WHERE id_reservation = :id_reservation AND id_owner = :id_owner";
+                $parameters['id_reservation'] = $id_reserv;
+                $parameters['id_owner'] = $id_owner;
+
+                $rta = $this->connection->Execute($query, $parameters);
+            }
+            catch (Exception $e) 
+            {
+                throw $e;
             }
 
-            return $couponList;
+            if(!empty($rta))
+            {
+                foreach ($rta as $row) 
+                {
+                    return $this->map($row);
+                }
+            }
         }
 
         public function ChangeToPayment($id) // para cambiar a is_payment = 1 (fue pago)
@@ -184,6 +209,7 @@
 
             $paymentCoupon->setId_paymentCoupon($p['id_payment_coupon']);
             $paymentCoupon->setId_reservation($p['id_reservation']);
+            $paymentCoupon->setId_pet($p['id_pet']);
             $paymentCoupon->setId_owner($p['id_owner']);
             $paymentCoupon->setIs_payment($p['is_payment']);
             $paymentCoupon->setCoupon_cost($p['coupon_cost']);
