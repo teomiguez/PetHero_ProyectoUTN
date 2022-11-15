@@ -83,7 +83,7 @@
     <!-- Linea divisoria main/footer -->
     <?php
 
-    include('footer.php');
+    //include('footer.php');
 
     ?>
 

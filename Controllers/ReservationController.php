@@ -67,8 +67,9 @@
     
                     if (($reservationDAO->GetSize_Condition($id_exist) == $pet->getSize()) && ($reservationDAO->GetBreed_Condition($id_exist) == $pet->getBreed())) // si la mascota cumple las condiciones de la reserva
                     {
+                        // VER LA TABLA DE paymentCoupon en la BDD (NO TIENE EL AUTO_INCREMENT)
                         $paymentCouponController->Create_PaymentCoupon($id_exist, $pet->getId_owner()); // creo el cupon
-
+    
                         // Validar que no haya un cupon con el id del owner ya (que este metiendo otra mascota a la misma reserva)
                         
                         $id_coupon = $paymentCouponDAO->GetByReservation($id_exist); // obtengo el id del cupon

@@ -159,7 +159,7 @@
                             $guardianController->Register_Guardian($name, $last_name, $dni, $tel, $email, $password, $street, $nro, $typeSize, $cost);
                         }
                         
-                        $alert_succes = array("type" => "success", "text" => "Registro exitoso");
+                        $alert = array("type" => "success", "text" => "Registro exitoso");
                         
                         // -> REDIRECTION TO LOGIN_VIEW
                         require_once(VIEWS_PATH . "Home.php");

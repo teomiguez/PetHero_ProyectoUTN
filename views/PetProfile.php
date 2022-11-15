@@ -72,7 +72,7 @@
 
     <!-- Linea divisoria main/footer -->
     <?php
-        include('footer.php');
+        //include('footer.php');
     ?>
 
     <!-- Funcionalidades JS propias de Boostrap (para uso de componentes especificos) -->
