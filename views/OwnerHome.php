@@ -35,7 +35,7 @@
             <div class="col-12 col-sm-12 col-md-12 col-lg-4 pt-3">
                 <h2 class="text-center"> Reservas aceptadas </h2>
 
-                <div class="mb-3">
+                <!-- <div class="mb-3">
                     <table class="table text-center">
                         <thead>
                             <tr>
@@ -69,7 +69,8 @@
                             ?> 
                         </tbody>
                     </table>
-                </div>
+                </div> -->
+                
             </div>
 
             <div class="text-center col-12 col-sm-8 col-lg-5 pt-3" >

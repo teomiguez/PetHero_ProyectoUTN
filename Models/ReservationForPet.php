@@ -3,10 +3,10 @@
 
     class ReservationForPet
     {
-        private $reservation;
+        private $id_reservation;
         private $id_owner;
-        private $pet;
-        private $coupon;
+        private $id_pet;
+        private $id_coupon;
 
         // -> SETTERS Y GETTERS
 
@@ -15,9 +15,9 @@
             return $this->reservation;
         }
 
-        public function setReservation($reservation)
+        public function setId_reservation($id_reservation)
         {
-            return $this;
+            $this->id_reservation = $id_reservation;
         }
 
         public function getId_owner()
@@ -27,27 +27,27 @@
 
         public function setId_owner($id_owner)
         {
-            return $this;
+            $this->id_owner = $id_owner;
         }
 
-        public function getPet()
+        public function getId_pet()
         {
-            return $this->pet;
+            return $this->id_pet;
         }
 
-        public function setPet($pet)
+        public function setId_pet($id_pet)
         {
-            return $this;
+            $this->id_pet = $id_pet;
         }
 
-        public function getCoupon()
+        public function getId_coupon()
         {
-            return $this->coupon;
+            return $this->id_coupon;
         }
 
-        public function setCoupon($coupon)
+        public function setId_coupon($id_coupon)
         {
-            return $this;
+            $this->id_coupon = $id_coupon;
         }
 
         // <- SETTERS Y GETTERS

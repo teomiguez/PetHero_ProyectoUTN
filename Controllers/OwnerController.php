@@ -41,13 +41,7 @@
                 $user = $ownerDAO->GetById($_SESSION["idOwner"]);
                 $guardians = $guardianDAO->GetAll();
                 $petsList = $petDAO->GetByOwner($_SESSION['idOwner']);
-                $reservList_Ids = $reservationDAO->GetByOwner($_SESSION['idOwner']); // obtengo las reservas de pet_x_reservation
-                
-                foreach ($reservList_Ids as $row) 
-                {
-                    $reserv = $reservationForPet->ChangeIdsForObjects($row);
-                    array_push($reservList, $reserv); // -> reservsList es la que muestro en el OwnerHome
-                }
+                //$reservList = $reservationDAO->GetByOwner($_SESSION['idOwner']); // obtengo las reservas de pet_x_reservation
 
                 require_once(VIEWS_PATH . "OwnerHome.php");
             }

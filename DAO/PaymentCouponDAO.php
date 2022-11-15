@@ -80,23 +80,18 @@
             {
                 foreach ($rta as $row) 
                 {
-                    $coupon = $this->map($row);
-                    array_push($couponList, $coupon);
+                    return $this->map($row);
                 }
             }
-
-            return $couponList;
         }
 
         public function GetByReservation($id)
         {
-            $$couponList = array();
-            
             try 
             {
                 $this->connection = Connection::GetInstance();
-                $query = "SELECT * FROM $this->tableName WHERE id_reservation = :id ";
-                $parameters['id'] = $id;
+                $query = "SELECT * FROM $this->tableName WHERE id_reservation = :id_reservation ";
+                $parameters['id_reservation'] = $id;
 
                 $rta = $this->connection->Execute($query, $parameters);
             } 
@@ -109,12 +104,9 @@
             {
                 foreach ($rta as $row) 
                 {
-                    $coupon = $this->map($row);
-                    array_push($couponList, $coupon);
+                    return $this->map($row);
                 }
             }
-
-            return $couponList;
         }
 
         public function GetByOwner($id_owner) // esta se va a usar para listaros en el owner
@@ -190,7 +182,7 @@
         {
             $paymentCoupon = new PaymentCoupon();
 
-            $paymentCoupon->setId_payment_coupon($p['id_payment_coupon']);
+            $paymentCoupon->setId_paymentCoupon($p['id_payment_coupon']);
             $paymentCoupon->setId_reservation($p['id_reservation']);
             $paymentCoupon->setId_owner($p['id_owner']);
             $paymentCoupon->setIs_payment($p['is_payment']);

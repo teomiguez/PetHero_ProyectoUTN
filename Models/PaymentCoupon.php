@@ -18,7 +18,7 @@
 
         public function setId_paymentCoupon($id_paymentCoupon)
         {
-            return $this;
+            $this->id_paymentCoupon = $id_paymentCoupon;
         }
 
         public function getId_reservation()
@@ -28,7 +28,7 @@
 
         public function setId_reservation($id_reservation)
         {
-            return $this;
+            $this->id_reservation = $id_reservation;
         }
         
         public function getId_owner()
@@ -38,7 +38,7 @@
 
         public function setId_owner($id_owner)
         {
-            return $this;
+            $this->id_owner = $id_owner;
         }
  
         public function getIs_payment()
@@ -48,7 +48,7 @@
 
         public function setIs_payment($is_payment)
         {
-            return $this;
+            $this->is_payment = $is_payment;
         }
 
         public function getCoupon_cost()
@@ -58,7 +58,7 @@
 
         public function setCoupon_cost($coupon_cost)
         {
-            return $this;
+            $this->coupon_cost = $coupon_cost;
         }
 
         // <- SETTERS Y GETTERS

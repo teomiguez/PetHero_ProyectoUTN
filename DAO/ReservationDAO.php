@@ -46,17 +46,18 @@
             }
         }
 
-        public function AddPet_ToReservation($id_reserv, $id_payment, $pet) // en controller se crea el cupon
+        public function AddPet_ToReservation($id_reserv, $id_pet, $id_owner, $id_payment) // en controller se crea el cupon
         {
             try
             {
                 $this->connection = Connection::GetInstance();
 
-                $query = "INSERT INTO pets_x_reservation (id_reservation, id_pet, id_payment_coupon)
-                      VALUES (:id_reservation, :id_pet, :id_payment_coupon)";
+                $query = "INSERT INTO pets_x_reservation (id_reservation, id_pet, id_owner, id_payment_coupon)
+                      VALUES (:id_reservation, :id_pet, :id_owner, :id_payment_coupon)";
 
                 $parameters['id_reservation'] = $id_reserv;
-                $parameters['id_pet'] = $pet->getId_pet();
+                $parameters['id_pet'] = $id_pet;
+                $parameters['id_owner'] = $id_owner;
                 $parameters['id_payment_coupon'] = $id_payment;
 
             $this->connection->ExecuteNonQuery($query, $parameters);
@@ -403,10 +404,10 @@
         {
             $reservForPet = new ReservationForPet();
 
-            $reservForPet = setId_reservation($p['id_reservation']);
-            $reservForPet = setId_owner($p['id_owner']);
-            $reservForPet = setId_pet($p['id_pet']);
-            $reservForPet = setId_coupon($p['id_payment_coupon']);
+            $reservForPet->setId_reservation($p['id_reservation']);
+            $reservForPet->setId_owner($p['id_owner']);
+            $reservForPet->setId_pet($p['id_pet']);
+            $reservForPet->setId_coupon($p['id_payment_coupon']);
 
             return $reservForPet;
         }

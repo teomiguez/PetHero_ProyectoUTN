@@ -2,6 +2,7 @@
     namespace Controllers;
 
     use Controllers\OwnerController as OwnerController;
+    use Controllers\GuardianController as GuardianController;
     use Controllers\PaymentCouponController as PaymentCouponController;
 
     use DAO\GuardianDAO as GuardianDAO;
@@ -15,6 +16,7 @@
     use Models\Pet as Pet;
     use Models\Reservation as Reservation;
     use Models\AvStay as AvStay;
+    use Models\PaymentCoupon as PaymentCoupon;
 
     use Exception;
 
@@ -55,6 +57,7 @@
             $staysForGuardian = $avstayDAO->GetByKeeper($id_guardian);
             $pet = $petDAO->GetById($id_pet);
             $guardian = $guardianDAO->GetById($id_guardian);
+            $coupon = new PaymentCoupon();
 
             try 
             {
@@ -65,6 +68,8 @@
                     if (($reservationDAO->GetSize_Condition($id_exist) == $pet->getSize()) && ($reservationDAO->GetBreed_Condition($id_exist) == $pet->getBreed())) // si la mascota cumple las condiciones de la reserva
                     {
                         $paymentCouponController->Create_PaymentCoupon($id_exist, $pet->getId_owner()); // creo el cupon
+
+                        // Validar que no haya un cupon con el id del owner ya (que este metiendo otra mascota a la misma reserva)
                         
                         $id_coupon = $paymentCouponDAO->GetByReservation($id_exist); // obtengo el id del cupon
                         
@@ -86,13 +91,14 @@
                         $this->Create_Reserv($id_guardian, $pet->getSize(), $pet->getBreed(), $first_day, $last_day, $diff); // creo la reserva
                         
                         $reservForGuardian2 = $reservationDAO->GetByGuardian($id_guardian);
-                        $id_reserv = $this->GetIdReserv($reservForGuardian2, $first_day, $last_day); // obtengo el id de la reserva
 
+                        $id_reserv = $this->GetIdReserv($reservForGuardian2, $first_day, $last_day); // obtengo el id de la reserva
+                        
                         $paymentCouponController->Create_PaymentCoupon($id_reserv, $pet->getId_owner()); // creo el cupon
                         
-                        $id_coupon = $paymentCouponDAO->GetByReservation($id_reserv); // obtengo el id del cupon
-    
-                        $reservationDAO->AddPet_ToReservation($id_reserv, $id_coupon, $pet); // agrego la mascota a la reserva
+                        $coupon = $paymentCouponDAO->GetByReservation($id_reserv); // obtengo el id del cupon
+                        
+                        $reservationDAO->AddPet_ToReservation($id_reserv, $id_pet, $pet->getId_owner(), $coupon->getId_paymentCoupon()); // agrego la mascota a la reserva
         
                         $alert = array("type" => "success", "text" => "Se envió la solicitud al guardian"); // VER
                     }
@@ -121,19 +127,22 @@
 
         public function AcceptedReserv($id)
         {
+            $guardianController = new GuardianController();
             $reservationDAO = new ReservationDAO();
             $reservationDAO->ChangeToAccepted($id);
 
-            header("location: " . FRONT_ROOT . "Guardian/ShowHome_Guardian");
+            $guardianController->ShowHome_Guardian();
         }
 
         public function DenyReserv($id)
         {
+            $guardianController = new GuardianController();
             $reservationDAO = new ReservationDAO();
-            $reservationDAO->Remove($id);
+            // agregar remove cupon de pago
             $reservationDAO->RemovePets($id);
+            $reservationDAO->Remove($id);
 
-            header("location: " . FRONT_ROOT . "Guardian/ShowHome_Guardian");
+            $guardianController->ShowHome_Guardian();
         }
 
         /**

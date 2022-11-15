@@ -74,10 +74,8 @@
             return $guardList;
         }
 
-        public function GetById($id){
-
-            $guardList = array();
-
+        public function GetById($id)
+        {
             try {
                 $this->connection = Connection::GetInstance();
                 $query = "SELECT * FROM $this->tableName WHERE id_guardian = :id ";
@@ -94,11 +92,8 @@
             {
                 foreach ($rta as $row) 
                 {
-                    $guardian = $this->map($row);
-                    array_push($guardList, $guardian);
-                }
-
-                return $guardList[0];  
+                    return $this->map($row);
+                } 
             }
             else
             {
@@ -126,11 +121,8 @@
             {
                 foreach ($rta as $row) 
                 {
-                    $guardian = $this->map($row);
-                    array_push($guardList, $guardian);
-                }
-
-                return $guardList[0];  
+                    return $this->map($row);
+                } 
             }
             else
             {
