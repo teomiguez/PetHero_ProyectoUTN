@@ -81,15 +81,33 @@
                     <h5 class="text-center mb-3"> Filtrar por disponibilidad </h5>
                     <form action="<?php echo FRONT_ROOT . " Owner/ShowHome_FilterGuardians" ?>" method="POST">
                         <div class="d-flex justify-content-evenly text-center">
-                            <div class="mx-1">
-                                <label for="first_day" class="form-label"> Desde </label>
-                                <input id="first_day" name="first_day" type="date" class="form-control" required>
-                            </div>
-        
-                            <div class="mx-1">
-                                <label for="last_day" class="form-label"> Hasta </label>
-                                <input id="last_day" name="last_day" type="date" class="form-control" required>
-                            </div>
+                            <?php if (isset($datesSelect)) {?>
+                            
+                                <div class="my-1">
+                                    <label for="first_day" class="form-label"> Desde </label>
+                                    <input id="first_day" name="first_day" type="date" class="form-control" 
+                                    value="<?php echo $datesSelect['first_day'] ?>" required>
+                                </div>
+
+                                <div class="my-1">
+                                    <label for="last_day" class="form-label"> Hasta </label>
+                                    <input id="last_day" name="last_day" type="date" class="form-control" 
+                                    value="<?php echo $datesSelect['last_day'] ?>" required>
+                                </div>
+
+                            <?php } else { ?>
+                            
+                                <div class="my-1">
+                                    <label for="first_day" class="form-label"> Desde </label>
+                                    <input id="first_day" name="first_day" type="date" class="form-control" required>
+                                </div>
+
+                                <div class="my-1">
+                                    <label for="last_day" class="form-label"> Hasta </label>
+                                    <input id="last_day" name="last_day" type="date" class="form-control" required>
+                                </div>
+
+                            <?php } ?>
                             
                             <button class="btn btn-outline-secondary mx-1 my-2" type="submit" id="button-addon2">
                                 <i class="bi bi-search"></i>
@@ -185,15 +203,33 @@
                 </div>
                 <div class="modal-body">
                     <form action="<?php echo FRONT_ROOT . "Reservation/RequestReservation" ?>" method="POST" class="text-start">
-                        <div class="my-1">
-                            <label for="first_day" class="form-label"> Desde </label>
-                            <input id="first_day" name="first_day" type="date" class="form-control" required>
-                        </div>
+                        <?php if (isset($datesSelect)) {?>
+                        
+                            <div class="my-1">
+                                <label for="first_day" class="form-label"> Desde </label>
+                                <input id="first_day" name="first_day" type="date" class="form-control" 
+                                value="<?php echo $datesSelect['first_day'] ?>" required>
+                            </div>
 
-                        <div class="my-1">
-                            <label for="last_day" class="form-label"> Hasta </label>
-                            <input id="last_day" name="last_day" type="date" class="form-control" required>
-                        </div>
+                            <div class="my-1">
+                                <label for="last_day" class="form-label"> Hasta </label>
+                                <input id="last_day" name="last_day" type="date" class="form-control" 
+                                value="<?php echo $datesSelect['last_day'] ?>" required>
+                            </div>
+
+                        <?php } else { ?>
+
+                            <div class="my-1">
+                                <label for="first_day" class="form-label"> Desde </label>
+                                <input id="first_day" name="first_day" type="date" class="form-control" required>
+                            </div>
+
+                            <div class="my-1">
+                                <label for="last_day" class="form-label"> Hasta </label>
+                                <input id="last_day" name="last_day" type="date" class="form-control" required>
+                            </div>
+
+                        <?php } ?>
 
                         <!-- SELECT GUARDIAN -->
                         <div class="my-1">    

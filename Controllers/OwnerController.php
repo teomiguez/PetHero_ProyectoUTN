@@ -64,6 +64,11 @@
                 $guardians = array();
                 $guardiansAviable = array();
                 $petsList = array();
+
+                $datesSelect = [
+                    "first_day" => $first_day,
+                    "last_day" => $last_day
+                ];
                  
                 $guardians = $guardianDAO->GetAll();
                 $idsGuardiansAvailable = $avStayDAO->GetIdGuardian_ByDates($first_day, $last_day);

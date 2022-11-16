@@ -12,49 +12,41 @@
             
         } 
 
-        // esta funcion no tiene uso por ahora, porque usamos la funcion ShowList del PetController que muestra todas las mascotas 
+        // JSON CLASSES ↓
 
-        public function ShowList()
-        {
-            $catDAO = new CatDAO();
-            $catList = array();
+        // public function ShowCatProfile($id)
+        // {
+        //     $catDAO = new CatDAO();
+        //     $pet = $catDAO->GetById($id);
 
-            $catList = $catDAO->GetByOwner($_SESSION["id"]);
+        //     $("#viewPet_modal").modal("show");
 
-            require_once(VIEWS_PATH . "PetsProfiles.php");
-        }
+        //     require_once(VIEWS_PATH . "PetsProfiles.php");
+        // }
 
-        public function ShowCatProfile($id)
-        {
-            $catDAO = new CatDAO();
-            $pet = $catDAO->GetById($id);
+        // public function AddNewCat($imgFile, $name, $radio_option, $breed, $size, $pvFile, $video, $info)
+        // {
+        //     $catDAO = new CatDAO;
+        //     $cat = new Cat;
 
-            $("#viewPet_modal").modal("show");
+        //     // -> SETs CAT
+        //     $cat->setId_owner($_SESSION['idOwner']);
+        //     $cat->setImg($imgFile);
+        //     $cat->setName($name);
+        //     $cat->setType($radio_option);
+        //     $cat->setBreed($breed);
+        //     $cat->setSize($size);
+        //     $cat->setPlanVacunacion($pvFile);
+        //     $cat->setVideo($video);
+        //     $cat->setInfo($info);
+        //     // <- SETs CAT
 
-            require_once(VIEWS_PATH . "PetsProfiles.php");
-        }
+        //     // -> ADD CAT TO JSON
+        //     $catDAO->Add($cat);
+        //     // <- ADD CAT TO JSON
+        // }
 
-        public function AddNewCat($imgFile, $name, $radio_option, $breed, $size, $pvFile, $video, $info)
-        {
-            $catDAO = new CatDAO;
-            $cat = new Cat;
-
-            // -> SETs CAT
-            $cat->setId_owner($_SESSION['idOwner']);
-            $cat->setImg($imgFile);
-            $cat->setName($name);
-            $cat->setType($radio_option);
-            $cat->setBreed($breed);
-            $cat->setSize($size);
-            $cat->setPlanVacunacion($pvFile);
-            $cat->setVideo($video);
-            $cat->setInfo($info);
-            // <- SETs CAT
-
-            // -> ADD CAT TO JSON
-            $catDAO->Add($cat);
-            // <- ADD CAT TO JSON
-        }
+        // JSON CLASSES ↑
     }
 
 ?>

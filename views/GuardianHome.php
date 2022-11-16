@@ -32,7 +32,6 @@
     <main class="container">
 
         <div class="row">
-
             <div class="col-12 col-sm-12 col-md-12 col-lg-4 ">
                 <h2 class="text-center"> Listado de reservas </h2>
 
@@ -42,19 +41,20 @@
                             <tr>
                                 <th scope="col"> Desde </th>
                                 <th scope="col"> Hasta </th>
-                                <th scope="col"> Confirmacion </th>
+                                <th scope="col"> Opciones </th>
                         </tr>
                         </thead>
                         <tbody> 
                             <?php  
-                                foreach ($reservList as $reserv) {
+                                if (isset ($dailyReservs)) {
+                                    foreach ($dailyReservs as $reserv) {
                             ?>
 
                             <tr class="align-middle">
                                 <td> <?php echo $reserv->getFirst_day() ?> </td>
                                 <td> <?php echo $reserv->getLast_day() ?> </td>
-                                <?php if(($reserv->getIs_accepted()) != 1) { ?>
-                                    <td class="d-inline-flex"> 
+                                <td class="d-inline-flex"> 
+                                    <?php if($reserv->getIs_accepted() == 0) { ?>
                                         <div>
                                             <form action="<?php echo FRONT_ROOT . "Reservation/AcceptedReserv" ?>" method="POST">
                                                 <button class="btn btn-link" type="submit" name="id" 
@@ -63,7 +63,7 @@
                                                 </button>
                                             </form>
                                         </div>
-                                        <!-- DENYRESERV TIRA ERROR POR FOREING KET SQL -->
+
                                         <div>
                                             <form action="<?php echo FRONT_ROOT . "Reservation/DenyReserv" ?>" method="POST">
                                                 <button class="btn btn-link" type="submit" name="id" 
@@ -72,33 +72,28 @@
                                                 </button>
                                             </form>
                                         </div>
-                                    </td>
-                                <?php } ?>
+                                    <?php } ?>
+                                    <!-- <div>
+                                        <form action="<?php echo FRONT_ROOT . "" ?>" method="POST">
+                                        <button class="btn btn-link" type="submit" name="id" 
+                                                value="<?php echo $reserv->getId_reservation() ?>">
+                                            <i class="bi bi-eye-fill text-primary">  
+                                        </button>
+                                    </form> -->
+                                    </div>
+                                </td>
                             </tr>
 
-                            <?php }  ?> 
+                            <?php } 
+                                } ?> 
                         </tbody>
                     </table>
                     
                 </div>
             </div>
 
-            <div class="col-12 col-sm-8 col-lg-4 ">
-                <p class="text-center"> rellenar... </p>
-            </div>
- 
             <div class="col-12 col-sm-4 ">
                 <h2 class="text-center"> Estadías disponibles </h2>
-
-                <!-- <form action="">
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Buscar estadia..."
-                            aria-label="Buscar estadia..." aria-describedby="button-addon2">
-                        <button class="btn btn-outline-secondary" type="button" id="button-addon2">
-                            <i class="bi bi-search"></i>
-                        </button>
-                    </div>
-                </form> -->
 
                 <div class="mb-3">
                     <table class="table text-center">
@@ -144,7 +139,44 @@
                     Agregar estadía
                 </button>
             </div>
-                
+
+            <div class="col-12 col-sm-8 col-lg-4 ">
+                <h2 class="text-center"> Reservas pasadas </h2>
+
+                <div class="mb-3">
+                    <table class="table text-center">
+                        <thead>
+                            <tr>
+                                <th scope="col"> Desde </th>
+                                <th scope="col"> Hasta </th>
+                                <th scope="col"> Ver </th>
+                        </tr>
+                        </thead>
+                        <tbody> 
+                            <?php  
+                                if (isset ($pastReservs)) {
+                                    foreach ($pastReservs as $reserv) {
+                            ?>
+
+                            <tr class="align-middle">
+                                <td> <?php echo $reserv->getFirst_day() ?> </td>
+                                <td> <?php echo $reserv->getLast_day() ?> </td>
+                                <td class="d-inline-flex"> 
+                                    <form action="<?php echo FRONT_ROOT . "" ?>" method="POST">
+                                        <button class="btn btn-link" type="submit" name="id" 
+                                                value="<?php echo $reserv->getId_reservation() ?>">
+                                            <i class="bi bi-eye-fill text-primary">  
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+
+                            <?php } 
+                                } ?> 
+                        </tbody>
+                    </table>
+                    
+                </div>
             </div>
         </div>
 

@@ -20,13 +20,12 @@
             {
                 $this->connection = Connection::GetInstance();
 
-                $query = "INSERT INTO $this->tableName (id_reservation, id_pet, id_owner, is_payment, coupon_cost)
-                      VALUES (:id_reservation, :id_pet, :id_owner, :is_payment, :coupon_cost)";
+                $query = "INSERT INTO $this->tableName (id_reservation, id_pet, id_owner, coupon_cost)
+                      VALUES (:id_reservation, :id_pet, :id_owner, :coupon_cost)";
 
                 $parameters['id_reservation'] = $paymentCoupon->getId_reservation();
                 $parameters['id_pet'] = $paymentCoupon->getId_pet();
                 $parameters['id_owner'] = $paymentCoupon->getId_owner();
-                $parameters['is_payment'] = $paymentCoupon->getIs_payment();
                 $parameters['coupon_cost'] = $paymentCoupon->getCoupon_cost();
 
                 $this->connection->ExecuteNonQuery($query, $parameters);

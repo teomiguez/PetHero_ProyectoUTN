@@ -27,13 +27,12 @@
             {
                 $this->connection = Connection::GetInstance();
 
-                $query = "INSERT INTO $this->tableName (id_guardian, pet_size, pet_breed, is_accepted, first_day, last_day, total_days)
-                      VALUES (:id_guardian, :pet_size, :pet_breed, :is_accepted, :first_day, :last_day, :total_days)";
+                $query = "INSERT INTO $this->tableName (id_guardian, pet_size, pet_breed, first_day, last_day, total_days)
+                      VALUES (:id_guardian, :pet_size, :pet_breed, :first_day, :last_day, :total_days)";
 
                 $parameters['id_guardian'] = $reserv->getId_guardian();
                 $parameters['pet_size'] = $reserv->getPet_size();
                 $parameters['pet_breed'] = $reserv->getPet_breed();
-                $parameters['is_accepted'] = 0;
                 $parameters['first_day'] = $reserv->getFirst_day();
                 $parameters['last_day'] = $reserv->getLast_day();
                 $parameters['total_days'] = $reserv->getTotal_days();
@@ -151,36 +150,6 @@
                 $query = "SELECT * FROM $this->tableName WHERE id_guardian = :id_guardian ";
                 $parameters['id_guardian'] = $id_guardian;
                 
-                $rta = $this->connection->Execute($query, $parameters);
-            }
-            catch (Exception $e) 
-            {
-                throw $e;
-            }
-
-            if(!empty($rta))
-            {
-                foreach ($rta as $row) 
-                {
-                    $reserv = $this->map($row);
-                    array_push($reservList, $reserv);
-                }
-            }
-
-            return $reservList;
-        }
-        
-        public function GetByGuardian_ToAccepted($id_guardian)
-        {
-            $reservList = array();
-            
-            try
-            {
-                $this->connection = Connection::GetInstance();
-                $query = "SELECT * FROM $this->tableName WHERE id_guardian = :id_guardian AND is_accepted = :is_accepted";
-                $parameters['id_guardian'] = $id_guardian;
-                $parameters['is_accepted'] = 0;
-
                 $rta = $this->connection->Execute($query, $parameters);
             }
             catch (Exception $e) 

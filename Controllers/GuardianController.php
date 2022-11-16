@@ -31,11 +31,17 @@
                 $reservationDAO = new ReservationDAO();
 
                 $avStayList = array();
-                $reservList = array();
+                $reservList = array(); // todas las reservas
+
+                $dailyReservs = array(); // mostrar las reservas al día (confirmadas o no)
+                $pastReservs = array(); // mostrar las reservas pasadas
 
                 $user = $guardian_DAO->GetById($_SESSION["idGuardian"]);
                 $avStayList = $avStayDAO->GetByKeeper($_SESSION["idGuardian"]);
                 $reservList = $reservationDAO->GetByGuardian($_SESSION["idGuardian"]);
+
+                $dailyReservs = $this->putDaily_Reservs($reservList);
+                $pastReserv = $this->putLast_Reservs($reservList);
 
                 require_once(VIEWS_PATH . "GuardianHome.php");
             }
@@ -152,6 +158,44 @@
             // <- UPDATE GUARDIAN
 
             $this->ShowProfile_Guardian();
+        }
+
+        /**
+        *	@param Array -> listado de reservas
+        */
+        function putLast_Reservs($totalReservs)
+        {
+            $newArray = array();
+            $reserv = new Reservation();
+
+            foreach($totalReservs as $reserv)
+            {
+                if($reserv->getLast_day() <= date('Y-m-d'))
+                {
+                    array_push($newArray, $reserv);
+                }
+            }
+
+            return $newArray;
+        }
+
+        /**
+        *	@param Array -> listado de reservas
+        */
+        function putDaily_Reservs($totalReservs)
+        {
+            $newArray = array();
+            $reserv = new Reservation();
+
+            foreach($totalReservs as $reserv)
+            {
+                if($reserv->getLast_day() >= date('Y-m-d'))
+                {
+                    array_push($newArray, $reserv);
+                }
+            }
+
+            return $newArray;
         }
     }
 ?>

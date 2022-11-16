@@ -41,7 +41,6 @@
             $paymentCoupon->setId_reservation($id_reservation);
             $paymentCoupon->setId_pet($id_pet);
             $paymentCoupon->setId_owner($id_owner);
-            $paymentCoupon->setIs_payment(0);
             $paymentCoupon->setCoupon_cost($cost);
 
             $paymentCouponDAO->Add($paymentCoupon);
