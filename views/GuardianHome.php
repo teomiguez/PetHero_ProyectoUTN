@@ -54,7 +54,7 @@
                                 <td> <?php echo $reserv->getFirst_day() ?> </td>
                                 <td> <?php echo $reserv->getLast_day() ?> </td>
                                 <td class="d-inline-flex"> 
-                                    <?php if($reserv->getIs_accepted() == 0) { ?>
+                                    <?php if($reserv->getIs_accepted() === 0) {  var_dump($reserv->getIs_accepted());?>
                                         <div>
                                             <form action="<?php echo FRONT_ROOT . "Reservation/AcceptedReserv" ?>" method="POST">
                                                 <button class="btn btn-link" type="submit" name="id" 

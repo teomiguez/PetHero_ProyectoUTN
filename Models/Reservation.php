@@ -60,7 +60,7 @@ class Reservation
 
     public function getIs_accepted()
     {
-        $this->is_accepted;
+        return $this->is_accepted;
     }
 
     public function setIs_accepted($is_accepted)
