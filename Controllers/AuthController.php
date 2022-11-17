@@ -158,6 +158,10 @@
                             $guardianController = new GuardianController();
                             $guardianController->Register_Guardian($name, $last_name, $dni, $tel, $email, $password, $street, $nro, $typeSize, $cost);
                         }
+                        else 
+                        {
+                            header("location: " . FRONT_ROOT . "Auth/ShowRegist"); 
+                        }
                         
                         $alert = array("type" => "success", "text" => "Registro exitoso");
                         
