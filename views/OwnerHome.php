@@ -187,11 +187,6 @@
         </div>
 
     </main>
-    
-    <!-- Footer -->
-    <?php
-        //include('footer.php');
-    ?>
 
     <!-- Modal - request reservation -->
     <div class="modal fade" id="requestReservation_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

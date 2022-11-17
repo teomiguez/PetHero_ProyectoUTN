@@ -94,10 +94,6 @@
 
     </main>
 
-    <!-- Footer -->
-    <?php
-        //include('footer.php');
-    ?>
 
     <!-- Modal - create pet -->
     <div class="modal fade" id="createPet_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

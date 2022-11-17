@@ -182,14 +182,6 @@
 
     </main>
 
-    <!-- Footer -->
-    <?php
-
-    //include('footer.php');
-
-    ?>
-
-
     <!-- Modal - add new AvStay -->
     <div class="modal fade" id="addAvStay_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">

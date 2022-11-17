@@ -70,10 +70,6 @@
         </div> 
     </main>
 
-    <!-- Linea divisoria main/footer -->
-    <?php
-        //include('footer.php');
-    ?>
 
     <!-- Funcionalidades JS propias de Boostrap (para uso de componentes especificos) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
