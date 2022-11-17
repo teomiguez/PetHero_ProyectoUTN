@@ -1,9 +1,9 @@
 <?php
     namespace Controllers;
     
-    use DAO\PaymentCouponDAO as PaymentCouponDAO;
-    use DAO\GuardianDAO as GuardianDAO;
-    use DAO\ReservationDAO as ReservationDAO;
+    use DAO_SQL\PaymentCouponDAO as PaymentCouponDAO;
+    use DAO_SQL\GuardianDAO as GuardianDAO;
+    use DAO_SQL\ReservationDAO as ReservationDAO;
 
     use Models\PaymentCoupon as PaymentCoupon;
     use Models\Guardian as Guardian;

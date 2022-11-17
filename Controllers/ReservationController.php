@@ -5,12 +5,12 @@
     use Controllers\GuardianController as GuardianController;
     use Controllers\PaymentCouponController as PaymentCouponController;
 
-    use DAO\GuardianDAO as GuardianDAO;
-    use DAO\AvStayDAO as AvStayDAO;
-    use DAO\ReservationDAO as ReservationDAO;
-    use DAO\PaymentCouponDAO as PaymentCouponDAO;
+    use DAO_SQL\GuardianDAO as GuardianDAO;
+    use DAO_SQL\AvStayDAO as AvStayDAO;
+    use DAO_SQL\ReservationDAO as ReservationDAO;
+    use DAO_SQL\PaymentCouponDAO as PaymentCouponDAO;
 
-    use DAO\PetDAO as PetDAO;
+    use DAO_SQL\PetDAO as PetDAO;
 
     use Models\Guardian as Guardian;
     use Models\Pet as Pet;

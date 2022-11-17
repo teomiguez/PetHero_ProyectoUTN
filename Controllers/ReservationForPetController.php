@@ -1,9 +1,9 @@
 <?php
     namespace Controllers;
 
-    use DAO\ReservationDAO as ReservationDAO;
-    use DAO\PetDAO as PetDAO;
-    use DAO\PaymentCouponDAO as PaymentCouponDAO;
+    use DAO_SQL\ReservationDAO as ReservationDAO;
+    use DAO_SQL\PetDAO as PetDAO;
+    use DAO_SQL\PaymentCouponDAO as PaymentCouponDAO;
 
     use Models\Reservation as Reservation;
     use Models\Pet as Pet;

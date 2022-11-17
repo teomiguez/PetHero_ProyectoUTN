@@ -3,12 +3,12 @@
     
     use Controllers\ReservationForPetController as ReservationForPetController;
     
-    use DAO\OwnerDAO as OwnerDAO;
-    use DAO\GuardianDAO as GuardianDAO;
-    use DAO\ReviewDAO as ReviewDAO;
-    use DAO\AvStayDAO as AvStayDAO;
-    use DAO\ReservationDAO as ReservationDAO;
-    use DAO\PetDAO as PetDAO;
+    use DAO_SQL\OwnerDAO as OwnerDAO;
+    use DAO_SQL\GuardianDAO as GuardianDAO;
+    use DAO_SQL\ReviewDAO as ReviewDAO;
+    use DAO_SQL\AvStayDAO as AvStayDAO;
+    use DAO_SQL\ReservationDAO as ReservationDAO;
+    use DAO_SQL\PetDAO as PetDAO;
 
     use Models\Owner as Owner;
     use Models\Guardian as Guardian;

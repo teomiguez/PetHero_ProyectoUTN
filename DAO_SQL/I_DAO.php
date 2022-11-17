@@ -1,5 +1,5 @@
 <?php
-    namespace DAO;
+    namespace DAO_SQL;
 
     interface I_DAO
     {

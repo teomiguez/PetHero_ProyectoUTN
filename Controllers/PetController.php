@@ -1,8 +1,8 @@
 <?php
     namespace Controllers;
     
-    use DAO\CatDAO as CatDAO;
-    use DAO\DogDAO as DogDAO;
+    use DAO_SQL\CatDAO as CatDAO;
+    use DAO_SQL\DogDAO as DogDAO;
 
     use Models\pet as pet;
     use Models\Cat as Cat;
@@ -14,7 +14,7 @@
     use Controllers\FileController as FileController;
     
     // use to bdd
-    use DAO\PetDAO as PetDAO;
+    use DAO_SQL\PetDAO as PetDAO;
 
     class PetController 
     {

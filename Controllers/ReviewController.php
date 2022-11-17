@@ -1,7 +1,7 @@
 <?php
     namespace Controllers;
 
-    use DAO\ReviewDAO as ReviewDAO;
+    use DAO_SQL\ReviewDAO as ReviewDAO;
     use Models\Review as Review;
 
     class ReviewController

@@ -3,10 +3,10 @@
 
     use Controllers\ReviewController as ReviewController;
 
-    use DAO\GuardianDAO as GuardianDAO;
-    use DAO\AvStayDAO as AvStayDAO;
-    use DAO\ReviewDAO as ReviewDAO;
-    use DAO\ReservationDAO as ReservationDAO;
+    use DAO_SQL\GuardianDAO as GuardianDAO;
+    use DAO_SQL\AvStayDAO as AvStayDAO;
+    use DAO_SQL\ReviewDAO as ReviewDAO;
+    use DAO_SQL\ReservationDAO as ReservationDAO;
 
     use Models\Guardian as Guardian;
     use Models\AvStay as AvStay;

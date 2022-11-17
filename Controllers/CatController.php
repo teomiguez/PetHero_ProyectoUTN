@@ -1,7 +1,7 @@
 <?php
     namespace Controllers;
 
-    use DAO\CatDAO as CatDAO;
+    use DAO_SQL\CatDAO as CatDAO;
     use Models\Pet as Pet;
     use Models\Cat as Cat;
     

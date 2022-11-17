@@ -4,10 +4,10 @@
     use Controllers\OwnerController as OwnerController;
     use Controllers\GuardianController as GuardianController;
 
-    use DAO\GuardianDAO as GuardianDAO;
-    use DAO\ReviewDAO as ReviewDAO;
-    use DAO\OwnerDAO as OwnerDAO;
-    use DAO\AvStayDAO as AvStayDAO;
+    use DAO_SQL\GuardianDAO as GuardianDAO;
+    use DAO_SQL\ReviewDAO as ReviewDAO;
+    use DAO_SQL\OwnerDAO as OwnerDAO;
+    use DAO_SQL\AvStayDAO as AvStayDAO;
 
     use Models\Guardian as Guardian;
     use Models\Review as Review;

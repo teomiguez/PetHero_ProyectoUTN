@@ -3,7 +3,7 @@
 
     use Controllers\GuardianController as GuardianController;
 
-    use DAO\AvStayDAO as AvStayDAO;
+    use DAO_SQL\AvStayDAO as AvStayDAO;
     use Models\AvStay as AvStay;
 
     use Exception;

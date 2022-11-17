@@ -1,12 +1,12 @@
 <?php
-    namespace DAO;
+    namespace DAO_SQL;
 
-    use DAO\I_DAO as I_DAO;
-    use DAO\ReviewDAO as ReviewDAO;
+    use DAO_SQL\I_DAO as I_DAO;
+    use DAO_SQL\ReviewDAO as ReviewDAO;
     use Models\Guardian as Guardian;
     use Models\Review as Review;
     // use to bdd
-    use DAO\Connection as Connection;
+    use DAO_SQL\Connection as Connection;
     use Exception;
     use PDOException;
 

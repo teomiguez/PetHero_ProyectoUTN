@@ -1,7 +1,7 @@
 <?php
     namespace Controllers;
 
-    use DAO\DogDAO as DogDAO;
+    use DAO_SQL\DogDAO as DogDAO;
     use Models\Pet as Pet;
     use Models\Dog as Dog;
     
