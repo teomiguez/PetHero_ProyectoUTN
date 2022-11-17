@@ -80,16 +80,16 @@
         {
             if (isset($_SESSION['idOwner']))
             {
-                $fileController = new FileController();
+                // $fileController = new FileController();
                 $petDAO = new PetDAO();
                 $pet = new Pet();
 
-                $uploadImg = false;
-                $uploadPv = false;
+                // $uploadImg = false;
+                // $uploadPv = false;
  
-                $uploadImg = $fileController->upload($imgFile, "img");
+                // $uploadImg = $fileController->upload($imgFile, "img");
 
-                $uploadPv = $fileController->upload($pvFile, "pv");
+                // $uploadPv = $fileController->upload($pvFile, "pv");
                 
                 //if(($uploadImg == true) && ($uploadPv == true))
                 //{
@@ -174,8 +174,13 @@
         }
 
         // DATABASE CLASSES ↑
+        
 
-        // JSON CLASSES ↓
+        // JSON CLASSES ↓   
+
+        // ---  ESTAS FUNCIONES ERAN USADAS PARA PERSISTIR DATOS EN JSON ANTES DE IMPLEMENTAR PDO EN EL PROYECTO, 
+        //      LUEGO FUERON REEMPLAZADAS POR LAS QUE FUNCIONAN PARA PERSISTIR EN BDD  ---
+        
 
         // public function ShowList()
         // {

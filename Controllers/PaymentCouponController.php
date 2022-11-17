@@ -7,7 +7,7 @@
 
     use Models\PaymentCoupon as PaymentCoupon;
     use Models\Guardian as Guardian;
-    use Models\Owner as Owner; // si pasamos la id en el create no es necesario, sino si para usar el get
+    use Models\Owner as Owner; // si pasamos la id en el create no es necesario, sino si para usar el get_Id
     use Models\Reservation as Reservation;
 
     use Exception;

@@ -1,7 +1,7 @@
 <?php
     namespace Controllers;
 
-    use DAO_SQL\CatDAO as CatDAO;
+    use DAO_Json\CatDAO as CatDAO;
     use Models\Pet as Pet;
     use Models\Cat as Cat;
     
@@ -12,7 +12,9 @@
             
         } 
 
-        // JSON CLASSES ↓
+        // JSON CLASSES ↓     
+        
+        // ---  SE INVOCAN EN LAS FUNCIONES DE PETCONTROLLER CUANDO SE QUIERE PERSISTIR DATOS CON JSON ----
 
         // public function ShowCatProfile($id)
         // {

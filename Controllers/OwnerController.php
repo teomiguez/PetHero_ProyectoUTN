@@ -41,6 +41,7 @@
                 $user = $ownerDAO->GetById($_SESSION["idOwner"]);
                 $guardians = $guardianDAO->GetAll();
                 $petsList = $petDAO->GetByOwner($_SESSION['idOwner']);
+                
                 //$reservList = $reservationDAO->GetByOwner($_SESSION['idOwner']); // obtengo las reservas de pet_x_reservation
 
                 require_once(VIEWS_PATH . "OwnerHome.php");

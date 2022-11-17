@@ -1,7 +1,7 @@
 <?php
     namespace Controllers;
 
-    use DAO_SQL\DogDAO as DogDAO;
+    use DAO_Json\DogDAO as DogDAO;
     use Models\Pet as Pet;
     use Models\Dog as Dog;
     
@@ -13,6 +13,8 @@
         } 
 
         // JSON CLASSES ↓
+
+        // ---  SE INVOCAN EN LAS FUNCIONES DE PETCONTROLLER CUANDO SE QUIERE PERSISTIR DATOS CON JSON ----
 
         // public function ShowDogProfile($id)
         // {
