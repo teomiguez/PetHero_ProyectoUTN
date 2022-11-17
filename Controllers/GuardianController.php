@@ -22,7 +22,7 @@
             
         } 
 
-        public function ShowHome_Guardian()
+        public function ShowHome_Guardian($alert = '')
         {
             if (isset($_SESSION['idGuardian']))
             {  
@@ -48,9 +48,9 @@
                 catch(Exception $ex)
                 {
                     $alert = [
-                            "type" => "danger",
-                            "text" => $ex->getMessage()
-                        ];
+                        "type" => "danger",
+                        "text" => $ex->getMessage()
+                    ];
                 }
 
                 require_once(VIEWS_PATH . "GuardianHome.php");
@@ -76,9 +76,9 @@
                 catch(Exception $ex)
                 {
                     $alert = [
-                            "type" => "danger",
-                            "text" => $ex->getMessage()
-                        ];
+                        "type" => "danger",
+                        "text" => $ex->getMessage()
+                    ];
                 }
 
                 require_once(VIEWS_PATH . "GuardianProfile.php");
@@ -105,9 +105,9 @@
                 catch(Exception $ex)
                 {
                     $alert = [
-                            "type" => "danger",
-                            "text" => $ex->getMessage()
-                        ];
+                        "type" => "danger",
+                        "text" => $ex->getMessage()
+                    ];
                 }
 
                 require_once(VIEWS_PATH . "ModifyGuardianProfile.php");

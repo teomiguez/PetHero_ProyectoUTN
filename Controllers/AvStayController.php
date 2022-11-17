@@ -64,7 +64,7 @@
                     "text" => $ex->getMessage()
                 ];
 
-                header("location: " . FRONT_ROOT . "Guardian/ShowHome_Guardian"); // ver como mostrar las excepciones
+                $guardianController->ShowHome_Guardian();
             }
         }
 

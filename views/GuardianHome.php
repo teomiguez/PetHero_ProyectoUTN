@@ -215,7 +215,7 @@
         </div>
     </div>
 
-    <?php if(isset($alert)) { ?>
+    <?php if($alert != '') { ?>
         <div class="position-absolute top-0 start-50 translate-middle-x">
             <div class="alert alert-<?php echo $alert['type'] ?>" role="alert">
                 <?php echo $alert['text'] ?>

@@ -80,6 +80,15 @@
         </div>
     </main>
 
+    <?php if($alert != '') { ?>
+        <div class="position-absolute top-0 start-50 translate-middle-x">
+            <div class="alert alert-<?php echo $alert['type'] ?>" role="alert">
+                <?php echo $alert['text'] ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div>
+    <?php } ?>
+
     <!-- Funcionalidades JS propias de Boostrap (para uso de componentes especificos) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
