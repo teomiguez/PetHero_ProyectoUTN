@@ -41,22 +41,22 @@
                             <tr>
                                 <th scope="col"> Desde </th>
                                 <th scope="col"> Hasta </th>
-                                <th scope="col">  </th>
+                                <th scope="col"> Ver </th>
                         </tr>
                         </thead>
                         <tbody> 
                             <?php  
                                 if (isset($reservList)) {
                                         foreach ($reservList as $reserv) {
-                                            if(($reserv->getReservattion())->getIs_accepted() == 1) {
+                                            if(($reserv->getReservation())->getIs_accepted() == 1) {
                             ?>
 
                             <tr class="align-middle">
-                                <td> <?php echo ($reserv->getReservattion())->getFirst_day() ?> </td>
-                                <td> <?php echo ($reserv->getReservattion())->getLast_day() ?> </td>
+                                <td> <?php echo ($reserv->getReservation())->getFirst_day() ?> </td>
+                                <td> <?php echo ($reserv->getReservation())->getLast_day() ?> </td>
                                 <td> 
                                     <form action="<?php  ?>" method="POST">
-                                    <button class="btn btn-link" type="submit" name="id" value="<?php echo (($reserv->getReservattion())->getReservation())->getId_reservation() ?>">
+                                    <button class="btn btn-link" type="submit" name="id" value="<?php echo (($reserv->getReservation())->getReservation())->getId_reservation() ?>">
                                         <i class="bi bi-eye-fill text-primary"></i>  
                                     </button>
                                     </form> 
