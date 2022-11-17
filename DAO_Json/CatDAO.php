@@ -1,7 +1,7 @@
 <?php
-    namespace DAO_SQL;
+    namespace DAO_Json;
 
-    use DAO_SQL\I_DAO as I_DAO;
+    use DAO_Json\I_DAO as I_DAO;
     use Models\Pet as Pet;
     use Models\Cat as Cat;
 
