@@ -16,37 +16,37 @@
         
         // ---  SE INVOCAN EN LAS FUNCIONES DE PETCONTROLLER CUANDO SE QUIERE PERSISTIR DATOS CON JSON ----
 
-        // public function ShowCatProfile($id)
-        // {
-        //     $catDAO = new CatDAO();
-        //     $pet = $catDAO->GetById($id);
+        public function ShowCatProfile($id)
+        {
+            $catDAO = new CatDAO();
+            $pet = $catDAO->GetById($id);
 
-        //     $("#viewPet_modal").modal("show");
+            $("#viewPet_modal").modal("show");
 
-        //     require_once(VIEWS_PATH . "PetsProfiles.php");
-        // }
+            require_once(VIEWS_PATH . "PetsProfiles.php");
+        }
 
-        // public function AddNewCat($imgFile, $name, $radio_option, $breed, $size, $pvFile, $video, $info)
-        // {
-        //     $catDAO = new CatDAO;
-        //     $cat = new Cat;
+        public function AddNewCat($imgFile, $name, $radio_option, $breed, $size, $pvFile, $video, $info)
+        {
+            $catDAO = new CatDAO;
+            $cat = new Cat;
 
-        //     // -> SETs CAT
-        //     $cat->setId_owner($_SESSION['idOwner']);
-        //     $cat->setImg($imgFile);
-        //     $cat->setName($name);
-        //     $cat->setType($radio_option);
-        //     $cat->setBreed($breed);
-        //     $cat->setSize($size);
-        //     $cat->setPlanVacunacion($pvFile);
-        //     $cat->setVideo($video);
-        //     $cat->setInfo($info);
-        //     // <- SETs CAT
+            // -> SETs CAT
+            $cat->setId_owner($_SESSION['idOwner']);
+            $cat->setImg($imgFile);
+            $cat->setName($name);
+            $cat->setType($radio_option);
+            $cat->setBreed($breed);
+            $cat->setSize($size);
+            $cat->setPlanVacunacion($pvFile);
+            $cat->setVideo($video);
+            $cat->setInfo($info);
+            // <- SETs CAT
 
-        //     // -> ADD CAT TO JSON
-        //     $catDAO->Add($cat);
-        //     // <- ADD CAT TO JSON
-        // }
+            // -> ADD CAT TO JSON
+            $catDAO->Add($cat);
+            // <- ADD CAT TO JSON
+        }
 
         // JSON CLASSES ↑
     }

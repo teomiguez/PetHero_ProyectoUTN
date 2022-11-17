@@ -25,5 +25,14 @@
         "telephone": "2235513587",
         "email": "pedro@htomail.com",
         "password": "pedro123"
+    },
+    {
+        "id": 4,
+        "name": "Juan Segundo",
+        "last_name": "Maltez",
+        "dni": "44693517",
+        "telephone": "2235513587",
+        "email": "jsmolina@hotmail.com",
+        "password": "moli123"
     }
 ]

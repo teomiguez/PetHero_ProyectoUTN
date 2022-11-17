@@ -21,29 +21,39 @@
         
         public function Create_PaymentCoupon($id_reservation, $id_pet ,$id_owner)
         {
-            $paymentCouponDAO = new PaymentCouponDAO();
-            $guardianDAO = new GuardianDAO();
-            $reservationDAO = new ReservationDAO();
-
-            $paymentCoupon = new PaymentCoupon();
-            $reserv = new Reservation();
-            $guardian = new Guardian();
-
-            $reserv = $reservationDAO->GetById($id_reservation);
-            $id_guardian = $reserv->getId_guardian();
-            $guardian = $guardianDAO->GetById($id_guardian);
-
-            $guardianCost = $guardian->getCost();
-            $total_days = $reserv->getTotal_days();
-
-            $cost = ($guardianCost * $total_days)/2;
-
-            $paymentCoupon->setId_reservation($id_reservation);
-            $paymentCoupon->setId_pet($id_pet);
-            $paymentCoupon->setId_owner($id_owner);
-            $paymentCoupon->setCoupon_cost($cost);
-
-            $paymentCouponDAO->Add($paymentCoupon);
+            try
+            {
+                $paymentCouponDAO = new PaymentCouponDAO();
+                $guardianDAO = new GuardianDAO();
+                $reservationDAO = new ReservationDAO();
+    
+                $paymentCoupon = new PaymentCoupon();
+                $reserv = new Reservation();
+                $guardian = new Guardian();
+    
+                $reserv = $reservationDAO->GetById($id_reservation);
+                $id_guardian = $reserv->getId_guardian();
+                $guardian = $guardianDAO->GetById($id_guardian);
+    
+                $guardianCost = $guardian->getCost();
+                $total_days = $reserv->getTotal_days();
+    
+                $cost = ($guardianCost * $total_days)/2;
+    
+                $paymentCoupon->setId_reservation($id_reservation);
+                $paymentCoupon->setId_pet($id_pet);
+                $paymentCoupon->setId_owner($id_owner);
+                $paymentCoupon->setCoupon_cost($cost);
+    
+                $paymentCouponDAO->Add($paymentCoupon);
+            }
+            catch(Exception $ex)
+            {
+                $alert = [
+                        "type" => "danger",
+                        "text" => $ex->getMessage()
+                    ];
+            }
         }
     }
 ?>

@@ -80,20 +80,6 @@
             $this->SaveData();
         }
 
-        function GetNextId_guardian()
-        {
-            $id = 0;
-
-            $this->RetrieveData();
-
-            foreach($this->guardianList as $guardian)
-            {
-                $id = ($guardian->getId_guardian() > $id) ? $guardian->getId_guardian() : $id;
-            }
-
-            return $id + 1;
-        }
-
         private function RetrieveData()
         {
              $this->guardianList = array();
@@ -117,7 +103,6 @@
                      $guardian->setPassword($content["password"]);
                      $guardian->setSizeCare($content["sizeCare"]);
                      $guardian->setCost($content["cost"]);
-                     $guardian->setId_review($content["id_review"]);
                      array_push($this->guardianList, $guardian);
                  }
              }
@@ -140,7 +125,6 @@
                 $valuesArray["password"] = $guardian->getPassword();
                 $valuesArray["sizeCare"] = $guardian->getSizeCare();
                 $valuesArray["cost"] = $guardian->getCost();
-                $valuesArray["id_review"] = $guardian->getId_review();
                 array_push($arrayToEncode, $valuesArray);
             }
 

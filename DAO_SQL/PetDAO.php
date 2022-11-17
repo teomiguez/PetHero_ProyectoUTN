@@ -12,8 +12,6 @@
     {
         private $connection;
         private $tableName = "pets";
-
-        // DATABASE CLASSES ↓
         
         public function Add(Pet $pet)
         {
@@ -282,8 +280,5 @@
             
             return $pet;
         }
-
-       // DATABASE CLASSES ↑
-
     }
 ?>

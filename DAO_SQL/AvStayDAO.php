@@ -15,8 +15,6 @@
 
         private $connection;
         private $tableName = "avstay";
- 
-        // DATABASE CLASSES ↓
 
         public function Add(AvStay $avstay)
         {
@@ -205,9 +203,6 @@
                 }
             }
 
-            //var_dump($rta);
-            //var_dump($avstayList);
-
             return $avstayList;
         }
 
@@ -265,9 +260,6 @@
 
             return $avstay;
         }
-
-        // DATABASE CLASSES ↑
-
     }
 
 ?>

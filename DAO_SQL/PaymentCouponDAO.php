@@ -14,8 +14,6 @@
         private $connection;
         private $tableName = "paymentcoupon";
 
-        // DATABASE CLASSES ↓
-
         public function Add(PaymentCoupon $paymentCoupon)
         {
             try
@@ -217,9 +215,5 @@
 
             return $paymentCoupon;
         }
-
-        
-       // DATABASE CLASSES ↑
-
     }
 ?>

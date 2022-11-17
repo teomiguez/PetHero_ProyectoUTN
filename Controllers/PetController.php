@@ -1,11 +1,12 @@
 <?php
     namespace Controllers;
     
-    use DAO_SQL\CatDAO as CatDAO;
-    use DAO_SQL\DogDAO as DogDAO;
+    //use DAO_Json\CatDAO as CatDAO; // -> SOLO SE USA CON JSON POR TEMAS DE DISEÑO DE LA BDD
+    //use DAO_Json\DogDAO as DogDAO; // -> SOLO SE USA CON JSON POR TEMAS DE DISEÑO DE LA BDD
+    //use Models\Cat as Cat; // -> SOLO SE USA CON JSON POR TEMAS DE DISEÑO DE LA BDD
+    //use Models\Dog as Dog; // -> SOLO SE USA CON JSON POR TEMAS DE DISEÑO DE LA BDD
 
     use Models\pet as pet;
-    use Models\Cat as Cat;
 
     use Exception;
     
@@ -29,10 +30,20 @@
         {
             if (isset($_SESSION['idOwner']))
             {
-                $petDAO = new PetDAO();
-                $petsList = array();
-
-                $petsList = $petDAO->GetByOwner($_SESSION['idOwner']);
+                try
+                {
+                    $petDAO = new PetDAO();
+                    $petsList = array();
+    
+                    $petsList = $petDAO->GetByOwner($_SESSION['idOwner']);
+                }
+                catch(Exception $ex)
+                {
+                    $alert = [
+                            "type" => "danger",
+                            "text" => $ex->getMessage()
+                        ];
+                }
 
                 require_once(VIEWS_PATH . "PetsProfiles.php");
             }
@@ -46,10 +57,20 @@
         {
             if (isset($_SESSION['idOwner']))
             {
-                $petDAO = new PetDAO();
-                $pet = new Pet();
-
-                $pet = $petDAO->GetById($id);
+                try
+                {
+                    $petDAO = new PetDAO();
+                    $pet = new Pet();
+    
+                    $pet = $petDAO->GetById($id);
+                }
+                catch(Exception $ex)
+                {
+                    $alert = [
+                            "type" => "danger",
+                            "text" => $ex->getMessage()
+                        ];
+                }
 
                 require_once(VIEWS_PATH . "PetProfile.php");
             }
@@ -63,10 +84,20 @@
         {
             if (isset($_SESSION['idOwner']))
             {
-                $petDAO = new PetDAO();
-                $pet = new Pet();
-
-                $pet = $petDAO->GetById($id);
+                try
+                {
+                    $petDAO = new PetDAO();
+                    $pet = new Pet();
+    
+                    $pet = $petDAO->GetById($id);
+                }
+                catch(Exception $ex)
+                {
+                    $alert = [
+                            "type" => "danger",
+                            "text" => $ex->getMessage()
+                        ];
+                }
 
                 require_once(VIEWS_PATH . "ModifyPetProfile.php");
             }
@@ -80,39 +111,49 @@
         {
             if (isset($_SESSION['idOwner']))
             {
-                // $fileController = new FileController();
-                $petDAO = new PetDAO();
-                $pet = new Pet();
-
-                // $uploadImg = false;
-                // $uploadPv = false;
- 
-                // $uploadImg = $fileController->upload($imgFile, "img");
-
-                // $uploadPv = $fileController->upload($pvFile, "pv");
-                
-                //if(($uploadImg == true) && ($uploadPv == true))
-                //{
-                    // -> SETs PET
-                    $pet->setId_owner($_SESSION['idOwner']);
-                    $pet->setImg($imgFile);
-                    $pet->setName($name);
-                    $pet->setType($radio_option);
-                    $pet->setBreed($breed);
-                    $pet->setSize($size);
-                    $pet->setPlanVacunacion($pvFile);
-                    $pet->setVideo($video);
-                    $pet->setInfo($info);
-                    // <- SETs PET
+                try
+                {
+                    // $fileController = new FileController();
+                    $petDAO = new PetDAO();
+                    $pet = new Pet();
     
-                    // -> ADD PET
-                    $pet_id = $petDAO->Add($pet);
-                    // <- ADD PET
-                //}
-                //else
-                //{
-                    // alert -> error de carga
-                //}
+                    // $uploadImg = false;
+                    // $uploadPv = false;
+     
+                    // $uploadImg = $fileController->upload($imgFile, "img");
+    
+                    // $uploadPv = $fileController->upload($pvFile, "pv");
+                    
+                    //if(($uploadImg == true) && ($uploadPv == true))
+                    //{
+                        // -> SETs PET
+                        $pet->setId_owner($_SESSION['idOwner']);
+                        $pet->setImg($imgFile);
+                        $pet->setName($name);
+                        $pet->setType($radio_option);
+                        $pet->setBreed($breed);
+                        $pet->setSize($size);
+                        $pet->setPlanVacunacion($pvFile);
+                        $pet->setVideo($video);
+                        $pet->setInfo($info);
+                        // <- SETs PET
+        
+                        // -> ADD PET
+                        $pet_id = $petDAO->Add($pet);
+                        // <- ADD PET
+                    //}
+                    //else
+                    //{
+                        // alert -> error de carga
+                    //}
+                }
+                catch(Exception $ex)
+                {
+                    $alert = [
+                            "type" => "danger",
+                            "text" => $ex->getMessage()
+                        ];
+                }
                 
                 // -> REDIRECTION TO PET/SHOWLIT
                 header("location: " . FRONT_ROOT . "Pet/ShowList");
@@ -131,42 +172,62 @@
          */
         public function UpdateProfile_Pet($id, $name, $breed, $size, $info)
         {
-            $petDAO = new PetDAO();
-            $pet = new Pet();
-
-            // VER - CARGA ARCHIVOS!
-            
-            // -> SETs PET
-            //$pet->setImg(' ');
-            $pet->setName($name);
-            $pet->setBreed($breed);
-
-            if(($size != 1) && ($size != 2) && ($size != 3))
+            try
             {
-                $id_size = $petDAO->GetIdSize($size);
-                $pet->setSize($id_size);
+                $petDAO = new PetDAO();
+                $pet = new Pet();
+    
+                // VER - CARGA ARCHIVOS!
+                
+                // -> SETs PET
+                //$pet->setImg(' ');
+                $pet->setName($name);
+                $pet->setBreed($breed);
+    
+                if(($size != 1) && ($size != 2) && ($size != 3))
+                {
+                    $id_size = $petDAO->GetIdSize($size);
+                    $pet->setSize($id_size);
+                }
+                else
+                {
+                    $pet->setSize($size);
+                }
+                
+                //$pet->setPlanVacunacion(' ');
+                //$pet->setVideo(' ');
+                $pet->setInfo($info);
+                // <- SETs PET
+    
+                // -> ADD PET
+                $petDAO->Update($id, $pet);
+                // <- ADD PET
             }
-            else
+            catch(Exception $ex)
             {
-                $pet->setSize($size);
+                $alert = [
+                        "type" => "danger",
+                        "text" => $ex->getMessage()
+                    ];
             }
-            
-            //$pet->setPlanVacunacion(' ');
-            //$pet->setVideo(' ');
-            $pet->setInfo($info);
-            // <- SETs PET
-
-            // -> ADD PET
-            $petDAO->Update($id, $pet);
-            // <- ADD PET
             
             $this->ShowView_Profile($id);
         }
 
         public function Remove ($id)
         {
-            $petDAO = new PetDAO();
-            $petDAO->Remove($id);
+            try
+            {
+                $petDAO = new PetDAO();
+                $petDAO->Remove($id);
+            }
+            catch(Exception $ex)
+            {
+                $alert = [
+                        "type" => "danger",
+                        "text" => $ex->getMessage()
+                    ];
+            }
 
             // -> REDIRECTION TO PET/SHOWLIT
             header("location: " . FRONT_ROOT . "Pet/ShowList");
@@ -180,30 +241,6 @@
 
         // ---  ESTAS FUNCIONES ERAN USADAS PARA PERSISTIR DATOS EN JSON ANTES DE IMPLEMENTAR PDO EN EL PROYECTO, 
         //      LUEGO FUERON REEMPLAZADAS POR LAS QUE FUNCIONAN PARA PERSISTIR EN BDD  ---
-        
-
-        // public function ShowList()
-        // {
-        //     if (isset($_SESSION['idOwner']))
-        //         {
-        //         $catDAO = new CatDAO();
-        //         $petDAO = new petDAO();
-        //         $catList = array();
-        //         $petList = array();
-        //         $petsList = array();
-
-        //         $catList = $catDAO->GetByOwner($_SESSION["idOwner"]);
-        //         $petList = $petDAO->GetByOwner($_SESSION["idOwner"]);
-
-        //         $petsList = array_merge($catList, $petList);
-
-        //         require_once(VIEWS_PATH . "PetsProfiles.php");
-        //     }
-        //     else
-        //     {
-        //         header("location: " . FRONT_ROOT . "Auth/ShowLogin");
-        //     }   
-        // }
 
         // public function CreatePet ($imgFile, $name, $radio_option, $breed, $size, $pvFile, $video, $info)
         // {

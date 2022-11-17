@@ -18,6 +18,7 @@
         public function CreateAvStay ($first_day, $last_day) 
         {   
            $guardianController = new GuardianController();
+
             try
             {
                 if (isset($_SESSION['idGuardian']))
@@ -118,7 +119,18 @@
         public function RemoveStay($id)
         {
             $avStayDAO = new AvStayDAO();
-            $avStayDAO->Remove($id);
+            
+            try
+            {
+                $avStayDAO->Remove($id);
+            }
+            catch(Exception $ex)
+            {
+                $alert = [
+                    "type" => "danger",
+                    "text" => $ex->getMessage()
+                ];
+            }
 
             // -> REDIRECTION TO AvStay/SHOWLIT
             header("location: " . FRONT_ROOT . "Guardian/ShowHome_Guardian");

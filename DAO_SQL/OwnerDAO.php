@@ -15,8 +15,6 @@
         private $connection;
         private $tableName = "owners";
 
-        // DATABASE CLASSES ↓
-
         public function Add(Owner $owner)
         {
             try
@@ -222,8 +220,5 @@
 
             return $owner;
         }
-        
-        // DATABASE CLASSES ↑
-
     }
 ?>

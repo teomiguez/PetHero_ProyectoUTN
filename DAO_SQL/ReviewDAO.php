@@ -16,8 +16,6 @@
         private $connection;
         private $tableName = "review";
 
-        // DATABASE CLASSES ↓
-
         public function Add(Review $review)
         {
             try
@@ -184,31 +182,7 @@
             $review->setReview($rta['review']);
 
             return $review;
-
-            /* codigo original que transforma un arraglo de arreglos, en un arreglo de objetos
-            /*
-            $values = is_array($values) ? $values : [];
-
-            $rta = array_map(function($p){
-
-                $review = new Review;
-
-                $review->setId_review($p['id_review']);
-                $review->setId_guardian($p['id_guardian']);
-                $review->setQuantity_reviews($p['quantity_reviews']);
-                $review->setSum_reviews($p['sum_reviews']);
-                $review->setReview($p['review']);
-
-                return $review;
-
-            }, $values);
-
-            return count($rta) > 1 ? $rta : $rta['0'];
-            */
         }
-        
-        // DATABASE CLASSES ↑
-    
     }
 
 ?>

@@ -19,23 +19,33 @@
 
         public function ChangeIdsToObjects($reservIds)
         {
-            $reservationDAO = new ReservationDAO();
-            $petDAO = new PetDAO();
-            $paymentCouponDAO = new PaymentCouponDAO();
-
-            $reserv = new Reservation();
-            $pet = new Pet();
-            $coupon = new PaymentCoupon();
-
-            $reserv = $reservationDAO->GetById($reservIds->getReservation());
-            $pet = $petDAO->GetById($reservIds->getPet());
-            $coupon = $paymentCouponDAO->GetById($reservIds->getCoupon());
-            
-            $reservIds->setReservation($reserv);
-            $reservIds->setPet($pet);
-            $reservIds->setCoupon($coupon);
-
-            return $reservIds;
+            try
+            {
+                $reservationDAO = new ReservationDAO();
+                $petDAO = new PetDAO();
+                $paymentCouponDAO = new PaymentCouponDAO();
+    
+                $reserv = new Reservation();
+                $pet = new Pet();
+                $coupon = new PaymentCoupon();
+    
+                $reserv = $reservationDAO->GetById($reservIds->getReservation());
+                $pet = $petDAO->GetById($reservIds->getPet());
+                $coupon = $paymentCouponDAO->GetById($reservIds->getCoupon());
+                
+                $reservIds->setReservation($reserv);
+                $reservIds->setPet($pet);
+                $reservIds->setCoupon($coupon);
+    
+                return $reservIds;
+            }
+            catch(Exception $ex)
+            {
+                $alert = [
+                    "type" => "danger",
+                    "text" => $ex->getMessage()
+                ];
+            }
         }
     }
 ?>

@@ -19,8 +19,6 @@
         private $connection;
         private $tableName = "reservation";
 
-        // DATABASE CLASSES ↓
-
         public function AddReservation(Reservation $reserv)
         {
             try
@@ -380,8 +378,5 @@
 
             return $reservForPet;
         }
-        
-        // DATABASE CLASSES ↑
-    
     }
 ?>

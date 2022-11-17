@@ -17,8 +17,6 @@
         private $connection;
         private $tableName =  "guardians";
 
-        // DATABASE CLASSES ↓
-
         public function Add(Guardian $guardian)
         {
             try
@@ -267,8 +265,5 @@
             
             return $guardian;
         }
-
-        // DATABASE CLASSES ↑
-
     }
 ?>
