@@ -35,6 +35,7 @@
                     $avStayList = array();
                     $reservList = array(); // todas las reservas
     
+                    $diffReservs = array();
                     $dailyReservs = array(); // mostrar las reservas al día (confirmadas o no)
                     $pastReservs = array(); // mostrar las reservas pasadas
     
@@ -42,8 +43,14 @@
                     $avStayList = $avStayDAO->GetByKeeper($_SESSION["idGuardian"]);
                     $reservList = $reservationDAO->GetByGuardian($_SESSION["idGuardian"]);
     
-                    $dailyReservs = $this->putDaily_Reservs($reservList);
-                    $pastReserv = $this->putLast_Reservs($reservList);
+                    $diffReservs = $this->diffReservs($reservList);
+
+                    if (!empty($diffReservs))
+                    {
+                        $dailyReservs = $diffReservs['daily'];
+                        $pastReserv = $diffReservs['last'];
+                    }
+
                 }
                 catch(Exception $ex)
                 {
@@ -213,39 +220,30 @@
         /**
         *	@param Array -> listado de reservas
         */
-        function putLast_Reservs($totalReservs)
+        function diffReservs($totalReservs)
         {
-            $newArray = array();
+            $dailyReservs = array();
+            $lastReservs = array();
             $reserv = new Reservation();
 
             foreach($totalReservs as $reserv)
             {
                 if($reserv->getLast_day() <= date('Y-m-d'))
                 {
-                    array_push($newArray, $reserv);
+                    array_push($lastReservs, $reserv);
                 }
-            }
-
-            return $newArray;
-        }
-
-        /**
-        *	@param Array -> listado de reservas
-        */
-        function putDaily_Reservs($totalReservs)
-        {
-            $newArray = array();
-            $reserv = new Reservation();
-
-            foreach($totalReservs as $reserv)
-            {
-                if($reserv->getLast_day() >= date('Y-m-d'))
+                else
                 {
-                    array_push($newArray, $reserv);
+                    array_push($dailyReservs, $reserv);
                 }
             }
 
-            return $newArray;
+            $diffReservs = [
+                "daily" => $dailyReservs,
+                "last" => $lastReservs
+            ];
+
+            return $diffReservs;
         }
     }
 ?>

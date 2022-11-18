@@ -67,7 +67,10 @@
     
                 $reservForGuardian = $reservationDAO->GetByGuardian($id_guardian);
                 $staysForGuardian = $avstayDAO->GetByKeeper($id_guardian);
+                $reservExist = new Reservation();
+                $pet = new Pet();
                 $pet = $petDAO->GetById($id_pet);
+                $guardian = new Guardian();
                 $guardian = $guardianDAO->GetById($id_guardian);
                 $coupon = new PaymentCoupon();
     
@@ -76,20 +79,24 @@
                     if (($this->IsExist_Reserv($reservForGuardian, $first_day, $last_day)) || ($this->IsPart_Reserv($reservForGuardian, $first_day, $last_day))) // si existe o no la reserva
                     {
                         $id_exist = $this->GetIdReserv($reservForGuardian, $first_day, $last_day); // obtengo id por las fechas
-        
-                        if (($reservationDAO->GetSize_Condition($id_exist) == $pet->getSize()) && ($reservationDAO->GetBreed_Condition($id_exist) == $pet->getBreed())) // si la mascota cumple las condiciones de la reserva
+                        $reservExist = $reservationDAO->GetById($id_exist); // obtengo la reserva existente
+
+                        if ($reservExist->getIs_accepted() == 0) // si esa reserva o parte de la reserva no esta aceptada
                         {
-                            $paymentCouponController->Create_PaymentCoupon($id_exist, $pet->getId_pet() ,$pet->getId_owner()); // creo el cupon
-                            
-                            $coupon = $paymentCouponDAO->GetByReservation($id_exist, $pet->getId_pet()); // obtengo el id del cupon
-                            
-                            $reservationDAO->AddPet_ToReservation($id_exist,$pet->getId_pet() ,$pet->getId_owner(), $coupon->getId_paymentCoupon()); // agrego la mascota a la reserva
-        
-                            $alert = array("type" => "success", "text" => "Se agregó la mascota a una reserva previa");
-                        }
-                        else
-                        {
-                            throw new Exception("Hay una reserva existente y la mascota seleccionada no cumple con las condiciones de tamaño/raza"); // si no cumple las condiciones -> alert
+                            if (($reservationDAO->GetSize_Condition($id_exist) == $pet->getSize()) && ($reservationDAO->GetBreed_Condition($id_exist) == $pet->getBreed())) // si la mascota cumple las condiciones de la reserva
+                            {
+                                $paymentCouponController->Create_PaymentCoupon($id_exist, $pet->getId_pet() ,$pet->getId_owner()); // creo el cupon
+                                
+                                $coupon = $paymentCouponDAO->GetByReservation($id_exist, $pet->getId_pet()); // obtengo el id del cupon
+                                
+                                $reservationDAO->AddPet_ToReservation($id_exist,$pet->getId_pet() ,$pet->getId_owner(), $coupon->getId_paymentCoupon()); // agrego la mascota a la reserva
+            
+                                $alert = array("type" => "success", "text" => "Se agregó la mascota a una reserva previa");
+                            }
+                            else
+                            {
+                                throw new Exception("Hay una reserva existente y la mascota seleccionada no cumple con las condiciones de tamaño/raza"); // si no cumple las condiciones -> alert
+                            }
                         }
                     }
                     else if ($this->IsExist_Stay($staysForGuardian, $first_day, $last_day)) // si el guardian tiene libre esos dias
@@ -149,14 +156,17 @@
             {
                 $guardianController = new GuardianController();
                 $reservationDAO = new ReservationDAO();
+
+                // agregar validaciones para verificar que no halla otra reserva aceptada en esas fechas (por si se envian dos o + solicitudes)
+
                 $reservationDAO->ChangeToAccepted($id);
             }
             catch(Exception $ex)
             {
                 $alert = [
-                        "type" => "danger",
-                        "text" => $ex->getMessage()
-                    ];
+                    "type" => "danger",
+                    "text" => $ex->getMessage()
+                ];
             }
 
             $guardianController->ShowHome_Guardian();
@@ -254,8 +264,5 @@
             }
             return false;
         }
-
-        
-
     }
 ?>
