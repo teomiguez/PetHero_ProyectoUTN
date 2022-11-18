@@ -41,7 +41,8 @@
                             <tr>
                                 <th scope="col"> Desde </th>
                                 <th scope="col"> Hasta </th>
-                                <th scope="col"> Opciones </th>
+                                <th scope="col"> Ver </th>
+                                <th scope="col"> Confirmar </th>
                         </tr>
                         </thead>
                         <tbody> 
@@ -53,36 +54,30 @@
                             <tr class="align-middle">
                                 <td> <?php echo $reserv->getFirst_day() ?> </td>
                                 <td> <?php echo $reserv->getLast_day() ?> </td>
-                                <td class="d-inline-flex"> 
-                                    
-                                    <?php if($reserv->getIs_accepted() == 0) {  ?>
-                                        <div>
-                                            <form action="<?php echo FRONT_ROOT . "Reservation/AcceptedReserv" ?>" method="POST">
-                                                <button class="btn btn-link" type="submit" name="id" 
-                                                        value="<?php echo $reserv->getId_reservation() ?>">
-                                                    <i class="bi bi-check-circle"></i>    
-                                                </button>
-                                            </form>
-                                        </div>
-
-                                        <div>
-                                            <form action="<?php echo FRONT_ROOT . "Reservation/DenyReserv" ?>" method="POST">
-                                                <button class="btn btn-link" type="submit" name="id" 
-                                                        value="<?php echo $reserv->getId_reservation() ?>">
-                                                    <i class="bi bi-x-circle"></i>    
-                                                </button>
-                                            </form>
-                                        </div>
-                                    <?php } ?>
-                                    <!-- <div>
-                                        <form action="<?php echo FRONT_ROOT . "" ?>" method="POST">
-                                        <button class="btn btn-link" type="submit" name="id" 
-                                                value="<?php echo $reserv->getId_reservation() ?>">
-                                            <i class="bi bi-eye-fill text-primary">  
+                                <td>
+                                    <form action="<?php echo FRONT_ROOT . " Guardian/ShowReservation " ?>" method="POST">
+                                        <button class="btn btn-link" type="submit" name="id" value="<?php echo $reserv->getId_reservation() ?>">
+                                            <i class="bi bi-eye-fill text-primary"></i>  
                                         </button>
-                                    </form> -->
-                                    </div>
+                                    </form> 
                                 </td>
+                                <?php if($reserv->getIs_accepted() == 0) {  ?>
+                                    <td class="d-inline-flex"> 
+                                        <form action="<?php echo FRONT_ROOT . "Reservation/AcceptedReserv" ?>" method="POST">
+                                            <button class="btn btn-link" type="submit" name="id" 
+                                                    value="<?php echo $reserv->getId_reservation() ?>">
+                                                <i class="bi bi-check-circle"></i>    
+                                            </button>
+                                        </form>
+
+                                        <form action="<?php echo FRONT_ROOT . "Reservation/DenyReserv" ?>" method="POST">
+                                            <button class="btn btn-link" type="submit" name="id" 
+                                                    value="<?php echo $reserv->getId_reservation() ?>">
+                                                <i class="bi bi-x-circle"></i>    
+                                            </button>
+                                        </form>
+                                    </td>
+                                <?php } ?>
                             </tr>
 
                             <?php } 
@@ -104,7 +99,7 @@
                                 <th scope="col"> Hasta </th>
                                 <th scope="col"> Total </th>
                                 <th scope="col">  </th>
-                        </tr>
+                            </tr>
                         </thead>
                         <tbody> 
                             <?php  
@@ -151,7 +146,7 @@
                                 <th scope="col"> Desde </th>
                                 <th scope="col"> Hasta </th>
                                 <th scope="col"> Ver </th>
-                        </tr>
+                            </tr>
                         </thead>
                         <tbody> 
                             <?php  
@@ -162,11 +157,10 @@
                             <tr class="align-middle">
                                 <td> <?php echo $reserv->getFirst_day() ?> </td>
                                 <td> <?php echo $reserv->getLast_day() ?> </td>
-                                <td class="d-inline-flex"> 
-                                    <form action="<?php echo FRONT_ROOT . "" ?>" method="POST">
-                                        <button class="btn btn-link" type="submit" name="id" 
-                                                value="<?php echo $reserv->getId_reservation() ?>">
-                                            <i class="bi bi-eye-fill text-primary">  
+                                <td class="d-inline-flex">
+                                    <form action="<?php echo FRONT_ROOT . " Guardian/ShowReservation " ?>" method="POST">
+                                        <button class="btn btn-link" type="submit" name="id" value="<?php echo $reserv->getId_reservation() ?>">
+                                            <i class="bi bi-eye-fill text-primary"></i>  
                                         </button>
                                     </form>
                                 </td>

@@ -2,6 +2,7 @@
     namespace Controllers;
     
     use Controllers\ReservationForPetController as ReservationForPetController;
+    use Controllers\ReservationController as ReservationController;
     
     use DAO_SQL\OwnerDAO as OwnerDAO;
     use DAO_SQL\GuardianDAO as GuardianDAO;
@@ -25,7 +26,7 @@
         public function __contruct() 
         {
             
-        }  
+        }
 
         public function ShowHome_Owner($alert = '')
         {    

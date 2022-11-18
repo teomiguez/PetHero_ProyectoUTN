@@ -138,6 +138,32 @@
             return $rta[0][0];
         }
 
+        public function GetPetsById($id_reserv)
+        {
+            $reservList = array();
+            
+            try 
+            {
+                $this->connection = Connection::GetInstance();
+                $query = "SELECT * FROM pets_x_reservation WHERE id_reservation = :id ";
+                $parameters['id'] = $id_reserv;
+
+                $rta = $this->connection->Execute($query, $parameters);
+            } 
+            catch (Exception $e) 
+            {
+                throw $e;
+            }
+
+            if(!empty($rta))
+            {
+                foreach ($rta as $row) 
+                {
+                    return $this->map($row);
+                }
+            }
+        }
+
         public function GetByGuardian($id_guardian)
         {
             $reservList = array();

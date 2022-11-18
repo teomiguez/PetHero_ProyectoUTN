@@ -125,6 +125,35 @@
             }  
         }
 
+        public function ShowReservation($id, $alert = '')
+        {
+            if (isset($_SESSION['idGuardian']))
+            {
+                try
+                {
+                    $reservationDAO = new ReservationDAO();
+                    $reserv = new Reservation();
+                    $petsXreserv = array();
+        
+                    $reserv = $reservationDAO->GetById($id);
+                    //$petsXreserv = GetPetsById($id);
+                }
+                catch(Exception $ex)
+                {
+                    $alert = [
+                        "type" => "danger",
+                        "text" => $ex->getMessage()
+                    ];
+                }
+
+                require_once(VIEWS_PATH . "Reservation_ViewGuardian.php");
+            }
+            else
+            {
+                header("location: " . FRONT_ROOT . "Auth/ShowLogin");
+            }
+        }
+
         function Register_Guardian($name, $last_name, $dni, $tel, $email, $password, $street, $nro, $typeSize, $cost)
         {
             try
