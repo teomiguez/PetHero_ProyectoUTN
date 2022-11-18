@@ -224,9 +224,9 @@
             catch(Exception $ex)
             {
                 $alert = [
-                        "type" => "danger",
-                        "text" => $ex->getMessage()
-                    ];
+                    "type" => "danger",
+                    "text" => $ex->getMessage()
+                ];
             }
         }
 
