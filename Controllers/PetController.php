@@ -26,7 +26,7 @@
 
         // DATABASE CLASSES ↓
 
-        public function ShowList()
+        public function ShowList($alert = '')
         {
             if (isset($_SESSION['idOwner']))
             {
@@ -53,7 +53,7 @@
             }
         }
 
-        public function ShowView_Profile($id)
+        public function ShowView_Profile($id, $alert = '')
         {
             if (isset($_SESSION['idOwner']))
             {
@@ -80,7 +80,7 @@
             }
         }
 
-        public function ShowModifyProfile_Pet($id)
+        public function ShowModifyProfile_Pet($id, $alert = '')
         {
             if (isset($_SESSION['idOwner']))
             {

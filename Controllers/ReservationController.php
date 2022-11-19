@@ -98,6 +98,10 @@
                                 throw new Exception("Hay una reserva existente y la mascota seleccionada no cumple con las condiciones de tamaño/raza"); // si no cumple las condiciones -> alert
                             }
                         }
+                        else
+                        {
+                            throw new Exception("Hay una reserva existente en esas fechas");
+                        }
                     }
                     else if ($this->IsExist_Stay($staysForGuardian, $first_day, $last_day)) // si el guardian tiene libre esos dias
                     {
@@ -128,7 +132,7 @@
                     {
                         throw new Exception("El guardian no tiene esas fechas disponibles"); // si no tiene libre -> alert
                     }
-        
+
                     $ownerController->ShowHome_Owner($alert);
                 }
                 catch (Exception $ex)
@@ -157,9 +161,15 @@
                 $guardianController = new GuardianController();
                 $reservationDAO = new ReservationDAO();
 
-                // agregar validaciones para verificar que no halla otra reserva aceptada en esas fechas (por si se envian dos o + solicitudes)
-
-                $reservationDAO->ChangeToAccepted($id);
+                if (($this->IsExist_Reserv($reservForGuardian, $first_day, $last_day)) || 
+                    ($this->IsPart_Reserv($reservForGuardian, $first_day, $last_day))) // si existe o no la reserva
+                {
+                    throw new Exception("Hay una reserva existente");
+                }
+                else
+                {
+                    $reservationDAO->ChangeToAccepted($id);
+                }
             }
             catch(Exception $ex)
             {

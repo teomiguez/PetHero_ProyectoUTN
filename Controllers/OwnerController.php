@@ -122,7 +122,7 @@
             }
         }
 
-        public function ShowProfile_Owner()
+        public function ShowProfile_Owner($alert = '')
         {    
             if (isset($_SESSION['idOwner']))
             {        
@@ -148,7 +148,7 @@
             }  
         }
 
-        public function ShowModifyProfile_Owner()
+        public function ShowModifyProfile_Owner($alert = '')
         {
             if (isset($_SESSION['idOwner']))
             {        
@@ -174,7 +174,7 @@
             } 
         }
 
-        public function ShowViewGuardian($id)
+        public function ShowViewGuardian($id, $alert = '')
         {
             if (isset($_SESSION['idOwner']))
             {         

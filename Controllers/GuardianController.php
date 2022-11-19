@@ -68,7 +68,7 @@
             }  
         }
         
-        public function ShowProfile_Guardian()
+        public function ShowProfile_Guardian($alert = '')
         {   
             if (isset($_SESSION['idGuardian']))
             {         
@@ -97,7 +97,7 @@
 
         }
 
-        public function ShowModifyProfile_Guardian()
+        public function ShowModifyProfile_Guardian($alert = '')
         {
             if (isset($_SESSION['idGuardian']))
             {         
