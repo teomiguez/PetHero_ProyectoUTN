@@ -1,7 +1,6 @@
 <?php
     namespace Controllers;
     
-    use Controllers\ReservationForPetController as ReservationForPetController;
     use Controllers\ReservationController as ReservationController;
     
     use DAO_SQL\OwnerDAO as OwnerDAO;
@@ -33,9 +32,7 @@
             if (isset($_SESSION['idOwner']))
             {
                 try
-                {
-                    $reservationForPet = new ReservationForPetController();
-                
+                {                
                     $ownerDAO = new OwnerDAO();
                     $guardianDAO = new GuardianDAO();
                     $reservationDAO = new ReservationDAO();

@@ -271,6 +271,25 @@
             }
         }
 
+        public function ChangeToConfirm($id)
+        {
+            try
+            {
+                $this->connection = Connection::GetInstance();
+
+                $query = "UPDATE $this->tableName SET is_confirm = :is_confirm
+                            WHERE id_reservation = :id";
+                $parameters['is_confirm'] = 1;
+                $parameters['id'] = $id;
+
+                $this->connection->ExecuteNonQuery($query, $parameters);
+            }
+            catch (Exception $e)
+            {
+                throw $e;
+            }
+        }
+
         public function GetSize_Condition($id)
         {
             try 
@@ -319,12 +338,13 @@
             {
                 $this->connection = Connection::GetInstance();
 
-                $query = "UPDATE $this->tableName SET pet_size:pet_size, pet_breed:pet_breed, is_accepted:is_accepted, first_day:first_day, last_day:last_day, total_days:total_days
+                $query = "UPDATE $this->tableName SET pet_size:pet_size, pet_breed:pet_breed, is_accepted:is_accepted, is_confirm:is_confirm, first_day:first_day, last_day:last_day, total_days:total_days
                             WHERE id_reservation = :id";
 
                 $parameters['pet_size'] = $reserv->getPet_size();
                 $parameters['pet_breed'] = $reserv->getPet_breed();
                 $parameters['is_accepted'] = $reserv->getIs_accepted();
+                $parameters['is_confirm'] = $reserv->getIs_confirm();
                 $parameters['first_day'] = $reserv->getFirs_day();
                 $parameters['last_day'] = $reserv->getLast_day();
                 $parameters['total_days'] = $reserv->getTotal_days();
@@ -386,6 +406,7 @@
             $reserv->setPet_size($p['pet_size']);
             $reserv->setPet_breed($p['pet_breed']);
             $reserv->setIs_accepted($p['is_accepted']);
+            $reserv->setIs_confirm($p['is_confirm']);
             $reserv->setFirst_day($p['first_day']);
             $reserv->setLast_day($p['last_day']);
             $reserv->setTotal_days($p['total_days']);

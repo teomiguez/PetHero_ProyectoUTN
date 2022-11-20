@@ -9,6 +9,7 @@ class Reservation
     private $pet_size;
     private $pet_breed;
     private $is_accepted;
+    private $is_confirm;
     private $first_day;
     private $last_day;
     private $total_days;
@@ -66,6 +67,16 @@ class Reservation
     public function setIs_accepted($is_accepted)
     {
         $this->is_accepted = $is_accepted;
+    }
+
+    public function getIs_confirm()
+    {
+        return $this->is_confirm;
+    }
+
+    public function setIs_confirm($is_confirm)
+    {
+        $this->is_confirm = $is_confirm;
     }
 
     public function getFirst_day()

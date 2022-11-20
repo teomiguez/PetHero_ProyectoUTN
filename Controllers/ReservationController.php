@@ -91,7 +91,7 @@
                                 
                                 $reservForGuardian2 = $reservationDAO->GetByGuardian($id_guardian);
         
-                                $id_reserv = $this->GetIdReserv($reservForGuardian2, $first_day, $last_day); // obtengo el id de la reserva
+                                $id_reserv = $this->GetIdReserv_ByExactlyDates($reservForGuardian2, $first_day, $last_day, $pet->getBreed()); // obtengo el id de la reserva
                                 
                                 $paymentCouponController->Create_PaymentCoupon($id_reserv, $pet->getId_pet(), $pet->getId_owner()); // creo el cupon
                                 
@@ -138,7 +138,7 @@
                             
                             $reservForGuardian2 = $reservationDAO->GetByGuardian($id_guardian);
     
-                            $id_reserv = $this->GetIdReserv($reservForGuardian2, $first_day, $last_day); // obtengo el id de la reserva
+                            $id_reserv = $this->GetIdReserv_ByExactlyDates($reservForGuardian2, $first_day, $last_day, $pet->getBreed()); // obtengo el id de la reserva
                             
                             $paymentCouponController->Create_PaymentCoupon($id_reserv, $pet->getId_pet(), $pet->getId_owner()); // creo el cupon
                             
@@ -195,7 +195,7 @@
 
                 $reservForGuardian = $reservationDAO->GetByGuardian($_SESSION['idGuardian']);
 
-                if (($this->IsExist_Reserv($reservForGuardian, $first_day, $last_day)) || ($this->IsPart_Reserv($reservForGuardian, $first_day, $last_day))) // si existe o no la reserva
+                if (($this->IsExist_OtherReserv($reservForGuardian, $id, $first_day, $last_day)) || ($this->IsPart_OtherReserv($reservForGuardian, $id, $first_day, $last_day))) // si existe o no otra reserva
                 {
                     $id_exist = $this->GetIdReserv($reservForGuardian, $first_day, $last_day); // obtengo id por las fechas
                     $reservExist = $reservationDAO->GetById($id_exist); // obtengo la reserva existente
@@ -203,6 +203,15 @@
                     if ($reservExist->getIs_accepted() == 1) // si esa reserva o parte de la reserva no esta aceptada
                     {
                         throw new Exception("Hay una reserva existente");
+                    }
+                    else
+                    {
+                        $reservationDAO->ChangeToAccepted($id);
+
+                        $alert = [
+                            "type" => "success",
+                            "text" => "Reserva aceptada"
+                        ];
                     }
                 }
                 else
@@ -271,6 +280,23 @@
         /**
         *	@param Array -> listado de reservas
         */
+        function IsExist_OtherReserv($reservsForGuardian, $id_reserv, $first_day, $last_day)
+        {
+            $reserv = new Reservation();
+            
+            foreach($reservsForGuardian as $reserv)
+            {
+                if(($reserv->getFirst_day() <= $first_day) && ($reserv->getLast_day() >= $last_day) && ($reserv->getId_reservation() == $id_reserv))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        /**
+        *	@param Array -> listado de reservas
+        */
         function IsPart_Reserv($reservsForGuardian, $first_day, $last_day)
         {
             $reserv = new Reservation();
@@ -281,6 +307,26 @@
                     (($reserv->getFirst_day() <= $last_day) && ($reserv->getLast_day() >= $last_day))))
                 {
                     return true;
+                }
+            }
+            return false;
+        }
+
+        /**
+        *	@param Array -> listado de reservas
+        */
+        function IsPart_OtherReserv($reservsForGuardian, $id_reserv, $first_day, $last_day)
+        {
+            $reserv = new Reservation();
+            
+            foreach($reservsForGuardian as $reserv)
+            {
+                if(((($reserv->getFirst_day() <= $first_day) && ($reserv->getLast_day() >= $first_day)) || (($reserv->getFirst_day() <= $last_day) && ($reserv->getLast_day() >= $last_day))))
+                {
+                    if ($reserv->getId_reservation() == $id_reserv)
+                    {
+                        return true;
+                    }
                 }
             }
             return false;
@@ -318,6 +364,23 @@
                 }
                 else if(((($reserv->getFirst_day() <= $first_day) && ($reserv->getLast_day() >= $first_day)) || 
                         (($reserv->getFirst_day() <= $last_day) && ($reserv->getLast_day() >= $last_day))))
+                {
+                    return $reserv->getId_reservation();
+                }
+            }
+            return false;
+        }
+
+        /**
+        *	@param Array -> listado de reservas
+        */
+        function GetIdReserv_ByExactlyDates($reservsForGuardian, $first_day, $last_day, $breed)
+        {
+            $reserv = new Reservation();
+            
+            foreach($reservsForGuardian as $reserv)
+            {
+                if(($reserv->getFirst_day() == $first_day) && ($reserv->getLast_day() == $last_day) && ($reserv->getPet_breed() == $breed))
                 {
                     return $reserv->getId_reservation();
                 }
