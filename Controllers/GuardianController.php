@@ -34,10 +34,14 @@
     
                     $avStayList = array();
                     $reservList = array(); // todas las reservas
+                    $petsXreserv = array(); // todas las mascotas_x_reserva
     
                     $diffReservs = array();
                     $dailyReservs = array(); // mostrar las reservas al día (confirmadas o no)
                     $pastReservs = array(); // mostrar las reservas pasadas
+
+                    $dailyPets = array(); // mostrar las mascotas de reservas al día (confirmadas o no)
+                    $pastPets = array(); // mostrar las mascotas de reservas pasadas
     
                     $user = $guardian_DAO->GetById($_SESSION["idGuardian"]);
                     $avStayList = $avStayDAO->GetByKeeper($_SESSION["idGuardian"]);
