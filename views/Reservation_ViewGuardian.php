@@ -34,7 +34,10 @@
             <h2 class="text-center my-3"> Reserva nro. <?php echo $reserv->getId_reservation() ?> </h2>
             <table class="table table-striped">
                 <tbody>
-                    <tr>
+                <tr>
+                    <th colspan="2"> Condiciones </th>
+                </tr>    
+                <tr>
                         <th scope="row"> Tamaño: </th>
                         <td> <?php echo $reserv->getPet_size() ?> </td>
                     </tr>
@@ -42,6 +45,9 @@
                         <th scope="row"> Raza: </th>
                         <td> <?php echo $reserv->getPet_breed() ?> </td>
                     </tr>
+                    <tr>
+                        <th colspan="2"> Fechas </th>
+                    </tr> 
                     <tr>
                         <th scope="row"> Desde: </th>
                         <td> <?php echo $reserv->getFirst_day() ?> </td>
@@ -54,6 +60,20 @@
                         <th scope="row"> Días totales: </th>
                         <td> <?php echo $reserv->getTotal_days() ?> </td>
                     </tr>
+                    <tr>
+                        <th colspan="2"> Mascotas: </th>
+                    </tr>
+                    <tr>
+                        <th scope="col"> Dueño </th>
+                        <th scope="col"> Mascota </th>
+                    </tr>
+
+                    <?php foreach($pets_and_owners as $pet_and_owner) { ?>
+                        <tr> 
+                            <td> <?php echo $pet_and_owner['owner']->getName() ?> </td>
+                            <td> <?php echo $pet_and_owner['pet']->getName() . " - Tipo: " . $pet_and_owner['pet']->getType() ?> </td>
+                        </tr>
+                    <?php } ?>
                 </tbody>
             </table>    
             <div class="text-center">

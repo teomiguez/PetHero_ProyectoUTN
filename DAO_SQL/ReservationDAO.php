@@ -138,15 +138,15 @@
             return $rta[0][0];
         }
 
-        public function GetPetsById($id_reserv)
+        public function GetPetsByIdReservation($id_reserv)
         {
-            $reservList = array();
+            $petsXreserv = array();
             
             try 
             {
                 $this->connection = Connection::GetInstance();
-                $query = "SELECT * FROM pets_x_reservation WHERE id_reservation = :id ";
-                $parameters['id'] = $id_reserv;
+                $query = "SELECT * FROM pets_x_reservation WHERE id_reservation = :id_reservation ";
+                $parameters['id_reservation'] = $id_reserv;
 
                 $rta = $this->connection->Execute($query, $parameters);
             } 
@@ -159,8 +159,11 @@
             {
                 foreach ($rta as $row) 
                 {
-                    return $this->map($row);
+                    $petForReserv = $this->map_petXreserv($row);
+                    array_push($petsXreserv, $petForReserv);
                 }
+
+                return $petsXreserv;
             }
         }
 

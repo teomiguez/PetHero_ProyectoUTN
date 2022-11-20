@@ -7,11 +7,14 @@
     use DAO_SQL\AvStayDAO as AvStayDAO;
     use DAO_SQL\ReviewDAO as ReviewDAO;
     use DAO_SQL\ReservationDAO as ReservationDAO;
+    use DAO_SQL\PetDAO as PetDAO;
+    use DAO_SQL\OwnerDAO as OwnerDAO;
 
     use Models\Guardian as Guardian;
     use Models\AvStay as AvStay;
     use Models\Review as Review;
     use Models\Reservation as Reservation;
+    use Models\ReservationForPet as ReservationForPet;
 
     use Exception;
 
@@ -34,14 +37,10 @@
     
                     $avStayList = array();
                     $reservList = array(); // todas las reservas
-                    $petsXreserv = array(); // todas las mascotas_x_reserva
     
                     $diffReservs = array();
                     $dailyReservs = array(); // mostrar las reservas al día (confirmadas o no)
                     $pastReservs = array(); // mostrar las reservas pasadas
-
-                    $dailyPets = array(); // mostrar las mascotas de reservas al día (confirmadas o no)
-                    $pastPets = array(); // mostrar las mascotas de reservas pasadas
     
                     $user = $guardian_DAO->GetById($_SESSION["idGuardian"]);
                     $avStayList = $avStayDAO->GetByKeeper($_SESSION["idGuardian"]);
@@ -72,7 +71,7 @@
             }  
         }
         
-        public function ShowProfile_Guardian($alert = '')
+        public function ShowProfile_Guardian()
         {   
             if (isset($_SESSION['idGuardian']))
             {         
@@ -138,9 +137,12 @@
                     $reservationDAO = new ReservationDAO();
                     $reserv = new Reservation();
                     $petsXreserv = array();
+                    $pets_and_owners = array();
         
                     $reserv = $reservationDAO->GetById($id);
-                    //$petsXreserv = GetPetsById($id);
+                    
+                    $petsXreserv = $reservationDAO->GetPetsByIdReservation($id);
+                    $pets_and_owners = $this->putPetsForReservation($petsXreserv);
                 }
                 catch(Exception $ex)
                 {
@@ -277,6 +279,35 @@
             ];
 
             return $diffReservs;
+        }
+
+        /**
+        *	@param Array -> listado de mascotas por reserva
+        */
+        function putPetsForReservation($petsXreserv)
+        {
+            $ownerDAO = new OwnerDAO();
+            $petDAO = new PetDAO();
+            $petForReserv = new ReservationForPet();
+            $pets_and_owners = array();
+
+            foreach($petsXreserv as $petForReserv)
+            {
+                $idPet = $petForReserv->getId_pet();
+                $idOwner = $petForReserv->getId_owner();
+
+                $owner = $ownerDAO->getById($idOwner);
+                $pet = $petDAO->GetById($idPet);
+
+                $pet_and_owner = [
+                    "pet" => $pet,
+                    "owner" => $owner
+                ];
+
+                array_push($pets_and_owners, $pet_and_owner);
+            }
+
+            return $pets_and_owners;
         }
     }
 ?>
