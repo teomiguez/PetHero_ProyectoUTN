@@ -6,13 +6,14 @@
         private $id_reservation;
         private $id_owner;
         private $id_pet;
+        private $is_reviewed; //si hizo la review
         private $id_coupon;
 
         // -> SETTERS Y GETTERS
 
-        public function getReservation()
+        public function getId_reservation()
         {
-            return $this->reservation;
+            return $this->id_reservation;
         }
 
         public function setId_reservation($id_reservation)
@@ -38,6 +39,16 @@
         public function setId_pet($id_pet)
         {
             $this->id_pet = $id_pet;
+        }
+
+        public function getIs_reviewed()
+        {
+            return $this->is_reviewed;
+        }
+
+        public function setIs_reviewed($is_reviewed)
+        {
+            $this->is_reviewed = $is_reviewed;
         }
 
         public function getId_coupon()

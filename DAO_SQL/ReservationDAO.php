@@ -424,6 +424,7 @@
             $reservForPet->setId_reservation($p['id_reservation']);
             $reservForPet->setId_owner($p['id_owner']);
             $reservForPet->setId_pet($p['id_pet']);
+            $reservForPet->setIs_reviewed($p['is_reviewed']);
             $reservForPet->setId_coupon($p['id_payment_coupon']);
 
             return $reservForPet;

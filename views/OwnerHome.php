@@ -35,41 +35,40 @@
             <div class="col-12 col-sm-12 col-md-12 col-lg-4 pt-3">
                 <h2 class="text-center"> Reservas aceptadas </h2>
 
-                <!-- <div class="mb-3">
+                <div class="mb-3">
                     <table class="table text-center">
                         <thead>
                             <tr>
                                 <th scope="col"> Desde </th>
                                 <th scope="col"> Hasta </th>
+                                <th scope="col"> Mascota </th>
                                 <th scope="col"> Ver </th>
                         </tr>
                         </thead>
                         <tbody> 
                             <?php  
-                                if (isset($reservList)) {
-                                        foreach ($reservList as $reserv) {
-                                            if(($reserv->getReservation())->getIs_accepted() == 1) {
+                                if (isset ($dailyReservs)) {
+                                    foreach ($dailyReservs as $reserv) {
                             ?>
 
                             <tr class="align-middle">
-                                <td> <?php echo ($reserv->getReservation())->getFirst_day() ?> </td>
-                                <td> <?php echo ($reserv->getReservation())->getLast_day() ?> </td>
-                                <td> 
-                                    <form action="<?php  ?>" method="POST">
-                                    <button class="btn btn-link" type="submit" name="id" value="<?php echo (($reserv->getReservation())->getReservation())->getId_reservation() ?>">
-                                        <i class="bi bi-eye-fill text-primary"></i>  
-                                    </button>
+                                <td> <?php echo $reserv['reserv']->getFirst_day() ?> </td>
+                                <td> <?php echo $reserv['reserv']->getLast_day() ?> </td>
+                                <td> <?php echo $reserv['pet'] ?> </td>
+                                <td>
+                                    <form action="<?php echo FRONT_ROOT . " Owner/ShowReservation " ?>" method="POST">
+                                        <button class="btn btn-link" type="submit" name="id_coupon" value="<?php echo $reserv['coupon']->getId_paymentCoupon() ?>">
+                                            <i class="bi bi-eye-fill text-primary"></i>  
+                                        </button>
                                     </form> 
                                 </td>
                             </tr>
 
-                            <?php       }
-                                    }
-                                }     
-                            ?> 
+                            <?php } 
+                                } ?> 
                         </tbody>
                     </table>
-                </div> -->
+                </div>
                 
             </div>
 
@@ -183,6 +182,40 @@
 
             <div class="col-12 col-sm-4 col-lg-3 pt-3">
                 <h2 class="text-center"> Reservas pasadas </h2>
+                <div class="mb-3">
+                    <table class="table text-center">
+                        <thead>
+                            <tr>
+                                <th scope="col"> Desde </th>
+                                <th scope="col"> Hasta </th>
+                                <th scope="col"> Mascota </th>
+                                <th scope="col"> Ver </th>
+                        </tr>
+                        </thead>
+                        <tbody> 
+                            <?php  
+                                if (isset ($pastReserv)) {
+                                    foreach ($pastReserv as $reserv) {
+                            ?>
+
+                            <tr class="align-middle">
+                                <td> <?php echo $reserv['reserv']->getFirst_day() ?> </td>
+                                <td> <?php echo $reserv['reserv']->getLast_day() ?> </td>
+                                <td> <?php echo $reserv['pet'] ?> </td>
+                                <td>
+                                    <form action="<?php echo FRONT_ROOT . " Owner/ShowReservation " ?>" method="POST">
+                                        <button class="btn btn-link" type="submit" name="id_coupon" value="<?php echo $reserv['coupon']->getId_paymentCoupon() ?>">
+                                            <i class="bi bi-eye-fill text-primary"></i>  
+                                        </button>
+                                    </form> 
+                                </td>
+                            </tr>
+
+                            <?php } 
+                                } ?> 
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
 

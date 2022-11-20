@@ -50,9 +50,25 @@
             catch(Exception $ex)
             {
                 $alert = [
-                        "type" => "danger",
-                        "text" => $ex->getMessage()
-                    ];
+                    "type" => "danger",
+                    "text" => $ex->getMessage()
+                ];
+            }
+        }
+
+        public function Payment($id)
+        {
+            try
+            {
+                $paymentCouponDAO = new PaymentCouponDAO();
+                $paymentCouponDAO->ChangeToPayment($id);
+            }
+            catch(Exception $ex)
+            {
+                $alert = [
+                    "type" => "danger",
+                    "text" => $ex->getMessage()
+                ];
             }
         }
     }

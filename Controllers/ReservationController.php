@@ -236,6 +236,22 @@
             $guardianController->ShowHome_Guardian($alert);
         }
 
+        public function ConfirmReserv($id)
+        {
+            try
+            {
+                $reservationDAO = new ReservationDAO();
+                $reservationDAO->ChangeToAccepted($id);
+            }
+            catch(Exception $ex)
+            {
+                $alert = [
+                    "type" => "danger",
+                    "text" => $ex->getMessage()
+                ];
+            }
+        }
+
         public function DenyReserv($id)
         {
             try

@@ -2,6 +2,7 @@
     namespace Controllers;
     
     use Controllers\ReservationController as ReservationController;
+    use Controllers\PaymentCouponController as PaymentCouponController;
     
     use DAO_SQL\OwnerDAO as OwnerDAO;
     use DAO_SQL\GuardianDAO as GuardianDAO;
@@ -9,6 +10,7 @@
     use DAO_SQL\AvStayDAO as AvStayDAO;
     use DAO_SQL\ReservationDAO as ReservationDAO;
     use DAO_SQL\PetDAO as PetDAO;
+    use DAO_SQL\PaymentCouponDAO as PaymentCouponDAO;
 
     use Models\Owner as Owner;
     use Models\Guardian as Guardian;
@@ -17,6 +19,7 @@
     use Models\Reservation as Reservation;
     use Models\ReservationForPet as ReservationForPet;
     use Models\Pet as Pet;
+    use Models\PaymentCoupon as PaymentCoupon;
 
     use Exception;
 
@@ -37,12 +40,22 @@
                     $guardianDAO = new GuardianDAO();
                     $reservationDAO = new ReservationDAO();
                     $petDAO = new PetDAO();
+
+                    $dailyReservs = array();
+                    $pastReserv = array();
                     
                     $user = $ownerDAO->GetById($_SESSION["idOwner"]);
                     $guardians = $guardianDAO->GetAll();
                     $petsList = $petDAO->GetByOwner($_SESSION['idOwner']);
                     
-                    //$reservList = $reservationDAO->GetByOwner($_SESSION['idOwner']); // obtengo las reservas de pet_x_reservation
+                    $reservList = $reservationDAO->GetByOwner($_SESSION['idOwner']); // obtengo todas las reservas de pet_x_reservation
+                    $diffReservs = $this->diffReservs_and_putObjects($reservList); // diferencio las reservas y cambio las ids por los objetos
+                
+                    if (!empty($diffReservs))
+                    {
+                        $dailyReservs = $diffReservs['daily'];
+                        $pastReserv = $diffReservs['last'];
+                    }
                 }
                 catch(Eception $ex)
                 {
@@ -171,6 +184,84 @@
             } 
         }
 
+        public function ShowReservation($id_coupon, $alert = '')
+        {
+            if (isset($_SESSION['idOwner']))
+            {
+                try
+                {
+                    $paymentCouponDAO = new PaymentCouponDAO();
+                    $reservationDAO = new ReservationDAO();
+                    $petDAO = new PetDAO();
+                    $guardianDAO = new GuardianDAO();
+                    $reviewDAO = new ReviewDAO();
+
+                    $coupon = new PaymentCoupon();
+                    $reserv = new Reservation();
+                    $pet = new Pet();
+                    $guardian = new Guardian();
+                    $review = new Review();
+        
+                    $coupon = $paymentCouponDAO->GetById($id_coupon); // el cupon de pago
+                    $reserv = $reservationDAO->GetById($coupon->getId_reservation()); // la reserva
+                    $pet = $petDAO->GetById($coupon->getId_pet()); // la mascota
+                    $guardian = $guardianDAO->GetById($reserv->getId_guardian()); // el guardian
+                    $review = $reviewDAO->GetByIdGuardian($reserv->getId_guardian()); // la review del guardian
+                }
+                catch(Exception $ex)
+                {
+                    $alert = [
+                        "type" => "danger",
+                        "text" => $ex->getMessage()
+                    ];
+                }
+
+                require_once(VIEWS_PATH . "Reservation_ViewOwner.php");
+            }
+            else
+            {
+                header("location: " . FRONT_ROOT . "Auth/ShowLogin");
+            }
+        }
+
+        public function Show_PaymentCoupon ($id, $alert = '')
+        {
+            if (isset($_SESSION['idOwner']))
+            {
+                try
+                {
+                    $paymentCouponDAO = new PaymentCouponDAO();
+                    $reservationDAO = new ReservationDAO();
+                    $petDAO = new PetDAO();
+                    $guardianDAO = new GuardianDAO();
+
+                    $coupon = new PaymentCoupon();
+                    $reserv = new Reservation();
+                    $pet = new Pet();
+                    $guardian = new Guardian();
+                    $review = new Review();
+        
+                    $coupon = $paymentCouponDAO->GetById($id); // el cupon de pago
+                    $reserv = $reservationDAO->GetById($coupon->getId_reservation()); // la reserva
+                    $pet = $petDAO->GetById($coupon->getId_pet()); // la mascota
+                    $guardian = $guardianDAO->GetById($reserv->getId_guardian()); // el guardian
+                }
+                catch(Exception $ex)
+                {
+                    $alert = [
+                        "type" => "danger",
+                        "text" => $ex->getMessage()
+                    ];
+                }
+
+                require_once(VIEWS_PATH . "PaymentCoupon_ViewOwner.php");
+            }
+            else
+            {
+                header("location: " . FRONT_ROOT . "Auth/ShowLogin");
+            }
+        }
+
         public function ShowViewGuardian($id, $alert = '')
         {
             if (isset($_SESSION['idOwner']))
@@ -192,6 +283,48 @@
                 }
 
                 require_once(VIEWS_PATH . "GuardianProfile_ViewOwner.php");
+            }
+            else
+            {
+                header("location: " . FRONT_ROOT . "Auth/ShowLogin");
+            } 
+        }
+
+        public function PaymentCoupon($nro, $first_month, $last_month, $name, $cod_seg, $id)
+        {
+            if (isset($_SESSION['idOwner']))
+            {         
+                try
+                {
+                    $reservationController = new ReservationController();
+                    $paymentCouponController = new PaymentCouponController();
+
+                    $paymentCouponDAO = new PaymentCouponDAO();
+                    $reservationDAO = new ReservationDAO();
+
+                    $coupon = new PaymentCoupon();
+                    $reserv = new Reservation();
+
+                    $coupon = $paymentCouponDAO->GetById($id);
+                    $reserv = $reservationDAO->GetById($coupon->getId_reservation());
+                    
+                    $paymentCouponController->Payment($id);
+                    $reservationController->ConfirmReserv($reserv->getId_reservation());
+
+                    $alert = [
+                        "type" => "success",
+                        "text" => "Pago realizado"
+                    ];
+                }
+                    catch(Eception $ex)
+                {
+                    $alert = [
+                        "type" => "danger",
+                        "text" => $ex->getMessage()
+                    ];
+                }
+
+                $this->ShowHome_Owner($alert);
             }
             else
             {
@@ -255,6 +388,60 @@
             }
 
             $this->ShowProfile_Owner();
+        }
+
+        /**
+        *	@param Array -> listado de reservas
+        */
+        function diffReservs_and_putObjects($totalReservs)
+        {
+            $reservationDAO = new ReservationDAO();
+            $petDAO = new PetDAO();
+            $paymentCouponDAO = new PaymentCouponDAO();
+            
+            $dailyReservs = array();
+            $pastReserv = array();
+
+            $reserForPet = new ReservationForPet();
+            $reserv = new Reservation();
+            $pet = new Pet();
+            $coupon = new PaymentCoupon();
+
+            foreach($totalReservs as $reserForPet)
+            {
+                $reserv = $reservationDAO->GetById($reserForPet->getId_reservation());
+                $pet = $petDAO->GetById($reserForPet->getId_Pet());
+                $coupon = $paymentCouponDAO->GetById($reserForPet->getId_coupon());
+                
+                if($reserv->getLast_day() <= date('Y-m-d')) // si el ultimo dia es menor al dia actual
+                {
+                    $reserForPet_Objs = [
+                        "reserv" => $reserv, // el obj reserva
+                        "pet" => $pet->getName(),
+                        "coupon" => $coupon, // el objeto cupon de pago
+                        "is_reviewed" => $reserForPet->getIs_reviewed() // si ya califico (1) o no califico (0) al guardian
+                    ];
+                    
+                    array_push($pastReserv, $reserForPet_Objs);
+                }
+                else if ($reserv->getIs_accepted() == 1) // else -> el ultimo dia es mayor al dia actual && si fue aceptada
+                {
+                    $reserForPet_Objs = [
+                        "reserv" => $reserv, // el obj reserva
+                        "pet" => $pet->getName(),
+                        "coupon" => $coupon // el objeto cupon de pago
+                    ];
+                    
+                    array_push($dailyReservs, $reserForPet_Objs);
+                }
+            }
+
+            $diffReservs = [
+                "daily" => $dailyReservs,
+                "last" => $pastReserv
+            ];
+
+            return $diffReservs;
         }
     }
 ?>
