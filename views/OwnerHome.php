@@ -28,7 +28,7 @@
 
     <br>
 
-    <main class="container ml-2 mr-2">
+    <main class="container-fluid">
 
         <div class="row">
 
@@ -62,6 +62,15 @@
                                         </button>
                                     </form> 
                                 </td>
+                            <?php if($reserv['coupon']->getIs_payment() == 0) { ?>
+                                <td>
+                                    <form action="<?php echo FRONT_ROOT . " Owner/Show_PaymentCoupon " ?>" method="POST">
+                                        <button class="btn btn-link" type="submit" name="id" value="<?php echo $reserv['coupon']->getId_paymentCoupon() ?>">
+                                            <i class="bi bi-credit-card text-primary"></i>
+                                        </button>
+                                    </form>
+                                </td>
+                            <?php } ?>
                             </tr>
 
                             <?php } 
@@ -72,7 +81,7 @@
                 
             </div>
 
-            <div class="text-center col-12 col-sm-8 col-lg-5 pt-3" >
+            <div class="text-center col-12 col-sm-8 col-lg-4 pt-3" >
                 <h2 class="text-center"> Lista de guardianes </h2>
             
                 <!-- Filtro -->
@@ -180,7 +189,7 @@
                 </button>
             </div>
 
-            <div class="col-12 col-sm-4 col-lg-3 pt-3">
+            <div class="col-12 col-sm-4 col-lg-4 pt-3">
                 <h2 class="text-center"> Reservas pasadas </h2>
                 <div class="mb-3">
                     <table class="table text-center">
@@ -209,6 +218,15 @@
                                         </button>
                                     </form> 
                                 </td>
+                            <?php if($reserv['is_reviewed'] == 0) { ?>
+                                <td>
+                                    <form action="<?php echo FRONT_ROOT . " Owner/ShowReviewed_Guardian " ?>" method="POST">
+                                        <button class="btn btn-link" type="submit" name="id_guardian" value="<?php echo $reserv['reserv']->getId_guardian() ?>">
+                                            <i class="bi bi-stars text-primary"></i>
+                                        </button>
+                                    </form>
+                                </td>
+                            <?php } ?>
                             </tr>
 
                             <?php } 

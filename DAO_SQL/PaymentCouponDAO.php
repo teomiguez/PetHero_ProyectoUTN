@@ -169,7 +169,7 @@
                 $this->connection = Connection::GetInstance();
 
                 $query = "UPDATE $this->tableName SET is_payment = :is_payment
-                            WHERE id_reservation = :id";
+                            WHERE id_payment_coupon = :id";
                 $parameters['is_payment'] = 1;
                 $parameters['id'] = $id;
 

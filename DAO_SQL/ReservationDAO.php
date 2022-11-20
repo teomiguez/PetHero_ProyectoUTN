@@ -271,6 +271,26 @@
             }
         }
 
+        public function ChangeToReviewed($id_reserv, $id_pet)
+        {
+            try
+            {
+                $this->connection = Connection::GetInstance();
+
+                $query = "UPDATE pets_x_reservation SET is_reviewed = :is_reviewed
+                            WHERE id_reservation = :id_reserv AND id_pet = :id_pet";
+                $parameters['is_reviewed'] = 1;
+                $parameters['id_reserv'] = $id_reserv;
+                $parameters['id_pet'] = $id_pet;
+
+                $this->connection->ExecuteNonQuery($query, $parameters);
+            }
+            catch (Exception $e)
+            {
+                throw $e;
+            }
+        }
+
         public function ChangeToConfirm($id)
         {
             try

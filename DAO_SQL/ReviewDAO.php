@@ -128,19 +128,19 @@
             }
         }
 
-        public function Update($id, Review $review)
+        public function Update($id_review, Review $review)
         {
             try
             {
                 $this->connection = Connection::GetInstance();
 
-                $query = "UPDATE $this->tableName SET quantity_reviews:quantity_reviews, sum_reviews:sum_reviews, review:review
-                            WHERE id_review = :id";
+                $query = "UPDATE $this->tableName SET quantity_reviews=:quantity_reviews, sum_reviews=:sum_reviews, review=:review
+                            WHERE id_review = :id_review";
 
                 $parameters['quantity_reviews'] = $review->getQuantity_reviews();
                 $parameters['sum_reviews'] = $review->getSum_reviews();
                 $parameters['review'] = $review->getReview();
-                $parameters['id'] = $id;
+                $parameters['id_review'] = $id_review;
 
                 $this->connection->ExecuteNonQuery($query, $parameters);
             }

@@ -241,7 +241,7 @@
             try
             {
                 $reservationDAO = new ReservationDAO();
-                $reservationDAO->ChangeToAccepted($id);
+                $reservationDAO->ChangeToConfirm($id);
             }
             catch(Exception $ex)
             {
@@ -268,12 +268,28 @@
             catch(Exception $ex)
             {
                 $alert = [
-                "type" => "danger",
-                "text" => $ex->getMessage()
+                    "type" => "danger",
+                    "text" => $ex->getMessage()
                 ];
             }
 
             $guardianController->ShowHome_Guardian($alert);
+        }
+
+        public function ReviewedReservation($id_reserv, $id_pet)
+        {
+            try
+            {
+                $reservationDAO = new ReservationDAO();
+                $reservationDAO->ChangeToReviewed($id_reserv, $id_pet);
+            }
+            catch(Exception $ex)
+            {
+                $alert = [
+                    "type" => "danger",
+                    "text" => $ex->getMessage()
+                ];
+            }
         }
 
         /**

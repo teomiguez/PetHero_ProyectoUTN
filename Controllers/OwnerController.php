@@ -3,6 +3,7 @@
     
     use Controllers\ReservationController as ReservationController;
     use Controllers\PaymentCouponController as PaymentCouponController;
+    use Controllers\ReviewController as ReviewController;
     
     use DAO_SQL\OwnerDAO as OwnerDAO;
     use DAO_SQL\GuardianDAO as GuardianDAO;
@@ -314,6 +315,73 @@
                     $alert = [
                         "type" => "success",
                         "text" => "Pago realizado"
+                    ];
+                }
+                    catch(Eception $ex)
+                {
+                    $alert = [
+                        "type" => "danger",
+                        "text" => $ex->getMessage()
+                    ];
+                }
+
+                $this->ShowHome_Owner($alert);
+            }
+            else
+            {
+                header("location: " . FRONT_ROOT . "Auth/ShowLogin");
+            } 
+        }
+
+        /**
+        *	@param Array -> reserva, cupon y mascota
+        */
+        public function ShowReviewed_Guardian($id_guardian, $alert = '')
+        {
+            if (isset($_SESSION['idOwner']))
+            {         
+                try
+                {
+                    $guardianDAO = new GuardianDAO();
+                    $guardian = $guardianDAO->GetById($id_guardian);
+                }
+                    catch(Eception $ex)
+                {
+                    $alert = [
+                        "type" => "danger",
+                        "text" => $ex->getMessage()
+                    ];
+
+                    $this->ShowHome_Owner($alert);
+                }
+
+                require_once(VIEWS_PATH . "ReviewedGuardian.php");
+            }
+            else
+            {
+                header("location: " . FRONT_ROOT . "Auth/ShowLogin");
+            } 
+        }
+
+        /**
+        *	@param Array -> reserva, cupon y mascota
+        */
+        public function ReviewedGuardian($rating, $id_guardian)
+        {
+            if (isset($_SESSION['idOwner']))
+            {         
+                try
+                {
+                    $reservationController = new ReservationController();
+                    $reviewController = new ReviewController();
+
+                    $reviewController->UpdateReview($id_guardian, $rating);
+                    
+                    // cambiar el is_reviewd a 1 (en pets_x_reservation)
+
+                    $alert = [
+                        "type" => "success",
+                        "text" => "Calificación enviada"
                     ];
                 }
                     catch(Eception $ex)

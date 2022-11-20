@@ -47,15 +47,18 @@
     
                 $review = $reviewDAO->GetByIdGuardian($id_guardian);
     
+                $id_review = $review->getId_review();
                 $newQuantity = $review->getQuantity_reviews() + 1;
                 $newSum_reviews = $review->getSum_reviews() + $rating;
-                $newReview = $newQuantity/$newSum_reviews;
+                $newReview = ($newSum_reviews / $newQuantity);
                 
                 $review->setQuantity_reviews($newQuantity);
                 $review->setSum_reviews($newSum_reviews);
                 $review->setReview($newReview);
+
+                var_dump($review);
     
-                $reviewDAO->Update($id_guardian, $review);
+                $reviewDAO->Update($id_review, $review);
             }
             catch(Exception $ex)
             {
