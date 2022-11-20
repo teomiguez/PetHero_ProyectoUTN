@@ -108,7 +108,7 @@
                         }
                         else if ($reservExist->getIs_accepted() == 1) // si la reserva fue aceptada -> veo si puedo agregar la mascota
                         {      
-                            if (($reservationDAO->GetSize_Condition($id_exist) == $pet->getSize()) && ($reservationDAO->GetBreed_Condition($id_exist) == $pet->getBreed())) // si la mascota cumple las condiciones de la reserva
+                            if (($reservationDAO->GetSize_Condition($id_exist) == $pet->getSize()) && (strcasecmp($reservationDAO->GetBreed_Condition($id_exist),$pet->getBreed()) === 0)) // si la mascota cumple las condiciones de la reserva
                             {
                                 $paymentCouponController->Create_PaymentCoupon($id_exist, $pet->getId_pet() ,$pet->getId_owner()); // creo el cupon
                                 
