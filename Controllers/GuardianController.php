@@ -53,7 +53,6 @@
                         $dailyReservs = $diffReservs['daily'];
                         $pastReserv = $diffReservs['last'];
                     }
-
                 }
                 catch(Exception $ex)
                 {

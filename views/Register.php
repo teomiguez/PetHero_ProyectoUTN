@@ -8,7 +8,7 @@
     <title> Pagina Registro </title>
 
     <!-- Link use Css_file -->
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href=" <?php echo CSS_PATH . "styles.css" ?> ">
 
     <!-- Link use Boostrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -16,8 +16,8 @@
 
 </head>
 
-<body class="bg-color">
-    <main class="container text-center mx-5">
+<body class="bg-img">
+    <main class="container text-center my-5 mx-5">
         <section class="bg-white text-dark py-2 px-3 border-5 rounded-4">
             <h2 class="text-center py-2"> Registrarse </h2>
             <form action="<?php echo FRONT_ROOT . " Auth/Register" ?>" method="POST" class="text-start">
