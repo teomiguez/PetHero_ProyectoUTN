@@ -78,7 +78,7 @@
                     <a class="btn btn-primary px-5" role="button" href="<?php echo FRONT_ROOT . "Owner/ShowHome_Owner" ?>"> Volver </a>
                 </div>
                 <div class="col-4">
-                    <button type="submit" class="btn btn-primary" name="id_guardian" value="<?php echo $guardian->getId_guardian() ?>"> Enviar </button>
+                    <button type="submit" class="btn btn-primary" name="id_coupon" value="<?php echo $id_coupon ?>"> Enviar </button>
                 </div>
             </div>
             </form>

@@ -350,13 +350,22 @@
         /**
         *	@param Array -> reserva, cupon y mascota
         */
-        public function ShowReviewed_Guardian($id_guardian, $alert = '')
+        public function ShowReviewed_Guardian($id_coupon, $alert = '')
         {
             if (isset($_SESSION['idOwner']))
             {         
                 try
                 {
+                    $paymentCouponDAO = new PaymentCouponDAO();
+                    $reservationDAO = new ReservationDAO();
                     $guardianDAO = new GuardianDAO();
+
+                    $coupon = $paymentCouponDAO->GetById($id_coupon);
+                    $id_reserv = $coupon->getId_reservation();
+
+                    $reserv = $reservationDAO->GetById($id_reserv);
+                    $id_guardian = $reserv->getId_guardian();
+                    
                     $guardian = $guardianDAO->GetById($id_guardian);
                 }
                     catch(Eception $ex)
@@ -369,7 +378,7 @@
                     $this->ShowHome_Owner($alert);
                 }
 
-                require_once(VIEWS_PATH . "ReviewedGuardian.php");
+                require_once(VIEWS_PATH . "ReviewedGuardian_ViewOwner.php");
             }
             else
             {
@@ -380,7 +389,7 @@
         /**
         *	@param Array -> reserva, cupon y mascota
         */
-        public function ReviewedGuardian($rating, $id_guardian)
+        public function ReviewedGuardian($rating, $id_coupon)
         {
             if (isset($_SESSION['idOwner']))
             {         
@@ -389,7 +398,19 @@
                     $reservationController = new ReservationController();
                     $reviewController = new ReviewController();
 
+                    $paymentCouponDAO = new PaymentCouponDAO();
+                    $reservationDAO = new ReservationDAO();
+
+                    $coupon = $paymentCouponDAO->GetById($id_coupon);
+                    
+                    $id_reserv = $coupon->getId_reservation();
+                    $id_pet = $coupon->getId_pet();
+
+                    $reserv = $reservationDAO->GetById($id_reserv);
+                    $id_guardian = $reserv->getId_guardian();
+
                     $reviewController->UpdateReview($id_guardian, $rating);
+                    $reservationDAO->ChangeToReviewed($id_reserv, $id_pet);
                     
                     // cambiar el is_reviewd a 1 (en pets_x_reservation)
 

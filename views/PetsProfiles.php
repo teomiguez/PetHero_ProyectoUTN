@@ -25,8 +25,6 @@
         include('nav-owner.php');
     ?>
 
-    <?php // echo var_dump($_SESSION); ?>
-
     <br>
 
     <main class="container">

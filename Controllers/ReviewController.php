@@ -55,8 +55,6 @@
                 $review->setQuantity_reviews($newQuantity);
                 $review->setSum_reviews($newSum_reviews);
                 $review->setReview($newReview);
-
-                var_dump($review);
     
                 $reviewDAO->Update($id_review, $review);
             }

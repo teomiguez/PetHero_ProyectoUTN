@@ -221,7 +221,7 @@
                             <?php if($reserv['is_reviewed'] == 0) { ?>
                                 <td>
                                     <form action="<?php echo FRONT_ROOT . " Owner/ShowReviewed_Guardian " ?>" method="POST">
-                                        <button class="btn btn-link" type="submit" name="id_guardian" value="<?php echo $reserv['reserv']->getId_guardian() ?>">
+                                        <button class="btn btn-link" type="submit" name="id_coupon" value="<?php echo $reserv['coupon']->getId_paymentCoupon() ?>">
                                             <i class="bi bi-stars text-primary"></i>
                                         </button>
                                     </form>
