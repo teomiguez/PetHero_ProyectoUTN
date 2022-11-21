@@ -89,7 +89,7 @@
                     <form action="<?php echo FRONT_ROOT . " Owner/PaymentCoupon " ?>" method="POST">
                         <div class="mb-2">
                             <label for="nro" class="form-label"> Número de la tarjeta  </label>
-                            <input id="nro" name="nro" type="int" class="form-control" placeholder="XXX - XXXX - XXXX - XXXX" pattern="[0-9]{4}[0-9]{4}[0-9]{4}[0-9]{4}" required>
+                            <input id="nro" name="nro" type="int" class="form-control" placeholder="XXX-XXXX-XXXX-XXXX" pattern="[0-9]{3}[0-9]{4}[0-9]{4}[0-9]{4}" required>
 
                             <div class="d-flex justify-content-evenly text-center">
                                 <div class="my-1">
