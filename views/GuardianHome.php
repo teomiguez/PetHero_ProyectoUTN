@@ -112,7 +112,7 @@
                                 <td> <?php  $date1 = new DateTime($avStay->getFirst_day());
                                             $date2 = new DateTime($avStay->getLast_day());
                                             $diff = $date1->diff($date2);                          
-                                            echo $diff->days .' dias ';
+                                            if ($diff->days == 1) {echo $diff->days .' día'; } else { echo $diff->days .' días'; } ;
                                  ?> </td>
                                 <td> 
                                     <form action="<?php echo FRONT_ROOT . "AvStay/RemoveStay" ?>" method="POST">

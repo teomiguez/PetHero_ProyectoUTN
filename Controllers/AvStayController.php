@@ -40,7 +40,10 @@
                             $avStayDAO->Add($avStay);
                             // <- ADD AvStay TO JSON
 
-                            $guardianController->ShowHome_Guardian();
+                            $alert = [
+                                "type" => "success",
+                                "text" => "Estadia creada"
+                            ];
                         }
                         else
                         {
@@ -63,9 +66,9 @@
                     "type" => "danger",
                     "text" => $ex->getMessage()
                 ];
-
-                $guardianController->ShowHome_Guardian();
             }
+
+            $guardianController->ShowHome_Guardian($alert);
         }
 
         function checkDiffDays($first_day, $last_day)

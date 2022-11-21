@@ -18,6 +18,7 @@
     use Models\AvStay as AvStay;
     use Models\PaymentCoupon as PaymentCoupon;
 
+    use DateTime;
     use Exception;
 
     class ReservationController 
@@ -73,6 +74,10 @@
                 $guardian = new Guardian();
                 $guardian = $guardianDAO->GetById($id_guardian);
                 $coupon = new PaymentCoupon();
+
+                $date1 = new DateTime($first_day);
+                $date2 = new DateTime($last_day);
+                $diff = $date1->diff($date2);
     
                 try 
                 {
@@ -85,9 +90,7 @@
                         {
                             if ($guardian->getSizeCare() == $pet->getSize())
                             {
-                                $diff = 0; // ver de hacer la diferencia (tiro error con las lineas que estan en GuardianHome)
-        
-                                $this->Create_Reserv($id_guardian, $pet->getSize(), $pet->getBreed(), $first_day, $last_day, $diff); // creo la reserva
+                                $this->Create_Reserv($id_guardian, $pet->getSize(), $pet->getBreed(), $first_day, $last_day, $diff->days); // creo la reserva
                                 
                                 $reservForGuardian2 = $reservationDAO->GetByGuardian($id_guardian);
         
@@ -132,9 +135,7 @@
                     {
                         if ($guardian->getSizeCare() == $pet->getSize())
                         {
-                            $diff = 0; // ver de hacer la diferencia (tiro error con las lineas que estan en GuardianHome)
-    
-                            $this->Create_Reserv($id_guardian, $pet->getSize(), $pet->getBreed(), $first_day, $last_day, $diff); // creo la reserva
+                            $this->Create_Reserv($id_guardian, $pet->getSize(), $pet->getBreed(), $first_day, $last_day, $diff->days); // creo la reserva
                             
                             $reservForGuardian2 = $reservationDAO->GetByGuardian($id_guardian);
     
