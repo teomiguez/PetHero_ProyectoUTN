@@ -30,7 +30,7 @@
     <br>
     
     <main class="container text-center">
-        <div class="col-md-6 offset-md-3">
+        <div class="col-md-6 offset-md-3 mb-5">
             <h2 class="text-center my-3"> Reserva nro. <?php echo $reserv->getId_reservation() ?> </h2>
             <table class="table table-striped">
                 <tbody>
@@ -59,6 +59,17 @@
                     <tr>
                         <th scope="row"> Días totales: </th>
                         <td> <?php echo $reserv->getTotal_days() ?> </td>
+                    </tr>
+                    <tr>
+                        <th colspan="2"> Estado </th>
+                    </tr>
+                    <tr>
+                        <th scope="row"> Reserva aceptada: </th>
+                        <td> <?php if($reserv->getIs_accepted() == 0) { echo "no"; } else { echo "si"; } ?> </td>
+                    </tr>
+                    <tr>
+                        <th scope="row"> Reserva confirmada: </th>
+                        <td> <?php if($reserv->getIs_confirm() == 0) { echo "no"; } else { echo "si"; } ?> </td>
                     </tr>
                     <tr>
                         <th colspan="2"> Mascotas: </th>

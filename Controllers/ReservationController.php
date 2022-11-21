@@ -6,6 +6,7 @@
     use Controllers\PaymentCouponController as PaymentCouponController;
 
     use DAO_SQL\GuardianDAO as GuardianDAO;
+    use DAO_SQL\OwnerDAO as OwnerDAO;
     use DAO_SQL\AvStayDAO as AvStayDAO;
     use DAO_SQL\ReservationDAO as ReservationDAO;
     use DAO_SQL\PaymentCouponDAO as PaymentCouponDAO;
@@ -15,6 +16,7 @@
     use Models\Guardian as Guardian;
     use Models\Pet as Pet;
     use Models\Reservation as Reservation;
+    use Models\ReservationForPet as ReservationForPet;
     use Models\AvStay as AvStay;
     use Models\PaymentCoupon as PaymentCoupon;
 
@@ -185,9 +187,15 @@
             try
             {
                 $guardianController = new GuardianController();
+
                 $reservationDAO = new ReservationDAO();
+                $ownerDAO = new OwnerDAO();
+                $paymentCouponDAO = new PaymentCouponDAO();
+
                 $reservExist = new Reservation();
                 $reservToAccept = new Reservation();
+                $petForReserv = new ReservationForPet();
+                $petsForReserv = array();
 
                 $reservToAccept = $reservationDAO->GetById($id);
 
@@ -207,7 +215,16 @@
                     }
                     else
                     {
+                        $petsForReserv = $reservationDAO->GetPetsByIdReservation($id);   
                         $reservationDAO->ChangeToAccepted($id);
+                        
+                        // foreach($petsForReserv as $petForReserv)
+                        // {
+                        //     $owner = $ownerDAO->GetById($petForReserv->getId_owner());
+                        //     $email = $owner->getEmail();
+                        //     $coupon = $paymentCouponDAO->GetById($petForReserv->getId_coupon());
+                        //     mail($email, "Reserva aceptada", "El cupon");
+                        // }
 
                         $alert = [
                             "type" => "success",
