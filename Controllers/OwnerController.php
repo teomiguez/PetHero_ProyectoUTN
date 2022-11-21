@@ -81,10 +81,24 @@
                 try
                 {
                     $guardianDAO = new GuardianDAO();
+                    $ownerDAO = new OwnerDAO();
                     $avStayDAO = new AvStayDAO();
+                    $reservationDAO = new ReservationDAO();
                     $petDAO = new PetDAO();
     
                     $guardian = new Guardian();
+
+                    $user = $ownerDAO->GetById($_SESSION["idOwner"]);
+                    $petsList = $petDAO->GetByOwner($_SESSION['idOwner']);
+
+                    $reservList = $reservationDAO->GetByOwner($_SESSION['idOwner']); // obtengo todas las reservas de pet_x_reservation
+                    $diffReservs = $this->diffReservs_and_putObjects($reservList); // diferencio las reservas y cambio las ids por los objetos
+                
+                    if (!empty($diffReservs))
+                    {
+                        $dailyReservs = $diffReservs['daily'];
+                        $pastReserv = $diffReservs['last'];
+                    }
     
                     $guardians = array();
                     $guardiansAviable = array();
