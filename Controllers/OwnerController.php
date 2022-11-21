@@ -32,7 +32,7 @@
         }
 
         public function ShowHome_Owner($alert = '')
-        {    
+        {
             if (isset($_SESSION['idOwner']))
             {
                 try
@@ -230,13 +230,13 @@
                         "text" => $ex->getMessage()
                     ];
                 }
-
-                require_once(VIEWS_PATH . "Reservation_ViewOwner.php");
             }
             else
             {
                 header("location: " . FRONT_ROOT . "Auth/ShowLogin");
             }
+
+            require_once(VIEWS_PATH . "Reservation_ViewOwner.php");
         }
 
         public function Show_PaymentCoupon ($id, $alert = '')
