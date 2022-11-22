@@ -7,6 +7,12 @@
 	require "Config/Autoload.php";
 	require "Config/Config.php";
 
+	// -> ENVIAR EMAILS
+	require_once "phpmailer/phpmailer/src/PHPMailer.php";
+	require_once "phpmailer/phpmailer/src/SMTP.php";
+	require_once "phpmailer/phpmailer/src/Exception.php";
+	// <- ENVIAR EMAILS
+
 	use Config\Autoload as Autoload;
 	use Config\Router 	as Router;
 	use Config\Request 	as Request;

@@ -16,6 +16,9 @@
 
     use Exception;
 
+    use PHPMailer\PHPMailer\PHPMailer;
+    use PHPMailer\PHPMailer\SMTP;
+
     class AuthController
     {
         public function Index($message = "")
@@ -154,6 +157,32 @@
                 {
                     if ($user1->getDni() == $dni) // RECOVER -> OWNER
                     {
+                        $mail = new PHPMailer(true);
+
+                        try
+                        {
+                            //$mail->SMTPDebug = SMTP::DEBUG_SERVER;
+                            $mail->isSMTP();
+                            $mail->Host = 'smtp.gmail.com';
+                            $mail->SMTPAuth = true;
+                            $mail->Username = 'pethero2022.oficial@gmail.com';
+                            $mail->Password = 'ocljoawkximtledu';
+                            $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+                            $mail->Port = '465';
+
+                            $mail->setFrom('pethero2022.oficial@gmail.com', 'PET HERO');
+                            $mail->AddAddress($user1->getEmail());
+
+                            $mail->isHTML(true);
+                            $mail->Subject = 'Restauracion de contraseña';
+                            $mail->Body = 'Contraseña: <b> ' . $user1->getPassword() .' </b>';
+                            $mail->send();
+                        }
+                        catch (Exception $e)
+                        {
+                            throw new Exception($mail->ErrorInfo);
+                        }
+                        
                         $alert = [
                             "type" => "success", 
                             "text" => "Enviamos un email a " . $user1->getEmail() . " con la contraseña"
@@ -168,7 +197,31 @@
                 {
                     if ($user2->getDni() == $dni)
                     {
-                        // envio el email
+                        $mail = new PHPMailer(true);
+
+                        try
+                        {
+                            //$mail->SMTPDebug = SMTP::DEBUG_SERVER;
+                            $mail->isSMTP();
+                            $mail->Host = 'smtp.gmail.com';
+                            $mail->SMTPAuth = true;
+                            $mail->Username = 'pethero2022.oficial@gmail.com';
+                            $mail->Password = 'ocljoawkximtledu';
+                            $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+                            $mail->Port = '465';
+
+                            $mail->setFrom('pethero2022.oficial@gmail.com', 'PET HERO');
+                            $mail->AddAddress($user2->getEmail());
+
+                            $mail->isHTML(true);
+                            $mail->Subject = 'Restauracion de contraseña';
+                            $mail->Body = 'Contraseña: <b> ' . $user2->getPassword() .' </b>';
+                            $mail->send();
+                        }
+                        catch (Exception $e)
+                        {
+                            throw new Exception($mail->ErrorInfo);
+                        }
     
                         $alert = [
                             "type" => "success", 
