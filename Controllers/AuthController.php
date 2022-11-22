@@ -163,19 +163,19 @@
                         {
                             //$mail->SMTPDebug = SMTP::DEBUG_SERVER;
                             $mail->isSMTP();
-                            $mail->Host = 'smtp.gmail.com';
+                            $mail->Host = M_HOST;
                             $mail->SMTPAuth = true;
-                            $mail->Username = 'pethero2022.oficial@gmail.com';
-                            $mail->Password = 'ocljoawkximtledu';
+                            $mail->Username = M_USER;
+                            $mail->Password = M_PASS;
                             $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
-                            $mail->Port = '465';
+                            $mail->Port = M_PORT;
 
-                            $mail->setFrom('pethero2022.oficial@gmail.com', 'PET HERO');
+                            $mail->setFrom(M_USER, 'PET HERO');
                             $mail->AddAddress($user1->getEmail());
 
                             $mail->isHTML(true);
-                            $mail->Subject = 'Restauracion de contraseña';
-                            $mail->Body = 'Contraseña: <b> ' . $user1->getPassword() .' </b>';
+                            $mail->Subject = 'Restauracion de contrasenia';
+                            $mail->Body = 'Contrasenia: <b> ' . $user1->getPassword() .' </b>';
                             $mail->send();
                         }
                         catch (Exception $e)
@@ -203,19 +203,19 @@
                         {
                             //$mail->SMTPDebug = SMTP::DEBUG_SERVER;
                             $mail->isSMTP();
-                            $mail->Host = 'smtp.gmail.com';
+                            $mail->Host = M_HOST;
                             $mail->SMTPAuth = true;
-                            $mail->Username = 'pethero2022.oficial@gmail.com';
-                            $mail->Password = 'ocljoawkximtledu';
+                            $mail->Username = M_USER;
+                            $mail->Password = M_PASS;
                             $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
-                            $mail->Port = '465';
+                            $mail->Port = M_PORT;
 
-                            $mail->setFrom('pethero2022.oficial@gmail.com', 'PET HERO');
+                            $mail->setFrom(M_USER, 'PET HERO');
                             $mail->AddAddress($user2->getEmail());
 
                             $mail->isHTML(true);
-                            $mail->Subject = 'Restauracion de contraseña';
-                            $mail->Body = 'Contraseña: <b> ' . $user2->getPassword() .' </b>';
+                            $mail->Subject = 'Restauracion de contrasenia';
+                            $mail->Body = 'Contrasenia: <b> ' . $user2->getPassword() .' </b>';
                             $mail->send();
                         }
                         catch (Exception $e)
