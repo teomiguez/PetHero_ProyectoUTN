@@ -72,6 +72,9 @@
                         <td> <?php echo $reserv->getTotal_days() ?> </td>
                     </tr>
                     <tr>
+                        <th colspan="2"> Estado </th>
+                    </tr>
+                    <tr>
                         <th scope="row"> Reserva aceptada: </th>
                         <td> <?php if($reserv->getIs_accepted() == 0) { echo "no"; } else { echo "si"; } ?> </td>
                     </tr>

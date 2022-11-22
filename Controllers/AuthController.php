@@ -16,7 +16,6 @@
 
     use Exception;
 
-
     class AuthController
     {
         public function Index($message = "")
@@ -43,6 +42,13 @@
         public function ShowLogin()
         {
             require_once(VIEWS_PATH . "Home.php");
+        }
+
+        // VISTA RECOVER PASSWORD (RECUPERAR CONTRASEÑA)
+
+        public function ShowRecoverPassword()
+        {
+            require_once(VIEWS_PATH . "RecoverPassword.php");
         }
 
         // FUNCION -> INICIAR SESION
@@ -108,14 +114,90 @@
             } 
             catch (Exception $ex)
             {
-                $alert = [
-                    "type" => "danger",
-                    "text" => $ex->getMessage()
-                ];
+                if (strcmp($ex->getMessage(), "Usuario y/o Contraseña incorrectos") === 0)
+                {
+                    $alert = [
+                        "type" => "danger",
+                        "text" => $ex->getMessage(),
+                        "text2" => "Recuperar contraseña"
+                    ];
+                }
+                else
+                {
+                    $alert = [
+                        "type" => "danger",
+                        "text" => $ex->getMessage()
+                    ];
+                }
 
                 // -> REDIRECTION TO LOGIN_VIEW
                 require_once(VIEWS_PATH . "Home.php");
                 // <- REDIRECTION TO LOGIN_VIEW
+            }
+        }
+
+        // FUCTION -> RECUPERAR CONTRASEÑA
+
+        public function RecoverPassword($email, $dni)
+        {
+            try
+            {  
+                session_destroy();
+    
+                $ownerDAO = new OwnerDAO;
+                $guardianDAO = new GuardianDAO;
+    
+                $user1 = $ownerDAO->GetByEmail($email); // USER1 → OWNER
+                $user2 = $guardianDAO->GetByEmail($email); // USER2 → GUARDIAN
+    
+                if ($user1 != null)
+                {
+                    if ($user1->getDni() == $dni) // RECOVER -> OWNER
+                    {
+                        $alert = [
+                            "type" => "success", 
+                            "text" => "Enviamos un email a " . $user1->getEmail() . " con la contraseña"
+                        ];
+                    }
+                    else
+                    {
+                        throw new Exception('El dni no es valido');
+                    }
+                }
+                else if ($user2 != null) // RECOVER -> GUARDIAN
+                {
+                    if ($user2->getDni() == $dni)
+                    {
+                        // envio el email
+    
+                        $alert = [
+                            "type" => "success", 
+                            "text" => "Enviamos un email a " . $user2->getEmail() . " con la contraseña"
+                        ];
+                    }
+                    else
+                    {
+                        throw new Exception('El dni no es valido');
+                    }
+                }
+                else
+                {
+                    throw new Exception('El email ingresado no se encuentra entre los usuarios registrados');
+                }
+
+                // -> REDIRECTION TO REGISTER_VIEW
+                require_once(VIEWS_PATH . "Home.php");
+                // <- REDIRECTION TO REGISTER_VIEW
+            } 
+            catch (Exception $ex)
+            {
+                $alert = [
+                    "type" => "danger",
+                    "text" => $ex->getMessage()
+                ];
+                // -> REDIRECTION TO RECOVER_VIEW
+                require_once(VIEWS_PATH . "RecoverPassword.php");
+                // <- REDIRECTION TO RECOVER_VIEW
             }
         }
 

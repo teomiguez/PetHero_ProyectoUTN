@@ -60,6 +60,10 @@
                     <a href="<?php echo FRONT_ROOT . "Auth/ShowRegist" ?>"> Registrarse </a>
                 </div>
 
+                <div class="d-flex justify-content-center">
+                    <p class="px-2"> Olvidate tú contraseña? </p>
+                    <a href="<?php echo FRONT_ROOT . "Auth/ShowRecoverPassword" ?>"> Recuperar contraseña </a>
+                </div>
 
             </form>
         </section>
@@ -70,6 +74,10 @@
             <div class="alert alert-<?php echo $alert['type'] ?>" role="alert">
                 <?php echo $alert['text'] ?>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                <?php if (isset($alert["text2"])) {?>
+                    <hr>
+                    <a class="d-flex justify-content-center alert-link" href=" <?php echo FRONT_ROOT . "Auth/ShowRecoverPassword" ?> "> <?php echo $alert["text2"] ?> </a>
+                <?php } ?>
             </div>
         </div>
     <?php } ?>
