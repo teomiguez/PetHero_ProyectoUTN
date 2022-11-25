@@ -96,7 +96,7 @@
                                 
                                 $reservForGuardian2 = $reservationDAO->GetByGuardian($id_guardian);
         
-                                $id_reserv = $this->GetIdReserv_ByExactlyDates($reservForGuardian2, $first_day, $last_day, $pet->getBreed()); // obtengo el id de la reserva
+                                $id_reserv = $this->GetIdReserv_ByExactlyDates($reservForGuardian2, $first_day, $last_day, $pet->getBreed()); // obtengo el id de la reserva -> crear stored procedure para devolver id al crearlo
                                 
                                 $paymentCouponController->Create_PaymentCoupon($id_reserv, $pet->getId_pet(), $pet->getId_owner()); // creo el cupon
                                 
