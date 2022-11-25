@@ -23,8 +23,8 @@
     <!-- Barra de navegacion -->
     <?php
 
-    include('nav-guardian.php');
-
+    include('nav-owner.php');
+    
     ?>
 
     <br>
